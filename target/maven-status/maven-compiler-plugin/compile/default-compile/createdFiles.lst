@@ -1,0 +1,7 @@
+com/pacgame/model/Maze.class
+com/pacgame/model/Moveable.class
+com/pacgame/model/Pacman.class
+com/pacgame/App.class
+com/pacgame/model/Turnable.class
+com/pacgame/model/Component.class
+com/pacgame/model/Player.class
