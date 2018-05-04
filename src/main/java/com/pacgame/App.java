@@ -5,12 +5,14 @@ import com.pacgame.model.Pacman;
 import com.pacgame.view.Factory;
 import com.pacgame.view.Map;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -40,12 +42,12 @@ public class App extends Application {
 
         Scene scene = new Scene(root, 500, 500);
 
-        Pacman pacman = new Pacman(new Point2D(200, 200), 25);
+        Pacman pacman = new Pacman(new Point2D(200, 200), 15);
 
 
         Map mapMain = Factory.createMap("./map/map_first.png");
         final PacmanController pacmanController = new PacmanController(pacman, scene);
-
+        pacmanController.startEatAnimation();
 
 
         root.getChildren().add(mapMain.getView(500, 500));
@@ -57,7 +59,10 @@ public class App extends Application {
         primaryStage.setTitle("PAC-GAME new PACMAN :-)");
         primaryStage.show();
 
-        new Timer().schedule(
+
+        final Timer timer = new Timer();
+
+        timer.schedule(
                 new TimerTask() {
 
                     @Override
@@ -65,6 +70,12 @@ public class App extends Application {
                         pacmanController.run(1);
                     }
                 }, 0, 25);
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent event) {
+                timer.cancel();
+            }
+        });
     }
 
     public static void main(String[] args)

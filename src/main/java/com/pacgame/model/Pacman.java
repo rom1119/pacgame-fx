@@ -17,19 +17,19 @@ public class Pacman extends Player implements Turnable, Moveable {
     public Pacman(Point2D point, int radius) {
 
         this.point = point;
-        this.width = radius;
-        this.height = radius;
+        this.width = radius * 2;
+        this.height = radius * 2;
 
         collider = new Rectangle(point.getX(), point.getY(), width, height);
 //        icon = new Circle();
 
-        collider.setFill(Color.TRANSPARENT);
+        collider.setFill(new Color(0, 1, 0, 0.7));
 
         this.icon = new Arc();
         this.icon.setCenterX(0);
         this.icon.setCenterY(0);
-        this.icon.setRadiusX(25.0f);
-        this.icon.setRadiusY(25.0f);
+        this.icon.setRadiusX(radius);
+        this.icon.setRadiusY(radius);
         this.icon.setStartAngle(45.0f);
         this.icon.setLength(270.0f);
         this.icon.setType(ArcType.ROUND);
@@ -94,9 +94,11 @@ public class Pacman extends Player implements Turnable, Moveable {
         collider.setTranslateX(point.getX());
         collider.setTranslateY(point.getY());
 
+        collider.setLayoutX(point.getX() - (width / 2));
+        collider.setLayoutY(point.getY() - (height / 2));
 
-        icon.setTranslateX(point.getX());
-        icon.setTranslateY(point.getY());
+        icon.setTranslateX(point.getX() + (width));
+        icon.setTranslateY(point.getY() + (height));
 
     }
 

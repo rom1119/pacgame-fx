@@ -3,6 +3,7 @@ package com.pacgame.controller;
 import com.pacgame.model.Direction;
 import com.pacgame.model.Pacman;
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -15,7 +16,7 @@ import javafx.util.Duration;
 public class PacmanController implements EventHandler<KeyEvent> {
 
     private Pacman pacman;
-    private Timeline fiveSecondsWonder;
+    private Timeline timeline;
 
     public PacmanController(Pacman pacman, Scene scene) {
 
@@ -72,20 +73,27 @@ public class PacmanController implements EventHandler<KeyEvent> {
     public void startEatAnimation()
     {
         final PacmanController that = this;
-        fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+        timeline = new Timeline();
 
-            public void handle(ActionEvent event) {
-                that.run(2);
-            }
-        }));
-        fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
-        fiveSecondsWonder.play();
+        KeyValue keyValueAngle = new KeyValue(pacman.getIcon().startAngleProperty(), 0);
+        KeyValue keyValueLength = new KeyValue(pacman.getIcon().lengthProperty(), 360);
+        KeyValue keyValueCenterX = new KeyValue(pacman.getIcon().centerXProperty(), -3);
+        KeyValue keyValueCenterY = new KeyValue(pacman.getIcon().centerYProperty(), -3);
+//        KeyValue keyValueStart = new KeyValue(pacman.getIcon().startAngleProperty(), 45);
+
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(500), keyValueAngle, keyValueLength, keyValueCenterX, keyValueCenterY);
+
+        timeline.getKeyFrames().add(keyFrame);
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setAutoReverse(true);
+        timeline.play();
     }
 
     public void stopEatAnimation()
     {
-        if (fiveSecondsWonder != null && fiveSecondsWonder instanceof Timeline){
-            fiveSecondsWonder.stop();
+        if (timeline != null && timeline instanceof Timeline){
+            timeline.stop();
         }
     }
 }
