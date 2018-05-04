@@ -41,7 +41,11 @@ public abstract class Component {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(int width) throws IllegalArgumentException {
+
+        if (width < 1) {
+            throw new IllegalArgumentException();
+        }
         this.width = width;
     }
 
@@ -49,7 +53,12 @@ public abstract class Component {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(int height) throws IllegalArgumentException {
+
+        if (height < 1) {
+            throw new IllegalArgumentException();
+        }
+
         this.height = height;
     }
 

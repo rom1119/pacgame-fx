@@ -1,23 +1,18 @@
 package com.pacgame.model;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
+import javafx.util.Duration;
 
 public class Pacman extends Player implements Turnable, Moveable {
     protected Arc icon;
-
-    @Override
-    public Arc getIcon() {
-        return icon;
-    }
-
-    public void setIcon(Arc icon) {
-        this.icon = icon;
-    }
-
 
     public Pacman(Point2D point, int radius) {
 
@@ -25,7 +20,7 @@ public class Pacman extends Player implements Turnable, Moveable {
         this.width = radius;
         this.height = radius;
 
-        collider = new Rectangle();
+        collider = new Rectangle(point.getX(), point.getY(), width, height);
 //        icon = new Circle();
 
         collider.setFill(Color.TRANSPARENT);
@@ -39,13 +34,17 @@ public class Pacman extends Player implements Turnable, Moveable {
         this.icon.setLength(270.0f);
         this.icon.setType(ArcType.ROUND);
 
+        this.icon.setRotate(0);
+
         this.icon.setFill(Color.YELLOW);
-
-
 
         initPosition();
 
-        moveDown(30);
+        turnUp();
+
+        setCheckedDirection(Direction.UP);
+
+//        moveDown(30);
 
 //        this.icon.set
 
@@ -54,26 +53,47 @@ public class Pacman extends Player implements Turnable, Moveable {
 
     }
 
+    public boolean isTurnedTo(int side) {
+        return this.getCheckedDirection() == side;
+    }
+
+    @Override
+    public Arc getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Arc icon) {
+        this.icon = icon;
+    }
+
+    private void setRotate(int angle)
+    {
+        this.getIcon().setRotate(angle);
+        this.getCollider().setRotate(angle);
+    }
+
+
     public void turnLeft() {
-        this.getIcon().setRotate(90);
+        this.setRotate(180);
     }
 
     public void turnRight() {
-        this.getIcon().setRotate(270);
+        this.setRotate(0);
     }
 
     public void turnUp() {
-        this.getIcon().setRotate(0);
+        this.setRotate(270);
     }
 
     public void turnDown() {
-        this.getIcon().setRotate(180);
+        this.setRotate(90);
     }
 
     protected void initPosition()
     {
         collider.setTranslateX(point.getX());
         collider.setTranslateY(point.getY());
+
 
         icon.setTranslateX(point.getX());
         icon.setTranslateY(point.getY());
@@ -83,39 +103,31 @@ public class Pacman extends Player implements Turnable, Moveable {
 
     public void moveLeft(int step) {
 
-        int x = (int) point.getX();
+        int x = 0;
         x = x - step;
 
-        int currentPointY = (int) point.getY();
-
-        point = point.add(x, currentPointY);
-        collider.setTranslateX(x);
-        icon.setTranslateX(x);
+        point = point.add(x, 0);
+        collider.setTranslateX(point.getX());
+        icon.setTranslateX(point.getX());
     }
 
     public void moveRight(int step) {
 
-        int x = (int) point.getX();
+        int x = 0;
         x = x + step;
 
-        int currentPointY = (int) point.getY();
-
-
-        point = point.add(x, currentPointY);
-        collider.setTranslateX(x);
-        icon.setTranslateX(x);
+        point = point.add(x, 0);
+        collider.setTranslateX(point.getX());
+        icon.setTranslateX(point.getX());
     }
 
     public void moveUp(int step) {
-        int y = (int) point.getY();
+        int y = 0;
         y = y - step;
 
-        int currentPointX = (int) point.getX();
-
-
-        point = point.add(currentPointX, y);
-        collider.setTranslateY(y);
-        icon.setTranslateY(y);
+        point = point.add(0, y);
+        collider.setTranslateY(point.getY());
+        icon.setTranslateY(point.getY());
     }
 
 
@@ -126,15 +138,12 @@ public class Pacman extends Player implements Turnable, Moveable {
 
 
 
-        int y = (int) point.getY();
-        y = y - step;
+        int y = 0;
+        y = y + step;
 
-        int currentPointX = (int) point.getX();
-
-
-        point = point.add(currentPointX, y);
-        collider.setTranslateY(y);
-        icon.setTranslateY(y);
+        point = point.add(0, y);
+        collider.setTranslateY(point.getY());
+        icon.setTranslateY(point.getY());
 
 
     }

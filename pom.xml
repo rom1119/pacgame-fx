@@ -6,6 +6,7 @@
 
     <groupId>com.pacgame</groupId>
     <artifactId>pacman</artifactId>
+    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
         <dependency>

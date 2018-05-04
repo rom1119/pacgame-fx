@@ -1,7 +1,23 @@
 package com.pacgame.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class Player extends Component {
 
+    protected int checkedDirection = 0;
+
+    public int getCheckedDirection() {
+        return checkedDirection;
+    }
+
+    public void setCheckedDirection(int checkedDirection) {
+        if (checkedDirection < 0 || checkedDirection > 3) {
+            throw new IllegalArgumentException();
+        }
+
+        this.checkedDirection = checkedDirection;
+    }
 
     public void moveLeft(int step) {
 

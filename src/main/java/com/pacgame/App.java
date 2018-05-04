@@ -1,9 +1,19 @@
 package com.pacgame;
 
+import com.pacgame.controller.PacmanController;
 import com.pacgame.model.Pacman;
+import com.pacgame.view.Factory;
+import com.pacgame.view.Map;
 import javafx.application.Application;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class App extends Application {
     /**
@@ -25,5 +35,40 @@ public class App extends Application {
 
 
         Pacman pac = new Pacman(new Point2D(2, 2), 20);
+
+        Group root = new Group();
+
+        Scene scene = new Scene(root, 500, 500);
+
+        Pacman pacman = new Pacman(new Point2D(200, 200), 25);
+
+
+        Map mapMain = Factory.createMap("./map/map_first.png");
+        final PacmanController pacmanController = new PacmanController(pacman, scene);
+
+
+
+        root.getChildren().add(mapMain.getView(500, 500));
+        root.getChildren().add(pacman.getCollider());
+        root.getChildren().add(pacman.getIcon());
+
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("PAC-GAME new PACMAN :-)");
+        primaryStage.show();
+
+        new Timer().schedule(
+                new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        pacmanController.run(1);
+                    }
+                }, 0, 25);
+    }
+
+    public static void main(String[] args)
+    {
+        launch(args);
     }
 }

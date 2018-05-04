@@ -12,8 +12,8 @@ public class Maze extends Player {
     public Maze(String urlImage, Point2D point, int width, int height) {
 
         this.point = point;
-        this.width = width;
-        this.height = height;
+        setWidth(width);
+        setHeight(height);
 
         this.collider = new Rectangle();
 
