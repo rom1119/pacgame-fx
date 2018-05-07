@@ -1,0 +1,408 @@
+package com.pacgame.service;
+
+import com.pacgame.model.Component;
+import com.pacgame.model.Direction;
+import com.pacgame.model.MapPoint;
+import com.pacgame.model.Player;
+import javafx.animation.*;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.Shape;
+import org.apache.commons.collections.BidiMap;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class MovementManager  implements EventHandler {
+
+    private BidiMap mapPoints;
+    private Player objectToMove;
+    private PathTransition animation;
+    private MapPoint currentPoint;
+    private Group root;
+    private Path p;
+    private Timer timer;
+    private Shape elem ;
+
+    public static final int stepAnimate = 2;
+    public static final int periodAnimate = 25;
+
+//    private Player objectToMove;
+
+
+    public MovementManager(BidiMap mapPoints, Player objectToMove, Group root) {
+        this.mapPoints = mapPoints;
+        this.objectToMove = objectToMove;
+        this.root = root;
+        this.elem = objectToMove.getCollider();
+
+
+//        timer = new Timer();
+        currentPoint = (MapPoint) this.mapPoints.get("j10");
+
+        this.objectToMove.getIcon().setTranslateX(currentPoint.getX());
+        this.objectToMove.getIcon().setTranslateY(currentPoint.getY());
+
+        this.objectToMove.getCollider().setTranslateX(currentPoint.getX());
+        this.objectToMove.getCollider().setTranslateY(currentPoint.getY());
+
+        this.objectToMove.setPoint(currentPoint);
+
+        this.objectToMove.setCheckedDirection(Direction.LEFT);
+
+
+//        System.out.println(elem.getTranslateX());
+//        System.out.println(elem.getTranslateY());
+        int x = (int) currentPoint.getLeftPoint().getX();
+        int y = (int) currentPoint.getLeftPoint().getY();
+
+//        p = new Path();
+
+
+//        root.getChildren().add(p);
+
+
+//        animation = new Timeline();
+
+//        KeyValue keyValueIconX = new KeyValue(objectToMove.getIcon().translateXProperty(), x);
+//        KeyValue keyValueIconY = new KeyValue(objectToMove.getIcon().translateYProperty(), y);
+//
+////        KeyValue keyValueColliderX = new KeyValue(objectToMove.getCollider().translateXProperty(), x);
+////        KeyValue keyValueColliderY = new KeyValue(objectToMove.getIcon().translateYProperty(), y);
+//
+//
+//        KeyFrame keyFrame = new KeyFrame(Duration.millis(5000), keyValueIconX, keyValueIconY);
+//
+//
+////        animation.getKeyFrames().clear();
+//        animation.getKeyFrames().add(keyFrame);
+//
+//        animation.setCycleCount(1);
+//        animation.setAutoReverse(false);
+//        animation.play();
+
+    }
+
+    public MapPoint getCurrentPoint() {
+        return currentPoint;
+    }
+
+    public void setCurrentPoint(MapPoint currentPoint) {
+        this.currentPoint = currentPoint;
+    }
+
+    public BidiMap getMapPoints() {
+        return mapPoints;
+    }
+
+    public void setMapPoints(BidiMap mapPoints) {
+        this.mapPoints = mapPoints;
+    }
+
+    public Player getObjectToMove() {
+        return objectToMove;
+    }
+
+    public void setObjectToMove(Player objectToMove) {
+        this.objectToMove = objectToMove;
+    }
+
+    public void positionUpdater()
+    {
+
+    }
+
+    public void moveAnimate(int x, int y, Component objectToMove)
+    {
+
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        }, 0, 25);
+//        animation = new PathTransition();
+////        p = new Path();
+//
+//        animation.setDuration(Duration.millis(3000));
+//        animation.setNode(objectToMove.getIcon());
+//
+//        animation.setCycleCount(1);
+//        animation.setAutoReverse(false);
+//
+//        //
+//        MoveTo moveTo = new MoveTo(x - 1, y - 1);
+////        MoveTo moveTo2 = new MoveTo(400, 100);
+////        MoveTo moveTo3 = new MoveTo(100, 400);
+//
+//        LineTo lineTo = new LineTo(x, y);
+////        LineTo lineTo1 = new LineTo(400, 400);
+////        LineTo lineTo2 = new LineTo(100, 400);
+////        LineTo lineTo3 = new LineTo(100, 100);
+////        LineTo lineTo4 = new LineTo(400, 400);
+//        p.getElements().clear();
+//        p.getElements().add(moveTo);
+//        p.getElements().add(lineTo);
+//        animation.setPath(p);
+////        animation.setNode();
+//        animation.play();
+
+
+//
+//        animation = new Timeline();
+//        animation.setOnFinished(this);
+//
+//
+//        KeyValue keyValueIconX = new KeyValue(objectToMove.getIcon().translateXProperty(), x, Interpolator.LINEAR);
+//        KeyValue keyValueIconY = new KeyValue(objectToMove.getIcon().translateYProperty(), y, Interpolator.LINEAR);
+//
+//        KeyValue keyValueColliderX = new KeyValue(objectToMove.getCollider().translateXProperty(), x, Interpolator.LINEAR);
+//        KeyValue keyValueColliderY = new KeyValue(objectToMove.getIcon().translateYProperty(), y, Interpolator.LINEAR);
+//
+//
+//        KeyFrame keyFrame = new KeyFrame(Duration.millis(2000), keyValueIconX, keyValueIconY, keyValueColliderX, keyValueColliderY);
+//
+//
+////        animation.getKeyFrames().clear();
+//        animation.getKeyFrames().add(keyFrame);
+//        animation.setDelay(Duration.millis(0));
+//
+////        animation.setCycleCount(1);
+////        animation.setAutoReverse(false);
+//        animation.play();
+
+
+//        MoveTo moveTo = new MoveTo(currentPoint.getX(), currentPoint.getY());
+
+
+//
+    }
+
+    public void stopAnim()
+    {
+//        animation.stop();
+    }
+
+    public boolean turnBack()
+    {
+        timer.cancel();
+        timer = new Timer();
+
+        if (objectToMove.isTurnedTo(Direction.UP)) {
+            if (getCurrentPoint().getDownPoint() == null) {
+                return false;
+            }
+            objectToMove.turnDown();
+            objectToMove.setCheckedDirection(Direction.DOWN);
+            this.currentPoint = getCurrentPoint().getDownPoint();
+        } else if (objectToMove.isTurnedTo(Direction.DOWN)) {
+            if (getCurrentPoint().getUpPoint() == null) {
+                return false;
+            }
+            objectToMove.turnUp();
+            objectToMove.setCheckedDirection(Direction.UP);
+            this.currentPoint = getCurrentPoint().getUpPoint();
+        } else if (objectToMove.isTurnedTo(Direction.LEFT)) {
+            if (getCurrentPoint().getRightPoint() == null) {
+                return false;
+            }
+            objectToMove.setCheckedDirection(Direction.RIGHT);
+            objectToMove.turnRight();
+            this.currentPoint = getCurrentPoint().getRightPoint();
+        } else {
+            if (getCurrentPoint().getLeftPoint() == null) {
+                return false;
+            }
+            objectToMove.turnLeft();
+            objectToMove.setCheckedDirection(Direction.LEFT);
+            this.currentPoint = getCurrentPoint().getLeftPoint();
+        }
+
+        objectToMove.setAnimated(false);
+//        timer.cancel();
+//        timer = null;
+        run();
+
+        return true;
+    }
+
+    public MapPoint getSelectedNextPoint()
+    {
+        return getCurrentPoint();
+    }
+
+    public boolean selectNextPoint()
+    {
+        if (getCurrentPoint() == null){
+            return false;
+        }
+
+        switch (objectToMove.getCheckedDirection()) {
+            case Direction.UP :
+                if (getCurrentPoint().getUpPoint() == null) {
+                    return false;
+                }
+                this.currentPoint = getCurrentPoint().getUpPoint();
+                break;
+            case Direction.DOWN :
+                if (getCurrentPoint().getDownPoint() == null) {
+                    return false;
+                }
+                this.currentPoint = getCurrentPoint().getDownPoint();
+                break;
+            case Direction.LEFT :
+                if (getCurrentPoint().getLeftPoint() == null) {
+                    return false;
+                }
+                this.currentPoint = getCurrentPoint().getLeftPoint();
+                break;
+            case Direction.RIGHT :
+                if (getCurrentPoint().getRightPoint() == null) {
+                    return false;
+                }
+                this.currentPoint = getCurrentPoint().getRightPoint();
+                break;
+        }
+
+//        System.out.println(mapPoints.getKey(this.currentPoint));
+
+
+        if (!objectToMove.isAnimated()) {
+            run();
+        }
+
+        return true;
+    }
+
+
+    /**
+     * Invoked when a specific event of the type for which this handler is
+     * registered happens.
+     *
+     * @param event the event which occurred
+     */
+    public void handle(Event event) {
+
+        System.out.println("aefsrgdfhg");
+//        selectNextPoint();
+    }
+
+    public boolean run()
+    {
+        if (getSelectedNextPoint() == null) {
+//            animation.stop();
+            return false;
+        }
+
+        MapPoint pointCurrent = getSelectedNextPoint();
+
+        if (objectToMove.isTurnedTo(Direction.UP)) {
+            objectToMove.turnUp();
+            moveUp();
+        } else if (objectToMove.isTurnedTo(Direction.DOWN)) {
+            objectToMove.turnDown();
+            moveDown();
+        } else if (objectToMove.isTurnedTo(Direction.LEFT)) {
+            objectToMove.turnLeft();
+            moveLeft();
+        } else if (objectToMove.isTurnedTo(Direction.RIGHT)) {
+
+            objectToMove.turnRight();
+            moveRight();
+        }
+
+//        moveAnimate((int) pointCurrent.getX(),(int)  pointCurrent.getY(), objectToMove);
+
+
+        return true;
+    }
+
+    public void moveLeft()
+    {
+//        System.out.println(getCurrentPoint().getX());
+//        System.out.println(elem.getTranslateX());
+        baseAnimate(new TimerTask() {
+           @Override
+           public void run() {
+               if ((int)(elem.getTranslateX() ) <= (int)getCurrentPoint().getX()) {
+                   objectToMove.setAnimated(false);
+                   timer.cancel();
+                   selectNextPoint();
+               }
+               System.out.println("left");
+
+               objectToMove.moveLeft(stepAnimate);
+
+           }
+       });
+    }
+
+    public void moveRight()
+    {
+        baseAnimate(new TimerTask() {
+            @Override
+            public void run() {
+                if ((int)elem.getTranslateX() >= (int)getCurrentPoint().getX()) {
+                    objectToMove.setAnimated(false);
+                    timer.cancel();
+                    selectNextPoint();
+                }
+                System.out.println("right");
+
+                objectToMove.moveRight(stepAnimate);
+
+            }
+        });
+    }
+
+    public void moveUp()
+    {
+        baseAnimate(new TimerTask() {
+            @Override
+            public void run() {
+                if ((int)elem.getTranslateY() <= (int)getCurrentPoint().getY()) {
+                    objectToMove.setAnimated(false);
+                    timer.cancel();
+                    selectNextPoint();
+                }
+                System.out.println("up");
+
+                objectToMove.moveUp(stepAnimate);
+
+            }
+        });
+    }
+
+    public void moveDown()
+    {
+        baseAnimate(new TimerTask() {
+            @Override
+            public void run() {
+                if ((int)elem.getTranslateY() >= (int)getCurrentPoint().getY()) {
+                    objectToMove.setAnimated(false);
+                    timer.cancel();
+                    selectNextPoint();
+                }
+                System.out.println("down");
+
+                objectToMove.moveDown(stepAnimate);
+
+            }
+        });
+    }
+
+    public boolean baseAnimate(TimerTask task)
+    {
+        if (objectToMove.isAnimated()) {
+            return false;
+        }
+        objectToMove.setAnimated(true);
+        timer = null;
+        timer = new Timer();
+        timer.schedule(task, 0, periodAnimate);
+
+        return true;
+    }
+}

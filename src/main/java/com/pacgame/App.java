@@ -51,32 +51,34 @@ public class App extends Application {
 
         Scene scene = new Scene(root, 500, 500);
 
-        Pacman pacman = new Pacman(new Point2D(0, 0), 15);
+        Pacman pacman = new Pacman(new Point2D(0, 0), 13);
 
 
         Map mapMain = Factory.createMap("./map/map_first.png");
-        final PacmanController pacmanController = new PacmanController(pacman, scene);
-        pacmanController.startEatAnimation();
+        final PacmanController pacmanController = new PacmanController(pacman, scene, root);
+
 
         Canvas canvas = mapMain.getView(500, 500);
 
-        canvas.addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                System.out.println("x= " + event.getX() + ", y= " + event.getY());
-            }
-        });
+//        canvas.addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
+//            public void handle(MouseEvent event) {
+//                System.out.println("x= " + event.getX() + ", y= " + event.getY());
+//            }
+//        });
 
-        MapPathCreator mapPathCreator = new MapPathCreator();
+//        MapPathCreator mapPathCreator = new MapPathCreator();
+//
+//        PathTransition pathTransition = new PathTransition();
 
-        PathTransition pathTransition = new PathTransition();
+//        pathTransition.onFinishedProperty()
 
 //        List<Point2D> path = mapPathCreator.createPoints(canvas);
 
-        Path p = new Path();
-
-        MoveTo moveTo = new MoveTo(100, 100);
-        MoveTo moveTo2 = new MoveTo(400, 100);
-        MoveTo moveTo3 = new MoveTo(100, 400);
+//        Path p = new Path();
+//
+//        MoveTo moveTo = new MoveTo(100, 100);
+//        MoveTo moveTo2 = new MoveTo(400, 100);
+//        MoveTo moveTo3 = new MoveTo(100, 400);
 
 //        LineTo lineTo = new LineTo(400, 100);
 //        LineTo lineTo1 = new LineTo(400, 400);
@@ -84,42 +86,45 @@ public class App extends Application {
 //        LineTo lineTo3 = new LineTo(100, 100);
 //        LineTo lineTo4 = new LineTo(400, 400);
 
-        p.getElements().add(moveTo);
-        p.getElements().add(moveTo2);
-        p.getElements().add(moveTo3);
+//        p.getElements().add(moveTo);
+//        p.getElements().add(moveTo2);
+//        p.getElements().add(moveTo3);
 //        p.getElements().add(lineTo);
 //        p.getElements().add(lineTo1);
 //        p.getElements().add(lineTo2);
 //        p.getElements().add(lineTo3);
 //        p.getElements().add(lineTo4);
 
-        PathTransition pathTransition2 = new PathTransition();
-
-
-        pathTransition2.setDuration(Duration.millis(5000));
-        pathTransition2.setNode(pacman.getIcon());
-        pathTransition2.setPath(p);
-
-        pathTransition2.setCycleCount(1);
-        pathTransition2.setAutoReverse(false);
-        pathTransition2.play();
-
-        pathTransition.setDuration(Duration.millis(5000));
-        pathTransition.setNode(pacman.getCollider());
-        pathTransition.setPath(p);
-
-        pathTransition.setCycleCount(1);
-        pathTransition.setAutoReverse(false);
-        pathTransition.play();
+//        PathTransition pathTransition2 = new PathTransition();
+//
+//
+//        pathTransition2.setDuration(Duration.millis(5000));
+//        pathTransition2.setNode(pacman.getIcon());
+//        pathTransition2.setPath(p);
+//
+//        pathTransition2.setCycleCount(1);
+//        pathTransition2.setAutoReverse(false);
+//        pathTransition2.play();
+//
+//        pathTransition.setDuration(Duration.millis(5000));
+//        pathTransition.setNode(pacman.getCollider());
+//        pathTransition.setPath(p);
+//
+//        pathTransition.setCycleCount(1);
+//        pathTransition.setAutoReverse(false);
+//        pathTransition.play();
 
 
 
 
 
         root.getChildren().add(canvas);
-//        root.getChildren().add(pacman.getCollider());
-//        root.getChildren().add(pacman.getIcon());
+        root.getChildren().add(pacman.getCollider());
+        root.getChildren().add(pacman.getIcon());
 //        root.getChildren().add(mapPathCreator.getPath());
+
+        pacmanController.startEatAnimation();
+        pacmanController.startMove();
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
@@ -127,22 +132,22 @@ public class App extends Application {
         primaryStage.show();
 
 
-        final Timer timer = new Timer();
-
-        timer.schedule(
-                new TimerTask() {
-
-                    @Override
-                    public void run() {
-//                        pacmanController.run(1);
-                    }
-                }, 0, 25);
-
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            public void handle(WindowEvent event) {
-                timer.cancel();
-            }
-        });
+//        final Timer timer = new Timer();
+//
+//        timer.schedule(
+//                new TimerTask() {
+//
+//                    @Override
+//                    public void run() {
+//                        pacmanController;
+//                    }
+//                }, 0, 25);
+//
+//        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//            public void handle(WindowEvent event) {
+//                timer.cancel();
+//            }
+//        });
     }
 
     public static void main(String[] args)

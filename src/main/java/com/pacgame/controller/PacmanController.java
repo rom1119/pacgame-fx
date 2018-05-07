@@ -2,12 +2,15 @@ package com.pacgame.controller;
 
 import com.pacgame.model.Direction;
 import com.pacgame.model.Pacman;
+import com.pacgame.service.MapPathCreator;
+import com.pacgame.service.MovementManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
@@ -17,14 +20,27 @@ public class PacmanController implements EventHandler<KeyEvent> {
 
     private Pacman pacman;
     private Timeline timeline;
+    private MovementManager movementManager;
+    private Group root;
 
-    public PacmanController(Pacman pacman, Scene scene) {
+    public PacmanController(Pacman pacman, Scene scene, Group root) {
 
         this.pacman = pacman;
+        this.root = root;
 //        scene.setFocusTraversable(true);
 //        scene.requestFocus();
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, this);
-        scene.setOnKeyReleased(this);
+//        scene.addEventHandler(KeyEvent.KEY_PRESSED, this);
+        scene.setOnKeyPressed(this);
+
+        movementManager = new MovementManager(MapPathCreator.getAllPoints(), this.pacman, root);
+    }
+
+    public Group getRoot() {
+        return root;
+    }
+
+    public void setRoot(Group root) {
+        this.root = root;
     }
 
     /**
@@ -37,38 +53,56 @@ public class PacmanController implements EventHandler<KeyEvent> {
 
         switch (event.getCode()) {
             case UP:
+                if (pacman.isTurnedTo(Direction.DOWN)) {
+                    movementManager.turnBack();
+                    break;
+                }
                 pacman.setCheckedDirection(Direction.UP);
+                if (!pacman.isAnimated()) {
+                    movementManager.selectNextPoint();
+                }
+
                 break;
             case RIGHT:
+                if (pacman.isTurnedTo(Direction.LEFT)) {
+                    movementManager.turnBack();
+                    break;
+                }
                 pacman.setCheckedDirection(Direction.RIGHT);
+                if (!pacman.isAnimated()) {
+                    movementManager.selectNextPoint();
+                }
                 break;
             case DOWN:
+                if (pacman.isTurnedTo(Direction.UP)) {
+                    movementManager.turnBack();
+                    break;
+                }
                 pacman.setCheckedDirection(Direction.DOWN);
+                if (!pacman.isAnimated()) {
+                    movementManager.selectNextPoint();
+                }
                 break;
             case LEFT:
+                if (pacman.isTurnedTo(Direction.RIGHT)) {
+                    movementManager.turnBack();
+                    break;
+                }
                 pacman.setCheckedDirection(Direction.LEFT);
+                if (!pacman.isAnimated()) {
+                    movementManager.selectNextPoint();
+                }
                 break;
         }
 
 
     }
 
-    public void run(int step)
+    public void startMove()
     {
-        if (pacman.isTurnedTo(Direction.UP)) {
-            pacman.moveUp(step);
-            pacman.turnUp();
-        } else if (pacman.isTurnedTo(Direction.DOWN)) {
-            pacman.moveDown(step);
-            pacman.turnDown();
-        } else if (pacman.isTurnedTo(Direction.LEFT)) {
-            pacman.moveLeft(step);
-            pacman.turnLeft();
-        } else {
-            pacman.moveRight(step);
-            pacman.turnRight();
-        }
+        movementManager.selectNextPoint();
     }
+
 
     public void startEatAnimation()
     {

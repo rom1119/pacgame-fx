@@ -10,5 +10,8 @@ public interface Turnable {
 
     void turnDown();
 
+    boolean isTurnedTo(int direction);
+
+
 
 }

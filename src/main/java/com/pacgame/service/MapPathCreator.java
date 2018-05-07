@@ -9,21 +9,26 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Path;
+import org.apache.commons.collections.BidiMap;
+import org.apache.commons.collections.bidimap.DualHashBidiMap;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapPathCreator {
 
-    private static List<MapPoint> points;
+    private static BidiMap points;
     private static int firstX = 35;
     private static int xStep = 95;
     private static int firstY = 30;
-    private static int yStep = 60;
+    private static int yStep = 88;
 
     static {
-        points = new ArrayList<MapPoint>();
+
+        points = new DualHashBidiMap();
 
 //        1 row
         MapPoint a1 = new MapPoint(firstX, firstY);
@@ -61,7 +66,7 @@ public class MapPathCreator {
         MapPoint c5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 1)));
 
 
-        MapPoint c6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + (yStep * 2) + (yStep / 2 * 1)));
+        MapPoint c6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 1)));
         MapPoint c7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 1)));
 
 
@@ -72,7 +77,7 @@ public class MapPathCreator {
 //    4 row
         MapPoint d1 = null;
         MapPoint d2 = null;
-        MapPoint d3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep + (yStep / 2 * 2)));
+        MapPoint d3 = null;
         MapPoint d4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 3)), (firstY + yStep + (yStep / 2 * 2)));
         MapPoint d5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep + (yStep / 2 * 2)));
 
@@ -81,7 +86,7 @@ public class MapPathCreator {
         MapPoint d7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep + (yStep / 2 * 2)));
 
 
-        MapPoint d8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 2)));
+        MapPoint d8 = null;
 
         MapPoint d9 = null;
         MapPoint d10 = null;
@@ -105,7 +110,7 @@ public class MapPathCreator {
 //        6 row
         MapPoint f1 = null;
         MapPoint f2 = null;
-        MapPoint f3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep + (yStep / 2 * 4)));
+        MapPoint f3 = null;
         MapPoint f4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 3)), (firstY + yStep + (yStep / 2 * 4)));
         MapPoint f5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep + (yStep / 2 * 4)));
 
@@ -114,7 +119,7 @@ public class MapPathCreator {
         MapPoint f7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep + (yStep / 2 * 4)));
 
 
-        MapPoint f8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 4)));
+        MapPoint f8 = null;
 
         MapPoint f9 = null;
         MapPoint f10 = null;
@@ -126,7 +131,7 @@ public class MapPathCreator {
         MapPoint g5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 5)));
 
 
-        MapPoint g6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + (yStep * 2) + (yStep / 2 * 5)));
+        MapPoint g6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 5)));
         MapPoint g7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 5)));
 
 
@@ -142,7 +147,7 @@ public class MapPathCreator {
         MapPoint h5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 6)));
 
 
-        MapPoint h6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + (yStep * 2) + (yStep / 2 * 6)));
+        MapPoint h6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 6)));
         MapPoint h7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 6)));
 
 
@@ -159,7 +164,7 @@ public class MapPathCreator {
         MapPoint i5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 7)));
 
 
-        MapPoint i6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + (yStep * 2) + (yStep / 2 * 7)));
+        MapPoint i6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 7)));
         MapPoint i7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 7)));
 
 
@@ -174,7 +179,7 @@ public class MapPathCreator {
         MapPoint j4 = null;
 
         MapPoint j5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 8)));
-        MapPoint j6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + (yStep * 2) + (yStep / 2 * 8)));
+        MapPoint j6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 8)));
 
         MapPoint j7 = null;
         MapPoint j8 = null;
@@ -328,8 +333,8 @@ public class MapPathCreator {
         e1.setLeftPoint(new MapPoint(-(firstX * 2), e1.getY()));
         e1.setRightPoint(e3);
 
-        e3.setUpPoint(d3);
-        e3.setDownPoint(f3);
+        e3.setUpPoint(c3);
+        e3.setDownPoint(g3);
         e3.setLeftPoint(e1);
         e3.setRightPoint(e4);
 
@@ -353,8 +358,8 @@ public class MapPathCreator {
         e7.setLeftPoint(null);
         e7.setRightPoint(e8);
 
-        e8.setUpPoint(d8);
-        e8.setDownPoint(f8);
+        e8.setUpPoint(c8);
+        e8.setDownPoint(g8);
         e8.setLeftPoint(e7);
         e8.setRightPoint(e10);
 
@@ -547,124 +552,124 @@ public class MapPathCreator {
         j10.setRightPoint(null);
 
 //      add A row
-        points.add(a1);
-        points.add(a2);
-        points.add(a3);
-        points.add(a4);
-        points.add(a5);
-        points.add(a6);
-        points.add(a7);
-        points.add(a8);
-        points.add(a9);
-        points.add(a10);
+        points.put("a1", a1);
+        points.put("a2", a2);
+        points.put("a3", a3);
+        points.put("a4", a4);
+        points.put("a5", a5);
+        points.put("a6", a6);
+        points.put("a7", a7);
+        points.put("a8", a8);
+        points.put("a9", a9);
+        points.put("a10", a10);
 
 //      add B row
-        points.add(b1);
-        points.add(b2);
-        points.add(b3);
-        points.add(b4);
-        points.add(b5);
-        points.add(b6);
-        points.add(b7);
-        points.add(b8);
-        points.add(b9);
-        points.add(b10);
+        points.put("b1", b1);
+        points.put("b2", b2);
+        points.put("b3", b3);
+        points.put("b4", b4);
+        points.put("b5", b5);
+        points.put("b6", b6);
+        points.put("b7", b7);
+        points.put("b8", b8);
+        points.put("b9", b9);
+        points.put("b10",b10);
 
 //      add C row
-        points.add(c1);
-        points.add(c2);
-        points.add(c3);
-        points.add(c4);
-        points.add(c5);
-        points.add(c6);
-        points.add(c7);
-        points.add(c8);
-        points.add(c9);
-        points.add(c10);
+        points.put("c1", c1);
+        points.put("c2", c2);
+        points.put("c3", c3);
+        points.put("c4", c4);
+        points.put("c5", c5);
+        points.put("c6", c6);
+        points.put("c7", c7);
+        points.put("c8", c8);
+        points.put("c9", c9);
+        points.put("c10",c10);
 
 //      add D row
-        points.add(d1);
-        points.add(d2);
-        points.add(d3);
-        points.add(d4);
-        points.add(d5);
-        points.add(d6);
-        points.add(d7);
-        points.add(d8);
-        points.add(d9);
-        points.add(d10);
+        points.put("d1", d1);
+        points.put("d2", d2);
+        points.put("d3", d3);
+        points.put("d4", d4);
+        points.put("d5", d5);
+        points.put("d6", d6);
+        points.put("d7", d7);
+        points.put("d8", d8);
+        points.put("d9", d9);
+        points.put("d10",d10);
 
 //      add E row
-        points.add(e1);
-        points.add(e2);
-        points.add(e3);
-        points.add(e4);
-        points.add(e5);
-        points.add(e6);
-        points.add(e7);
-        points.add(e8);
-        points.add(e9);
-        points.add(e10);
+        points.put("e1", e1);
+        points.put("e2", e2);
+        points.put("e3", e3);
+        points.put("e4", e4);
+        points.put("e5", e5);
+        points.put("e6", e6);
+        points.put("e7", e7);
+        points.put("e8", e8);
+        points.put("e9", e9);
+        points.put("e10",e10);
 
 //      add F row
-        points.add(f1);
-        points.add(f2);
-        points.add(f3);
-        points.add(f4);
-        points.add(f5);
-        points.add(f6);
-        points.add(f7);
-        points.add(f8);
-        points.add(f9);
-        points.add(f10);
+        points.put("f1", f1);
+        points.put("f2", f2);
+        points.put("f3", f3);
+        points.put("f4", f4);
+        points.put("f5", f5);
+        points.put("f6", f6);
+        points.put("f7", f7);
+        points.put("f8", f8);
+        points.put("f9", f9);
+        points.put("f10",f10);
 
 //      add G row
-        points.add(g1);
-        points.add(g2);
-        points.add(g3);
-        points.add(g4);
-        points.add(g5);
-        points.add(g6);
-        points.add(g7);
-        points.add(g8);
-        points.add(g9);
-        points.add(g10);
+        points.put("g1", g1);
+        points.put("g2", g2);
+        points.put("g3", g3);
+        points.put("g4", g4);
+        points.put("g5", g5);
+        points.put("g6", g6);
+        points.put("g7", g7);
+        points.put("g8", g8);
+        points.put("g9", g9);
+        points.put("g10",g10);
 
 //      add H row
-        points.add(h1);
-        points.add(h2);
-        points.add(h3);
-        points.add(h4);
-        points.add(h5);
-        points.add(h6);
-        points.add(h7);
-        points.add(h8);
-        points.add(h9);
-        points.add(h10);
+        points.put("h1", h1);
+        points.put("h2", h2);
+        points.put("h3", h3);
+        points.put("h4", h4);
+        points.put("h5", h5);
+        points.put("h6", h6);
+        points.put("h7", h7);
+        points.put("h8", h8);
+        points.put("h9", h9);
+        points.put("h10",h10);
 
 //      add I row
-        points.add(i1);
-        points.add(i2);
-        points.add(i3);
-        points.add(i4);
-        points.add(i5);
-        points.add(i6);
-        points.add(i7);
-        points.add(i8);
-        points.add(i9);
-        points.add(i10);
+        points.put("i1", i1);
+        points.put("i2", i2);
+        points.put("i3", i3);
+        points.put("i4", i4);
+        points.put("i5", i5);
+        points.put("i6", i6);
+        points.put("i7", i7);
+        points.put("i8", i8);
+        points.put("i9", i9);
+        points.put("i10",i10);
 
 //      add J row
-        points.add(j1);
-        points.add(j2);
-        points.add(j3);
-        points.add(j4);
-        points.add(j5);
-        points.add(j6);
-        points.add(j7);
-        points.add(j8);
-        points.add(j9);
-        points.add(j10);
+        points.put("j1", j1);
+        points.put("j2", j2);
+        points.put("j3", j3);
+        points.put("j4", j4);
+        points.put("j5", j5);
+        points.put("j6", j6);
+        points.put("j7", j7);
+        points.put("j8", j8);
+        points.put("j9", j9);
+        points.put("j10",j10);
 
 
     }
@@ -675,7 +680,12 @@ public class MapPathCreator {
 
     }
 
-    public List<MapPoint> createPoints(Canvas canvas)
+    public static BidiMap getAllPoints()
+    {
+        return points;
+    }
+
+    public Map<String, MapPoint> createPoints(Canvas canvas)
     {
         int countInX = (int) canvas.getWidth() / 10;
         int countInY = (int) canvas.getWidth() / 10;

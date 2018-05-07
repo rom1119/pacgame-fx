@@ -3,9 +3,18 @@ package com.pacgame.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Player extends Component {
+public abstract class Player extends Component implements Moveable, Turnable {
 
     protected int checkedDirection = 0;
+    protected boolean animated = false;
+
+    public boolean isAnimated() {
+        return animated;
+    }
+
+    public void setAnimated(boolean animated) {
+        this.animated = animated;
+    }
 
     public int getCheckedDirection() {
         return checkedDirection;
@@ -19,56 +28,73 @@ public abstract class Player extends Component {
         this.checkedDirection = checkedDirection;
     }
 
+    private void setRotate(int angle)
+    {
+        this.getIcon().setRotate(angle);
+        this.getCollider().setRotate(angle);
+    }
+
+
+    public void turnLeft() {
+        this.setRotate(180);
+    }
+
+    public void turnRight() {
+        this.setRotate(0);
+    }
+
+    public void turnUp() {
+        this.setRotate(270);
+    }
+
+    public void turnDown() {
+        this.setRotate(90);
+    }
+
+    public boolean isTurnedTo(int side) {
+        return this.getCheckedDirection() == side;
+    }
+
     public void moveLeft(int step) {
 
-        int x = (int) point.getX();
+        int x = 0;
         x = x - step;
 
-        int currentPointY = (int) point.getY();
 
-        point = point.add(x, currentPointY);
-        collider.setTranslateX(x);
-        icon.setTranslateX(x);
+        point = point.add(x, 0);
+        collider.setTranslateX(point.getX());
+        icon.setTranslateX(point.getX());
     }
 
     public void moveRight(int step) {
 
-        int x = (int) point.getX();
+        int x = 0;
         x = x + step;
 
-        int currentPointY = (int) point.getY();
-
-
-        point = point.add(x, currentPointY);
-        collider.setTranslateX(x);
-        icon.setTranslateX(x);
+        point = point.add(x, 0);
+        collider.setTranslateX(point.getX());
+        icon.setTranslateX(point.getX());
     }
 
     public void moveUp(int step) {
-        int y = (int) point.getY();
+        int y = 0;
         y = y - step;
 
-        int currentPointX = (int) point.getX();
-
-
-        point = point.add(currentPointX, y);
-        collider.setTranslateY(y);
-        icon.setTranslateY(y);
+        point = point.add(0, y);
+        collider.setTranslateY(point.getY());
+        icon.setTranslateY(point.getY());
     }
+
 
     public void moveDown(int step) {
 
+        int y = 0;
+        y = y + step;
 
+        point = point.add(0, y);
+        collider.setTranslateY(point.getY());
+        icon.setTranslateY(point.getY());
 
-        int y = (int) point.getY();
-        y = y - step;
-
-        int currentPointX = (int) point.getX();
-
-
-        point = point.add(currentPointX, y);
-        collider.setTranslateY(y);
-        icon.setTranslateY(y);
 
     }
 

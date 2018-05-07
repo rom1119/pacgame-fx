@@ -11,7 +11,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 
-public class Pacman extends Player implements Turnable, Moveable {
+public class Pacman extends Player implements Turnable {
     protected Arc icon;
 
     public Pacman(Point2D point, int radius) {
@@ -42,7 +42,7 @@ public class Pacman extends Player implements Turnable, Moveable {
 
         turnUp();
 
-        setCheckedDirection(Direction.UP);
+        setCheckedDirection(Direction.LEFT);
 
 //        moveDown(30);
 
@@ -53,9 +53,6 @@ public class Pacman extends Player implements Turnable, Moveable {
 
     }
 
-    public boolean isTurnedTo(int side) {
-        return this.getCheckedDirection() == side;
-    }
 
     @Override
     public Arc getIcon() {
@@ -66,28 +63,6 @@ public class Pacman extends Player implements Turnable, Moveable {
         this.icon = icon;
     }
 
-    private void setRotate(int angle)
-    {
-        this.getIcon().setRotate(angle);
-        this.getCollider().setRotate(angle);
-    }
-
-
-    public void turnLeft() {
-        this.setRotate(180);
-    }
-
-    public void turnRight() {
-        this.setRotate(0);
-    }
-
-    public void turnUp() {
-        this.setRotate(270);
-    }
-
-    public void turnDown() {
-        this.setRotate(90);
-    }
 
     protected void initPosition()
     {
@@ -102,17 +77,21 @@ public class Pacman extends Player implements Turnable, Moveable {
 
     }
 
-
+    @Override
     public void moveLeft(int step) {
 
         int x = 0;
         x = x - step;
+
+//        System.out.println(getCollider().getTranslateX());
+//        System.out.println(getCollider().getTranslateY());
 
         point = point.add(x, 0);
         collider.setTranslateX(point.getX());
         icon.setTranslateX(point.getX());
     }
 
+    @Override
     public void moveRight(int step) {
 
         int x = 0;
@@ -123,9 +102,13 @@ public class Pacman extends Player implements Turnable, Moveable {
         icon.setTranslateX(point.getX());
     }
 
+    @Override
     public void moveUp(int step) {
         int y = 0;
         y = y - step;
+
+//        System.out.println(getCollider().getTranslateX());
+//        System.out.println(getCollider().getTranslateY());
 
         point = point.add(0, y);
         collider.setTranslateY(point.getY());
@@ -133,12 +116,8 @@ public class Pacman extends Player implements Turnable, Moveable {
     }
 
 
-    /**
-     * @param step
-     */
+    @Override
     public void moveDown(int step) {
-
-
 
         int y = 0;
         y = y + step;
@@ -149,6 +128,8 @@ public class Pacman extends Player implements Turnable, Moveable {
 
 
     }
+
+
 
 
 
