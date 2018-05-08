@@ -25,9 +25,10 @@ public class MovementManager  implements EventHandler {
     private Path p;
     private Timer timer;
     private Shape elem ;
+    private int currentDirection;
 
-    public static final int stepAnimate = 2;
-    public static final int periodAnimate = 25;
+    public static final int stepAnimate = 1;
+    public static final int periodAnimate = 30;
 
 //    private Player objectToMove;
 
@@ -185,30 +186,63 @@ public class MovementManager  implements EventHandler {
 //        animation.stop();
     }
 
+    protected boolean canTurn(int direction)
+    {
+        switch (direction) {
+            case Direction.UP :
+
+                return getCurrentPoint().getUpPoint() != null;
+
+            case Direction.DOWN :
+
+                return getCurrentPoint().getDownPoint() != null;
+
+            case Direction.LEFT :
+
+                return getCurrentPoint().getLeftPoint() != null;
+
+            case Direction.RIGHT :
+                 return getCurrentPoint().getRightPoint() != null;
+
+        }
+        return false;
+
+    }
+
+    public void tryTurn(int direction)
+    {
+        if (canTurn(direction)) {
+            this.setCurrentDirection(direction);
+        }
+    }
+
     public boolean turnBack()
     {
         timer.cancel();
         timer = new Timer();
 
-        if (objectToMove.isTurnedTo(Direction.UP)) {
+        if (this.isTurnedTo(Direction.UP)) {
             if (getCurrentPoint().getDownPoint() == null) {
                 return false;
             }
             objectToMove.turnDown();
             objectToMove.setCheckedDirection(Direction.DOWN);
+            this.setCurrentDirection(Direction.DOWN);
             this.currentPoint = getCurrentPoint().getDownPoint();
-        } else if (objectToMove.isTurnedTo(Direction.DOWN)) {
+        } else if (this.isTurnedTo(Direction.DOWN)) {
             if (getCurrentPoint().getUpPoint() == null) {
                 return false;
             }
             objectToMove.turnUp();
             objectToMove.setCheckedDirection(Direction.UP);
+            this.setCurrentDirection(Direction.UP);
             this.currentPoint = getCurrentPoint().getUpPoint();
-        } else if (objectToMove.isTurnedTo(Direction.LEFT)) {
+        } else if (this.isTurnedTo(Direction.LEFT)) {
             if (getCurrentPoint().getRightPoint() == null) {
                 return false;
             }
             objectToMove.setCheckedDirection(Direction.RIGHT);
+            this.setCurrentDirection(Direction.RIGHT);
             objectToMove.turnRight();
             this.currentPoint = getCurrentPoint().getRightPoint();
         } else {
@@ -217,6 +251,7 @@ public class MovementManager  implements EventHandler {
             }
             objectToMove.turnLeft();
             objectToMove.setCheckedDirection(Direction.LEFT);
+            this.setCurrentDirection(Direction.LEFT);
             this.currentPoint = getCurrentPoint().getLeftPoint();
         }
 
@@ -239,7 +274,9 @@ public class MovementManager  implements EventHandler {
             return false;
         }
 
-        switch (objectToMove.getCheckedDirection()) {
+        this.tryTurn(objectToMove.getCheckedDirection());
+
+        switch (this.getCurrentDirection()) {
             case Direction.UP :
                 if (getCurrentPoint().getUpPoint() == null) {
                     return false;
@@ -298,16 +335,16 @@ public class MovementManager  implements EventHandler {
 
         MapPoint pointCurrent = getSelectedNextPoint();
 
-        if (objectToMove.isTurnedTo(Direction.UP)) {
+        if (this.isTurnedTo(Direction.UP)) {
             objectToMove.turnUp();
             moveUp();
-        } else if (objectToMove.isTurnedTo(Direction.DOWN)) {
+        } else if (this.isTurnedTo(Direction.DOWN)) {
             objectToMove.turnDown();
             moveDown();
-        } else if (objectToMove.isTurnedTo(Direction.LEFT)) {
+        } else if (this.isTurnedTo(Direction.LEFT)) {
             objectToMove.turnLeft();
             moveLeft();
-        } else if (objectToMove.isTurnedTo(Direction.RIGHT)) {
+        } else if (this.isTurnedTo(Direction.RIGHT)) {
 
             objectToMove.turnRight();
             moveRight();
@@ -331,7 +368,7 @@ public class MovementManager  implements EventHandler {
                    timer.cancel();
                    selectNextPoint();
                }
-               System.out.println("left");
+//               System.out.println("left");
 
                objectToMove.moveLeft(stepAnimate);
 
@@ -349,7 +386,7 @@ public class MovementManager  implements EventHandler {
                     timer.cancel();
                     selectNextPoint();
                 }
-                System.out.println("right");
+//                System.out.println("right");
 
                 objectToMove.moveRight(stepAnimate);
 
@@ -367,7 +404,7 @@ public class MovementManager  implements EventHandler {
                     timer.cancel();
                     selectNextPoint();
                 }
-                System.out.println("up");
+//                System.out.println("up");
 
                 objectToMove.moveUp(stepAnimate);
 
@@ -385,7 +422,7 @@ public class MovementManager  implements EventHandler {
                     timer.cancel();
                     selectNextPoint();
                 }
-                System.out.println("down");
+//                System.out.println("down");
 
                 objectToMove.moveDown(stepAnimate);
 
@@ -404,5 +441,17 @@ public class MovementManager  implements EventHandler {
         timer.schedule(task, 0, periodAnimate);
 
         return true;
+    }
+
+    public void setCurrentDirection(int currentDirection) {
+        this.currentDirection = currentDirection;
+    }
+
+    public int getCurrentDirection() {
+        return currentDirection;
+    }
+
+    public boolean isTurnedTo(int side) {
+        return this.getCurrentDirection() == side;
     }
 }

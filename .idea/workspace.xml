@@ -2,27 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77da18e3-268f-4571-9761-d457f08b7b19" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/service/MovementManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/controller/PacmanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/controller/PacmanController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/model/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/model/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/model/Turnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/model/Turnable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/service/MapPathCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/service/MapPathCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/pacgame/controller/PacmanControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/pacgame/controller/PacmanControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/App$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/App$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/App$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/controller/PacmanController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/controller/PacmanController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/service/MovementManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/service/MovementManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/controller/PacmanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/controller/PacmanController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/model/Pacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/model/Pacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/model/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/model/Turnable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/model/Turnable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/service/MapPathCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/service/MapPathCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/pacgame/controller/PacmanControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/pacgame/controller/PacmanControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pacgame/service/MovementManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.pacgame.model.PacmanTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.pacgame.model.PacmanTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.pacgame.model.PacmanTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.pacgame.model.PacmanTest.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,8 +47,8 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-126">
-              <caret line="126" column="37" selection-start-line="126" selection-start-column="37" selection-end-line="126" selection-end-column="37" />
+            <state relative-caret-position="2198">
+              <caret line="139" column="8" lean-forward="true" selection-start-line="139" selection-start-column="8" selection-end-line="139" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pacman.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Pacman.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Pacman.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="237">
+              <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -116,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PacmanController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PacmanController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/controller/PacmanController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="90" column="41" selection-start-line="90" selection-start-column="41" selection-end-line="90" selection-end-column="41" />
+            <state relative-caret-position="285">
+              <caret line="58" column="17" lean-forward="true" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1160#1161#0" expanded="true" />
@@ -137,8 +131,8 @@
       <file leaf-file-name="MovementManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/service/MovementManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="307" selection-start-line="307" selection-end-line="307" />
+            <state relative-caret-position="310">
+              <caret line="306" lean-forward="true" selection-start-line="306" selection-end-line="306" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1003#1004#0" expanded="true" />
@@ -155,14 +149,20 @@
                 <element signature="e#784#785#0" expanded="true" />
                 <element signature="e#2929#2930#0" expanded="true" />
                 <element signature="e#2968#2969#0" expanded="true" />
-                <element signature="e#9095#9371#0" expanded="true" />
-                <element signature="e#9370#9371#0" expanded="true" />
-                <element signature="e#9435#9720#0" expanded="true" />
-                <element signature="e#9719#9720#0" expanded="true" />
-                <element signature="e#9781#10063#0" expanded="true" />
-                <element signature="e#10062#10063#0" expanded="true" />
-                <element signature="e#10126#10410#0" expanded="true" />
-                <element signature="e#10409#10410#0" expanded="true" />
+                <element signature="e#10382#10795#0" expanded="true" />
+                <element signature="e#10794#10795#0" expanded="true" />
+                <element signature="e#10859#11282#0" expanded="true" />
+                <element signature="e#11281#11282#0" expanded="true" />
+                <element signature="e#11343#11760#0" expanded="true" />
+                <element signature="e#11759#11760#0" expanded="true" />
+                <element signature="e#11823#12244#0" expanded="true" />
+                <element signature="e#12243#12244#0" expanded="true" />
+                <element signature="e#12576#12577#0" expanded="true" />
+                <element signature="e#12632#12633#0" expanded="true" />
+                <element signature="e#12672#12673#0" expanded="true" />
+                <element signature="e#12711#12712#0" expanded="true" />
+                <element signature="e#12792#12793#0" expanded="true" />
+                <element signature="e#12849#12850#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -171,8 +171,8 @@
       <file leaf-file-name="PacmanControllerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pacgame/controller/PacmanControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="21" column="84" selection-start-line="21" selection-start-column="84" selection-end-line="21" selection-end-column="84" />
+            <state>
+              <caret column="31" lean-forward="true" selection-start-column="31" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -183,8 +183,8 @@
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+            <state relative-caret-position="189">
+              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#270#271#0" expanded="true" />
@@ -249,12 +249,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/model/Turnable.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/com/pacgame/controller/PacmanControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/model/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/service/MapPathCreator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/model/Pacman.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/service/MovementManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/controller/PacmanController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/service/MovementManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/model/Pacman.java" />
       </list>
     </option>
   </component>
@@ -375,28 +375,28 @@
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Maven: commons-collections:commons-collections:3.2.2" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="Maven: commons-collections:commons-collections:3.2.2" type="70bed36:NamedLibraryElementNode" />
+              <item name="commons-collections-3.2.2.jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="javafx" type="462c0819:PsiDirectoryNode" />
+              <item name="Maven: commons-collections:commons-collections:3.2.2" type="70bed36:NamedLibraryElementNode" />
+              <item name="commons-collections-3.2.2.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="collections" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="javafx" type="462c0819:PsiDirectoryNode" />
-              <item name="animation" type="462c0819:PsiDirectoryNode" />
+              <item name="Maven: commons-collections:commons-collections:3.2.2" type="70bed36:NamedLibraryElementNode" />
+              <item name="commons-collections-3.2.2.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="collections" type="462c0819:PsiDirectoryNode" />
+              <item name="set" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -619,14 +619,14 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="7" sideWeight="0.49628252" weight="0.10944206" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23316708" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18079801" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32917705" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32917705" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62601626" visible="true" weight="0.2360515" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62709284" visible="true" weight="0.3204578" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917705" />
-      <window_info id="Structure" order="1" sideWeight="0.37398374" side_tool="true" visible="true" weight="0.2360515" />
+      <window_info id="Structure" order="1" sideWeight="0.37290716" side_tool="true" visible="true" weight="0.3204578" />
       <window_info anchor="right" id="Ant Build" order="3" sideWeight="0.49628252" weight="0.24964234" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -683,45 +683,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Pacman.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1331">
-          <caret line="119" lean-forward="true" selection-start-line="119" selection-end-line="119" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#478#479#0" expanded="true" />
-            <element signature="e#505#506#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/Assert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="675" column="37" lean-forward="true" selection-start-line="675" selection-start-column="37" selection-end-line="675" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pacgame/model/PacmanTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
@@ -949,18 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-545">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#478#479#0" expanded="true" />
-            <element signature="e#505#506#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Maze.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1028,16 +977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pacgame/controller/PacmanControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="84" selection-start-line="21" selection-start-column="84" selection-end-line="21" selection-end-column="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/service/MapPathCreator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1046,36 +985,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#20458#20459#0" expanded="true" />
             <element signature="e#20487#20488#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#270#271#0" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#350#351#0" expanded="true" />
-            <element signature="e#390#391#0" expanded="true" />
-            <element signature="e#205#206#0" expanded="true" />
-            <element signature="e#244#245#0" expanded="true" />
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#777#778#0" expanded="true" />
-            <element signature="e#953#954#0" expanded="true" />
-            <element signature="e#1010#1011#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Pacman.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1108,18 +1017,98 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-126">
-          <caret line="126" column="37" selection-start-line="126" selection-start-column="37" selection-end-line="126" selection-end-column="37" />
+        <state relative-caret-position="2198">
+          <caret line="139" column="8" lean-forward="true" selection-start-line="139" selection-start-column="8" selection-end-line="139" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-732">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pacgame/controller/PacmanControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="31" lean-forward="true" selection-start-column="31" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#270#271#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#350#351#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#205#206#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="true" />
+            <element signature="e#777#778#0" expanded="true" />
+            <element signature="e#953#954#0" expanded="true" />
+            <element signature="e#1010#1011#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar!/META-INF/maven/commons-collections/commons-collections/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6748" />
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar!/META-INF/maven/commons-collections/commons-collections/pom.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/src.zip!/java/util/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2976">
+          <caret line="143" column="17" selection-start-line="143" selection-start-column="17" selection-end-line="143" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar!/org/apache/commons/collections/Buffer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/controller/PacmanController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="58" column="17" lean-forward="true" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1187#1188#0" expanded="true" />
+            <element signature="e#1226#1227#0" expanded="true" />
+            <element signature="e#1258#1259#0" expanded="true" />
+            <element signature="e#1764#1765#0" expanded="true" />
+            <element signature="e#1794#1795#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/service/MovementManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="307" selection-start-line="307" selection-end-line="307" />
+        <state relative-caret-position="310">
+          <caret line="306" lean-forward="true" selection-start-line="306" selection-end-line="306" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1003#1004#0" expanded="true" />
@@ -1136,30 +1125,30 @@
             <element signature="e#784#785#0" expanded="true" />
             <element signature="e#2929#2930#0" expanded="true" />
             <element signature="e#2968#2969#0" expanded="true" />
-            <element signature="e#9095#9371#0" expanded="true" />
-            <element signature="e#9370#9371#0" expanded="true" />
-            <element signature="e#9435#9720#0" expanded="true" />
-            <element signature="e#9719#9720#0" expanded="true" />
-            <element signature="e#9781#10063#0" expanded="true" />
-            <element signature="e#10062#10063#0" expanded="true" />
-            <element signature="e#10126#10410#0" expanded="true" />
-            <element signature="e#10409#10410#0" expanded="true" />
+            <element signature="e#10382#10795#0" expanded="true" />
+            <element signature="e#10794#10795#0" expanded="true" />
+            <element signature="e#10859#11282#0" expanded="true" />
+            <element signature="e#11281#11282#0" expanded="true" />
+            <element signature="e#11343#11760#0" expanded="true" />
+            <element signature="e#11759#11760#0" expanded="true" />
+            <element signature="e#11823#12244#0" expanded="true" />
+            <element signature="e#12243#12244#0" expanded="true" />
+            <element signature="e#12576#12577#0" expanded="true" />
+            <element signature="e#12632#12633#0" expanded="true" />
+            <element signature="e#12672#12673#0" expanded="true" />
+            <element signature="e#12711#12712#0" expanded="true" />
+            <element signature="e#12792#12793#0" expanded="true" />
+            <element signature="e#12849#12850#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/controller/PacmanController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/model/Pacman.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="90" column="41" selection-start-line="90" selection-start-column="41" selection-end-line="90" selection-end-column="41" />
+        <state relative-caret-position="237">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1160#1161#0" expanded="true" />
-            <element signature="e#1187#1188#0" expanded="true" />
-            <element signature="e#1226#1227#0" expanded="true" />
-            <element signature="e#1258#1259#0" expanded="true" />
-            <element signature="e#1764#1765#0" expanded="true" />
-            <element signature="e#1794#1795#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="21" failures="0" name="com.pacgame.model.PacmanTest" time="0" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="com.pacgame.controller.PacmanControllerTest" time="0.262" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2018.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -63,25 +63,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testGetPoint" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testGetWidth" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testCont" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testMoveDownMoveRight" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testGetIcon" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testInitPosition" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testTurnRight" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testMoveDown" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testMoveLeft" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testSetCollider" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testGetCollider" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testTurnDown" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testTurnLeft" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testSetHeight" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testGetHeight" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testMoveUp" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testSetIcon" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testMoveRight" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testTurnUp" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testSetPoint" time="0"/>
-  <testcase classname="com.pacgame.model.PacmanTest" name="testSetWidth" time="0"/>
+  <testcase classname="com.pacgame.controller.PacmanControllerTest" name="testHandleException" time="0.261"/>
+  <testcase classname="com.pacgame.controller.PacmanControllerTest" name="testHandle" time="0.001"/>
 </testsuite>

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: com.pacgame.model.PacmanTest
+Test set: com.pacgame.controller.PacmanControllerTest
 -------------------------------------------------------------------------------
-Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.302 sec

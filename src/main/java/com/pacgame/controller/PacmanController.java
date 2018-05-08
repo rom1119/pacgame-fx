@@ -115,7 +115,7 @@ public class PacmanController implements EventHandler<KeyEvent> {
         KeyValue keyValueCenterY = new KeyValue(pacman.getIcon().centerYProperty(), -3);
 //        KeyValue keyValueStart = new KeyValue(pacman.getIcon().startAngleProperty(), 45);
 
-        KeyFrame keyFrame = new KeyFrame(Duration.millis(500), keyValueAngle, keyValueLength, keyValueCenterX, keyValueCenterY);
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValueAngle, keyValueLength, keyValueCenterX, keyValueCenterY);
 
         timeline.getKeyFrames().add(keyFrame);
 
