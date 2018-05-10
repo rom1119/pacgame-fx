@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import org.apache.commons.collections.BidiMap;
 
 public class PacmanController implements EventHandler<KeyEvent> {
 
@@ -32,7 +33,9 @@ public class PacmanController implements EventHandler<KeyEvent> {
 //        scene.addEventHandler(KeyEvent.KEY_PRESSED, this);
         scene.setOnKeyPressed(this);
 
-        movementManager = new MovementManager(MapPathCreator.getAllPoints(), this.pacman, root);
+        BidiMap allPoints = MapPathCreator.getAllPoints();
+//System.out.println("create");
+        movementManager = new MovementManager(allPoints, this.pacman, root);
     }
 
     public Group getRoot() {

@@ -53,19 +53,8 @@ public class Pacman extends Player implements Turnable {
 
     }
 
-
     @Override
-    public Arc getIcon() {
-        return icon;
-    }
-
-    public void setIcon(Arc icon) {
-        this.icon = icon;
-    }
-
-
-    protected void initPosition()
-    {
+    public void initPosition() {
         collider.setTranslateX(point.getX());
         collider.setTranslateY(point.getY());
 
@@ -76,6 +65,17 @@ public class Pacman extends Player implements Turnable {
         icon.setTranslateY(point.getY() + (height));
 
     }
+
+
+    @Override
+    public Arc getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Arc icon) {
+        this.icon = icon;
+    }
+
 
     @Override
     public void moveLeft(int step) {

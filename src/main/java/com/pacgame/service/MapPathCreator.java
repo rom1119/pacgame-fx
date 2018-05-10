@@ -10,21 +10,24 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Path;
 import org.apache.commons.collections.BidiMap;
+import org.apache.commons.collections.MapIterator;
 import org.apache.commons.collections.bidimap.DualHashBidiMap;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class MapPathCreator {
 
-    private static BidiMap points;
+    private static DualHashBidiMap points;
+    private static DualHashBidiMap newPoints;
     private static int firstX = 35;
     private static int xStep = 95;
     private static int firstY = 30;
     private static int yStep = 88;
+
+    private static int changeXA = 0;
+    private static int changeBA = 0;
 
     static {
 
@@ -36,54 +39,54 @@ public class MapPathCreator {
         MapPoint a3 = new MapPoint((firstX + (xStep * 1)), firstY);
         MapPoint a4 = null;
         MapPoint a5 = new MapPoint((firstX + (int)(xStep * 2)), firstY);
-        MapPoint a6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), firstY);
+        MapPoint a6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), firstY);
         MapPoint a7 = null;
-        MapPoint a8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2)), firstY);
+        MapPoint a8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2) + (5)), firstY);
         MapPoint a9 = null;
-        MapPoint a10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2)), firstY);
+        MapPoint a10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2) + (5)), firstY);
 
 //    2 row
-        MapPoint b1 = new MapPoint(firstX, (firstY + yStep));
+        MapPoint b1 = new MapPoint(firstX, (firstY + yStep) - (15));
         MapPoint b2 = null;
-        MapPoint b3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep));
-        MapPoint b4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2)), (firstY + yStep));
-        MapPoint b5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep));
+        MapPoint b3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep) - (15));
+        MapPoint b4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5)), (firstY + yStep) - (15));
+        MapPoint b5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep) - (15));
 
 
-        MapPoint b6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep));
-        MapPoint b7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep));
+        MapPoint b6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), (firstY + yStep) - (15));
+        MapPoint b7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep) - (15));
 
 
-        MapPoint b8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2)), (firstY + yStep));
+        MapPoint b8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2) + (5)), (firstY + yStep) - (15));
         MapPoint b9 = null;
-        MapPoint b10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2)), (firstY + yStep));
+        MapPoint b10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2) + (5)), (firstY + yStep) - (15));
 
 //    3 row
-        MapPoint c1 = new MapPoint(firstX, (firstY + yStep + (yStep / 2 * 1)));
+        MapPoint c1 = new MapPoint(firstX, (firstY + yStep + (yStep / 2 * 1) -  (5)));
         MapPoint c2 = null;
-        MapPoint c3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep  + (yStep / 2 * 1)));
-        MapPoint c4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 1)));
-        MapPoint c5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 1)));
+        MapPoint c3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep  + (yStep / 2 * 1) -  (5)));
+        MapPoint c4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 1) -  (5)));
+        MapPoint c5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 1) -  (5)));
 
 
-        MapPoint c6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 1)));
-        MapPoint c7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 1)));
+        MapPoint c6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 1) -  (5)));
+        MapPoint c7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 1) -  (5)));
 
 
-        MapPoint c8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 1)));
+        MapPoint c8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 1) -  (5)));
         MapPoint c9 = null;
-        MapPoint c10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 1)));
+        MapPoint c10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 1) -  (5)));
 
 //    4 row
         MapPoint d1 = null;
         MapPoint d2 = null;
         MapPoint d3 = null;
-        MapPoint d4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 3)), (firstY + yStep + (yStep / 2 * 2)));
-        MapPoint d5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep + (yStep / 2 * 2)));
+        MapPoint d4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 2) - (10)));
+        MapPoint d5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep + (yStep / 2 * 2) - (10)));
 
 
-        MapPoint d6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 2)));
-        MapPoint d7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep + (yStep / 2 * 2)));
+        MapPoint d6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 2) - (10)));
+        MapPoint d7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep + (yStep / 2 * 2) - (10)));
 
 
         MapPoint d8 = null;
@@ -95,28 +98,28 @@ public class MapPathCreator {
         MapPoint e1 = new MapPoint(firstX, (firstY + yStep + (yStep / 2 * 3)));
         MapPoint e2 = null;
         MapPoint e3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep + (yStep / 2 * 3)));
-        MapPoint e4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 3)));
+        MapPoint e4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 3)));
         MapPoint e5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep + (yStep / 2 * 3)));
 
 
-        MapPoint e6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 3)));
+        MapPoint e6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 3)));
         MapPoint e7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep + (yStep / 2 * 3)));
 
 
-        MapPoint e8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 3)));
+        MapPoint e8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 3)));
         MapPoint e9 = null;
-        MapPoint e10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 3)));
+        MapPoint e10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 3)));
 
 //        6 row
         MapPoint f1 = null;
         MapPoint f2 = null;
         MapPoint f3 = null;
-        MapPoint f4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 3)), (firstY + yStep + (yStep / 2 * 4)));
-        MapPoint f5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep + (yStep / 2 * 4)));
+        MapPoint f4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 4) - (8)));
+        MapPoint f5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep + (yStep / 2 * 4) - (8)));
 
 
-        MapPoint f6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 4)));
-        MapPoint f7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep + (yStep / 2 * 4)));
+        MapPoint f6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 4) - (8)));
+        MapPoint f7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep + (yStep / 2 * 4) - (8)));
 
 
         MapPoint f8 = null;
@@ -127,50 +130,50 @@ public class MapPathCreator {
         MapPoint g1 = new MapPoint(firstX, (firstY + yStep + (yStep / 2 * 5)));
         MapPoint g2 = null;
         MapPoint g3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep  + (yStep / 2 * 5)));
-        MapPoint g4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 5)));
+        MapPoint g4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 5)));
         MapPoint g5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 5)));
 
 
-        MapPoint g6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 5)));
+        MapPoint g6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 5)));
         MapPoint g7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 5)));
 
 
-        MapPoint g8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 5)));
+        MapPoint g8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 5)));
         MapPoint g9 = null;
-        MapPoint g10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 5)));
+        MapPoint g10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 5)));
 
 //        8 row
         MapPoint h1 = new MapPoint(firstX, (firstY + yStep + (yStep / 2 * 6)));
         MapPoint h2 = new MapPoint((firstX + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 6)));
         MapPoint h3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep  + (yStep / 2 * 6)));
-        MapPoint h4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 6)));
+        MapPoint h4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 6)));
         MapPoint h5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 6)));
 
 
-        MapPoint h6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 6)));
+        MapPoint h6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 6)));
         MapPoint h7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 6)));
 
 
-        MapPoint h8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 6)));
+        MapPoint h8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 6)));
         MapPoint h9 = new MapPoint((firstX + (int)(xStep * 3) + (int)((xStep / 2) * 2)), (firstY + yStep  + (yStep / 2 * 6)));
-        MapPoint h10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 6)));
+        MapPoint h10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 6)));
 
 
 //        9 row
-        MapPoint i1 = new MapPoint((firstX ), (firstY + yStep + (yStep / 2 * 7)));
-        MapPoint i2 = new MapPoint((firstX + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 7)));
-        MapPoint i3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep  + (yStep / 2 * 7)));
-        MapPoint i4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 7)));
-        MapPoint i5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 7)));
+        MapPoint i1 = new MapPoint((firstX ), (firstY + yStep + (yStep / 2 * 7) + (8)));
+        MapPoint i2 = new MapPoint((firstX + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 7) + (8)));
+        MapPoint i3 = new MapPoint((firstX + (xStep * 1)), (firstY + yStep  + (yStep / 2 * 7) + (8)));
+        MapPoint i4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 7) + (8)));
+        MapPoint i5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 7) + (8)));
 
 
-        MapPoint i6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 7)));
-        MapPoint i7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 7)));
+        MapPoint i6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 7) + (8)));
+        MapPoint i7 = new MapPoint((firstX + (int)(xStep * 3)), (firstY + yStep  + (yStep / 2 * 7) + (8)));
 
 
-        MapPoint i8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 7)));
-        MapPoint i9 = new MapPoint((firstX + (int)(xStep * 3) + (int)((xStep / 2) * 2)), (firstY + yStep  + (yStep / 2 * 7)));
-        MapPoint i10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 7)));
+        MapPoint i8 = new MapPoint((firstX + (int)(xStep * 3) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 7) + (8)));
+        MapPoint i9 = new MapPoint((firstX + (int)(xStep * 3) + (int)((xStep / 2) * 2) + (5)), (firstY + yStep  + (yStep / 2 * 7) + (8)));
+        MapPoint i10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 7) + (8)));
 
 //        10 row
         MapPoint j1 = new MapPoint(firstX , (firstY + yStep + (yStep / 2 * 8)));
@@ -179,13 +182,13 @@ public class MapPathCreator {
         MapPoint j4 = null;
 
         MapPoint j5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep  + (yStep / 2 * 8)));
-        MapPoint j6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 8)));
+        MapPoint j6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5)), (firstY + yStep + (yStep / 2 * 8)));
 
         MapPoint j7 = null;
         MapPoint j8 = null;
         MapPoint j9 = null;
 
-        MapPoint j10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2)), (firstY + yStep  + (yStep / 2 * 8)));
+        MapPoint j10 = new MapPoint((firstX + (int)(xStep * 4) + (int)(xStep / 2) + (5)), (firstY + yStep  + (yStep / 2 * 8)));
 
         // set A Row
 
@@ -671,7 +674,209 @@ public class MapPathCreator {
         points.put("j9", j9);
         points.put("j10",j10);
 
+//
+//        MapPoint b = (MapPoint) points.get("j10");
+//        MapPoint a;
+//        j10 = b.add(0, 20);
 
+//        points.remove("j10");
+//        points.put("j10", j10);
+//        points.putIfAbsent(, )
+//        System.out.println(points.get("j10"));
+//        a = j10.add(0, 40);
+//        points.re
+//        points.replace("j10", a);
+//        points.remove("j10");
+//        points.put("j10",j10);
+
+
+
+
+
+//        Iterator iter =  points.entrySet().iterator();
+
+
+//        while(iter.hasNext()) {
+//            Map.Entry entry = (Map.Entry) iter.next();
+////
+//            String  key = (String) entry.getKey();
+//            MapPoint oldValue = (MapPoint) entry.getValue();
+//
+//            if (key.equals("j10")){
+//                System.out.println(oldValue);
+//                entry.setValue(null);
+//                entry.setValue(new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2)), (firstY + yStep + (yStep / 2 * 6))));
+//            }
+//
+//        }
+
+        // Gets key and value
+
+
+        // Sets new value
+//        final Object newValue = j10;
+
+
+
+
+
+//        System.out.println(points.get("j10"));
+
+
+//        BidiMap a = points;
+//         newPoints = new DualHashBidiMap();
+
+
+        int xToChange = 0;
+        int yToChange = 40;
+//
+//        for (Object point : points.keySet()) {
+//
+////            MapPoint val = (MapPoint) point.getClass();
+//
+//            String key = (String) point;
+//            MapPoint newMapPoint = (MapPoint) points.get(key);
+//
+//
+////            if (key.charAt(0) == 'j') {
+////            MapPoint mapPoint = (MapPoint) points.get(key);
+//
+////                System.out.println(point);
+////                System.out.println(mapPoint);
+//            if (newMapPoint == null) {
+//                continue;
+//            }
+//            MapPoint left = newMapPoint.getLeftPoint();
+//            MapPoint right = newMapPoint.getRightPoint();
+//            MapPoint up = newMapPoint.getUpPoint();
+//            MapPoint down = newMapPoint.getDownPoint();
+//
+//            Point2D newPoint = newMapPoint.subtract(xToChange, yToChange);
+//
+//            newMapPoint = new MapPoint(newPoint.getX(), newPoint.getY());
+//            newMapPoint.setLeftPoint(left);
+//            newMapPoint.setRightPoint(right);
+//            newMapPoint.setUpPoint(up);
+//            newMapPoint.setDownPoint(down);
+//
+////            boolean replace;
+//////            if (points.replace(key, mapPoint, newMapPoint)){
+////                replace = true;
+//////                    System.out.println("true");
+////            }
+////            else {
+////                replace = false;
+////            }
+//
+////                p = (MapPoint) p.subtract(0, 10);
+////                System.out.println(mapPoint);
+////            }
+//
+//            newPoints.put(key, newMapPoint);
+//
+//        }
+//
+//        for (Object point : newPoints.keySet()) {
+//            String key2 = (String) point;
+//
+////                System.out.println(key2);
+//            if (key2.charAt(0) == 'j') {
+//                MapPoint mapPoint = (MapPoint) newPoints.get(key2);
+//                if (mapPoint == null) {
+//                    continue;
+//                }
+////                System.out.println(mapPoint);
+//
+//            }
+//
+//        }
+
+//        System.out.println("cr7");
+
+//        points.clear();
+
+//        newPoints = new DualHashBidiMap(newArr);
+
+    }
+    
+    private static void changePointsPosition()
+    {
+
+//        Map a = points;
+//        BidiMap newArr = new DualHashBidiMap();
+//
+//
+//        int xToChange = 0;
+//        int yToChange = 40;
+//
+//        for (Object point : a.keySet()) {
+//
+////            MapPoint val = (MapPoint) point.getClass();
+//
+//            String key = (String) point;
+//            MapPoint newMapPoint = (MapPoint) points.get(key);
+//
+//
+////            if (key.charAt(0) == 'j') {
+//                MapPoint mapPoint = (MapPoint) points.get(key);
+//
+////                System.out.println(point);
+////                System.out.println(mapPoint);
+//                if (mapPoint == null) {
+//                    continue;
+//                }
+//                MapPoint left = mapPoint.getLeftPoint();
+//                MapPoint right = mapPoint.getRightPoint();
+//                MapPoint up = mapPoint.getUpPoint();
+//                MapPoint down = mapPoint.getDownPoint();
+//
+//                Point2D newPoint = mapPoint.subtract(xToChange, yToChange);
+//
+//                newMapPoint = new MapPoint(newPoint.getX(), newPoint.getY());
+//                newMapPoint.setLeftPoint(left);
+//                newMapPoint.setRightPoint(right);
+//                newMapPoint.setUpPoint(up);
+//                newMapPoint.setDownPoint(down);
+//
+//                boolean replace;
+//                if (points.replace(key, mapPoint, newMapPoint)){
+//                    replace = true;
+////                    System.out.println("true");
+//                }
+//                else {
+//                    replace = false;
+//                }
+//
+////                p = (MapPoint) p.subtract(0, 10);
+////                System.out.println(mapPoint);
+////            }
+//
+//            newArr.put(key, newMapPoint);
+//
+//        }
+
+//        for (Object point : points.keySet()) {
+//            String key2 = (String) point;
+//
+//            if (key2.charAt(0) == 'j') {
+//                MapPoint mapPoint = (MapPoint) points.get(key2);
+//                if (mapPoint == null) {
+//                    continue;
+//                }
+////                System.out.println(mapPoint);
+//
+//            }
+//
+//        }
+
+//        points.clear();
+
+//        points = new DualHashBidiMap(newArr);
+
+//        for (Iterator<String> i = points.mapIterator(); i.hasNext();) {
+//            MapIterator item = (MapIterator) ((MapIterator) i).getValue();
+//            System.out.println(item.getKey());
+//        }
     }
 
     public MapPathCreator() {
@@ -682,6 +887,8 @@ public class MapPathCreator {
 
     public static BidiMap getAllPoints()
     {
+//        changePointsPosition();
+
         return points;
     }
 

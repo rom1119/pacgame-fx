@@ -18,6 +18,18 @@ public class MapPoint extends Point2D {
         super(x, y);
     }
 
+    public MapPoint add(double x, double y) {
+        return new MapPoint(
+                getX() + x,
+                getY() + y);
+    }
+
+    public MapPoint subtract(double x, double y) {
+        return new MapPoint(
+                getX() - x,
+                getY() - y);
+    }
+
     public MapPoint getUpPoint() {
         return upPoint;
     }

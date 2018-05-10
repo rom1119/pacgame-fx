@@ -28,7 +28,7 @@ public class MovementManager  implements EventHandler {
     private int currentDirection;
 
     public static final int stepAnimate = 1;
-    public static final int periodAnimate = 30;
+    public static final int periodAnimate = 20;
 
 //    private Player objectToMove;
 
@@ -42,7 +42,7 @@ public class MovementManager  implements EventHandler {
 
 //        timer = new Timer();
         currentPoint = (MapPoint) this.mapPoints.get("j10");
-
+//
         this.objectToMove.getIcon().setTranslateX(currentPoint.getX());
         this.objectToMove.getIcon().setTranslateY(currentPoint.getY());
 
@@ -50,12 +50,13 @@ public class MovementManager  implements EventHandler {
         this.objectToMove.getCollider().setTranslateY(currentPoint.getY());
 
         this.objectToMove.setPoint(currentPoint);
+//        this.objectToMove.initPosition();
 
         this.objectToMove.setCheckedDirection(Direction.LEFT);
 
 
-//        System.out.println(elem.getTranslateX());
-//        System.out.println(elem.getTranslateY());
+//        System.out.println("go/**/");
+        System.out.println(elem.getTranslateY());
         int x = (int) currentPoint.getLeftPoint().getX();
         int y = (int) currentPoint.getLeftPoint().getY();
 
@@ -303,7 +304,10 @@ public class MovementManager  implements EventHandler {
                 break;
         }
 
-//        System.out.println(mapPoints.getKey(this.currentPoint));
+//        MapPoint point = mapPoints.get()
+
+        System.out.println(mapPoints.getKey(this.currentPoint));
+        System.out.println(this.currentPoint);
 
 
         if (!objectToMove.isAnimated()) {

@@ -71,14 +71,27 @@ public abstract class Component {
         return true;
     }
 
+//    protected void initPosition()
+//    {
+//        collider.setTranslateX(point.getX());
+//        collider.setTranslateY(point.getY());
+//
+//        icon.setTranslateX(point.getX());
+//        icon.setTranslateY(point.getY());
+//
+//
+//    }
+
     protected void initPosition()
     {
         collider.setTranslateX(point.getX());
         collider.setTranslateY(point.getY());
 
-        icon.setTranslateX(point.getX());
-        icon.setTranslateY(point.getY());
+        collider.setLayoutX(point.getX() - (width / 2) - 1);
+        collider.setLayoutY(point.getY() - (height / 2) - 1);
 
+        icon.setTranslateX(point.getX() + (width));
+        icon.setTranslateY(point.getY() + (height));
 
     }
 }

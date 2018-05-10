@@ -98,5 +98,16 @@ public abstract class Player extends Component implements Moveable, Turnable {
 
     }
 
+    @Override
+    public void initPosition() {
+        collider.setTranslateX(point.getX());
+        collider.setTranslateY(point.getY());
 
+        collider.setLayoutX(point.getX() - (width / 2) - 1);
+        collider.setLayoutY(point.getY() - (height / 2) - 1);
+
+        icon.setTranslateX(point.getX() + (width));
+        icon.setTranslateY(point.getY() + (height));
+
+    }
 }
