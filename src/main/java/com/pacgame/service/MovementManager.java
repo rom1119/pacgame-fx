@@ -56,7 +56,7 @@ public class MovementManager  implements EventHandler {
 
 
 //        System.out.println("go/**/");
-        System.out.println(elem.getTranslateY());
+//        System.out.println(elem.getTranslateY());
         int x = (int) currentPoint.getLeftPoint().getX();
         int y = (int) currentPoint.getLeftPoint().getY();
 
@@ -306,8 +306,8 @@ public class MovementManager  implements EventHandler {
 
 //        MapPoint point = mapPoints.get()
 
-        System.out.println(mapPoints.getKey(this.currentPoint));
-        System.out.println(this.currentPoint);
+//        System.out.println(mapPoints.getKey(this.currentPoint));
+//        System.out.println(this.currentPoint);
 
 
         if (!objectToMove.isAnimated()) {

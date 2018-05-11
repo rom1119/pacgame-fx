@@ -3,6 +3,7 @@ package com.pacgame;
 import com.pacgame.controller.PacmanController;
 import com.pacgame.model.Pacman;
 import com.pacgame.service.MapPathCreator;
+import com.pacgame.service.PointPopulator;
 import com.pacgame.view.Factory;
 import com.pacgame.view.Map;
 import javafx.animation.PathTransition;
@@ -60,68 +61,12 @@ public class App extends Application {
 
         Canvas canvas = mapMain.getView(500, 500);
 
-//        canvas.addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
-//            public void handle(MouseEvent event) {
-//                System.out.println("x= " + event.getX() + ", y= " + event.getY());
-//            }
-//        });
-
-//        MapPathCreator mapPathCreator = new MapPathCreator();
-//
-//        PathTransition pathTransition = new PathTransition();
-
-//        pathTransition.onFinishedProperty()
-
-//        List<Point2D> path = mapPathCreator.createPoints(canvas);
-
-//        Path p = new Path();
-//
-//        MoveTo moveTo = new MoveTo(100, 100);
-//        MoveTo moveTo2 = new MoveTo(400, 100);
-//        MoveTo moveTo3 = new MoveTo(100, 400);
-
-//        LineTo lineTo = new LineTo(400, 100);
-//        LineTo lineTo1 = new LineTo(400, 400);
-//        LineTo lineTo2 = new LineTo(100, 400);
-//        LineTo lineTo3 = new LineTo(100, 100);
-//        LineTo lineTo4 = new LineTo(400, 400);
-
-//        p.getElements().add(moveTo);
-//        p.getElements().add(moveTo2);
-//        p.getElements().add(moveTo3);
-//        p.getElements().add(lineTo);
-//        p.getElements().add(lineTo1);
-//        p.getElements().add(lineTo2);
-//        p.getElements().add(lineTo3);
-//        p.getElements().add(lineTo4);
-
-//        PathTransition pathTransition2 = new PathTransition();
-//
-//
-//        pathTransition2.setDuration(Duration.millis(5000));
-//        pathTransition2.setNode(pacman.getIcon());
-//        pathTransition2.setPath(p);
-//
-//        pathTransition2.setCycleCount(1);
-//        pathTransition2.setAutoReverse(false);
-//        pathTransition2.play();
-//
-//        pathTransition.setDuration(Duration.millis(5000));
-//        pathTransition.setNode(pacman.getCollider());
-//        pathTransition.setPath(p);
-//
-//        pathTransition.setCycleCount(1);
-//        pathTransition.setAutoReverse(false);
-//        pathTransition.play();
-
-
-
-
 
         root.getChildren().add(canvas);
         root.getChildren().add(pacman.getCollider());
         root.getChildren().add(pacman.getIcon());
-//        root.getChildren().add(mapPathCreator.getPath());
+        PointPopulator.populate(MapPathCreator.getAllPoints(), root);
+
 
         pacmanController.startEatAnimation();
         pacmanController.startMove();
