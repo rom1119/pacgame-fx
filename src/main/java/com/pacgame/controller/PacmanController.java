@@ -2,6 +2,7 @@ package com.pacgame.controller;
 
 import com.pacgame.model.Direction;
 import com.pacgame.model.Pacman;
+import com.pacgame.model.Player;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
 import javafx.animation.KeyFrame;
@@ -10,6 +11,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -17,25 +19,27 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
 
-public class PacmanController implements EventHandler<KeyEvent> {
+public class PacmanController extends Controller implements EventHandler<KeyEvent> {
 
-    private Pacman pacman;
-    private Timeline timeline;
-    private MovementManager movementManager;
-    private Group root;
+    protected Pacman controlledObject;
 
-    public PacmanController(Pacman pacman, Scene scene, Group root) {
+    public PacmanController( Scene scene, Group root) {
 
-        this.pacman = pacman;
-        this.root = root;
-//        scene.setFocusTraversable(true);
-//        scene.requestFocus();
-//        scene.addEventHandler(KeyEvent.KEY_PRESSED, this);
+        super(scene, root);
+
+        this.controlledObject = (Pacman)new Pacman(new Point2D(0, 0), 13);
         scene.setOnKeyPressed(this);
 
+    }
+
+    public void initialize()
+    {
+        root.getChildren().add(getControlledObject().getCollider());
+        root.getChildren().add(getControlledObject().getIcon());
+
         BidiMap allPoints = MapPathCreator.getAllPoints();
-//System.out.println("create");
-        movementManager = new MovementManager(allPoints, this.pacman, root);
+        movementManager = new MovementManager(allPoints, this.controlledObject, root);
+
     }
 
     public Group getRoot() {
@@ -44,6 +48,11 @@ public class PacmanController implements EventHandler<KeyEvent> {
 
     public void setRoot(Group root) {
         this.root = root;
+    }
+
+    @Override
+    public Pacman getControlledObject() {
+        return controlledObject;
     }
 
     /**
@@ -56,43 +65,43 @@ public class PacmanController implements EventHandler<KeyEvent> {
 
         switch (event.getCode()) {
             case UP:
-                if (pacman.isTurnedTo(Direction.DOWN)) {
+                if (getControlledObject().isTurnedTo(Direction.DOWN)) {
                     movementManager.turnBack();
                     break;
                 }
-                pacman.setCheckedDirection(Direction.UP);
-                if (!pacman.isAnimated()) {
+                getControlledObject().setCheckedDirection(Direction.UP);
+                if (!getControlledObject().isAnimated()) {
                     movementManager.selectNextPoint();
                 }
 
                 break;
             case RIGHT:
-                if (pacman.isTurnedTo(Direction.LEFT)) {
+                if (getControlledObject().isTurnedTo(Direction.LEFT)) {
                     movementManager.turnBack();
                     break;
                 }
-                pacman.setCheckedDirection(Direction.RIGHT);
-                if (!pacman.isAnimated()) {
+                getControlledObject().setCheckedDirection(Direction.RIGHT);
+                if (!getControlledObject().isAnimated()) {
                     movementManager.selectNextPoint();
                 }
                 break;
             case DOWN:
-                if (pacman.isTurnedTo(Direction.UP)) {
+                if (getControlledObject().isTurnedTo(Direction.UP)) {
                     movementManager.turnBack();
                     break;
                 }
-                pacman.setCheckedDirection(Direction.DOWN);
-                if (!pacman.isAnimated()) {
+                getControlledObject().setCheckedDirection(Direction.DOWN);
+                if (!getControlledObject().isAnimated()) {
                     movementManager.selectNextPoint();
                 }
                 break;
             case LEFT:
-                if (pacman.isTurnedTo(Direction.RIGHT)) {
+                if (getControlledObject().isTurnedTo(Direction.RIGHT)) {
                     movementManager.turnBack();
                     break;
                 }
-                pacman.setCheckedDirection(Direction.LEFT);
-                if (!pacman.isAnimated()) {
+                getControlledObject().setCheckedDirection(Direction.LEFT);
+                if (!getControlledObject().isAnimated()) {
                     movementManager.selectNextPoint();
                 }
                 break;
@@ -112,11 +121,11 @@ public class PacmanController implements EventHandler<KeyEvent> {
         final PacmanController that = this;
         timeline = new Timeline();
 
-        KeyValue keyValueAngle = new KeyValue(pacman.getIcon().startAngleProperty(), 0);
-        KeyValue keyValueLength = new KeyValue(pacman.getIcon().lengthProperty(), 360);
-        KeyValue keyValueCenterX = new KeyValue(pacman.getIcon().centerXProperty(), -3);
-        KeyValue keyValueCenterY = new KeyValue(pacman.getIcon().centerYProperty(), -3);
-//        KeyValue keyValueStart = new KeyValue(pacman.getIcon().startAngleProperty(), 45);
+        KeyValue keyValueAngle = new KeyValue(getControlledObject().getIcon().startAngleProperty(), 0);
+        KeyValue keyValueLength = new KeyValue(getControlledObject().getIcon().lengthProperty(), 360);
+        KeyValue keyValueCenterX = new KeyValue(getControlledObject().getIcon().centerXProperty(), -3);
+        KeyValue keyValueCenterY = new KeyValue(getControlledObject().getIcon().centerYProperty(), -3);
+//        KeyValue keyValueStart = new KeyValue(getControlledObject().getIcon().startAngleProperty(), 45);
 
         KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValueAngle, keyValueLength, keyValueCenterX, keyValueCenterY);
 
@@ -129,7 +138,7 @@ public class PacmanController implements EventHandler<KeyEvent> {
 
     public void stopEatAnimation()
     {
-        if (timeline != null && timeline instanceof Timeline){
+        if (timeline != null){
             timeline.stop();
         }
     }

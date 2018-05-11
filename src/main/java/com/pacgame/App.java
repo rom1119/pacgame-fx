@@ -45,31 +45,23 @@ public class App extends Application {
      */
     public void start(Stage primaryStage) throws Exception {
 
-
-        Pacman pac = new Pacman(new Point2D(2, 2), 20);
-
         Group root = new Group();
-
         Scene scene = new Scene(root, 500, 500);
 
-        Pacman pacman = new Pacman(new Point2D(0, 0), 13);
-
-
         Map mapMain = Factory.createMap("./map/map_first.png");
-        final PacmanController pacmanController = new PacmanController(pacman, scene, root);
-
 
         Canvas canvas = mapMain.getView(500, 500);
-
-
         root.getChildren().add(canvas);
-        root.getChildren().add(pacman.getCollider());
-        root.getChildren().add(pacman.getIcon());
+
+        final PacmanController pacmanController = new PacmanController(scene, root);
+        pacmanController.initialize();
+        pacmanController.startEatAnimation();
+        pacmanController.startMove();
+
+
         PointPopulator.populate(MapPathCreator.getAllPoints(), root);
 
 
-        pacmanController.startEatAnimation();
-        pacmanController.startMove();
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

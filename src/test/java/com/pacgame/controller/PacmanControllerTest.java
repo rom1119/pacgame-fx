@@ -18,8 +18,8 @@ public class PacmanControllerTest extends TestCase {
 
         Group root = new Group();
 
-        pacman = new Pacman(new Point2D(0, 0), 25);
-        pacmanController = new PacmanController(pacman, new Scene(new Group()), root);
+        pacmanController = new PacmanController( new Scene(new Group()), root);
+//        pacmanController.initialize();
     }
 
     public void tearDown() throws Exception {
