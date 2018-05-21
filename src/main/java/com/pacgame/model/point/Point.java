@@ -48,7 +48,7 @@ public abstract class Point extends Component {
         this.getIcon().addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println(getIcon().getTranslateY());
+//                System.out.println(getIcon().getTranslateY());
             }
         });
 

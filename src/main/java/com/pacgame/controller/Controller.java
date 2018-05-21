@@ -2,13 +2,10 @@ package com.pacgame.controller;
 
 import com.pacgame.model.Pacman;
 import com.pacgame.model.Player;
-import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
 import javafx.animation.Timeline;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import org.apache.commons.collections.BidiMap;
 
 public abstract class Controller {
 
@@ -56,4 +53,5 @@ public abstract class Controller {
     }
 
     public abstract void initialize();
+    public abstract void startMove();
 }

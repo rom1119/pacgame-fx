@@ -1,9 +1,6 @@
 package com.pacgame.service;
 
-import com.pacgame.model.Component;
-import com.pacgame.model.Direction;
-import com.pacgame.model.MapPoint;
-import com.pacgame.model.Player;
+import com.pacgame.model.*;
 import javafx.animation.*;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -26,6 +23,7 @@ public class MovementManager  implements EventHandler {
     private Timer timer;
     private Shape elem ;
     private int currentDirection;
+    private AnimationMoveHandler animationMoveEndHandler;
 
     public static final int stepAnimate = 1;
     public static final int periodAnimate = 20;
@@ -41,50 +39,16 @@ public class MovementManager  implements EventHandler {
 
 
 //        timer = new Timer();
-        currentPoint = (MapPoint) this.mapPoints.get("j10");
-//
-        this.objectToMove.getIcon().setTranslateX(currentPoint.getX());
-        this.objectToMove.getIcon().setTranslateY(currentPoint.getY());
-
-        this.objectToMove.getCollider().setTranslateX(currentPoint.getX());
-        this.objectToMove.getCollider().setTranslateY(currentPoint.getY());
-
-        this.objectToMove.setPoint(currentPoint);
-//        this.objectToMove.initPosition();
-
-        this.objectToMove.setCheckedDirection(Direction.LEFT);
 
 
-//        System.out.println("go/**/");
-//        System.out.println(elem.getTranslateY());
-        int x = (int) currentPoint.getLeftPoint().getX();
-        int y = (int) currentPoint.getLeftPoint().getY();
+    }
 
-//        p = new Path();
+    public Timer getTimer() {
+        return timer;
+    }
 
-
-//        root.getChildren().add(p);
-
-
-//        animation = new Timeline();
-
-//        KeyValue keyValueIconX = new KeyValue(objectToMove.getIcon().translateXProperty(), x);
-//        KeyValue keyValueIconY = new KeyValue(objectToMove.getIcon().translateYProperty(), y);
-//
-////        KeyValue keyValueColliderX = new KeyValue(objectToMove.getCollider().translateXProperty(), x);
-////        KeyValue keyValueColliderY = new KeyValue(objectToMove.getIcon().translateYProperty(), y);
-//
-//
-//        KeyFrame keyFrame = new KeyFrame(Duration.millis(5000), keyValueIconX, keyValueIconY);
-//
-//
-////        animation.getKeyFrames().clear();
-//        animation.getKeyFrames().add(keyFrame);
-//
-//        animation.setCycleCount(1);
-//        animation.setAutoReverse(false);
-//        animation.play();
-
+    public void setTimer(Timer timer) {
+        this.timer = timer;
     }
 
     public MapPoint getCurrentPoint() {
@@ -219,6 +183,9 @@ public class MovementManager  implements EventHandler {
 
     public boolean turnBack()
     {
+        if (timer == null) {
+            return false;
+        }
         timer.cancel();
         timer = new Timer();
 
@@ -326,7 +293,6 @@ public class MovementManager  implements EventHandler {
      */
     public void handle(Event event) {
 
-        System.out.println("aefsrgdfhg");
 //        selectNextPoint();
     }
 
@@ -340,6 +306,7 @@ public class MovementManager  implements EventHandler {
         MapPoint pointCurrent = getSelectedNextPoint();
 
         if (this.isTurnedTo(Direction.UP)) {
+
             objectToMove.turnUp();
             moveUp();
         } else if (this.isTurnedTo(Direction.DOWN)) {
@@ -370,6 +337,7 @@ public class MovementManager  implements EventHandler {
                if ((int)(elem.getTranslateX() ) <= (int)getCurrentPoint().getX()) {
                    objectToMove.setAnimated(false);
                    timer.cancel();
+                   animationEnd();
                    selectNextPoint();
                }
 //               System.out.println("left");
@@ -388,6 +356,7 @@ public class MovementManager  implements EventHandler {
                 if ((int)elem.getTranslateX() >= (int)getCurrentPoint().getX()) {
                     objectToMove.setAnimated(false);
                     timer.cancel();
+                    animationEnd();
                     selectNextPoint();
                 }
 //                System.out.println("right");
@@ -403,9 +372,11 @@ public class MovementManager  implements EventHandler {
         baseAnimate(new TimerTask() {
             @Override
             public void run() {
+
                 if ((int)elem.getTranslateY() <= (int)getCurrentPoint().getY()) {
                     objectToMove.setAnimated(false);
                     timer.cancel();
+                    animationEnd();
                     selectNextPoint();
                 }
 //                System.out.println("up");
@@ -424,6 +395,7 @@ public class MovementManager  implements EventHandler {
                 if ((int)elem.getTranslateY() >= (int)getCurrentPoint().getY()) {
                     objectToMove.setAnimated(false);
                     timer.cancel();
+                    animationEnd();
                     selectNextPoint();
                 }
 //                System.out.println("down");
@@ -457,5 +429,20 @@ public class MovementManager  implements EventHandler {
 
     public boolean isTurnedTo(int side) {
         return this.getCurrentDirection() == side;
+    }
+
+    private boolean animationEnd() {
+        if (animationMoveEndHandler == null) {
+            return false;
+        }
+
+        animationMoveEndHandler.animationMoveEnd(getCurrentPoint());
+
+        return true;
+    }
+
+    public void setOnAnimationEnd(AnimationMoveHandler handler)
+    {
+        animationMoveEndHandler = handler;
     }
 }

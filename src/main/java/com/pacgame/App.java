@@ -1,14 +1,18 @@
 package com.pacgame;
 
+import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
 import com.pacgame.model.Pacman;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.PointPopulator;
 import com.pacgame.view.Factory;
 import com.pacgame.view.Map;
+import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -23,6 +27,7 @@ import javafx.util.Duration;
 import javafx.scene.shape.Path;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -53,10 +58,11 @@ public class App extends Application {
         Canvas canvas = mapMain.getView(500, 500);
         root.getChildren().add(canvas);
 
-        final PacmanController pacmanController = new PacmanController(scene, root);
-        pacmanController.initialize();
-        pacmanController.startEatAnimation();
-        pacmanController.startMove();
+
+
+//        final MazeController mazeController = new MazeController(scene, root);
+//        mazeController.initialize();
+//        mazeController.startMove();
 
 
         PointPopulator.populate(MapPathCreator.getAllPoints(), root);
@@ -68,23 +74,66 @@ public class App extends Application {
         primaryStage.setTitle("PAC-GAME new PACMAN :-)");
         primaryStage.show();
 
+        final Timer timer = new Timer();
 
-//        final Timer timer = new Timer();
+        final PacmanController pacmanController = new PacmanController(scene, root);
+        pacmanController.initialize();
+        pacmanController.startEatAnimation();
+        pacmanController.startMove();
+
+        List<MazeController> mazes = new ArrayList();
+
+        final MazeController mazeController = new MazeController(scene, root);
+        mazeController.initialize();
+        mazeController.startMove();
+
+        mazes.add(mazeController);
+
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.seconds(1),
+                        new EventHandler<ActionEvent>() {
+                            // KeyFrame event handler
+                            public void handle(ActionEvent event) {
+
+                                MazeController mazeControllerNew = new MazeController(scene, root);
+                                mazeControllerNew.initialize();
+                                mazeControllerNew.startMove();
+
+                                mazes.add(mazeControllerNew);
+
+                            }
+                        }));
+
+
+        timeline.playFromStart();
+
+
+
+
 //
-//        timer.schedule(
-//                new TimerTask() {
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent event) {
+                timeline.stop();
+                int countMazes = mazes.size();
+                int mazeTimerEnd = 0;
+//                while(mazeTimerEnd < countMazes) {
+//                    for (MazeController maze: mazes) {
+//                        if (maze.getMovementManager().getTimer() != null) {
+//                            maze.getMovementManager().getTimer().cancel();
+//                            maze.getMovementManager().setTimer(null);
+//                            mazeTimerEnd++;
+//                        }
 //
-//                    @Override
-//                    public void run() {
-//                        pacmanController;
 //                    }
-//                }, 0, 25);
-//
-//        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-//            public void handle(WindowEvent event) {
-//                timer.cancel();
-//            }
-//        });
+////                    System.out.println(mazeTimerEnd);
+//                }
+                pacmanController.getMovementManager().getTimer().cancel();
+//                Platform.exit();
+            }
+        });
     }
 
     public static void main(String[] args)

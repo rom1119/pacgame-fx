@@ -1,5 +1,7 @@
 package com.pacgame.model;
 
+import javafx.application.Platform;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,6 +81,7 @@ public abstract class Player extends Component implements Moveable, Turnable {
     public void moveUp(int step) {
         int y = 0;
         y = y - step;
+//        System.out.println("aefsrgdfhg");
 
         point = point.add(0, y);
         collider.setTranslateY(point.getY());
@@ -98,16 +101,35 @@ public abstract class Player extends Component implements Moveable, Turnable {
 
     }
 
+    protected void updatePosition()
+    {
+        Platform.runLater(new Runnable() {
+            public void run() {
+                collider.setTranslateX(point.getX());
+                collider.setTranslateY(point.getY() - getHeight() / 2);
+
+                collider.setLayoutX(-(getWidth() / 2 ));
+                collider.setLayoutY(-(getWidth() / 2 ));
+                icon.setLayoutX(-(getWidth() / 2));
+                icon.setLayoutY(-(getWidth() / 2 ));
+
+                icon.setTranslateX(point.getX());
+                icon.setTranslateY(point.getY() - getHeight() / 2);
+            }
+        });
+    }
+
     @Override
     public void initPosition() {
         collider.setTranslateX(point.getX());
         collider.setTranslateY(point.getY());
 
-        collider.setLayoutX(point.getX() - (width / 2) - 1);
-        collider.setLayoutY(point.getY() - (height / 2) - 1);
+        collider.setLayoutX(0);
+        collider.setLayoutY(0);
 
-        icon.setTranslateX(point.getX() + (width));
-        icon.setTranslateY(point.getY() + (height));
+        icon.setTranslateX(point.getX());
+        icon.setTranslateY(point.getY());
 
     }
+
 }

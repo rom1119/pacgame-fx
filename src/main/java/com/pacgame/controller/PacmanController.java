@@ -1,6 +1,7 @@
 package com.pacgame.controller;
 
 import com.pacgame.model.Direction;
+import com.pacgame.model.MapPoint;
 import com.pacgame.model.Pacman;
 import com.pacgame.model.Player;
 import com.pacgame.service.MapPathCreator;
@@ -19,7 +20,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class PacmanController extends Controller implements EventHandler<KeyEvent> {
+
+    public static final int SIZE = 6;
 
     protected Pacman controlledObject;
 
@@ -40,14 +46,25 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         BidiMap allPoints = MapPathCreator.getAllPoints();
         movementManager = new MovementManager(allPoints, this.controlledObject, root);
 
-    }
+        MapPoint currentPoint = (MapPoint) allPoints.get("h5");
 
-    public Group getRoot() {
-        return root;
-    }
+        movementManager.setCurrentPoint(currentPoint);
+        MapPoint newPoint = currentPoint.add(30, 0);
 
-    public void setRoot(Group root) {
-        this.root = root;
+//
+        this.getControlledObject().getIcon().setTranslateX(newPoint.getX());
+        this.getControlledObject().getIcon().setTranslateY(newPoint.getY());
+
+        this.getControlledObject().getCollider().setTranslateX(newPoint.getX());
+        this.getControlledObject().getCollider().setTranslateY(newPoint.getY());
+
+        this.getControlledObject().setPoint(newPoint);
+//        this.objectToMove.initPosition();
+
+        this.getControlledObject().setCheckedDirection(Direction.RIGHT);
+        this.getControlledObject().turnRight();
+
+
     }
 
     @Override
@@ -110,9 +127,16 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
     }
 
-    public void startMove()
-    {
-        movementManager.selectNextPoint();
+    @Override
+    public void startMove() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                movementManager.selectNextPoint();
+                timer.cancel();
+            }
+        }, 5000, 1);
     }
 
 

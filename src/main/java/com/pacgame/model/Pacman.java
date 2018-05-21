@@ -2,6 +2,7 @@ package com.pacgame.model;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -23,7 +24,8 @@ public class Pacman extends Player implements Turnable {
         collider = new Rectangle(point.getX(), point.getY(), width, height);
 //        icon = new Circle();
 
-        collider.setFill(new Color(0, 1, 0, 0.7));
+//        collider.setFill(new Color(0, 1, 0, 0.7));
+        collider.setFill(Color.TRANSPARENT);
 
         this.icon = new Arc();
         this.icon.setCenterX(0);
@@ -85,10 +87,10 @@ public class Pacman extends Player implements Turnable {
 
 //        System.out.println(getCollider().getTranslateX());
 //        System.out.println(getCollider().getTranslateY());
-
         point = point.add(x, 0);
-        collider.setTranslateX(point.getX());
-        icon.setTranslateX(point.getX());
+
+        updatePosition();
+
     }
 
     @Override
@@ -98,8 +100,8 @@ public class Pacman extends Player implements Turnable {
         x = x + step;
 
         point = point.add(x, 0);
-        collider.setTranslateX(point.getX());
-        icon.setTranslateX(point.getX());
+
+        updatePosition();
     }
 
     @Override
@@ -111,8 +113,7 @@ public class Pacman extends Player implements Turnable {
 //        System.out.println(getCollider().getTranslateY());
 
         point = point.add(0, y);
-        collider.setTranslateY(point.getY());
-        icon.setTranslateY(point.getY());
+        updatePosition();
     }
 
 
@@ -123,10 +124,26 @@ public class Pacman extends Player implements Turnable {
         y = y + step;
 
         point = point.add(0, y);
-        collider.setTranslateY(point.getY());
-        icon.setTranslateY(point.getY());
+
+        updatePosition();
 
 
+    }
+
+    @Override
+    protected void updatePosition()
+    {
+        Platform.runLater(new Runnable() {
+            public void run() {
+                collider.setTranslateX(point.getX());
+                collider.setTranslateY(point.getY());
+
+                icon.setTranslateX(point.getX());
+                icon.setTranslateY(point.getY());
+
+
+            }
+        });
     }
 
 

@@ -1,5 +1,6 @@
 package com.pacgame.service;
 
+import com.pacgame.controller.PacmanController;
 import com.pacgame.model.MapPoint;
 import com.pacgame.model.point.BigPoint;
 import com.pacgame.model.point.NormalPoint;
@@ -17,7 +18,7 @@ public class PointPopulator {
 //            new Point2D()
 //    }
 
-    private static final int size = 6;
+    private static final int size = PacmanController.SIZE;
 
     protected static PointFactory pointFactory;
 
@@ -37,7 +38,7 @@ public class PointPopulator {
                 continue;
             }
 
-            if (key.equals("e5") || key.equals("e6")) {
+            if (key.equals("e5") || key.equals("e6") || key.equals("e5a") || key.equals("d5a")) {
                 continue;
             }
 
