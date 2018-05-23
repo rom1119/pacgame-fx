@@ -1,9 +1,7 @@
 package com.pacgame.model;
 
+import com.pacgame.Component;
 import javafx.application.Platform;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class Player extends Component implements Moveable, Turnable {
 

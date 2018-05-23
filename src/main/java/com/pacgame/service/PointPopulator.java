@@ -4,7 +4,7 @@ import com.pacgame.controller.PacmanController;
 import com.pacgame.model.MapPoint;
 import com.pacgame.model.point.BigPoint;
 import com.pacgame.model.point.NormalPoint;
-import com.pacgame.model.point.Point;
+import com.pacgame.Point;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;

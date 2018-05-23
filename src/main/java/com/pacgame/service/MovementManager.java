@@ -1,5 +1,6 @@
 package com.pacgame.service;
 
+import com.pacgame.Component;
 import com.pacgame.model.*;
 import javafx.animation.*;
 import javafx.event.Event;
@@ -79,6 +80,8 @@ public class MovementManager  implements EventHandler {
     {
 
     }
+
+
 
     public void moveAnimate(int x, int y, Component objectToMove)
     {

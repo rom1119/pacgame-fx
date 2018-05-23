@@ -1,5 +1,6 @@
 package com.pacgame.model.point;
 
+import com.pacgame.Point;
 import javafx.geometry.Point2D;
 
 public class BigPoint extends Point {

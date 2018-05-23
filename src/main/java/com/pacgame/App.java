@@ -83,8 +83,9 @@ public class App extends Application {
 
         List<MazeController> mazes = new ArrayList();
 
-        final MazeController mazeController = new MazeController(scene, root);
+        final MazeController mazeController = new MazeController(root);
         mazeController.initialize();
+        mazeController.initFinder(pacmanController);
         mazeController.startMove();
 
         mazes.add(mazeController);
@@ -92,13 +93,14 @@ public class App extends Application {
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(1),
+                new KeyFrame(Duration.seconds(2),
                         new EventHandler<ActionEvent>() {
                             // KeyFrame event handler
                             public void handle(ActionEvent event) {
 
-                                MazeController mazeControllerNew = new MazeController(scene, root);
+                                MazeController mazeControllerNew = new MazeController(root);
                                 mazeControllerNew.initialize();
+                                mazeControllerNew.initFinder(pacmanController);
                                 mazeControllerNew.startMove();
 
                                 mazes.add(mazeControllerNew);
@@ -119,17 +121,17 @@ public class App extends Application {
                 timeline.stop();
                 int countMazes = mazes.size();
                 int mazeTimerEnd = 0;
-//                while(mazeTimerEnd < countMazes) {
-//                    for (MazeController maze: mazes) {
-//                        if (maze.getMovementManager().getTimer() != null) {
-//                            maze.getMovementManager().getTimer().cancel();
-//                            maze.getMovementManager().setTimer(null);
-//                            mazeTimerEnd++;
-//                        }
-//
-//                    }
-////                    System.out.println(mazeTimerEnd);
-//                }
+                while(mazeTimerEnd < countMazes) {
+                    for (MazeController maze: mazes) {
+                        if (maze.getMovementManager().getTimer() != null) {
+                            maze.getMovementManager().getTimer().cancel();
+                            maze.getMovementManager().setTimer(null);
+                            mazeTimerEnd++;
+                        }
+
+                    }
+//                    System.out.println(mazeTimerEnd);
+                }
                 pacmanController.getMovementManager().getTimer().cancel();
 //                Platform.exit();
             }

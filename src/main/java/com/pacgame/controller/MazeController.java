@@ -1,12 +1,13 @@
 package com.pacgame.controller;
 
+import com.pacgame.Controller;
 import com.pacgame.model.*;
+import com.pacgame.service.AI;
 import com.pacgame.service.AnimationMoveHandler;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import org.apache.commons.collections.BidiMap;
 
 import java.util.Random;
@@ -17,10 +18,11 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
     public static final int SIZE = 24;
 
+    protected AI finderObject;
 
-    public MazeController(Scene scene, Group root) {
+    public MazeController( Group root) {
 
-        super(scene, root);
+        super(root);
         int min = 1;
         int max = 2;
         Random random = new Random();
@@ -70,6 +72,13 @@ public class MazeController extends Controller implements AnimationMoveHandler  
         this.getControlledObject().setCheckedDirection(Direction.RIGHT);
         this.getControlledObject().turnRight();
 
+
+
+    }
+
+    public void initFinder(PacmanController pacmanController)
+    {
+        this.finderObject = new AI(this, pacmanController);
     }
 
     @Override
@@ -85,10 +94,20 @@ public class MazeController extends Controller implements AnimationMoveHandler  
     }
 
     @Override
-    public void animationMoveEnd(MapPoint currentPoint) {
+    public void animationMoveEnd(MapPoint currentPoint)
+    {
+        boolean directionFromAI = finderObject.selectNextDirection();
+
+        if (!directionFromAI) {
+            setRandomDirection(currentPoint);
+        }
+
+    }
+
+    private void setRandomDirection(MapPoint currentPoint)
+    {
         int min = 0;
         int max = 3;
-
         MapPoint selectedMapPoint = null;
 
         do {

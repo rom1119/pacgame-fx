@@ -50,7 +50,7 @@ public class MapPathCreator {
         MapPoint b2 = null;
         MapPoint b3 = new MapPoint((firstX + (xStep * 1) - 3), (firstY + yStep) - (15));
         MapPoint b4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5) - 3), (firstY + yStep) - (15));
-        MapPoint b5 = new MapPoint((firstX + (int)(xStep * 2)), (firstY + yStep) - (15));
+        MapPoint b5 = new MapPoint((firstX + (int)(xStep * 2) - 3), (firstY + yStep) - (15));
 
 
         MapPoint b6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5) - 3), (firstY + yStep) - (15));

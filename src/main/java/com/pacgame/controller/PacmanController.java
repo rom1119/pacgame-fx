@@ -1,21 +1,18 @@
 package com.pacgame.controller;
 
+import com.pacgame.Controller;
 import com.pacgame.model.Direction;
 import com.pacgame.model.MapPoint;
 import com.pacgame.model.Pacman;
-import com.pacgame.model.Player;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
@@ -31,7 +28,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
     public PacmanController( Scene scene, Group root) {
 
-        super(scene, root);
+        super(root);
 
         this.controlledObject = (Pacman)new Pacman(new Point2D(0, 0), 13);
         scene.setOnKeyPressed(this);
