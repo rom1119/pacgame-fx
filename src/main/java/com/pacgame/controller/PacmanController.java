@@ -1,6 +1,7 @@
 package com.pacgame.controller;
 
 import com.pacgame.Controller;
+import com.pacgame.Point;
 import com.pacgame.model.Direction;
 import com.pacgame.model.MapPoint;
 import com.pacgame.model.Pacman;
@@ -11,11 +12,16 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
 
@@ -28,6 +34,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
     protected Pacman controlledObject;
     protected SimpleStringProperty score;
+    protected ObservableList<Point> allPoints;
 
     public PacmanController( Scene scene, Group root) {
 
@@ -38,6 +45,28 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         this.controlledObject = (Pacman)new Pacman(new Point2D(0, 0), 13);
         scene.setOnKeyPressed(this);
 
+        this.getControlledObject().getCollider().translateXProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                checkCollision();
+            }
+        });
+
+        this.getControlledObject().getCollider().translateYProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                checkCollision();
+            }
+        });
+
+    }
+
+    private void addScore(int score)
+    {
+        int allScore = Integer.parseInt(getScore());
+        allScore = allScore + score;
+
+        scoreProperty().set(String.valueOf(allScore));
     }
 
     public void initialize()
@@ -67,6 +96,32 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         this.getControlledObject().setCheckedDirection(Direction.RIGHT);
         this.getControlledObject().turnRight();
 
+
+    }
+
+    public void setAllPoints(ObservableList<Point> allPoints) {
+        this.allPoints = allPoints;
+    }
+
+    private void checkCollision() {
+        boolean collisionDetected = false;
+        for (Point point : allPoints) {
+            if (point.getCollider() != this.getControlledObject().getCollider()) {
+//                static_bloc.setFill(Color.GREEN);
+
+                Shape intersect = Shape.intersect(this.getControlledObject().getCollider(), point.getCollider());
+                if (intersect.getBoundsInLocal().getWidth() != -1) {
+//                    collisionDetected = true;
+
+                    if (point.isVisible()) {
+                        point.getIcon().setFill(Color.TRANSPARENT);
+                        addScore(point.getValue());
+                        point.setVisible(false);
+                    }
+
+                }
+            }
+        }
 
     }
 

@@ -72,13 +72,10 @@ public class App extends Application {
 
         Node gameInfoPane = gameInfo.getView(300, 500);
         Label scoreUIControll = gameInfo.getScoreLabel();
-//        scoreUIControll.textProperty().set("4444");
-//        scoreUIControll.setText("asdfg");
         gameInfoPane.setTranslateX(500);
         root.getChildren().add(gameInfoPane);
 
-        PointPopulator.populate(MapPathCreator.getAllPoints(), root);
-
+        ObservableList<Point> allPoints = PointPopulator.populate(MapPathCreator.getAllPoints(), root);
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
@@ -88,8 +85,8 @@ public class App extends Application {
         final Timer timer = new Timer();
 
         PacmanController pacmanController = new PacmanController(scene, root);
-//        pacmanController.scoreProperty().bindBidirectional(scoreUIControll.textProperty());
-//        pacmanController.scoreProperty().set("2222");
+        pacmanController.scoreProperty().bindBidirectional(scoreUIControll.textProperty());
+        pacmanController.setAllPoints(allPoints);
         pacmanController.initialize();
         pacmanController.startEatAnimation();
         pacmanController.startMove();
@@ -100,7 +97,7 @@ public class App extends Application {
         MazeController mazeController = new MazeController(root);
         mazeController.initialize();
         mazeController.initFinder(pacmanController);
-        mazeController.getMovementManager().setScore(scoreUIControll);
+//        mazeController.getMovementManager().setScore(scoreUIControll);
 
         mazeController.startMove();
 

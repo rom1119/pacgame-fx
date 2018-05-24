@@ -5,6 +5,7 @@ import com.pacgame.model.MapPoint;
 import com.pacgame.model.point.BigPoint;
 import com.pacgame.model.point.NormalPoint;
 import com.pacgame.Point;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -22,8 +23,12 @@ public class PointPopulator {
     private static final int size = PacmanController.SIZE;
 
     protected static PointFactory pointFactory;
+    protected static ObservableList<Point> allPoints;
+    static {
+        allPoints = FXCollections.observableArrayList();
+    }
 
-    public static void populate(BidiMap arrayOfpoints, Group root)
+    public static ObservableList<Point> populate(BidiMap arrayOfpoints, Group root)
     {
         pointFactory = new PointFactory();
 
@@ -69,18 +74,27 @@ public class PointPopulator {
 
 
         }
+        return allPoints;
 //        System.out.println(root.getChildren().size());
 
     }
 
     private static NormalPoint createNormalPoint(double x, double y)
     {
-        return new NormalPoint(new Point2D(x, y), size);
+        NormalPoint point = new NormalPoint(new Point2D(x, y), size);
+
+        allPoints.add(point);
+
+        return point;
     }
 
     private static BigPoint createBigPoint(double x, double y)
     {
-        return new BigPoint(new Point2D(x - (size / 3), y - (size / 3)), size * 2);
+        BigPoint point = new BigPoint(new Point2D(x - (size / 3), y - (size / 3)), size * 2);
+
+        allPoints.add(point);
+
+        return point;
     }
 
     private static boolean tryAddNormalPointInterX(MapPoint mapPoint, Group root, String key)

@@ -12,6 +12,7 @@ import javafx.scene.shape.Rectangle;
 public abstract class Point extends Component {
 
     protected int value = 1;
+    private boolean isVisible = true;
 
     public Point(Point2D point, int size, String imageSrc) {
 
@@ -22,7 +23,7 @@ public abstract class Point extends Component {
         collider = new Rectangle(point.getX(), point.getY(), width, height);
 //        icon = new Circle();
 
-        collider.setFill(new Color(0, 1, 0, 0.7));
+        collider.setFill(Color.TRANSPARENT);
 
         Image image = new Image(imageSrc);
 
@@ -44,6 +45,8 @@ public abstract class Point extends Component {
 
         this.getCollider().setTranslateX(this.point.getX());
         this.getCollider().setTranslateY(this.point.getY());
+
+//        this.getCollider().translateXProperty()
 
         this.getIcon().addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
             @Override
@@ -74,5 +77,13 @@ public abstract class Point extends Component {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
     }
 }
