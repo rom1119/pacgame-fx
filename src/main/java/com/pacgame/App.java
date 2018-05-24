@@ -6,18 +6,25 @@ import com.pacgame.model.Pacman;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.PointPopulator;
 import com.pacgame.view.Factory;
+import com.pacgame.view.GameInfo;
 import com.pacgame.view.Map;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.property.Property;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.stage.Stage;
@@ -51,22 +58,26 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Group root = new Group();
-        Scene scene = new Scene(root, 500, 500);
+        Scene scene = new Scene(root, 800, 500);
 
         Map mapMain = Factory.createMap("./map/map_first.png");
 
-        Canvas canvas = mapMain.getView(500, 500);
-        root.getChildren().add(canvas);
+        GameInfo gameInfo = Factory.createGameInfo();
 
+        Node gameCanvas = mapMain.getView(500, 500);
+        root.getChildren().add(gameCanvas);
 
+        gameCanvas = (Canvas) gameCanvas;
+        ((Canvas) gameCanvas).getGraphicsContext2D();
 
-//        final MazeController mazeController = new MazeController(scene, root);
-//        mazeController.initialize();
-//        mazeController.startMove();
-
+        Node gameInfoPane = gameInfo.getView(300, 500);
+        Label scoreUIControll = gameInfo.getScoreLabel();
+//        scoreUIControll.textProperty().set("4444");
+//        scoreUIControll.setText("asdfg");
+        gameInfoPane.setTranslateX(500);
+        root.getChildren().add(gameInfoPane);
 
         PointPopulator.populate(MapPathCreator.getAllPoints(), root);
-
 
 
         primaryStage.setScene(scene);
@@ -76,34 +87,46 @@ public class App extends Application {
 
         final Timer timer = new Timer();
 
-        final PacmanController pacmanController = new PacmanController(scene, root);
+        PacmanController pacmanController = new PacmanController(scene, root);
+//        pacmanController.scoreProperty().bindBidirectional(scoreUIControll.textProperty());
+//        pacmanController.scoreProperty().set("2222");
         pacmanController.initialize();
         pacmanController.startEatAnimation();
         pacmanController.startMove();
 
         List<MazeController> mazes = new ArrayList();
+        ObservableList<MazeController> mazesCollection = FXCollections.observableArrayList(mazes);
 
-        final MazeController mazeController = new MazeController(root);
+        MazeController mazeController = new MazeController(root);
         mazeController.initialize();
         mazeController.initFinder(pacmanController);
+        mazeController.getMovementManager().setScore(scoreUIControll);
+
         mazeController.startMove();
 
-        mazes.add(mazeController);
+        mazesCollection.add(mazeController);
 
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(2),
+                new KeyFrame(Duration.millis(5000),
                         new EventHandler<ActionEvent>() {
                             // KeyFrame event handler
                             public void handle(ActionEvent event) {
+
+                                if (mazesCollection.size() >= MazeController.MAX_AMOUNT_MAZES) {
+                                    timeline.stop();
+                                }
 
                                 MazeController mazeControllerNew = new MazeController(root);
                                 mazeControllerNew.initialize();
                                 mazeControllerNew.initFinder(pacmanController);
                                 mazeControllerNew.startMove();
 
-                                mazes.add(mazeControllerNew);
+                                mazesCollection.add(mazeControllerNew);
+
+
+
 
                             }
                         }));
@@ -119,10 +142,10 @@ public class App extends Application {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {
                 timeline.stop();
-                int countMazes = mazes.size();
+                int countMazes = mazesCollection.size();
                 int mazeTimerEnd = 0;
                 while(mazeTimerEnd < countMazes) {
-                    for (MazeController maze: mazes) {
+                    for (MazeController maze: mazesCollection) {
                         if (maze.getMovementManager().getTimer() != null) {
                             maze.getMovementManager().getTimer().cancel();
                             maze.getMovementManager().setTimer(null);
@@ -133,6 +156,7 @@ public class App extends Application {
 //                    System.out.println(mazeTimerEnd);
                 }
                 pacmanController.getMovementManager().getTimer().cancel();
+                pacmanController.getMovementManager().setTimer(null);
 //                Platform.exit();
             }
         });

@@ -130,7 +130,6 @@ public class Pacman extends Player implements Turnable {
 
     }
 
-    @Override
     protected void updatePosition()
     {
         Platform.runLater(new Runnable() {

@@ -6,10 +6,13 @@ import com.pacgame.service.AI;
 import com.pacgame.service.AnimationMoveHandler;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 import org.apache.commons.collections.BidiMap;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,6 +20,10 @@ import java.util.TimerTask;
 public class MazeController extends Controller implements AnimationMoveHandler  {
 
     public static final int SIZE = 24;
+    public static final int MAX_AMOUNT_MAZES = 10;
+    public static final String[] CENTER_POINTS = {
+            "e5", "e5A", "e6"
+    };
 
     protected AI finderObject;
 
@@ -30,6 +37,17 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
         this.controlledObject = createNewMaze(randomNumber);
         this.root = root;
+
+        getControlledObject().getIcon().addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+//                System.out.println("direction maze: " + getControlledObject().getCheckedDirection());
+//                System.out.println("direction manager: " + getMovementManager().getCurrentDirection());
+//                System.out.println("current point manager: " + getMovementManager().getCurrentPoint());
+//                System.out.println("timer: " + getMovementManager().getTimer());
+//                System.out.println("isAnimated: " + getControlledObject().isAnimated());
+            }
+        });
 
     }
 
@@ -90,13 +108,16 @@ public class MazeController extends Controller implements AnimationMoveHandler  
                 movementManager.selectNextPoint();
                 timer.cancel();
             }
-        }, 1000, 1);
+        }, MovementManager.PERIOD_DELAY, 1);
     }
 
     @Override
     public void animationMoveEnd(MapPoint currentPoint)
     {
-        boolean directionFromAI = finderObject.selectNextDirection();
+        boolean directionFromAI = false;
+        if (!Arrays.asList(CENTER_POINTS).contains(this.getMovementManager().getCurrentPoint().getName())) {
+            directionFromAI = finderObject.selectNextDirection();
+        }
 
         if (!directionFromAI) {
             setRandomDirection(currentPoint);

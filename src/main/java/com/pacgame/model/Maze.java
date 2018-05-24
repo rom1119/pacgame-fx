@@ -54,49 +54,6 @@ public abstract class Maze extends Player {
     }
 
     @Override
-    public void moveLeft(int step) {
-
-        int x = 0;
-        x = x + step;
-
-
-        point = point.subtract(x, 0);
-        updatePosition();
-    }
-
-    @Override
-    public void moveRight(int step) {
-
-        int x = 0;
-        x = x + step;
-
-        point = point.add(x, 0);
-        updatePosition();
-    }
-
-    @Override
-    public void moveUp(int step) {
-        int y = 0;
-        y = y + step;
-
-        point = point.subtract(0, y);
-        updatePosition();
-    }
-
-
-    @Override
-    public void moveDown(int step) {
-
-        int y = 0;
-        y = y + step;
-
-        point = point.add(0, y);
-        updatePosition();
-
-
-    }
-
-    @Override
     public void turnLeft() {
         updateIcon();
     }

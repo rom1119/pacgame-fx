@@ -9,6 +9,8 @@ import com.pacgame.service.MovementManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -25,10 +27,13 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
     public static final int SIZE = 6;
 
     protected Pacman controlledObject;
+    protected SimpleStringProperty score;
 
     public PacmanController( Scene scene, Group root) {
 
         super(root);
+
+        this.score = new SimpleStringProperty("0");
 
         this.controlledObject = (Pacman)new Pacman(new Point2D(0, 0), 13);
         scene.setOnKeyPressed(this);
@@ -48,6 +53,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         movementManager.setCurrentPoint(currentPoint);
         MapPoint newPoint = currentPoint.add(30, 0);
 
+        this.score.setValue("0");
 //
         this.getControlledObject().getIcon().setTranslateX(newPoint.getX());
         this.getControlledObject().getIcon().setTranslateY(newPoint.getY());
@@ -133,7 +139,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
                 movementManager.selectNextPoint();
                 timer.cancel();
             }
-        }, 5000, 1);
+        }, MovementManager.PERIOD_DELAY, 1);
     }
 
 
@@ -162,5 +168,13 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         if (timeline != null){
             timeline.stop();
         }
+    }
+
+    public String getScore() {
+        return score.get();
+    }
+
+    public SimpleStringProperty scoreProperty() {
+        return score;
     }
 }

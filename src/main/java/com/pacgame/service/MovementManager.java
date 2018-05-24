@@ -3,11 +3,15 @@ package com.pacgame.service;
 import com.pacgame.Component;
 import com.pacgame.model.*;
 import javafx.animation.*;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Shape;
+import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
 
 import java.util.Timer;
@@ -17,7 +21,7 @@ public class MovementManager  implements EventHandler {
 
     private BidiMap mapPoints;
     private Player objectToMove;
-    private PathTransition animation;
+    private Timeline animation;
     private MapPoint currentPoint;
     private Group root;
     private Path p;
@@ -25,9 +29,16 @@ public class MovementManager  implements EventHandler {
     private Shape elem ;
     private int currentDirection;
     private AnimationMoveHandler animationMoveEndHandler;
+    private Label score;
 
-    public static final int stepAnimate = 1;
-    public static final int periodAnimate = 20;
+    public void setScore(Label score) {
+        this.score = score;
+    }
+
+    public static final int STEP_ANIMATE = 2;
+    public static final int PERIOD_ANIMATE = 10;
+    public static final int PERIOD_DELAY = 1000;
+    public static final int SPEED_ANIMATE = 20;
 
 //    private Player objectToMove;
 
@@ -86,61 +97,45 @@ public class MovementManager  implements EventHandler {
     public void moveAnimate(int x, int y, Component objectToMove)
     {
 
-//        timer.schedule(new TimerTask() {
+        animation = new Timeline();
+        animation.setOnFinished(this);
+
+
+        KeyValue keyValueIconX = new KeyValue(objectToMove.getIcon().translateXProperty(), x, Interpolator.LINEAR);
+        KeyValue keyValueIconY = new KeyValue(objectToMove.getIcon().translateYProperty(), y, Interpolator.LINEAR);
+
+        KeyValue keyValueColliderX = new KeyValue(objectToMove.getCollider().translateXProperty(), x, Interpolator.LINEAR);
+        KeyValue keyValueColliderY = new KeyValue(objectToMove.getCollider().translateYProperty(), y, Interpolator.LINEAR);
+
+//        KeyFrame labelText = new KeyFrame(Duration.millis(calculateAnimationDuration()), new EventHandler<ActionEvent>() {
 //            @Override
-//            public void run() {
-//
+//            public void handle(ActionEvent event) {
+//                if (score != null) {
+//                    Platform.runLater(new Runnable() {
+//                        public void run() {
+//                            double translateYObject = getObjectToMove().getCollider().getTranslateX();
+//                            double pointY = getObjectToMove().getIcon().getTranslateY();
+//                            score.setText(String.valueOf("X = " + translateYObject + "Y = " + pointY));
+//                        }
+//                    });
+//                }
 //            }
-//        }, 0, 25);
-//        animation = new PathTransition();
-////        p = new Path();
-//
-//        animation.setDuration(Duration.millis(3000));
-//        animation.setNode(objectToMove.getIcon());
-//
-//        animation.setCycleCount(1);
-//        animation.setAutoReverse(false);
-//
-//        //
-//        MoveTo moveTo = new MoveTo(x - 1, y - 1);
-////        MoveTo moveTo2 = new MoveTo(400, 100);
-////        MoveTo moveTo3 = new MoveTo(100, 400);
-//
-//        LineTo lineTo = new LineTo(x, y);
-////        LineTo lineTo1 = new LineTo(400, 400);
-////        LineTo lineTo2 = new LineTo(100, 400);
-////        LineTo lineTo3 = new LineTo(100, 100);
-////        LineTo lineTo4 = new LineTo(400, 400);
-//        p.getElements().clear();
-//        p.getElements().add(moveTo);
-//        p.getElements().add(lineTo);
-//        animation.setPath(p);
-////        animation.setNode();
-//        animation.play();
+//        });
+
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(calculateAnimationDuration()), keyValueIconX, keyValueIconY, keyValueColliderX, keyValueColliderY);
 
 
-//
-//        animation = new Timeline();
-//        animation.setOnFinished(this);
-//
-//
-//        KeyValue keyValueIconX = new KeyValue(objectToMove.getIcon().translateXProperty(), x, Interpolator.LINEAR);
-//        KeyValue keyValueIconY = new KeyValue(objectToMove.getIcon().translateYProperty(), y, Interpolator.LINEAR);
-//
-//        KeyValue keyValueColliderX = new KeyValue(objectToMove.getCollider().translateXProperty(), x, Interpolator.LINEAR);
-//        KeyValue keyValueColliderY = new KeyValue(objectToMove.getIcon().translateYProperty(), y, Interpolator.LINEAR);
-//
-//
-//        KeyFrame keyFrame = new KeyFrame(Duration.millis(2000), keyValueIconX, keyValueIconY, keyValueColliderX, keyValueColliderY);
-//
-//
-////        animation.getKeyFrames().clear();
-//        animation.getKeyFrames().add(keyFrame);
-//        animation.setDelay(Duration.millis(0));
-//
-////        animation.setCycleCount(1);
-////        animation.setAutoReverse(false);
-//        animation.play();
+
+        animation.getKeyFrames().clear();
+        animation.getKeyFrames().add(keyFrame);
+//        animation.getKeyFrames().add(labelText);
+        animation.setDelay(Duration.millis(0));
+
+        animation.setCycleCount(1);
+        animation.setAutoReverse(false);
+        animation.play();
+
+        this.getObjectToMove().setAnimated(true);
 
 
 //        MoveTo moveTo = new MoveTo(currentPoint.getX(), currentPoint.getY());
@@ -149,9 +144,26 @@ public class MovementManager  implements EventHandler {
 //
     }
 
-    public void stopAnim()
+    public int calculateAnimationDuration()
     {
-//        animation.stop();
+
+        if (this.getCurrentDirection() == Direction.UP  || this.getCurrentDirection() == Direction.DOWN) {
+            double translateYObject = this.getObjectToMove().getCollider().getTranslateY();
+            double pointY = this.getCurrentPoint().getY();
+
+//            System.out.println(pointY - translateYObject);
+
+            return (int) (SPEED_ANIMATE * Math.abs( translateYObject - pointY)) ;
+        } else {
+            double translateXObject = this.getObjectToMove().getCollider().getTranslateX();
+            double pointX = this.getCurrentPoint().getX();
+            return (int) (SPEED_ANIMATE * Math.abs( translateXObject - pointX)) ;
+        }
+    }
+
+    public void stopAnimation()
+    {
+        animation.stop();
     }
 
     protected boolean canTurn(int direction)
@@ -186,11 +198,13 @@ public class MovementManager  implements EventHandler {
 
     public boolean turnBack()
     {
-        if (timer == null) {
+        if (animation == null) {
             return false;
         }
-        timer.cancel();
-        timer = new Timer();
+//        timer.cancel();
+//        timer = new Timer();
+
+        stopAnimation();
 
         if (this.isTurnedTo(Direction.UP)) {
             if (getCurrentPoint().getDownPoint() == null) {
@@ -296,7 +310,9 @@ public class MovementManager  implements EventHandler {
      */
     public void handle(Event event) {
 
-//        selectNextPoint();
+        this.getObjectToMove().setAnimated(false);
+        animationEnd();
+        selectNextPoint();
     }
 
     public boolean run()
@@ -309,118 +325,22 @@ public class MovementManager  implements EventHandler {
         MapPoint pointCurrent = getSelectedNextPoint();
 
         if (this.isTurnedTo(Direction.UP)) {
-
             objectToMove.turnUp();
-            moveUp();
         } else if (this.isTurnedTo(Direction.DOWN)) {
             objectToMove.turnDown();
-            moveDown();
         } else if (this.isTurnedTo(Direction.LEFT)) {
             objectToMove.turnLeft();
-            moveLeft();
         } else if (this.isTurnedTo(Direction.RIGHT)) {
 
             objectToMove.turnRight();
-            moveRight();
         }
 
-//        moveAnimate((int) pointCurrent.getX(),(int)  pointCurrent.getY(), objectToMove);
+        moveAnimate((int) pointCurrent.getX(),(int)  pointCurrent.getY(), objectToMove);
 
 
         return true;
     }
 
-    public void moveLeft()
-    {
-//        System.out.println(getCurrentPoint().getX());
-//        System.out.println(elem.getTranslateX());
-        baseAnimate(new TimerTask() {
-           @Override
-           public void run() {
-               if ((int)(elem.getTranslateX() ) <= (int)getCurrentPoint().getX()) {
-                   objectToMove.setAnimated(false);
-                   timer.cancel();
-                   animationEnd();
-                   selectNextPoint();
-               }
-//               System.out.println("left");
-
-               objectToMove.moveLeft(stepAnimate);
-
-           }
-       });
-    }
-
-    public void moveRight()
-    {
-        baseAnimate(new TimerTask() {
-            @Override
-            public void run() {
-                if ((int)elem.getTranslateX() >= (int)getCurrentPoint().getX()) {
-                    objectToMove.setAnimated(false);
-                    timer.cancel();
-                    animationEnd();
-                    selectNextPoint();
-                }
-//                System.out.println("right");
-
-                objectToMove.moveRight(stepAnimate);
-
-            }
-        });
-    }
-
-    public void moveUp()
-    {
-        baseAnimate(new TimerTask() {
-            @Override
-            public void run() {
-
-                if ((int)elem.getTranslateY() <= (int)getCurrentPoint().getY()) {
-                    objectToMove.setAnimated(false);
-                    timer.cancel();
-                    animationEnd();
-                    selectNextPoint();
-                }
-//                System.out.println("up");
-
-                objectToMove.moveUp(stepAnimate);
-
-            }
-        });
-    }
-
-    public void moveDown()
-    {
-        baseAnimate(new TimerTask() {
-            @Override
-            public void run() {
-                if ((int)elem.getTranslateY() >= (int)getCurrentPoint().getY()) {
-                    objectToMove.setAnimated(false);
-                    timer.cancel();
-                    animationEnd();
-                    selectNextPoint();
-                }
-//                System.out.println("down");
-
-                objectToMove.moveDown(stepAnimate);
-
-            }
-        });
-    }
-
-    public boolean baseAnimate(TimerTask task)
-    {
-        if (objectToMove.isAnimated()) {
-            return false;
-        }
-        objectToMove.setAnimated(true);
-        timer = null;
-        timer = new Timer();
-        timer.schedule(task, 0, periodAnimate);
-
-        return true;
-    }
 
     public void setCurrentDirection(int currentDirection) {
         this.currentDirection = currentDirection;

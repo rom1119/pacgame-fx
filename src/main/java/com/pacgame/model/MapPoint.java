@@ -4,6 +4,7 @@ import javafx.geometry.Point2D;
 
 public class MapPoint extends Point2D {
 
+    private String name;
     private MapPoint upPoint ;
     private MapPoint DownPoint ;
     private MapPoint leftPoint ;
@@ -28,6 +29,14 @@ public class MapPoint extends Point2D {
         return new MapPoint(
                 getX() - x,
                 getY() - y);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public MapPoint getUpPoint() {

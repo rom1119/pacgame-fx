@@ -14,4 +14,9 @@ public class Factory {
     {
         return new Map(imageUrl);
     }
+
+    public static GameInfo createGameInfo()
+    {
+        return new GameInfo();
+    }
 }

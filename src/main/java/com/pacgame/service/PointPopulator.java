@@ -8,6 +8,7 @@ import com.pacgame.Point;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.layout.FlowPane;
 import org.apache.commons.collections.BidiMap;
 
 import javafx.scene.Group;

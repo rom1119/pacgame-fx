@@ -1,5 +1,7 @@
 package com.pacgame.view;
 
+import com.pacgame.View;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.BlendMode;
@@ -7,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
-public class Map {
+public class Map extends View {
 
     protected String imgPath;
 
@@ -17,7 +19,7 @@ public class Map {
 
     }
 
-    public Canvas getView(int width, int height)
+    public Node getView(int width, int height)
     {
         Canvas canvas = new Canvas(width, height);
 

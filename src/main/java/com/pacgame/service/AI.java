@@ -9,7 +9,7 @@ import java.util.*;
 
 public class AI {
 
-    private final int countFreeSteps = 10;
+    private final int COUNT_FREE_STEPS = 10;
     private int step = 0;
 
     private MazeController observerController;
@@ -78,12 +78,12 @@ public class AI {
 
     public boolean selectNextDirection()
     {
-        incrementStep();
 
 
 //System.out.println("maze : " + this.getObserverMovementManager().getCurrentPoint().getX());
 //System.out.println("pacman : " + this.getObservableMovementManager().getCurrentPoint().getX());
-        if (step <= countFreeSteps) {
+        if (step <= COUNT_FREE_STEPS) {
+            incrementStep();
             return false;
         }
         initCurrentPoints();
@@ -92,11 +92,6 @@ public class AI {
         MapPoint selectedMapPoint = null;
 
         Map<Integer, MapPoint> availablePoints = new HashMap<>();
-//        do {
-//            Random random = new Random();
-//            int randomNumber = random.nextInt(max + 1 - min) + min;
-
-//            System.out.println(randomNumber);
 
 
         pushAvailableMapPoints(availablePoints, false);
@@ -105,7 +100,7 @@ public class AI {
             pushAvailableMapPoints(availablePoints, true);
         }
         if (availablePoints.size() < 1) {
-            System.out.println(0);
+            throw new RuntimeException("not selected direction in AI");
         }
 
 
@@ -114,23 +109,6 @@ public class AI {
         turn(mostDirection);
 
 
-//            if (shouldTurnLeft(currentObserverMapPoint) && canTurn(Direction.LEFT)) {
-//                turn(Direction.LEFT);
-//                return true;
-//            } else if (shouldTurnRight(currentObserverMapPoint) && canTurn(Direction.RIGHT)) {
-//                turn(Direction.RIGHT);
-//                return true;
-//            }
-//
-//            if (shouldTurnUp(currentObserverMapPoint) && canTurn(Direction.UP)) {
-//                turn(Direction.UP);
-//                return true;
-//            } else if (shouldTurnDown(currentObserverMapPoint) && canTurn(Direction.DOWN)) {
-//                turn(Direction.DOWN);
-//                return true;
-//            }
-
-//        } while (selectedMapPoint == null);
 
         return true;
     }
@@ -173,13 +151,16 @@ public class AI {
             // In your case, another loop.
         }
 
+        if (calculateWays.size() == 0) {
+            System.out.println("aasdasdads");
+        }
+
+
         Map.Entry<Integer, Integer> min = Collections.min(calculateWays.entrySet(), new Comparator<Map.Entry<Integer, Integer>>() {
             public int compare(Map.Entry<Integer, Integer> entry1, Map.Entry<Integer, Integer> entry2) {
                 return entry1.getValue().compareTo(entry2.getValue());
             }
         });
-
-
 
         return min.getKey();
     }
@@ -252,7 +233,7 @@ public class AI {
 
     }
 
-    public void turn(int direction)
+    private void turn(int direction)
     {
         this.getObserverController().getControlledObject().setCheckedDirection(direction);
     }
