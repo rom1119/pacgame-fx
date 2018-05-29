@@ -16,6 +16,7 @@ public class Pacman extends Player implements Turnable {
     protected Arc icon;
 
     public Pacman(Point2D point, int radius) {
+        super();
 
         this.point = point;
         this.width = radius * 2;

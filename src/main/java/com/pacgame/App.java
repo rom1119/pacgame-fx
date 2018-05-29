@@ -2,44 +2,35 @@ package com.pacgame;
 
 import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
-import com.pacgame.model.Pacman;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.PointPopulator;
 import com.pacgame.view.Factory;
 import com.pacgame.view.GameInfo;
 import com.pacgame.view.Map;
+import com.sun.javafx.event.EventHandlerManager;
 import javafx.animation.KeyFrame;
-import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.scene.canvas.Canvas;
 import javafx.util.Duration;
-import javafx.scene.shape.Path;
-
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class App extends Application {
+
+    public static ObservableList<MazeController> mazesCollection;
+
     /**
      * The main entry point for all JavaFX applications.
      * The start method is called after the init method has returned,
@@ -67,8 +58,6 @@ public class App extends Application {
         Node gameCanvas = mapMain.getView(500, 500);
         root.getChildren().add(gameCanvas);
 
-        gameCanvas = (Canvas) gameCanvas;
-        ((Canvas) gameCanvas).getGraphicsContext2D();
 
         Node gameInfoPane = gameInfo.getView(300, 500);
         Label scoreUIControll = gameInfo.getScoreLabel();
@@ -88,11 +77,10 @@ public class App extends Application {
         pacmanController.scoreProperty().bindBidirectional(scoreUIControll.textProperty());
         pacmanController.setAllPoints(allPoints);
         pacmanController.initialize();
-        pacmanController.startEatAnimation();
-        pacmanController.startMove();
+
 
         List<MazeController> mazes = new ArrayList();
-        ObservableList<MazeController> mazesCollection = FXCollections.observableArrayList(mazes);
+        mazesCollection = FXCollections.observableArrayList(mazes);
 
         MazeController mazeController = new MazeController(root);
         mazeController.initialize();
@@ -131,10 +119,10 @@ public class App extends Application {
 
         timeline.playFromStart();
 
+        pacmanController.setMazeControllerList(mazesCollection);
+        pacmanController.startEatAnimation();
+        pacmanController.startMove();
 
-
-
-//
 
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {

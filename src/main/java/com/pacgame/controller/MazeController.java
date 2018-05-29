@@ -6,6 +6,7 @@ import com.pacgame.service.AI;
 import com.pacgame.service.AnimationMoveHandler;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -21,11 +22,13 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
     public static final int SIZE = 24;
     public static final int MAX_AMOUNT_MAZES = 10;
+    private boolean isMovedByAI = true;
     public static final String[] CENTER_POINTS = {
             "e5", "e5A", "e6"
     };
 
     protected AI finderObject;
+    private Timeline stateTimeline;
 
     public MazeController( Group root) {
 
@@ -114,14 +117,19 @@ public class MazeController extends Controller implements AnimationMoveHandler  
     @Override
     public void animationMoveEnd(MapPoint currentPoint)
     {
-        boolean directionFromAI = false;
-        if (!Arrays.asList(CENTER_POINTS).contains(this.getMovementManager().getCurrentPoint().getName())) {
-            directionFromAI = finderObject.selectNextDirection();
+        if (!isMovedByAI()) {
+            setRandomDirection(currentPoint);
+        } else {
+            boolean directionFromAI = false;
+            if (!Arrays.asList(CENTER_POINTS).contains(this.getMovementManager().getCurrentPoint().getName())) {
+                directionFromAI = finderObject.selectNextDirection();
+            }
+
+            if (!directionFromAI) {
+                setRandomDirection(currentPoint);
+            }
         }
 
-        if (!directionFromAI) {
-            setRandomDirection(currentPoint);
-        }
 
     }
 
@@ -168,5 +176,19 @@ public class MazeController extends Controller implements AnimationMoveHandler  
         } while (selectedMapPoint == null);
     }
 
+    public boolean isMovedByAI() {
+        return isMovedByAI;
+    }
 
+    public void setMovedByAI(boolean movedByAI) {
+        isMovedByAI = movedByAI;
+    }
+
+    public Timeline getStateTimeline() {
+        return stateTimeline;
+    }
+
+    public void setStateTimeline(Timeline stateTimeline) {
+        this.stateTimeline = stateTimeline;
+    }
 }

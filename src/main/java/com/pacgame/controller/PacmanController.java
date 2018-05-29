@@ -2,6 +2,7 @@ package com.pacgame.controller;
 
 import com.pacgame.Controller;
 import com.pacgame.Point;
+import com.pacgame.event.PointEvent;
 import com.pacgame.model.Direction;
 import com.pacgame.model.MapPoint;
 import com.pacgame.model.Pacman;
@@ -10,7 +11,6 @@ import com.pacgame.service.MovementManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,7 +20,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
@@ -30,11 +29,12 @@ import java.util.TimerTask;
 
 public class PacmanController extends Controller implements EventHandler<KeyEvent> {
 
-    public static final int SIZE = 6;
+    public static final int SIZE = 24;
 
     protected Pacman controlledObject;
     protected SimpleStringProperty score;
     protected ObservableList<Point> allPoints;
+    private ObservableList<MazeController> mazeControllerList;
 
     public PacmanController( Scene scene, Group root) {
 
@@ -42,9 +42,13 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
         this.score = new SimpleStringProperty("0");
 
-        this.controlledObject = (Pacman)new Pacman(new Point2D(0, 0), 13);
+        this.controlledObject = (Pacman)new Pacman(new Point2D(0, 0), SIZE / 2);
         scene.setOnKeyPressed(this);
 
+    }
+
+    private void setOnPacmanMove()
+    {
         this.getControlledObject().getCollider().translateXProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -58,10 +62,9 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
                 checkCollision();
             }
         });
-
     }
 
-    private void addScore(int score)
+    public void addScore(int score)
     {
         int allScore = Integer.parseInt(getScore());
         allScore = allScore + score;
@@ -96,6 +99,8 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         this.getControlledObject().setCheckedDirection(Direction.RIGHT);
         this.getControlledObject().turnRight();
 
+        this.setOnPacmanMove();
+
 
     }
 
@@ -104,25 +109,28 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
     }
 
     private void checkCollision() {
-        boolean collisionDetected = false;
         for (Point point : allPoints) {
-            if (point.getCollider() != this.getControlledObject().getCollider()) {
-//                static_bloc.setFill(Color.GREEN);
+            Shape intersect = Shape.intersect(this.getControlledObject().getCollider(), point.getCollider());
+            if (intersect.getBoundsInLocal().getWidth() != -1) {
 
-                Shape intersect = Shape.intersect(this.getControlledObject().getCollider(), point.getCollider());
-                if (intersect.getBoundsInLocal().getWidth() != -1) {
-//                    collisionDetected = true;
+                PointEvent pointEvent = new PointEvent(PointEvent.DESTROY);
+                pointEvent.setPoint(point);
+                pointEvent.setPacmanController(this);
+                pointEvent.setMazeControllerList(getMazeControllerList());
+                point.getCollider().fireEvent(pointEvent);
 
-                    if (point.isVisible()) {
-                        point.getIcon().setFill(Color.TRANSPARENT);
-                        addScore(point.getValue());
-                        point.setVisible(false);
-                    }
 
-                }
             }
         }
 
+    }
+
+    public ObservableList<MazeController> getMazeControllerList() {
+        return mazeControllerList;
+    }
+
+    public void setMazeControllerList(ObservableList<MazeController> mazeControllerList) {
+        this.mazeControllerList = mazeControllerList;
     }
 
     @Override

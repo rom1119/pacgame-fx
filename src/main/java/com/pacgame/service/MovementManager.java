@@ -4,6 +4,7 @@ import com.pacgame.Component;
 import com.pacgame.model.*;
 import javafx.animation.*;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -31,15 +32,16 @@ public class MovementManager  implements EventHandler {
     private AnimationMoveHandler animationMoveEndHandler;
     private Label score;
 
-    public void setScore(Label score) {
-        this.score = score;
-    }
 
     public static final int STEP_ANIMATE = 2;
     public static final int PERIOD_ANIMATE = 10;
     public static final int PERIOD_DELAY = 1000;
-    public static final int SPEED_ANIMATE = 20;
+    private SimpleIntegerProperty speedMove;
+    private int INITIAL_SPEED_MOVE = 20;
 
+    public void setScore(Label score) {
+        this.score = score;
+    }
 //    private Player objectToMove;
 
 
@@ -48,11 +50,24 @@ public class MovementManager  implements EventHandler {
         this.objectToMove = objectToMove;
         this.root = root;
         this.elem = objectToMove.getCollider();
+        this.speedMove = new SimpleIntegerProperty();
+        this.INITIAL_SPEED_MOVE = objectToMove.INITIAL_SPEED;
+        this.speedMove.set(INITIAL_SPEED_MOVE);
+        this.speedMove.bindBidirectional(objectToMove.speedMoveProperty());
 
 
-//        timer = new Timer();
+    }
 
+    public int getSpeedMove() {
+        return speedMove.get();
+    }
 
+    public SimpleIntegerProperty speedMoveProperty() {
+        return speedMove;
+    }
+
+    public void setSpeedMove(int speedMove) {
+        this.speedMove.set(speedMove);
     }
 
     public Timer getTimer() {
@@ -153,11 +168,11 @@ public class MovementManager  implements EventHandler {
 
 //            System.out.println(pointY - translateYObject);
 
-            return (int) (SPEED_ANIMATE * Math.abs( translateYObject - pointY)) ;
+            return (int) (getSpeedMove() * Math.abs( translateYObject - pointY)) ;
         } else {
             double translateXObject = this.getObjectToMove().getCollider().getTranslateX();
             double pointX = this.getCurrentPoint().getX();
-            return (int) (SPEED_ANIMATE * Math.abs( translateXObject - pointX)) ;
+            return (int) (getSpeedMove() * Math.abs( translateXObject - pointX)) ;
         }
     }
 

@@ -6,12 +6,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public abstract class Maze extends Player {
+public abstract class Maze extends Player implements Eatable {
 
+    protected int value = 10;
     protected final String mazeColor = "blue";
+    protected boolean eatable = false;
 
     public Maze( Point2D point, int width, int height) {
-
+        super();
         this.point = point;
         setWidth(width);
         setHeight(height);
@@ -32,7 +34,7 @@ public abstract class Maze extends Player {
 
     abstract String getIconPath(int direction);
 
-    protected void updateIcon()
+    public void updateIcon()
     {
         Image img = new Image(getIconPath(this.getCheckedDirection()));
         this.getIcon().setFill(new ImagePattern(img));
@@ -55,22 +57,50 @@ public abstract class Maze extends Player {
 
     @Override
     public void turnLeft() {
-        updateIcon();
+        if (!this.isEatable()) {
+            updateIcon();
+        }
     }
 
     @Override
     public void turnRight() {
-        updateIcon();
+        if (!this.isEatable()) {
+            updateIcon();
+        }
     }
 
     @Override
     public void turnUp() {
-        updateIcon();
+        if (!this.isEatable()) {
+            updateIcon();
+        }
 
     }
 
     @Override
     public void turnDown() {
-        updateIcon();
+        if (!this.isEatable()) {
+            updateIcon();
+        }
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    @Override
+    public boolean isEatable()
+    {
+        return eatable;
+    }
+
+    @Override
+    public void setEatable(boolean isEatable)
+    {
+        this.eatable = isEatable;
     }
 }

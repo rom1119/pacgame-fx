@@ -2,11 +2,33 @@ package com.pacgame.model;
 
 import com.pacgame.Component;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 
 public abstract class Player extends Component implements Moveable, Turnable {
 
     protected int checkedDirection = 0;
     protected boolean animated = false;
+    private SimpleIntegerProperty speedMove;
+    public final int INITIAL_SPEED = 10;
+
+    public Player() {
+        speedMove = new SimpleIntegerProperty();
+        speedMove.set(INITIAL_SPEED);
+    }
+
+    public int getSpeedMove() {
+        return speedMove.get();
+    }
+
+    public SimpleIntegerProperty speedMoveProperty() {
+        return speedMove;
+    }
+
+    public void setSpeedMove(int speedMove) {
+        this.speedMove.set(speedMove);
+    }
 
     public boolean isAnimated() {
         return animated;
@@ -112,5 +134,12 @@ public abstract class Player extends Component implements Moveable, Turnable {
         icon.setTranslateY(point.getY());
 
     }
+
+    public void setIconBackground(String url)
+    {
+        Image img = new Image(url);
+        this.getIcon().setFill(new ImagePattern(img));
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.pacgame;
 
+import javafx.event.EventTarget;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
 
@@ -60,26 +61,6 @@ public abstract class Component {
 
         this.height = height;
     }
-
-    public boolean cont(Component el)
-    {
-
-
-//        element.contains(el.getElement().get, )
-
-        return true;
-    }
-
-//    protected void initPosition()
-//    {
-//        collider.setTranslateX(point.getX());
-//        collider.setTranslateY(point.getY());
-//
-//        icon.setTranslateX(point.getX());
-//        icon.setTranslateY(point.getY());
-//
-//
-//    }
 
     protected void initPosition()
     {

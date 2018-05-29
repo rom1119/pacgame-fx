@@ -20,7 +20,7 @@ public class PointPopulator {
 //            new Point2D()
 //    }
 
-    private static final int size = PacmanController.SIZE;
+    private static final int size = 6;
 
     protected static PointFactory pointFactory;
     protected static ObservableList<Point> allPoints;
