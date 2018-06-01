@@ -19,6 +19,7 @@ public class DestroyBigPoint implements EventHandler<PointEvent> {
 
     private final String blueMazeBackground = "./enemy/blue/main.png";
     private final int TIME_ACTION = 5000;
+    public static final int SPEED_MULTIPLIER = 10;
 
     public void destroy(BigPoint bigPoint) {
         bigPoint.getIcon().setFill(Color.TRANSPARENT);
@@ -47,7 +48,10 @@ public class DestroyBigPoint implements EventHandler<PointEvent> {
     private void setBlueAllMazes(ObservableList<MazeController> mazeControllers)
     {
         for (MazeController mazeController : mazeControllers) {
-
+            Maze maze = (Maze) mazeController.getControlledObject();
+            if (maze.isGhost()) {
+                continue;
+            }
             changeStatesOnStartAction(mazeController);
 
         }
@@ -60,8 +64,9 @@ public class DestroyBigPoint implements EventHandler<PointEvent> {
 
         maze.setIconBackground(blueMazeBackground);
         maze.setEatable(true);
-        maze.setSpeedMove(20);
-
+        int currentSpeed = maze.getSpeedMove();
+        maze.speedMoveProperty().set(currentSpeed + SPEED_MULTIPLIER);
+        mazeController.getMovementManager().changeSpeedAnimationMove();
         doSomethingOnTime(mazeController);
     }
 
@@ -69,11 +74,16 @@ public class DestroyBigPoint implements EventHandler<PointEvent> {
     {
         for (MazeController mazeController : App.mazesCollection) {
 
-            mazeController.setMovedByAI(true);
             Maze maze = (Maze) mazeController.getControlledObject();
-            maze.setEatable(false);
-            maze.setSpeedMove(10);
-            maze.updateIcon();
+            if (maze.isEatable()) {
+                mazeController.setMovedByAI(true);
+                maze.setEatable(false);
+                int currentSpeed = maze.getSpeedMove();
+                maze.speedMoveProperty().set(currentSpeed - SPEED_MULTIPLIER);
+                mazeController.getMovementManager().changeSpeedAnimationMove();
+                maze.updateIcon();
+            }
+
         }
     }
 
@@ -94,6 +104,7 @@ public class DestroyBigPoint implements EventHandler<PointEvent> {
         }
 
         animation = new Timeline();
+
         mazeController.setStateTimeline(animation);
 
         animation.getKeyFrames().clear();
@@ -107,7 +118,7 @@ public class DestroyBigPoint implements EventHandler<PointEvent> {
         animation.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                if (!allMazesTimelineEnd()) {
+                if (allMazesTimelineEnd()) {
                     DestroyBigPoint.this.changeStatesOnEndAction();
                 }
             }
@@ -118,7 +129,7 @@ public class DestroyBigPoint implements EventHandler<PointEvent> {
     {
         for (MazeController mazeController : App.mazesCollection) {
 
-            if (mazeController.getStateTimeline() != null || mazeController.getStateTimeline().getStatus() == Timeline.Status.RUNNING) {
+            if (mazeController.getStateTimeline().getStatus() == Timeline.Status.RUNNING) {
                 return false;
             }
         }

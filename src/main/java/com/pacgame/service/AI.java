@@ -2,7 +2,7 @@ package com.pacgame.service;
 
 import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
-import com.pacgame.model.Direction;
+import com.pacgame.Direction;
 import com.pacgame.model.MapPoint;
 
 import java.util.*;
@@ -36,6 +36,11 @@ public class AI {
     private void incrementStep()
     {
         step++;
+    }
+
+    public void zeroSteps()
+    {
+        step = 0;
     }
 
     public void setObserverController(MazeController observerController) {
@@ -76,10 +81,8 @@ public class AI {
         currentObservableMapPoint = this.getObservableMovementManager().getCurrentPoint();
     }
 
-    public boolean selectNextDirection()
+    public boolean selectNextDirectionToPacman()
     {
-
-
 //System.out.println("maze : " + this.getObserverMovementManager().getCurrentPoint().getX());
 //System.out.println("pacman : " + this.getObservableMovementManager().getCurrentPoint().getX());
         if (step <= COUNT_FREE_STEPS) {
@@ -88,11 +91,32 @@ public class AI {
         }
         initCurrentPoints();
 
-
-        MapPoint selectedMapPoint = null;
-
         Map<Integer, MapPoint> availablePoints = new HashMap<>();
 
+        pushAvailableMapPointsWithoutDoor(availablePoints, false);
+
+        while (availablePoints.size() < 1) {
+            pushAvailableMapPointsWithoutDoor(availablePoints, true);
+        }
+        if (availablePoints.size() < 1) {
+            throw new RuntimeException("not selected direction in AI");
+        }
+
+        int mostDirection = findMostDirection(availablePoints);
+        turn(mostDirection);
+
+        return true;
+    }
+
+    public boolean selectNextDirectionToInitPosition(String keyMapPoint)
+    {
+//System.out.println("maze : " + this.getObserverMovementManager().getCurrentPoint().getX());
+//System.out.println("pacman : " + this.getObservableMovementManager().getCurrentPoint().getX());
+
+        initCurrentPoints();
+        this.currentObservableMapPoint = (MapPoint) MapPathCreator.getAllPoints().get(keyMapPoint);
+//System.out.println(keyMapPoint);
+        Map<Integer, MapPoint> availablePoints = new HashMap<>();
 
         pushAvailableMapPoints(availablePoints, false);
 
@@ -103,12 +127,8 @@ public class AI {
             throw new RuntimeException("not selected direction in AI");
         }
 
-
         int mostDirection = findMostDirection(availablePoints);
-
         turn(mostDirection);
-
-
 
         return true;
     }
@@ -128,6 +148,27 @@ public class AI {
         }
 
         if (canTurn(Direction.RIGHT, withBackDirection)) {
+            availablePoints.put(Direction.RIGHT, currentObserverMapPoint.getRightPoint());
+        }
+
+        return availablePoints;
+    }
+
+    private Map<Integer, MapPoint> pushAvailableMapPointsWithoutDoor(Map<Integer, MapPoint> availablePoints, boolean withBackDirection)
+    {
+        if (canTurnWithoutDoor(Direction.UP, withBackDirection)) {
+            availablePoints.put(Direction.UP, currentObserverMapPoint.getUpPoint());
+        }
+
+        if (canTurnWithoutDoor(Direction.DOWN, withBackDirection)) {
+            availablePoints.put(Direction.DOWN, currentObserverMapPoint.getDownPoint());
+        }
+
+        if (canTurnWithoutDoor(Direction.LEFT, withBackDirection)) {
+            availablePoints.put(Direction.LEFT, currentObserverMapPoint.getLeftPoint());
+        }
+
+        if (canTurnWithoutDoor(Direction.RIGHT, withBackDirection)) {
             availablePoints.put(Direction.RIGHT, currentObserverMapPoint.getRightPoint());
         }
 
@@ -233,29 +274,94 @@ public class AI {
 
     }
 
+    protected boolean canTurnWithoutDoor(int direction, boolean withBackDirection)
+    {
+        if (getObserverController().getMovementManager().getCurrentPoint() == null) {
+            return false;
+        }
+//        System.out.println("prev" + getObserverController().getMovementManager().getCurrentDirection());
+//        System.out.println("dir" + direction);
+
+        if (withBackDirection) {
+            switch (direction) {
+                case Direction.UP :
+
+                    return getObserverController().getMovementManager().getCurrentPoint().getUpPoint() != null
+                            &&
+                            !getObserverController().getMovementManager().getCurrentPoint().getUpPoint().isDoor()
+                            ;
+
+                case Direction.DOWN :
+
+                    return getObserverController().getMovementManager().getCurrentPoint().getDownPoint() != null
+                            &&
+                            !getObserverController().getMovementManager().getCurrentPoint().getDownPoint().isDoor()
+                            ;
+
+                case Direction.LEFT :
+
+                    return getObserverController().getMovementManager().getCurrentPoint().getLeftPoint() != null
+                            &&
+                            !getObserverController().getMovementManager().getCurrentPoint().getLeftPoint().isDoor()
+                            ;
+
+                case Direction.RIGHT :
+                    return getObserverController().getMovementManager().getCurrentPoint().getRightPoint() != null
+                            &&
+                            !getObserverController().getMovementManager().getCurrentPoint().getRightPoint().isDoor()
+                            ;
+
+            }
+        } else {
+            switch (direction) {
+                case Direction.UP :
+
+                    return getObserverController().getMovementManager().getCurrentPoint().getUpPoint() != null
+                            &&
+                            getObserverController().getMovementManager().getCurrentDirection() != Direction.DOWN
+                            &&
+                            !getObserverController().getMovementManager().getCurrentPoint().getUpPoint().isDoor()
+                            ;
+
+                case Direction.DOWN :
+
+                    return getObserverController().getMovementManager().getCurrentPoint().getDownPoint() != null
+                            &&
+                            getObserverController().getMovementManager().getCurrentDirection() != Direction.UP
+                            &&
+                            !getObserverController().getMovementManager().getCurrentPoint().getDownPoint().isDoor()
+                            ;
+
+                case Direction.LEFT :
+
+                    return getObserverController().getMovementManager().getCurrentPoint().getLeftPoint() != null
+                            &&
+                            getObserverController().getMovementManager().getCurrentDirection() != Direction.RIGHT
+                            &&
+                            !getObserverController().getMovementManager().getCurrentPoint().getLeftPoint().isDoor()
+                            ;
+
+                case Direction.RIGHT :
+                    return getObserverController().getMovementManager().getCurrentPoint().getRightPoint() != null
+                            &&
+                            getObserverController().getMovementManager().getCurrentDirection() != Direction.LEFT
+                            &&
+                            !getObserverController().getMovementManager().getCurrentPoint().getRightPoint().isDoor()
+                            ;
+
+            }
+        }
+
+
+        return false;
+
+    }
+
     private void turn(int direction)
     {
         this.getObserverController().getControlledObject().setCheckedDirection(direction);
     }
 
-    private boolean shouldTurnLeft(MapPoint currentObserverMapPoint)
-    {
-        return currentObserverMapPoint.getX() > currentObservableMapPoint.getX();
-    }
 
-    private boolean shouldTurnRight(MapPoint currentObserverMapPoint)
-    {
-        return currentObserverMapPoint.getX() < currentObservableMapPoint.getX();
-    }
-
-    private boolean shouldTurnUp(MapPoint currentObserverMapPoint)
-    {
-        return currentObserverMapPoint.getY() > currentObservableMapPoint.getY();
-    }
-
-    private boolean shouldTurnDown(MapPoint currentObserverMapPoint)
-    {
-        return currentObserverMapPoint.getY() < currentObservableMapPoint.getY();
-    }
 
 }

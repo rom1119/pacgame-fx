@@ -1,5 +1,6 @@
 package com.pacgame.model;
 
+import com.pacgame.Direction;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
 

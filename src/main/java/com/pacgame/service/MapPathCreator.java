@@ -83,7 +83,7 @@ public class MapPathCreator {
         MapPoint d3 = null;
         MapPoint d4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5) - 3), (firstY + yStep + (yStep / 2 * 2) - (10)));
         MapPoint d5 = new MapPoint((firstX + (int)(xStep * 2) - 3), (firstY + yStep + (yStep / 2 * 2) - (10)));
-        MapPoint d5A = new MapPoint((firstX + (int)(xStep * 2) - 3 + 13), (firstY + yStep + (yStep / 2 * 2) - (10)));
+        MapPoint d5A = new MapPoint((firstX + (int)(xStep * 2) - 3 + 22), (firstY + yStep + (yStep / 2 * 2) - (10)));
 
 
         MapPoint d6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5) - 3), (firstY + yStep + (yStep / 2 * 2) - (10)));
@@ -101,7 +101,7 @@ public class MapPathCreator {
         MapPoint e3 = new MapPoint((firstX + (xStep * 1) - 3), (firstY + yStep + (yStep / 2 * 3)));
         MapPoint e4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5) - 3), (firstY + yStep + (yStep / 2 * 3)));
         MapPoint e5 = new MapPoint((firstX + (int)(xStep * 2) - 3), (firstY + yStep + (yStep / 2 * 3)));
-        MapPoint e5A = new MapPoint((firstX + (int)(xStep * 2) - 3 + 13), (firstY + yStep + (yStep / 2 * 3)));
+        MapPoint e5A = new MapPoint((firstX + (int)(xStep * 2) - 3 + 22), (firstY + yStep + (yStep / 2 * 3)));
 
 
         MapPoint e6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5) - 3), (firstY + yStep + (yStep / 2 * 3)));
@@ -364,12 +364,12 @@ public class MapPathCreator {
         d5.setUpPoint(c5);
         d5.setDownPoint(null);
         d5.setLeftPoint(d4);
-        d5.setRightPoint(d6);
+        d5.setRightPoint(d5A);
         d5.setName("d5");
 
 
         d5A.setUpPoint(null);
-        d5A.setDownPoint(null);
+        d5A.setDownPoint(e5A);
         d5A.setLeftPoint(d5);
         d5A.setRightPoint(d6);
         d5A.setName("d5A");
@@ -377,7 +377,7 @@ public class MapPathCreator {
 
         d6.setUpPoint(c6);
         d6.setDownPoint(null);
-        d6.setLeftPoint(d5);
+        d6.setLeftPoint(d5A);
         d6.setRightPoint(d7);
         d6.setName("d6");
 
@@ -424,6 +424,7 @@ public class MapPathCreator {
         e5A.setLeftPoint(e5);
         e5A.setRightPoint(e6);
         e5A.setName("e5A");
+        e5A.setDoor(true);
 
 
         e6.setUpPoint(null);
@@ -747,7 +748,7 @@ public class MapPathCreator {
         points.put("d3", d3);
         points.put("d4", d4);
         points.put("d5", d5);
-        points.put("d5a", d5A);
+        points.put("d5A", d5A);
         points.put("d6", d6);
         points.put("d7", d7);
         points.put("d8", d8);
@@ -760,7 +761,7 @@ public class MapPathCreator {
         points.put("e3", e3);
         points.put("e4", e4);
         points.put("e5", e5);
-        points.put("e5a", e5A);
+        points.put("e5A", e5A);
         points.put("e6", e6);
         points.put("e7", e7);
         points.put("e8", e8);

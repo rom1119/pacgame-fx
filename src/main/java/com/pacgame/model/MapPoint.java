@@ -5,6 +5,7 @@ import javafx.geometry.Point2D;
 public class MapPoint extends Point2D {
 
     private String name;
+    private boolean isDoor = false;
     private MapPoint upPoint ;
     private MapPoint DownPoint ;
     private MapPoint leftPoint ;
@@ -69,5 +70,13 @@ public class MapPoint extends Point2D {
 
     public void setRightPoint(MapPoint rightPoint) {
         this.rightPoint = rightPoint;
+    }
+
+    public boolean isDoor() {
+        return isDoor;
+    }
+
+    public void setDoor(boolean door) {
+        isDoor = door;
     }
 }

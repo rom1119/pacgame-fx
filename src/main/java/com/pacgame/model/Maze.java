@@ -1,5 +1,10 @@
 package com.pacgame.model;
 
+import com.pacgame.Direction;
+import com.pacgame.event.MazeEvent;
+import com.pacgame.event.PointEvent;
+import com.pacgame.event.eventHandler.DestroyBigPoint;
+import com.pacgame.event.eventHandler.PacmanTouchMaze;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -11,6 +16,7 @@ public abstract class Maze extends Player implements Eatable {
     protected int value = 10;
     protected final String mazeColor = "blue";
     protected boolean eatable = false;
+    protected boolean isGhost = false;
 
     public Maze( Point2D point, int width, int height) {
         super();
@@ -30,13 +36,38 @@ public abstract class Maze extends Player implements Eatable {
         turnUp();
 
         setCheckedDirection(Direction.LEFT);
+
+        getCollider().addEventHandler(MazeEvent.TOUCH, new PacmanTouchMaze());
+
     }
 
     abstract String getIconPath(int direction);
 
+    protected String getGhostIconPath(int direction)
+    {
+        switch (direction) {
+            case Direction.UP :
+                return "./enemy/ghost/up.png";
+            case Direction.DOWN :
+                return "./enemy/ghost/down.png";
+            case Direction.LEFT :
+                return "./enemy/ghost/left.png";
+            case Direction.RIGHT :
+                return "./enemy/ghost/right.png";
+            default:
+                return "./enemy/ghost/right.png";
+
+        }
+    }
+
     public void updateIcon()
     {
-        Image img = new Image(getIconPath(this.getCheckedDirection()));
+        Image img;
+        if (isGhost()) {
+            img = new Image(getGhostIconPath(this.getCheckedDirection()));
+        } else {
+            img = new Image(getIconPath(this.getCheckedDirection()));
+        }
         this.getIcon().setFill(new ImagePattern(img));
     }
 
@@ -102,5 +133,13 @@ public abstract class Maze extends Player implements Eatable {
     public void setEatable(boolean isEatable)
     {
         this.eatable = isEatable;
+    }
+
+    public boolean isGhost() {
+        return isGhost;
+    }
+
+    public void setGhost(boolean ghost) {
+        isGhost = ghost;
     }
 }

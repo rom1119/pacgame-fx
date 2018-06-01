@@ -1,23 +1,24 @@
 package com.pacgame.model;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import com.pacgame.Direction;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Point2D;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
-import javafx.util.Duration;
 
 public class Pacman extends Player implements Turnable {
     protected Arc icon;
+    private SimpleStringProperty lives;
+
+    public static final int INITIAL_LIVES = 5;
 
     public Pacman(Point2D point, int radius) {
         super();
 
+        lives = new SimpleStringProperty();
+        lives.set(String.valueOf(INITIAL_LIVES));
         this.point = point;
         this.width = radius * 2;
         this.height = radius * 2;
@@ -146,8 +147,15 @@ public class Pacman extends Player implements Turnable {
         });
     }
 
+    public String getLives() {
+        return lives.get();
+    }
 
+    public SimpleStringProperty livesProperty() {
+        return lives;
+    }
 
-
-
+    public void setLives(String lives) {
+        this.lives.set(lives);
+    }
 }

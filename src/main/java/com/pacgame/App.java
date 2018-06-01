@@ -30,6 +30,7 @@ import java.util.Timer;
 public class App extends Application {
 
     public static ObservableList<MazeController> mazesCollection;
+    public static PacmanController pacmanController;
 
     /**
      * The main entry point for all JavaFX applications.
@@ -60,7 +61,8 @@ public class App extends Application {
 
 
         Node gameInfoPane = gameInfo.getView(300, 500);
-        Label scoreUIControll = gameInfo.getScoreLabel();
+        Label scoreUIControll = gameInfo.getScore();
+        Label livesUIControll = gameInfo.getLives();
         gameInfoPane.setTranslateX(500);
         root.getChildren().add(gameInfoPane);
 
@@ -73,8 +75,9 @@ public class App extends Application {
 
         final Timer timer = new Timer();
 
-        PacmanController pacmanController = new PacmanController(scene, root);
+        pacmanController = new PacmanController(scene, root);
         pacmanController.scoreProperty().bindBidirectional(scoreUIControll.textProperty());
+        pacmanController.getControlledObject().livesProperty().bindBidirectional(livesUIControll.textProperty());
         pacmanController.setAllPoints(allPoints);
         pacmanController.initialize();
 
@@ -83,6 +86,7 @@ public class App extends Application {
         mazesCollection = FXCollections.observableArrayList(mazes);
 
         MazeController mazeController = new MazeController(root);
+        mazeController.setPacmanController(pacmanController);
         mazeController.initialize();
         mazeController.initFinder(pacmanController);
 //        mazeController.getMovementManager().setScore(scoreUIControll);
@@ -99,11 +103,13 @@ public class App extends Application {
                             // KeyFrame event handler
                             public void handle(ActionEvent event) {
 
-                                if (mazesCollection.size() >= MazeController.MAX_AMOUNT_MAZES) {
+                                if (mazesCollection.size() >= MazeController.MAX_AMOUNT_MAZES - 1) {
                                     timeline.stop();
+                                    return;
                                 }
 
                                 MazeController mazeControllerNew = new MazeController(root);
+                                mazeControllerNew.setPacmanController(pacmanController);
                                 mazeControllerNew.initialize();
                                 mazeControllerNew.initFinder(pacmanController);
                                 mazeControllerNew.startMove();

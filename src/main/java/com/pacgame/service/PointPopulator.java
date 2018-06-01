@@ -44,7 +44,7 @@ public class PointPopulator {
                 continue;
             }
 
-            if (key.equals("e5") || key.equals("e6") || key.equals("e5a") || key.equals("d5a")) {
+            if (key.equals("e5") || key.equals("e6") || key.equals("e5A") ) {
                 continue;
             }
 
@@ -215,6 +215,10 @@ public class PointPopulator {
         Point morePoint;
 
         int i = 1;
+
+        if (key.equals("d5A")) {
+            return;
+        }
 
         if (key.charAt(0) == 'h' ||
                 key.charAt(0) == 'i' ||

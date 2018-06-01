@@ -1,11 +1,9 @@
 package com.pacgame.service;
 
 import com.pacgame.Component;
+import com.pacgame.Direction;
 import com.pacgame.model.*;
 import javafx.animation.*;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -15,8 +13,8 @@ import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
 
+import java.util.Arrays;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class MovementManager  implements EventHandler {
 
@@ -30,19 +28,29 @@ public class MovementManager  implements EventHandler {
     private Shape elem ;
     private int currentDirection;
     private AnimationMoveHandler animationMoveEndHandler;
-    private Label score;
-
+    private boolean canMoveInDoor = true;
 
     public static final int STEP_ANIMATE = 2;
     public static final int PERIOD_ANIMATE = 10;
     public static final int PERIOD_DELAY = 1000;
-    private SimpleIntegerProperty speedMove;
-    private int INITIAL_SPEED_MOVE = 20;
+    public static final String[] CENTER_POINTS = {
+            "e5", "e5A", "e6"
+    };
 
-    public void setScore(Label score) {
-        this.score = score;
+    public static boolean isInHeadquarters(MapPoint currentPoint)
+    {
+        return Arrays.asList(CENTER_POINTS).contains(currentPoint.getName());
     }
-//    private Player objectToMove;
+
+    public boolean isCanMoveInDoor() {
+        return canMoveInDoor;
+    }
+
+    public void setCanMoveInDoor(boolean canMoveInDoor) {
+        this.canMoveInDoor = canMoveInDoor;
+    }
+
+    //    private Player objectToMove;
 
 
     public MovementManager(BidiMap mapPoints, Player objectToMove, Group root) {
@@ -50,24 +58,11 @@ public class MovementManager  implements EventHandler {
         this.objectToMove = objectToMove;
         this.root = root;
         this.elem = objectToMove.getCollider();
-        this.speedMove = new SimpleIntegerProperty();
-        this.INITIAL_SPEED_MOVE = objectToMove.INITIAL_SPEED;
-        this.speedMove.set(INITIAL_SPEED_MOVE);
-        this.speedMove.bindBidirectional(objectToMove.speedMoveProperty());
-
 
     }
 
     public int getSpeedMove() {
-        return speedMove.get();
-    }
-
-    public SimpleIntegerProperty speedMoveProperty() {
-        return speedMove;
-    }
-
-    public void setSpeedMove(int speedMove) {
-        this.speedMove.set(speedMove);
+        return objectToMove.getSpeedMove();
     }
 
     public Timer getTimer() {
@@ -112,6 +107,9 @@ public class MovementManager  implements EventHandler {
     public void moveAnimate(int x, int y, Component objectToMove)
     {
 
+        if (animation != null) {
+            animation.pause();
+        }
         animation = new Timeline();
         animation.setOnFinished(this);
 
@@ -159,6 +157,16 @@ public class MovementManager  implements EventHandler {
 //
     }
 
+    public void changeSpeedAnimationMove()
+    {
+        if (animation == null) {
+            return;
+        }
+        animation.pause();
+        moveAnimate((int) getSelectedNextPoint().getX(), (int) getSelectedNextPoint().getY(), objectToMove);
+
+    }
+
     public int calculateAnimationDuration()
     {
 
@@ -178,28 +186,59 @@ public class MovementManager  implements EventHandler {
 
     public void stopAnimation()
     {
-        animation.stop();
+        if (animation != null) {
+            animation.stop();
+        }
     }
 
     protected boolean canTurn(int direction)
     {
-        switch (direction) {
-            case Direction.UP :
+        if (canMoveInDoor) {
+            switch (direction) {
+                case Direction.UP :
 
-                return getCurrentPoint().getUpPoint() != null;
+                    return getCurrentPoint().getUpPoint() != null;
 
-            case Direction.DOWN :
+                case Direction.DOWN :
 
-                return getCurrentPoint().getDownPoint() != null;
+                    return getCurrentPoint().getDownPoint() != null;
 
-            case Direction.LEFT :
+                case Direction.LEFT :
 
-                return getCurrentPoint().getLeftPoint() != null;
+                    return getCurrentPoint().getLeftPoint() != null;
 
-            case Direction.RIGHT :
-                 return getCurrentPoint().getRightPoint() != null;
+                case Direction.RIGHT :
+                    return getCurrentPoint().getRightPoint() != null;
 
+            }
+        } else {
+            switch (direction) {
+                case Direction.UP :
+
+                    return getCurrentPoint().getUpPoint() != null
+                            &&
+                            !getCurrentPoint().getUpPoint().isDoor();
+
+                case Direction.DOWN :
+
+                    return getCurrentPoint().getDownPoint() != null
+                            &&
+                            !getCurrentPoint().getDownPoint().isDoor();
+
+                case Direction.LEFT :
+
+                    return getCurrentPoint().getLeftPoint() != null
+                            &&
+                            !getCurrentPoint().getLeftPoint().isDoor();
+
+                case Direction.RIGHT :
+                    return getCurrentPoint().getRightPoint() != null
+                            &&
+                            !getCurrentPoint().getRightPoint().isDoor();
+
+            }
         }
+
         return false;
 
     }
@@ -222,7 +261,7 @@ public class MovementManager  implements EventHandler {
         stopAnimation();
 
         if (this.isTurnedTo(Direction.UP)) {
-            if (getCurrentPoint().getDownPoint() == null) {
+            if (getCurrentPoint().getDownPoint() == null || getCurrentPoint().getDownPoint().isDoor()) {
                 return false;
             }
             objectToMove.turnDown();
@@ -230,7 +269,7 @@ public class MovementManager  implements EventHandler {
             this.setCurrentDirection(Direction.DOWN);
             this.currentPoint = getCurrentPoint().getDownPoint();
         } else if (this.isTurnedTo(Direction.DOWN)) {
-            if (getCurrentPoint().getUpPoint() == null) {
+            if (getCurrentPoint().getUpPoint() == null || getCurrentPoint().getUpPoint().isDoor()) {
                 return false;
             }
             objectToMove.turnUp();
@@ -238,7 +277,7 @@ public class MovementManager  implements EventHandler {
             this.setCurrentDirection(Direction.UP);
             this.currentPoint = getCurrentPoint().getUpPoint();
         } else if (this.isTurnedTo(Direction.LEFT)) {
-            if (getCurrentPoint().getRightPoint() == null) {
+            if (getCurrentPoint().getRightPoint() == null || getCurrentPoint().getRightPoint().isDoor()) {
                 return false;
             }
             objectToMove.setCheckedDirection(Direction.RIGHT);
@@ -246,7 +285,7 @@ public class MovementManager  implements EventHandler {
             objectToMove.turnRight();
             this.currentPoint = getCurrentPoint().getRightPoint();
         } else {
-            if (getCurrentPoint().getLeftPoint() == null) {
+            if (getCurrentPoint().getLeftPoint() == null || getCurrentPoint().getLeftPoint().isDoor()) {
                 return false;
             }
             objectToMove.turnLeft();
@@ -369,10 +408,11 @@ public class MovementManager  implements EventHandler {
         return this.getCurrentDirection() == side;
     }
 
-    private boolean animationEnd() {
+    public boolean animationEnd() {
         if (animationMoveEndHandler == null) {
             return false;
         }
+
 
         animationMoveEndHandler.animationMoveEnd(getCurrentPoint());
 

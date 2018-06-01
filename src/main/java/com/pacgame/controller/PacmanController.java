@@ -1,10 +1,13 @@
 package com.pacgame.controller;
 
+import com.pacgame.App;
 import com.pacgame.Controller;
 import com.pacgame.Point;
+import com.pacgame.event.MazeEvent;
 import com.pacgame.event.PointEvent;
-import com.pacgame.model.Direction;
+import com.pacgame.Direction;
 import com.pacgame.model.MapPoint;
+import com.pacgame.model.Maze;
 import com.pacgame.model.Pacman;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
@@ -52,14 +55,14 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         this.getControlledObject().getCollider().translateXProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                checkCollision();
+                checkCollisionPoints();
             }
         });
 
         this.getControlledObject().getCollider().translateYProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                checkCollision();
+                checkCollisionPoints();
             }
         });
     }
@@ -79,6 +82,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
         BidiMap allPoints = MapPathCreator.getAllPoints();
         movementManager = new MovementManager(allPoints, this.controlledObject, root);
+        movementManager.setCanMoveInDoor(false);
 
         MapPoint currentPoint = (MapPoint) allPoints.get("h5");
 
@@ -86,6 +90,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         MapPoint newPoint = currentPoint.add(30, 0);
 
         this.score.setValue("0");
+        this.getControlledObject().setLives(String.valueOf(Pacman.INITIAL_LIVES));
 //
         this.getControlledObject().getIcon().setTranslateX(newPoint.getX());
         this.getControlledObject().getIcon().setTranslateY(newPoint.getY());
@@ -108,7 +113,9 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         this.allPoints = allPoints;
     }
 
-    private void checkCollision() {
+
+
+    private void checkCollisionPoints() {
         for (Point point : allPoints) {
             Shape intersect = Shape.intersect(this.getControlledObject().getCollider(), point.getCollider());
             if (intersect.getBoundsInLocal().getWidth() != -1) {
@@ -231,6 +238,13 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         if (timeline != null){
             timeline.stop();
         }
+    }
+
+    public void subtractLive()
+    {
+        int actualLives = Integer.parseInt(getControlledObject().getLives());
+        actualLives--;
+        getControlledObject().setLives(String.valueOf(actualLives));
     }
 
     public String getScore() {

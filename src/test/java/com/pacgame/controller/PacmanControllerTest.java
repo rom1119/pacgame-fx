@@ -1,8 +1,7 @@
 package com.pacgame.controller;
 
-import com.pacgame.model.Direction;
+import com.pacgame.Direction;
 import com.pacgame.model.Pacman;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import junit.framework.TestCase;

@@ -15,8 +15,7 @@ public class BigSpeedAction extends SpecialAction {
     @Override
     public void startAction() {
 
-        int currentSpeed = player.getSpeedMove();
-        player.speedMoveProperty().set(currentSpeed - SPEED_MULTIPLIER);
+
     }
 
     @Override

@@ -1,16 +1,24 @@
 package com.pacgame.controller;
 
+import com.pacgame.App;
 import com.pacgame.Controller;
+import com.pacgame.Direction;
+import com.pacgame.event.MazeEvent;
+import com.pacgame.event.eventHandler.DestroyBigPoint;
 import com.pacgame.model.*;
 import com.pacgame.service.AI;
 import com.pacgame.service.AnimationMoveHandler;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Shape;
 import org.apache.commons.collections.BidiMap;
 
 import java.util.Arrays;
@@ -23,11 +31,9 @@ public class MazeController extends Controller implements AnimationMoveHandler  
     public static final int SIZE = 24;
     public static final int MAX_AMOUNT_MAZES = 10;
     private boolean isMovedByAI = true;
-    public static final String[] CENTER_POINTS = {
-            "e5", "e5A", "e6"
-    };
 
     protected AI finderObject;
+    protected PacmanController pacmanController;
     private Timeline stateTimeline;
 
     public MazeController( Group root) {
@@ -66,6 +72,42 @@ public class MazeController extends Controller implements AnimationMoveHandler  
         }
     }
 
+    private void setOnPacmanMove()
+    {
+        if (getPacmanController() == null) {
+            throw new NullPointerException("Pacman Controller must be set to run this method");
+        }
+
+        this.getControlledObject().getCollider().translateXProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                checkCollisionPacman();
+            }
+        });
+
+        this.getControlledObject().getCollider().translateYProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                checkCollisionPacman();
+            }
+        });
+    }
+
+    private void checkCollisionPacman() {
+        Pacman pacman = (Pacman) getPacmanController().getControlledObject();
+        Shape intersect = Shape.intersect(this.getControlledObject().getCollider(), pacman.getCollider());
+        if (intersect.getBoundsInLocal().getWidth() != -1) {
+
+            MazeEvent mazeEvent = new MazeEvent(MazeEvent.TOUCH);
+            mazeEvent.setMazeController(this);
+            mazeEvent.setPacmanController(pacmanController);
+            this.getControlledObject().getCollider().fireEvent(mazeEvent);
+
+
+        }
+
+    }
+
     public void initialize()
     {
         root.getChildren().add(getControlledObject().getCollider());
@@ -81,6 +123,8 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
         MapPoint newPoint = currentPoint;
 
+        stateTimeline = new Timeline();
+
 //        this.getControlledObject().getIcon().setTranslateX(newPoint.getX());
 //        this.getControlledObject().getIcon().setTranslateY(newPoint.getY());
 //
@@ -92,6 +136,8 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
         this.getControlledObject().setCheckedDirection(Direction.RIGHT);
         this.getControlledObject().turnRight();
+
+        this.setOnPacmanMove();
 
 
 
@@ -119,15 +165,41 @@ public class MazeController extends Controller implements AnimationMoveHandler  
     {
         if (!isMovedByAI()) {
             setRandomDirection(currentPoint);
+//                System.out.println("asd");
         } else {
             boolean directionFromAI = false;
-            if (!Arrays.asList(CENTER_POINTS).contains(this.getMovementManager().getCurrentPoint().getName())) {
-                directionFromAI = finderObject.selectNextDirection();
+            Maze maze = (Maze) getControlledObject();
+            if (maze.isGhost() ) {
+                if (this.getMovementManager().getCurrentPoint().getName().equals("d5A")) {
+                    directionFromAI = finderObject.selectNextDirectionToInitPosition("e5A");
+
+                } else if (this.getMovementManager().getCurrentPoint().getName().equals("e5A")) {
+                    directionFromAI = finderObject.selectNextDirectionToInitPosition("e6");
+
+                } else if (this.getMovementManager().getCurrentPoint().getName().equals("e6")) {
+                    int currentSpeed = maze.getSpeedMove();
+                    maze.speedMoveProperty().set(currentSpeed - DestroyBigPoint.SPEED_MULTIPLIER);
+                    ((Maze) getControlledObject()).setGhost(false);
+                    ((Maze) getControlledObject()).updateIcon();
+                    finderObject.zeroSteps();
+                    directionFromAI = finderObject.selectNextDirectionToPacman();
+                } else {
+                    directionFromAI = finderObject.selectNextDirectionToInitPosition("d5A");
+
+                }
+            } else {
+                if (!MovementManager.isInHeadquarters(currentPoint)) {
+                    directionFromAI = finderObject.selectNextDirectionToPacman();
+                }
+
             }
 
             if (!directionFromAI) {
                 setRandomDirection(currentPoint);
             }
+
+
+
         }
 
 
@@ -137,7 +209,7 @@ public class MazeController extends Controller implements AnimationMoveHandler  
     {
         int min = 0;
         int max = 3;
-        MapPoint selectedMapPoint = null;
+        boolean isSelectedMapPoint = false;
 
         do {
             Random random = new Random();
@@ -145,35 +217,64 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
 //            System.out.println(randomNumber);
 
-
-            switch (randomNumber) {
-                case Direction.UP :
-                    if (currentPoint.getUpPoint() != null) {
-                        selectedMapPoint = currentPoint.getUpPoint();
-                        getControlledObject().setCheckedDirection(Direction.UP);
-                    }
-                    break;
-                case Direction.DOWN :
-                    if (currentPoint.getDownPoint() != null) {
-                        selectedMapPoint = currentPoint.getDownPoint();
-                        getControlledObject().setCheckedDirection(Direction.DOWN);
-                    }
-                    break;
-                case Direction.LEFT :
-                    if (currentPoint.getLeftPoint() != null) {
-                        selectedMapPoint = currentPoint.getLeftPoint();
-                        getControlledObject().setCheckedDirection(Direction.LEFT);
-                    }
-                    break;
-                case Direction.RIGHT :
-                    if (currentPoint.getRightPoint() != null) {
-                        selectedMapPoint = currentPoint.getRightPoint();
-                        getControlledObject().setCheckedDirection(Direction.RIGHT);
-                    }
-                    break;
+            if (MovementManager.isInHeadquarters(getMovementManager().getCurrentPoint())) {
+                switch (randomNumber) {
+                    case Direction.UP :
+                        if (currentPoint.getUpPoint() != null) {
+                            isSelectedMapPoint = true;
+                            getControlledObject().setCheckedDirection(Direction.UP);
+                        }
+                        break;
+                    case Direction.DOWN :
+                        if (currentPoint.getDownPoint() != null) {
+                            isSelectedMapPoint = true;
+                            getControlledObject().setCheckedDirection(Direction.DOWN);
+                        }
+                        break;
+                    case Direction.LEFT :
+                        if (currentPoint.getLeftPoint() != null) {
+                            isSelectedMapPoint = true;
+                            getControlledObject().setCheckedDirection(Direction.LEFT);
+                        }
+                        break;
+                    case Direction.RIGHT :
+                        if (currentPoint.getRightPoint() != null) {
+                            isSelectedMapPoint = true;
+                            getControlledObject().setCheckedDirection(Direction.RIGHT);
+                        }
+                        break;
+                }
+            } else {
+                switch (randomNumber) {
+                    case Direction.UP :
+                        if (currentPoint.getUpPoint() != null && !currentPoint.getUpPoint().isDoor()) {
+                            isSelectedMapPoint = true;
+                            getControlledObject().setCheckedDirection(Direction.UP);
+                        }
+                        break;
+                    case Direction.DOWN :
+                        if (currentPoint.getDownPoint() != null && !currentPoint.getDownPoint().isDoor()) {
+                            isSelectedMapPoint = true;
+                            getControlledObject().setCheckedDirection(Direction.DOWN);
+                        }
+                        break;
+                    case Direction.LEFT :
+                        if (currentPoint.getLeftPoint() != null && !currentPoint.getLeftPoint().isDoor()) {
+                            isSelectedMapPoint = true;
+                            getControlledObject().setCheckedDirection(Direction.LEFT);
+                        }
+                        break;
+                    case Direction.RIGHT :
+                        if (currentPoint.getRightPoint() != null && !currentPoint.getRightPoint().isDoor()) {
+                            isSelectedMapPoint = true;
+                            getControlledObject().setCheckedDirection(Direction.RIGHT);
+                        }
+                        break;
+                }
             }
 
-        } while (selectedMapPoint == null);
+
+        } while (!isSelectedMapPoint);
     }
 
     public boolean isMovedByAI() {
@@ -190,5 +291,13 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
     public void setStateTimeline(Timeline stateTimeline) {
         this.stateTimeline = stateTimeline;
+    }
+
+    public PacmanController getPacmanController() {
+        return pacmanController;
+    }
+
+    public void setPacmanController(PacmanController pacmanController) {
+        this.pacmanController = pacmanController;
     }
 }
