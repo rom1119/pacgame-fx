@@ -2,9 +2,7 @@ package com.pacgame.model;
 
 import com.pacgame.Direction;
 import com.pacgame.event.MazeEvent;
-import com.pacgame.event.PointEvent;
-import com.pacgame.event.eventHandler.DestroyBigPoint;
-import com.pacgame.event.eventHandler.PacmanTouchMaze;
+import com.pacgame.event.eventHandler.OnPacmanTouchMaze;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -37,7 +35,7 @@ public abstract class Maze extends Player implements Eatable {
 
         setCheckedDirection(Direction.LEFT);
 
-        getCollider().addEventHandler(MazeEvent.TOUCH, new PacmanTouchMaze());
+        getCollider().addEventHandler(MazeEvent.TOUCH, new OnPacmanTouchMaze());
 
     }
 

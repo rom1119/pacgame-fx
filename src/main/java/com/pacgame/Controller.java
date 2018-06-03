@@ -10,9 +10,10 @@ import javafx.scene.Scene;
 public abstract class Controller {
 
     protected Player controlledObject;
-    protected Timeline timeline;
+    protected Timeline mainAnimation;
     protected MovementManager movementManager;
     protected Group root;
+    protected Timeline initTimer;
 
     public Controller(Group root) {
 
@@ -24,16 +25,22 @@ public abstract class Controller {
         return controlledObject;
     }
 
+    public void playMainAnimation()
+    {
+        if (mainAnimation != null) {
+            mainAnimation.play();
+        }
+    }
+
+    public void pauseMainAnimation()
+    {
+        if (mainAnimation != null) {
+            mainAnimation.pause();
+        }
+    }
+
     public void setControlledObject(Pacman controlledObject) {
         this.controlledObject = controlledObject;
-    }
-
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
     }
 
     public MovementManager getMovementManager() {
@@ -50,6 +57,22 @@ public abstract class Controller {
 
     public void setRoot(Group root) {
         this.root = root;
+    }
+
+    public Timeline getMainAnimation() {
+        return mainAnimation;
+    }
+
+    public void setMainAnimation(Timeline mainAnimation) {
+        this.mainAnimation = mainAnimation;
+    }
+
+    public Timeline getInitTimer() {
+        return initTimer;
+    }
+
+    public void setInitTimer(Timeline initTimer) {
+        this.initTimer = initTimer;
     }
 
     public abstract void initialize();

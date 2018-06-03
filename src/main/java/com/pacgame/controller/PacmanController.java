@@ -18,6 +18,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -45,7 +47,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
         this.score = new SimpleStringProperty("0");
 
-        this.controlledObject = (Pacman)new Pacman(new Point2D(0, 0), SIZE / 2);
+        this.controlledObject = new Pacman(new Point2D(0, 0), SIZE / 2);
         scene.setOnKeyPressed(this);
 
     }
@@ -84,28 +86,34 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         movementManager = new MovementManager(allPoints, this.controlledObject, root);
         movementManager.setCanMoveInDoor(false);
 
-        MapPoint currentPoint = (MapPoint) allPoints.get("h5");
-
-        movementManager.setCurrentPoint(currentPoint);
-        MapPoint newPoint = currentPoint.add(30, 0);
 
         this.score.setValue("0");
         this.getControlledObject().setLives(String.valueOf(Pacman.INITIAL_LIVES));
 //
-        this.getControlledObject().getIcon().setTranslateX(newPoint.getX());
-        this.getControlledObject().getIcon().setTranslateY(newPoint.getY());
+        setInitPosition();
 
-        this.getControlledObject().getCollider().setTranslateX(newPoint.getX());
-        this.getControlledObject().getCollider().setTranslateY(newPoint.getY());
+        this.setOnPacmanMove();
+
+
+    }
+
+    public void setInitPosition()
+    {
+        BidiMap allPoints = MapPathCreator.getAllPoints();
+        MapPoint currentPoint = (MapPoint) allPoints.get("h5A");
+
+        movementManager.setCurrentPoint(currentPoint);
+        MapPoint newPoint = currentPoint;
 
         this.getControlledObject().setPoint(newPoint);
-//        this.objectToMove.initPosition();
+        this.getControlledObject().updatePosition();
 
         this.getControlledObject().setCheckedDirection(Direction.RIGHT);
         this.getControlledObject().turnRight();
 
-        this.setOnPacmanMove();
-
+        getMovementManager().stopAnimation();
+//        getMovementManager().setCurrentPoint(newPoint);
+        startMove();
 
     }
 
@@ -153,6 +161,9 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
      */
     public void handle(KeyEvent event) {
 
+        if (!App.isRunning()) {
+            return;
+        }
         switch (event.getCode()) {
             case UP:
                 if (getControlledObject().isTurnedTo(Direction.DOWN)) {
@@ -202,21 +213,52 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
     @Override
     public void startMove() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        KeyFrame actionsOnTime = new KeyFrame(Duration.millis(MovementManager.PERIOD_DELAY), new EventHandler() {
             @Override
-            public void run() {
-                movementManager.selectNextPoint();
-                timer.cancel();
+            public void handle(Event event) {
             }
-        }, MovementManager.PERIOD_DELAY, 1);
+        });
+
+
+        initTimer = new Timeline();
+
+        initTimer.getKeyFrames().clear();
+        initTimer.getKeyFrames().add(actionsOnTime);
+        initTimer.setDelay(Duration.millis(0));
+
+        initTimer.setCycleCount(1);
+        initTimer.setAutoReverse(false);
+        initTimer.play();
+
+        initTimer.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if (movementManager != null) {
+                    movementManager.selectNextPoint();
+                }
+            }
+        });
+    }
+
+    public void playInitTimer()
+    {
+        if (initTimer != null) {
+            initTimer.play();
+        }
+    }
+
+    public void pauseInitTimer()
+    {
+        if (initTimer != null) {
+            initTimer.pause();
+        }
     }
 
 
     public void startEatAnimation()
     {
         final PacmanController that = this;
-        timeline = new Timeline();
+        mainAnimation = new Timeline();
 
         KeyValue keyValueAngle = new KeyValue(getControlledObject().getIcon().startAngleProperty(), 0);
         KeyValue keyValueLength = new KeyValue(getControlledObject().getIcon().lengthProperty(), 360);
@@ -226,17 +268,17 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
         KeyFrame keyFrame = new KeyFrame(Duration.millis(300), keyValueAngle, keyValueLength, keyValueCenterX, keyValueCenterY);
 
-        timeline.getKeyFrames().add(keyFrame);
+        mainAnimation.getKeyFrames().add(keyFrame);
 
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.setAutoReverse(true);
-        timeline.play();
+        mainAnimation.setCycleCount(Timeline.INDEFINITE);
+        mainAnimation.setAutoReverse(true);
+        mainAnimation.play();
     }
 
     public void stopEatAnimation()
     {
-        if (timeline != null){
-            timeline.stop();
+        if (getMainAnimation() != null){
+            getMainAnimation().stop();
         }
     }
 

@@ -1,43 +1,46 @@
 package com.pacgame.controller;
 
-import com.pacgame.App;
 import com.pacgame.Controller;
 import com.pacgame.Direction;
 import com.pacgame.event.MazeEvent;
-import com.pacgame.event.eventHandler.DestroyBigPoint;
+import com.pacgame.event.eventHandler.OnDestroyBigPoint;
 import com.pacgame.model.*;
 import com.pacgame.service.AI;
 import com.pacgame.service.AnimationMoveHandler;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Shape;
+import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
 
-import java.util.Arrays;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MazeController extends Controller implements AnimationMoveHandler  {
 
     public static final int SIZE = 24;
     public static final int MAX_AMOUNT_MAZES = 10;
     private boolean isMovedByAI = true;
+    private String name;
 
     protected AI finderObject;
     protected PacmanController pacmanController;
     private Timeline stateTimeline;
 
-    public MazeController( Group root) {
+    public String getName() {
+        return name;
+    }
 
+    public MazeController(Group root) {
         super(root);
         int min = 1;
         int max = 2;
@@ -94,11 +97,15 @@ public class MazeController extends Controller implements AnimationMoveHandler  
     }
 
     private void checkCollisionPacman() {
+        if (getPacmanController() == null || getControlledObject() == null) {
+            return;
+        }
         Pacman pacman = (Pacman) getPacmanController().getControlledObject();
         Shape intersect = Shape.intersect(this.getControlledObject().getCollider(), pacman.getCollider());
         if (intersect.getBoundsInLocal().getWidth() != -1) {
 
             MazeEvent mazeEvent = new MazeEvent(MazeEvent.TOUCH);
+            mazeEvent.setRoot(getRoot());
             mazeEvent.setMazeController(this);
             mazeEvent.setPacmanController(pacmanController);
             this.getControlledObject().getCollider().fireEvent(mazeEvent);
@@ -150,14 +157,46 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
     @Override
     public void startMove() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+
+        KeyFrame actionsOnTime = new KeyFrame(Duration.millis(MovementManager.PERIOD_DELAY), new EventHandler() {
             @Override
-            public void run() {
-                movementManager.selectNextPoint();
-                timer.cancel();
+            public void handle(Event event) {
             }
-        }, MovementManager.PERIOD_DELAY, 1);
+        });
+
+
+        initTimer = new Timeline();
+
+        initTimer.getKeyFrames().clear();
+        initTimer.getKeyFrames().add(actionsOnTime);
+        initTimer.setDelay(Duration.millis(0));
+
+        initTimer.setCycleCount(1);
+        initTimer.setAutoReverse(false);
+        initTimer.play();
+
+        initTimer.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if (movementManager != null) {
+                    movementManager.selectNextPoint();
+                }
+            }
+        });
+
+    }
+    public void playInitTimer()
+    {
+        if (initTimer != null) {
+            initTimer.play();
+        }
+    }
+
+    public void pauseInitTimer()
+    {
+        if (initTimer != null) {
+            initTimer.pause();
+        }
     }
 
     @Override
@@ -178,7 +217,7 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
                 } else if (this.getMovementManager().getCurrentPoint().getName().equals("e6")) {
                     int currentSpeed = maze.getSpeedMove();
-                    maze.speedMoveProperty().set(currentSpeed - DestroyBigPoint.SPEED_MULTIPLIER);
+                    maze.speedMoveProperty().set(currentSpeed - OnDestroyBigPoint.SPEED_MULTIPLIER);
                     ((Maze) getControlledObject()).setGhost(false);
                     ((Maze) getControlledObject()).updateIcon();
                     finderObject.zeroSteps();
@@ -291,6 +330,20 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
     public void setStateTimeline(Timeline stateTimeline) {
         this.stateTimeline = stateTimeline;
+    }
+
+    public void playStateTimeline()
+    {
+        if (getStateTimeline() != null) {
+            getStateTimeline().play();
+        }
+    }
+
+    public void pauseStateTimeline()
+    {
+        if (getStateTimeline() != null) {
+            getStateTimeline().pause();
+        }
     }
 
     public PacmanController getPacmanController() {

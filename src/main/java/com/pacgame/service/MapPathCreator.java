@@ -150,6 +150,7 @@ public class MapPathCreator {
         MapPoint h3 = new MapPoint((firstX + (xStep * 1) - 3), (firstY + yStep  + (yStep / 2 * 6)));
         MapPoint h4 = new MapPoint((firstX + (int)(xStep * 1) + (int)(xStep / 2) + (5) - 3), (firstY + yStep  + (yStep / 2 * 6)));
         MapPoint h5 = new MapPoint((firstX + (int)(xStep * 2) - 3), (firstY + yStep  + (yStep / 2 * 6)));
+        MapPoint h5A = new MapPoint((firstX + (int)(xStep * 2) - 3 + 30), (firstY + yStep  + (yStep / 2 * 6)));
 
 
         MapPoint h6 = new MapPoint((firstX + (int)(xStep * 2) + (int)(xStep / 2) + (5) - 3), (firstY + yStep + (yStep / 2 * 6)));
@@ -565,13 +566,19 @@ public class MapPathCreator {
         h5.setUpPoint(g5);
         h5.setDownPoint(null);
         h5.setLeftPoint(h4);
-        h5.setRightPoint(h6);
+        h5.setRightPoint(h5A);
         h5.setName("h5");
+
+        h5A.setUpPoint(null);
+        h5A.setDownPoint(null);
+        h5A.setLeftPoint(h5);
+        h5A.setRightPoint(h6);
+        h5A.setName("h5");
 
 
         h6.setUpPoint(g6);
         h6.setDownPoint(null);
-        h6.setLeftPoint(h5);
+        h6.setLeftPoint(h5A);
         h6.setRightPoint(h7);
         h6.setName("h6");
 
@@ -798,6 +805,7 @@ public class MapPathCreator {
         points.put("h3", h3);
         points.put("h4", h4);
         points.put("h5", h5);
+        points.put("h5A", h5A);
         points.put("h6", h6);
         points.put("h7", h7);
         points.put("h8", h8);

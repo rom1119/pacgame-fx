@@ -22,10 +22,6 @@ public class MovementManager  implements EventHandler {
     private Player objectToMove;
     private Timeline animation;
     private MapPoint currentPoint;
-    private Group root;
-    private Path p;
-    private Timer timer;
-    private Shape elem ;
     private int currentDirection;
     private AnimationMoveHandler animationMoveEndHandler;
     private boolean canMoveInDoor = true;
@@ -56,21 +52,11 @@ public class MovementManager  implements EventHandler {
     public MovementManager(BidiMap mapPoints, Player objectToMove, Group root) {
         this.mapPoints = mapPoints;
         this.objectToMove = objectToMove;
-        this.root = root;
-        this.elem = objectToMove.getCollider();
 
     }
 
     public int getSpeedMove() {
         return objectToMove.getSpeedMove();
-    }
-
-    public Timer getTimer() {
-        return timer;
-    }
-
-    public void setTimer(Timer timer) {
-        this.timer = timer;
     }
 
     public MapPoint getCurrentPoint() {
@@ -96,12 +82,6 @@ public class MovementManager  implements EventHandler {
     public void setObjectToMove(Player objectToMove) {
         this.objectToMove = objectToMove;
     }
-
-    public void positionUpdater()
-    {
-
-    }
-
 
 
     public void moveAnimate(int x, int y, Component objectToMove)
@@ -188,7 +168,25 @@ public class MovementManager  implements EventHandler {
     {
         if (animation != null) {
             animation.stop();
+            animation = null;
         }
+        getObjectToMove().setAnimated(false);
+    }
+
+    public void playAnimation()
+    {
+        if (animation != null) {
+            animation.play();
+        }
+        getObjectToMove().setAnimated(true);
+    }
+
+    public void pauseAnimation()
+    {
+        if (animation != null) {
+            animation.pause();
+        }
+        getObjectToMove().setAnimated(false);
     }
 
     protected boolean canTurn(int direction)

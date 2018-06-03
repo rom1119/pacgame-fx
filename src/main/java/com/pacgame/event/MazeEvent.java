@@ -5,6 +5,8 @@ import com.pacgame.controller.PacmanController;
 import javafx.event.Event;
 import javafx.event.EventType;
 
+import java.security.acl.Group;
+
 public class MazeEvent extends Event {
 
     private static EventType<MazeEvent> MAZE_EVENTS = new EventType<>("MAZE_EVENTS");
@@ -12,6 +14,7 @@ public class MazeEvent extends Event {
 
     private MazeController mazeController;
     private PacmanController pacmanController;
+    private javafx.scene.Group root;
 
     /**
      * Construct a new {@code Event} with the specified event type. The source
@@ -37,5 +40,13 @@ public class MazeEvent extends Event {
 
     public void setPacmanController(PacmanController pacmanController) {
         this.pacmanController = pacmanController;
+    }
+
+    public javafx.scene.Group getRoot() {
+        return root;
+    }
+
+    public void setRoot(javafx.scene.Group root) {
+        this.root = root;
     }
 }
