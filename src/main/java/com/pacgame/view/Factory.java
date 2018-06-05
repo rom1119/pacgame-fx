@@ -2,6 +2,7 @@ package com.pacgame.view;
 
 import com.pacgame.model.Pacman;
 import javafx.geometry.Point2D;
+import javafx.scene.Scene;
 
 public class Factory {
 
@@ -24,5 +25,11 @@ public class Factory {
     {
         return new EntryTimer();
     }
+
+    public static MainMenu createMainMenu(Scene scene)
+    {
+        return new MainMenu(scene);
+    }
+
 
 }

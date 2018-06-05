@@ -2,22 +2,17 @@ package com.pacgame.event.eventHandler;
 
 import com.pacgame.App;
 import com.pacgame.view.MainMenu;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class OnEscapeKey implements EventHandler<KeyEvent> {
+public class OnStartGameSelect implements EventHandler<KeyEvent> {
 
-    private Scene scene;
     private MainMenu mainMenu;
 
-    public OnEscapeKey(Scene scene, MainMenu mainMenu) {
-        this.scene = scene;
+    public OnStartGameSelect(MainMenu mainMenu) {
         this.mainMenu = mainMenu;
     }
-
 
     /**
      * Invoked when a specific event of the type for which this handler is
@@ -27,16 +22,13 @@ public class OnEscapeKey implements EventHandler<KeyEvent> {
      */
     @Override
     public void handle(KeyEvent event) {
-        if (event.getCode() != KeyCode.ESCAPE) {
+        if (event.getCode() != KeyCode.ENTER) {
             return;
         }
-
-        if (App.isRunning()) {
-            mainMenu.visible();
-            App.pause();
-        } else {
+        if (mainMenu.isVisible() && !App.isRunning()) {
+            App.entryTimer.startEntryTimer();
             mainMenu.invisible();
-            App.play();
+
         }
     }
 }

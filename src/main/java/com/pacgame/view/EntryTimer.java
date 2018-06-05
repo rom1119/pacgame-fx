@@ -30,6 +30,10 @@ public class EntryTimer extends View {
     private Label timerLabel;
     private PacmanController pacmanController;
 
+    public EntryTimer() {
+        timer = new Timeline();
+    }
+
     @Override
     public Node getView(int width, int height) {
         pane = new FlowPane();

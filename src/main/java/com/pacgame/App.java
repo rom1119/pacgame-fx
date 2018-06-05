@@ -7,14 +7,13 @@ import com.pacgame.event.eventHandler.OnEscapeKey;
 import com.pacgame.event.eventHandler.OnPacmanTouchMaze;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.PointPopulator;
-import com.pacgame.view.EntryTimer;
-import com.pacgame.view.Factory;
-import com.pacgame.view.GameInfo;
+import com.pacgame.view.*;
 import com.pacgame.view.Map;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,14 +33,16 @@ import java.util.*;
 public class App extends Application {
 
     private static final int DELAY = 2000;
-    private static PacmanController pacmanController;
-    private static MazeController mazeControllerNew;
-    private static boolean running = true;
-    private static Timeline mazeCreateTimeline;
 
     public static Group root;
     public static ObservableList<MazeController> mazesCollection;
     public static EntryTimer entryTimer;
+
+    private static PacmanController pacmanController;
+    private static MazeController mazeControllerNew;
+    private static boolean running = true;
+    private static Timeline mazeCreateTimeline;
+    private static MainMenu mainMenu;
 
     public static boolean isRunning() {
         return running;
@@ -49,13 +50,6 @@ public class App extends Application {
 
     public static void setRunning(boolean running) {
         App.running = running;
-    }
-
-    @Override
-    public void stop()
-    {
-
-
     }
 
     public static void play()
@@ -100,6 +94,7 @@ public class App extends Application {
         pauseAllMazes();
 
     }
+
     private static void playAllMazes()
     {
         for (MazeController mazeController: mazesCollection) {
@@ -118,31 +113,6 @@ public class App extends Application {
             mazeController.pauseInitTimer();
             mazeController.pauseMainAnimation();
         }
-    }
-
-
-
-    /**
-     * The main entry point for all JavaFX applications.
-     * The start method is called after the init method has returned,
-     * and after the system is ready for the application to begin running.
-     *
-     * <p>
-     * NOTE: This method is called on the JavaFX Application Thread.
-     * </p>
-     *
-     * @param primaryStage the primary stage for this application, onto which
-     *                     the application scene can be set. The primary stage will be embedded in
-     *                     the browser if the application was launched as an applet.
-     *                     Applications may create other stages, if needed, but they will not be
-     *                     primary stages and will not be embedded in the browser.
-     */
-    public void start(Stage primaryStage) throws Exception {
-
-        initApp(primaryStage);
-        play();
-        setRunning(false);
-
     }
 
     public static void main(String[] args)
@@ -201,12 +171,10 @@ public class App extends Application {
 
     }
 
-
-
     public static void run(Stage primaryStage)
     {
         Timer timer = new Timer();
-        
+
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -221,9 +189,6 @@ public class App extends Application {
         mazeController.setPacmanController(pacmanController);
         mazeController.initialize();
         mazeController.initFinder(pacmanController);
-        if (isRunning()) {
-
-        }
         mazeController.startMove();
 
 //        mazeController.getMovementManager().setScore(scoreUIControll);
@@ -273,6 +238,7 @@ public class App extends Application {
         Map mapMain = Factory.createMap("./map/map_first.png");
 
         GameInfo gameInfo = Factory.createGameInfo();
+        mainMenu = Factory.createMainMenu(scene);
 
         entryTimer = Factory.createEntryTimer();
 
@@ -281,16 +247,17 @@ public class App extends Application {
 
         Node entryTimerEl = entryTimer.getView(500, 500);
 
-        root.getChildren().add(entryTimerEl);
-
-
-
 
         Node gameInfoPane = gameInfo.getView(300, 500);
         Label scoreUIControll = gameInfo.getScore();
         Label livesUIControll = gameInfo.getLives();
         gameInfoPane.setTranslateX(500);
         root.getChildren().add(gameInfoPane);
+
+        Node mainMenuPane = mainMenu.getView(500, 500);
+//        Label scoreUIControll = gameInfo.getScore();
+//        Label livesUIControll = gameInfo.getLives();
+//        gameInfoPane.setTranslateX(500);
 
         ObservableList<Point> allPoints = PointPopulator.populate(MapPathCreator.getAllPoints(), root);
 
@@ -305,8 +272,6 @@ public class App extends Application {
         pacmanController.setAllPoints(allPoints);
         pacmanController.initialize();
 
-        entryTimer.setPacmanController(pacmanController);
-        entryTimer.startEntryTimer();
 
 
         List<MazeController> mazes = new ArrayList();
@@ -315,43 +280,92 @@ public class App extends Application {
 
         createMazeTimeline(root);
 
+        entryTimer.setPacmanController(pacmanController);
+
+        root.getChildren().add(entryTimerEl);
+        root.getChildren().add(mainMenuPane);
+
+
 //        mazeCreateTimeline.playFromStart();
 
         pacmanController.setMazeControllerList(mazesCollection);
         pacmanController.startEatAnimation();
 
-        Button btn = new Button("usuń");
-        btn.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-//                System.out.println(mazesCollection.size());
-//                timeline.pause();
-                clearAllMazesController(root);
-                entryTimerEl.setVisible(false);
+//        Button btn = new Button("usuń");
+//        btn.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, new EventHandler<javafx.scene.input.MouseEvent>() {
+//            @Override
+//            public void handle(javafx.scene.input.MouseEvent event) {
+////                System.out.println(mazesCollection.size());
+////                timeline.pause();
+////                clearAllMazesController(root);
+////                entryTimerEl.setVisible(false);
+//
+//            }
+//        });
 
-            }
-        });
+//        root.getChildren().add(btn);
 
-        root.getChildren().add(btn);
 
+        setOnCloseOperation(primaryStage);
+        setOnEscapeKey(scene);
+    }
+
+    private static void createPacmanController()
+    {
+
+    }
+
+    private static void setOnCloseOperation(Stage primaryStage)
+    {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {
-                int countMazes = mazesCollection.size();
-                int mazeTimerEnd = 0;
-                clearAllMazesController(root);
-
-                pacmanController.getMovementManager().stopAnimation();
-                pacmanController.getMainAnimation().stop();
-                pacmanController.getInitTimer().stop();
-//                Platform.exit();
+                exit();
             }
         });
+    }
 
-        setOnEscapeKey(scene);
+    public static void exit()
+    {
+        clearAllMazesController(root);
+
+        pacmanController.getMovementManager().stopAnimation();
+        pacmanController.getMainAnimation().stop();
+        pacmanController.getInitTimer().stop();
+        Platform.exit();
     }
 
     private static void setOnEscapeKey(Scene scene)
     {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, new OnEscapeKey(scene));
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, new OnEscapeKey(scene, mainMenu));
+    }
+
+    @Override
+    public void stop()
+    {
+
+
+    }
+
+    /**
+     * The main entry point for all JavaFX applications.
+     * The start method is called after the init method has returned,
+     * and after the system is ready for the application to begin running.
+     *
+     * <p>
+     * NOTE: This method is called on the JavaFX Application Thread.
+     * </p>
+     *
+     * @param primaryStage the primary stage for this application, onto which
+     *                     the application scene can be set. The primary stage will be embedded in
+     *                     the browser if the application was launched as an applet.
+     *                     Applications may create other stages, if needed, but they will not be
+     *                     primary stages and will not be embedded in the browser.
+     */
+    public void start(Stage primaryStage) throws Exception {
+
+        initApp(primaryStage);
+//        play();
+        setRunning(false);
+        mainMenu.updateFocusMenuOption();
     }
 }
