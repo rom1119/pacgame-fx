@@ -12,10 +12,13 @@ public abstract class Player extends Component implements Moveable, Turnable {
     protected boolean animated = false;
     private SimpleIntegerProperty speedMove;
     public final int INITIAL_SPEED = 10;
+    protected String name;
+    protected boolean isSelectFirstPoint;
 
     public Player() {
         speedMove = new SimpleIntegerProperty();
         speedMove.set(INITIAL_SPEED);
+        setSelectFirstPoint(false);
     }
 
     public int getSpeedMove() {
@@ -40,6 +43,22 @@ public abstract class Player extends Component implements Moveable, Turnable {
 
     public int getCheckedDirection() {
         return checkedDirection;
+    }
+
+    public boolean isSelectFirstPoint() {
+        return isSelectFirstPoint;
+    }
+
+    public void setSelectFirstPoint(boolean selectFirstPoint) {
+        isSelectFirstPoint = selectFirstPoint;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setCheckedDirection(int checkedDirection) {

@@ -21,6 +21,7 @@ public abstract class Maze extends Player implements Eatable {
         this.point = point;
         setWidth(width);
         setHeight(height);
+        setName("Maze");
 
         this.collider = new Rectangle(getWidth(), getHeight());
         collider.setFill(Color.TRANSPARENT);

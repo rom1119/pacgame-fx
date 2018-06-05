@@ -28,7 +28,7 @@ public class MovementManager  implements EventHandler {
 
     public static final int STEP_ANIMATE = 2;
     public static final int PERIOD_ANIMATE = 10;
-    public static final int PERIOD_DELAY = 1000;
+    public static final int PERIOD_DELAY = 0;
     public static final String[] CENTER_POINTS = {
             "e5", "e5A", "e6"
     };
@@ -177,16 +177,16 @@ public class MovementManager  implements EventHandler {
     {
         if (animation != null) {
             animation.play();
+            getObjectToMove().setAnimated(true);
         }
-        getObjectToMove().setAnimated(true);
     }
 
     public void pauseAnimation()
     {
         if (animation != null) {
             animation.pause();
+            getObjectToMove().setAnimated(false);
         }
-        getObjectToMove().setAnimated(false);
     }
 
     protected boolean canTurn(int direction)

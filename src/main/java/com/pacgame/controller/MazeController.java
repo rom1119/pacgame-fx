@@ -28,7 +28,7 @@ import java.util.Random;
 public class MazeController extends Controller implements AnimationMoveHandler  {
 
     public static final int SIZE = 24;
-    public static final int MAX_AMOUNT_MAZES = 10;
+    public static final int MAX_AMOUNT_MAZES = 1;
     private boolean isMovedByAI = true;
     private String name;
 
@@ -102,7 +102,7 @@ public class MazeController extends Controller implements AnimationMoveHandler  
         }
         Pacman pacman = (Pacman) getPacmanController().getControlledObject();
         Shape intersect = Shape.intersect(this.getControlledObject().getCollider(), pacman.getCollider());
-        if (intersect.getBoundsInLocal().getWidth() != -1) {
+        if (intersect.getBoundsInLocal().getWidth() >= 5 && intersect.getBoundsInLocal().getHeight() >= 5) {
 
             MazeEvent mazeEvent = new MazeEvent(MazeEvent.TOUCH);
             mazeEvent.setRoot(getRoot());
@@ -178,8 +178,9 @@ public class MazeController extends Controller implements AnimationMoveHandler  
         initTimer.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                if (movementManager != null) {
+                if (movementManager != null && !getControlledObject().isSelectFirstPoint()) {
                     movementManager.selectNextPoint();
+                    getControlledObject().setSelectFirstPoint(true);
                 }
             }
         });
@@ -202,9 +203,10 @@ public class MazeController extends Controller implements AnimationMoveHandler  
     @Override
     public void animationMoveEnd(MapPoint currentPoint)
     {
+
+//                System.out.println(currentPoint.getName());
         if (!isMovedByAI()) {
             setRandomDirection(currentPoint);
-//                System.out.println("asd");
         } else {
             boolean directionFromAI = false;
             Maze maze = (Maze) getControlledObject();
@@ -240,6 +242,7 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
 
         }
+
 
 
     }

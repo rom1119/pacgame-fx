@@ -48,7 +48,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         this.score = new SimpleStringProperty("0");
 
         this.controlledObject = new Pacman(new Point2D(0, 0), SIZE / 2);
-        scene.setOnKeyPressed(this);
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, this);
 
     }
 
@@ -126,7 +126,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
     private void checkCollisionPoints() {
         for (Point point : allPoints) {
             Shape intersect = Shape.intersect(this.getControlledObject().getCollider(), point.getCollider());
-            if (intersect.getBoundsInLocal().getWidth() != -1) {
+            if (intersect.getBoundsInLocal().getWidth() >= 5 && intersect.getBoundsInLocal().getHeight() >= 5) {
 
                 PointEvent pointEvent = new PointEvent(PointEvent.DESTROY);
                 pointEvent.setPoint(point);
@@ -228,13 +228,14 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
         initTimer.setCycleCount(1);
         initTimer.setAutoReverse(false);
-        initTimer.play();
+//        initTimer.play();
 
         initTimer.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                if (movementManager != null) {
+                if (movementManager != null && !getControlledObject().isSelectFirstPoint()) {
                     movementManager.selectNextPoint();
+                    getControlledObject().setSelectFirstPoint(true);
                 }
             }
         });
@@ -272,7 +273,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
         mainAnimation.setCycleCount(Timeline.INDEFINITE);
         mainAnimation.setAutoReverse(true);
-        mainAnimation.play();
+//        mainAnimation.play();
     }
 
     public void stopEatAnimation()

@@ -3,12 +3,15 @@ package com.pacgame;
 import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
 import com.pacgame.event.MazeEvent;
+import com.pacgame.event.eventHandler.OnEscapeKey;
 import com.pacgame.event.eventHandler.OnPacmanTouchMaze;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.PointPopulator;
+import com.pacgame.view.EntryTimer;
 import com.pacgame.view.Factory;
 import com.pacgame.view.GameInfo;
 import com.pacgame.view.Map;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -21,6 +24,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
@@ -30,11 +34,14 @@ import java.util.*;
 public class App extends Application {
 
     private static final int DELAY = 2000;
-    public static ObservableList<MazeController> mazesCollection;
     private static PacmanController pacmanController;
     private static MazeController mazeControllerNew;
     private static boolean running = true;
     private static Timeline mazeCreateTimeline;
+
+    public static Group root;
+    public static ObservableList<MazeController> mazesCollection;
+    public static EntryTimer entryTimer;
 
     public static boolean isRunning() {
         return running;
@@ -54,6 +61,13 @@ public class App extends Application {
     public static void play()
     {
         setRunning(true);
+
+        if (entryTimer.getTimer().getStatus() != Animation.Status.STOPPED) {
+            if (entryTimer != null) {
+                entryTimer.play();
+            }
+            return;
+        }
         if (pacmanController != null) {
             pacmanController.getMovementManager().playAnimation();
             pacmanController.playInitTimer();
@@ -63,10 +77,29 @@ public class App extends Application {
             mazeCreateTimeline.play();
 
         }
-        playAllMazes();
 
+        playAllMazes();
     }
 
+    public static void pause()
+    {
+        setRunning(false);
+
+        if (pacmanController != null) {
+            pacmanController.getMovementManager().pauseAnimation();
+            pacmanController.pauseInitTimer();
+            pacmanController.pauseMainAnimation();
+        }
+        if (mazeCreateTimeline != null) {
+            mazeCreateTimeline.pause();
+
+        }
+        if (entryTimer != null) {
+            entryTimer.pause();
+        }
+        pauseAllMazes();
+
+    }
     private static void playAllMazes()
     {
         for (MazeController mazeController: mazesCollection) {
@@ -87,22 +120,6 @@ public class App extends Application {
         }
     }
 
-    public static void pause()
-    {
-        setRunning(false);
-
-        if (pacmanController != null) {
-            pacmanController.getMovementManager().pauseAnimation();
-            pacmanController.pauseInitTimer();
-            pacmanController.pauseMainAnimation();
-        }
-        if (mazeCreateTimeline != null) {
-            mazeCreateTimeline.pause();
-
-        }
-        pauseAllMazes();
-
-    }
 
 
     /**
@@ -123,6 +140,14 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         initApp(primaryStage);
+        play();
+        setRunning(false);
+
+    }
+
+    public static void main(String[] args)
+    {
+        launch(args);
 
     }
 
@@ -177,12 +202,7 @@ public class App extends Application {
     }
 
 
-    public static void main(String[] args)
-    {
-        launch(args);
 
-    }
-    
     public static void run(Stage primaryStage)
     {
         Timer timer = new Timer();
@@ -195,17 +215,75 @@ public class App extends Application {
         }, DELAY, 1);
     }
 
+    public static void createMazeTimeline(Group root)
+    {
+        MazeController mazeController = new MazeController(root);
+        mazeController.setPacmanController(pacmanController);
+        mazeController.initialize();
+        mazeController.initFinder(pacmanController);
+        if (isRunning()) {
+
+        }
+        mazeController.startMove();
+
+//        mazeController.getMovementManager().setScore(scoreUIControll);
+
+
+        mazesCollection.add(mazeController);
+//        MazeController mazeControllerNew;
+
+        mazeCreateTimeline = new Timeline();
+        mazeCreateTimeline.setCycleCount(Timeline.INDEFINITE);
+//        mazeCreateTimeline.setDelay(Duration.millis(4000));
+        mazeCreateTimeline.getKeyFrames().add(
+            new KeyFrame(Duration.millis(4000),
+                    new EventHandler<ActionEvent>() {
+                        // KeyFrame event handler
+                        public void handle(ActionEvent event) {
+
+                            if (mazesCollection.size() >= MazeController.MAX_AMOUNT_MAZES - 1) {
+    //                                    timeline.stop();
+                                return;
+                            }
+
+                            mazeControllerNew = new MazeController(root);
+                            mazeControllerNew.setPacmanController(pacmanController);
+                            mazeControllerNew.initialize();
+                            mazeControllerNew.initFinder(pacmanController);
+                            mazeControllerNew.startMove();
+                            mazeControllerNew.playStateTimeline();
+                            mazeControllerNew.getMovementManager().playAnimation();
+                            mazeControllerNew.playInitTimer();
+                            mazeControllerNew.playMainAnimation();
+
+                            mazesCollection.add(mazeControllerNew);
+
+
+
+
+                        }
+                    }));
+    }
+
     private static void initApp(Stage primaryStage)
     {
-        Group root = new Group();
+        root = new Group();
         Scene scene = new Scene(root, 800, 500);
 
         Map mapMain = Factory.createMap("./map/map_first.png");
 
         GameInfo gameInfo = Factory.createGameInfo();
 
+        entryTimer = Factory.createEntryTimer();
+
         Node gameCanvas = mapMain.getView(500, 500);
         root.getChildren().add(gameCanvas);
+
+        Node entryTimerEl = entryTimer.getView(500, 500);
+
+        root.getChildren().add(entryTimerEl);
+
+
 
 
         Node gameInfoPane = gameInfo.getView(300, 500);
@@ -227,50 +305,17 @@ public class App extends Application {
         pacmanController.setAllPoints(allPoints);
         pacmanController.initialize();
 
+        entryTimer.setPacmanController(pacmanController);
+        entryTimer.startEntryTimer();
+
 
         List<MazeController> mazes = new ArrayList();
         mazesCollection = FXCollections.observableArrayList(mazes);
 
-        MazeController mazeController = new MazeController(root);
-        mazeController.setPacmanController(pacmanController);
-        mazeController.initialize();
-        mazeController.initFinder(pacmanController);
-        mazeController.startMove();
-//        mazeController.getMovementManager().setScore(scoreUIControll);
 
+        createMazeTimeline(root);
 
-        mazesCollection.add(mazeController);
-//        MazeController mazeControllerNew;
-
-        mazeCreateTimeline = new Timeline();
-        mazeCreateTimeline.setCycleCount(Timeline.INDEFINITE);
-        mazeCreateTimeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(4000),
-                        new EventHandler<ActionEvent>() {
-                            // KeyFrame event handler
-                            public void handle(ActionEvent event) {
-
-                                if (mazesCollection.size() >= MazeController.MAX_AMOUNT_MAZES - 1) {
-//                                    timeline.stop();
-                                    return;
-                                }
-
-                                mazeControllerNew = new MazeController(root);
-                                mazeControllerNew.setPacmanController(pacmanController);
-                                mazeControllerNew.initialize();
-                                mazeControllerNew.initFinder(pacmanController);
-                                mazeControllerNew.startMove();
-
-                                mazesCollection.add(mazeControllerNew);
-
-
-
-
-                            }
-                        }));
-
-
-        mazeCreateTimeline.playFromStart();
+//        mazeCreateTimeline.playFromStart();
 
         pacmanController.setMazeControllerList(mazesCollection);
         pacmanController.startEatAnimation();
@@ -282,6 +327,7 @@ public class App extends Application {
 //                System.out.println(mazesCollection.size());
 //                timeline.pause();
                 clearAllMazesController(root);
+                entryTimerEl.setVisible(false);
 
             }
         });
@@ -295,8 +341,17 @@ public class App extends Application {
                 clearAllMazesController(root);
 
                 pacmanController.getMovementManager().stopAnimation();
+                pacmanController.getMainAnimation().stop();
+                pacmanController.getInitTimer().stop();
 //                Platform.exit();
             }
         });
+
+        setOnEscapeKey(scene);
+    }
+
+    private static void setOnEscapeKey(Scene scene)
+    {
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, new OnEscapeKey(scene));
     }
 }

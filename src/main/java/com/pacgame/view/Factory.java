@@ -19,4 +19,10 @@ public class Factory {
     {
         return new GameInfo();
     }
+
+    public static EntryTimer createEntryTimer()
+    {
+        return new EntryTimer();
+    }
+
 }

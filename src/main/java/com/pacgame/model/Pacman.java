@@ -48,6 +48,9 @@ public class Pacman extends Player implements Turnable {
 
         setCheckedDirection(Direction.LEFT);
 
+        setName("Pacman");
+
+
 //        moveDown(30);
 
 //        this.icon.set

@@ -31,6 +31,8 @@ public class OnPacmanTouchMaze implements EventHandler<MazeEvent> {
             event.getPacmanController().subtractLive();
             App.clearAllMazesController(event.getRoot());
             event.getMazeController().getPacmanController().setInitPosition();
+            App.pause();
+            App.entryTimer.startEntryTimer();
             App.setRunning(false);
         }
 
