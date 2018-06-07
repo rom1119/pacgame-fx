@@ -27,6 +27,9 @@ public class ContextMenu extends Menu {
     private Label settingsLabel;
     private Label exitToMainMenuLabel;
 
+    private ContextSettings contextSettings;
+
+
     public ContextMenu(Scene scene) {
         super(scene);
     }
@@ -135,6 +138,10 @@ public class ContextMenu extends Menu {
     }
 
     public ContextSettings getContextSettings() {
-        return null;
+        return contextSettings;
+    }
+
+    public void setContextSettings(ContextSettings contextSettings) {
+        this.contextSettings = contextSettings;
     }
 }

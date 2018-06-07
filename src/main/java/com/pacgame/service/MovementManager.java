@@ -16,7 +16,7 @@ import org.apache.commons.collections.BidiMap;
 import java.util.Arrays;
 import java.util.Timer;
 
-public class MovementManager  implements EventHandler {
+public class MovementManager implements EventHandler {
 
     private BidiMap mapPoints;
     private Player objectToMove;

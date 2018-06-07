@@ -134,19 +134,14 @@ public class App extends Application {
     public static void main(String[] args)
     {
         launch(args);
-
     }
 
     public static void clearAllMazesController()
     {
         for (MazeController mazeContr : mazesCollection) {
-//                    MazeController mazeContr = mazesCollection.get(i);
             clearMazeController(mazeContr, root);
-//                    mazesCollection.remove(mazeContr);
         }
 
-//        clearMazeController(mazeController, root);
-//        clearMazeController(mazeControllerNew, root);
         mazesCollection.clear();
         System.gc();
         Runtime.getRuntime().gc();
@@ -207,11 +202,7 @@ public class App extends Application {
         mazeController.initFinder(pacmanController);
         mazeController.startMove();
 
-//        mazeController.getMovementManager().setScore(scoreUIControll);
-
-
         mazesCollection.add(mazeController);
-//        MazeController mazeControllerNew;
 
         mazeCreateTimeline = new Timeline();
         mazeCreateTimeline.setCycleCount(Timeline.INDEFINITE);
@@ -239,9 +230,6 @@ public class App extends Application {
 
                             mazesCollection.add(mazeControllerNew);
 
-
-
-
                         }
                     }));
     }
@@ -257,9 +245,11 @@ public class App extends Application {
         mainMenu = Factory.createMainMenu(scene);
         ContextMenu contextMenu = Factory.createContextMenu(scene);
         MainSettings mainSettings = Factory.createMainSettings();
+        ContextSettings contextSettings = Factory.createContextSettings();
         mainMenu.setMainSettings(mainSettings);
+        contextMenu.setContextSettings(contextSettings);
         mainSettings.setMainMenu(mainMenu);
-
+        contextSettings.setContextMenu(contextMenu);
 
         Node gameCanvas = mapMain.getView(500, 500);
         Node entryTimerEl = entryTimer.getView(500, 500);
@@ -274,6 +264,7 @@ public class App extends Application {
 
         // settings
         Node mainSettingsPane = mainSettings.getView(500, 500);
+        Node contextSettingsPane = contextSettings.getView(500, 500);
 
 
         root.getChildren().add(gameCanvas);
@@ -306,6 +297,7 @@ public class App extends Application {
         root.getChildren().add(mainMenuPane);
         root.getChildren().add(mainSettingsPane);
         root.getChildren().add(contextMenuPane);
+        root.getChildren().add(contextSettingsPane);
 
 
 //        mazeCreateTimeline.playFromStart();
@@ -314,6 +306,11 @@ public class App extends Application {
         pacmanController.startEatAnimation();
 
         mainMenu.updateFocusMenuOption();
+
+        mainSettings.setPacmanController(pacmanController);
+        mainSettings.setMazeCollection(mazesCollection);
+        contextSettings.setPacmanController(pacmanController);
+        contextSettings.setMazeCollection(mazesCollection);
 
 
 //        Button btn = new Button("usuń");

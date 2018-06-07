@@ -28,7 +28,7 @@ import java.util.Random;
 public class MazeController extends Controller implements AnimationMoveHandler  {
 
     public static final int SIZE = 24;
-    public static final int MAX_AMOUNT_MAZES = 1;
+    public static final int MAX_AMOUNT_MAZES = 10;
     private boolean isMovedByAI = true;
     private String name;
 

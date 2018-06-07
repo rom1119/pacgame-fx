@@ -1,24 +1,38 @@
 package com.pacgame.event.eventHandler.menu;
 
-import com.pacgame.view.Menu;
+import com.pacgame.view.MainSettings;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.scene.input.KeyEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
-public class OnSaveMainSettings extends MenuHandler {
-    public OnSaveMainSettings(Menu menu) {
-        super(menu);
+import java.util.Optional;
+
+public class OnSaveMainSettings implements EventHandler<ActionEvent> {
+
+    private MainSettings mainSettings;
+    public OnSaveMainSettings(MainSettings mainSettings) {
+        this.mainSettings = mainSettings;
     }
 
     /**
      * Invoked when a specific event of the type for which this handler is
      * registered happens.
      *
-     * @param e the event which occurred
+     * @param event the event which occurred
      */
     @Override
-    public void handle(Event e) {
-        ActionEvent event = (ActionEvent) e;
+    public void handle(ActionEvent event) {
 
+        Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
+        dialog.setContentText("Czy jesteś pewien że chcesz zapisać zmiany ?");
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if (result.get() == ButtonType.OK) {
+            mainSettings.changeGlobalSpeedMove();
+
+        } else {
+            System.out.println("ppppp");
+        }
     }
 }

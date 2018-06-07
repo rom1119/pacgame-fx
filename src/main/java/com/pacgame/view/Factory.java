@@ -41,5 +41,10 @@ public class Factory {
         return new MainSettings();
     }
 
+    public static ContextSettings createContextSettings()
+    {
+        return new ContextSettings();
+    }
+
 
 }

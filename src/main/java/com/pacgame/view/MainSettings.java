@@ -1,7 +1,11 @@
 package com.pacgame.view;
 
 import com.pacgame.View;
+import com.pacgame.controller.MazeController;
+import com.pacgame.controller.PacmanController;
 import com.pacgame.event.eventHandler.menu.OnBackFromMainSettings;
+import com.pacgame.event.eventHandler.menu.OnSaveMainSettings;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -21,6 +25,9 @@ public class MainSettings extends View {
     private Button save;
 
     private MainMenu mainMenu;
+
+    private PacmanController pacmanController;
+    private ObservableList<MazeController> mazeCollection;
 
     @Override
     public Node getView(int width, int height) {
@@ -73,9 +80,9 @@ public class MainSettings extends View {
         speedEl = new Slider();
         speedEl.setShowTickMarks(true);
         speedEl.setShowTickLabels(true);
-        speedEl.setMin(0);
-        speedEl.setMax(100);
-        speedEl.setValue(30);
+        speedEl.setMin(5);
+        speedEl.setMax(20);
+        speedEl.setValue(10);
         speedEl.setMajorTickUnit(50);
         speedEl.setMinorTickCount(5);
         speedEl.setBlockIncrement(10);
@@ -106,6 +113,17 @@ public class MainSettings extends View {
         return save;
     }
 
+    public void changeGlobalSpeedMove()
+    {
+        int newSpeed = (int) speedEl.getValue();
+
+        pacmanController.getControlledObject().setSpeedMove(newSpeed);
+
+        for (MazeController mazeController : getMazeCollection()) {
+            mazeController.getControlledObject().setSpeedMove(newSpeed);
+        }
+    }
+
     private void setOnBackButton()
     {
         back.setOnAction(new OnBackFromMainSettings(this, getMainMenu()));
@@ -113,7 +131,7 @@ public class MainSettings extends View {
 
     private void setOnSaveButton()
     {
-        save.setOnAction(new OnBackFromMainSettings(this, getMainMenu()));
+        save.setOnAction(new OnSaveMainSettings(this));
     }
 
     public MainMenu getMainMenu() {
@@ -122,5 +140,21 @@ public class MainSettings extends View {
 
     public void setMainMenu(MainMenu mainMenu) {
         this.mainMenu = mainMenu;
+    }
+
+    public PacmanController getPacmanController() {
+        return pacmanController;
+    }
+
+    public void setPacmanController(PacmanController pacmanController) {
+        this.pacmanController = pacmanController;
+    }
+
+    public ObservableList<MazeController> getMazeCollection() {
+        return mazeCollection;
+    }
+
+    public void setMazeCollection(ObservableList<MazeController> mazeCollection) {
+        this.mazeCollection = mazeCollection;
     }
 }

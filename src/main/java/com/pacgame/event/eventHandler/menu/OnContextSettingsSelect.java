@@ -26,7 +26,6 @@ public class OnContextSettingsSelect extends MenuHandler {
             return;
         }
         if (getMenu().isVisible() && !App.isPlaying()) {
-            App.entryTimer.startEntryTimer();
             getMenu().invisible();
             ((ContextMenu)getMenu()).getContextSettings().visible();
         }
