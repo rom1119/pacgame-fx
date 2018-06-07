@@ -3,11 +3,9 @@ package com.pacgame.controller;
 import com.pacgame.App;
 import com.pacgame.Controller;
 import com.pacgame.Point;
-import com.pacgame.event.MazeEvent;
 import com.pacgame.event.PointEvent;
 import com.pacgame.Direction;
 import com.pacgame.model.MapPoint;
-import com.pacgame.model.Maze;
 import com.pacgame.model.Pacman;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.MovementManager;
@@ -28,9 +26,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class PacmanController extends Controller implements EventHandler<KeyEvent> {
 
@@ -161,7 +156,7 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
      */
     public void handle(KeyEvent event) {
 
-        if (!App.isRunning()) {
+        if (!App.isPlaying()) {
             return;
         }
         switch (event.getCode()) {

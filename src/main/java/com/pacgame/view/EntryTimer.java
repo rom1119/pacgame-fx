@@ -3,7 +3,6 @@ package com.pacgame.view;
 import com.pacgame.App;
 import com.pacgame.View;
 import com.pacgame.controller.PacmanController;
-import com.pacgame.service.MovementManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -20,11 +19,9 @@ import javafx.scene.text.Font;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 
-import javax.swing.*;
-
 public class EntryTimer extends View {
+
     private static final int AMOUNT_SECONDS = 3;
-    private FlowPane pane;
     private Timeline timer;
     private int counter;
     private Label timerLabel;
@@ -81,7 +78,7 @@ public class EntryTimer extends View {
 
     public void startEntryTimer()
     {
-        App.setRunning(true);
+        App.setPlaying(true);
         setCounter(AMOUNT_SECONDS);
         updateLabel(String.valueOf(getCounter()));
         getTimerLabel().setVisible(true);
@@ -112,12 +109,12 @@ public class EntryTimer extends View {
         timer.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                App.clearAllMazesController(App.root);
+                App.clearAllMazesController();
                 App.createMazeTimeline(App.root);
                 getPacmanController().getControlledObject().setSelectFirstPoint(false);
                 App.play();
                 getTimerLabel().setVisible(false);
-                App.setRunning(true);
+                App.setPlaying(true);
             }
         });
     }

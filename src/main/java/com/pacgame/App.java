@@ -21,7 +21,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -36,25 +35,42 @@ public class App extends Application {
 
     public static Group root;
     public static ObservableList<MazeController> mazesCollection;
+    public static PacmanController pacmanController;
     public static EntryTimer entryTimer;
+    public static MainMenu mainMenu;
 
-    private static PacmanController pacmanController;
     private static MazeController mazeControllerNew;
-    private static boolean running = true;
+    private static boolean playing = false;
+    private static boolean runningGame = false;
     private static Timeline mazeCreateTimeline;
-    private static MainMenu mainMenu;
 
-    public static boolean isRunning() {
-        return running;
+    public static MainMenu getMainMenu() {
+        return mainMenu;
     }
 
-    public static void setRunning(boolean running) {
-        App.running = running;
+    public static void setMainMenu(MainMenu mainMenu) {
+        App.mainMenu = mainMenu;
+    }
+
+    public static boolean isPlaying() {
+        return playing;
+    }
+
+    public static void setPlaying(boolean playing) {
+        App.playing = playing;
+    }
+
+    public static boolean isRunningGame() {
+        return runningGame;
+    }
+
+    public static void setRunningGame(boolean runningGame) {
+        App.runningGame = runningGame;
     }
 
     public static void play()
     {
-        setRunning(true);
+        setPlaying(true);
 
         if (entryTimer.getTimer().getStatus() != Animation.Status.STOPPED) {
             if (entryTimer != null) {
@@ -77,7 +93,7 @@ public class App extends Application {
 
     public static void pause()
     {
-        setRunning(false);
+        setPlaying(false);
 
         if (pacmanController != null) {
             pacmanController.getMovementManager().pauseAnimation();
@@ -121,7 +137,7 @@ public class App extends Application {
 
     }
 
-    public static void clearAllMazesController(Group root)
+    public static void clearAllMazesController()
     {
         for (MazeController mazeContr : mazesCollection) {
 //                    MazeController mazeContr = mazesCollection.get(i);
@@ -144,7 +160,7 @@ public class App extends Application {
         mazeController.setStateTimeline(null);
         if (mazeController.getMovementManager() != null) {
 
-            mazeController.getMovementManager().stopAnimation();
+            mazeController.getMovementManager().pauseAnimation();
         }
         if (mazeController.getInitTimer() != null) {
 
@@ -236,28 +252,32 @@ public class App extends Application {
         Scene scene = new Scene(root, 800, 500);
 
         Map mapMain = Factory.createMap("./map/map_first.png");
-
         GameInfo gameInfo = Factory.createGameInfo();
-        mainMenu = Factory.createMainMenu(scene);
-
         entryTimer = Factory.createEntryTimer();
+        mainMenu = Factory.createMainMenu(scene);
+        ContextMenu contextMenu = Factory.createContextMenu(scene);
+        MainSettings mainSettings = Factory.createMainSettings();
+        mainMenu.setMainSettings(mainSettings);
+        mainSettings.setMainMenu(mainMenu);
+
 
         Node gameCanvas = mapMain.getView(500, 500);
-        root.getChildren().add(gameCanvas);
-
         Node entryTimerEl = entryTimer.getView(500, 500);
-
-
         Node gameInfoPane = gameInfo.getView(300, 500);
         Label scoreUIControll = gameInfo.getScore();
         Label livesUIControll = gameInfo.getLives();
         gameInfoPane.setTranslateX(500);
-        root.getChildren().add(gameInfoPane);
 
+        // menu
         Node mainMenuPane = mainMenu.getView(500, 500);
-//        Label scoreUIControll = gameInfo.getScore();
-//        Label livesUIControll = gameInfo.getLives();
-//        gameInfoPane.setTranslateX(500);
+        Node contextMenuPane = contextMenu.getView(500, 500);
+
+        // settings
+        Node mainSettingsPane = mainSettings.getView(500, 500);
+
+
+        root.getChildren().add(gameCanvas);
+        root.getChildren().add(gameInfoPane);
 
         ObservableList<Point> allPoints = PointPopulator.populate(MapPathCreator.getAllPoints(), root);
 
@@ -284,12 +304,17 @@ public class App extends Application {
 
         root.getChildren().add(entryTimerEl);
         root.getChildren().add(mainMenuPane);
+        root.getChildren().add(mainSettingsPane);
+        root.getChildren().add(contextMenuPane);
 
 
 //        mazeCreateTimeline.playFromStart();
 
         pacmanController.setMazeControllerList(mazesCollection);
         pacmanController.startEatAnimation();
+
+        mainMenu.updateFocusMenuOption();
+
 
 //        Button btn = new Button("usuń");
 //        btn.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, new EventHandler<javafx.scene.input.MouseEvent>() {
@@ -307,7 +332,7 @@ public class App extends Application {
 
 
         setOnCloseOperation(primaryStage);
-        setOnEscapeKey(scene);
+        setOnEscapeKey(scene, contextMenu);
     }
 
     private static void createPacmanController()
@@ -326,7 +351,7 @@ public class App extends Application {
 
     public static void exit()
     {
-        clearAllMazesController(root);
+        clearAllMazesController();
 
         pacmanController.getMovementManager().stopAnimation();
         pacmanController.getMainAnimation().stop();
@@ -334,22 +359,21 @@ public class App extends Application {
         Platform.exit();
     }
 
-    private static void setOnEscapeKey(Scene scene)
+    private static void setOnEscapeKey(Scene scene, ContextMenu contextMenu)
     {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, new OnEscapeKey(scene, mainMenu));
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, new OnEscapeKey(contextMenu));
     }
 
     @Override
     public void stop()
     {
 
-
     }
 
     /**
      * The main entry point for all JavaFX applications.
      * The start method is called after the init method has returned,
-     * and after the system is ready for the application to begin running.
+     * and after the system is ready for the application to begin playing.
      *
      * <p>
      * NOTE: This method is called on the JavaFX Application Thread.
@@ -365,7 +389,6 @@ public class App extends Application {
 
         initApp(primaryStage);
 //        play();
-        setRunning(false);
-        mainMenu.updateFocusMenuOption();
+        setPlaying(false);
     }
 }

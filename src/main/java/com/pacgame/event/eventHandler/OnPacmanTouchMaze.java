@@ -29,11 +29,11 @@ public class OnPacmanTouchMaze implements EventHandler<MazeEvent> {
 //            maze.speedMoveProperty().set(currentSpeed - 5);
         } else {
             event.getPacmanController().subtractLive();
-            App.clearAllMazesController(event.getRoot());
+            App.clearAllMazesController();
             event.getMazeController().getPacmanController().setInitPosition();
             App.pause();
             App.entryTimer.startEntryTimer();
-            App.setRunning(false);
+            App.setPlaying(false);
         }
 
     }

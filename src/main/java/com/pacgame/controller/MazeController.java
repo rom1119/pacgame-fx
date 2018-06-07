@@ -117,8 +117,8 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
     public void initialize()
     {
-        root.getChildren().add(getControlledObject().getCollider());
-        root.getChildren().add(getControlledObject().getIcon());
+        root.getChildren().add(root.getChildren().size() - 2, getControlledObject().getCollider());
+        root.getChildren().add(root.getChildren().size() - 2, getControlledObject().getIcon());
 
         BidiMap allPoints = MapPathCreator.getAllPoints();
         movementManager = new MovementManager(allPoints, this.controlledObject, root);

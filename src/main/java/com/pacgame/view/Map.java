@@ -28,6 +28,8 @@ public class Map extends View {
         ImageView imageView = new ImageView(img);
 
         GraphicsContext g = canvas.getGraphicsContext2D();
+
+
 //        g.setFill(Color.AQUA);
 
         g.drawImage(img, 0, 0, width, height);

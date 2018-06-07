@@ -12,7 +12,6 @@ import javafx.scene.text.Font;
 
 public class GameInfo extends View {
 
-    private FlowPane pane;
     private Label score;
     private Label lives;
 

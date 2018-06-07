@@ -31,5 +31,15 @@ public class Factory {
         return new MainMenu(scene);
     }
 
+    public static ContextMenu createContextMenu(Scene scene)
+    {
+        return new ContextMenu(scene);
+    }
+
+    public static MainSettings createMainSettings()
+    {
+        return new MainSettings();
+    }
+
 
 }
