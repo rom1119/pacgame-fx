@@ -1,6 +1,6 @@
 package com.pacgame.event.eventHandler.menu;
 
-import com.pacgame.view.MainSettings;
+import com.pacgame.view.ContextSaveGame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -8,11 +8,12 @@ import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
-public class OnSaveMainSettings implements EventHandler<ActionEvent> {
+public class OnSaveGame implements EventHandler<ActionEvent> {
 
-    private MainSettings mainSettings;
-    public OnSaveMainSettings(MainSettings mainSettings) {
-        this.mainSettings = mainSettings;
+    private ContextSaveGame contextSaveGame;
+
+    public OnSaveGame(ContextSaveGame contextSaveGame) {
+        this.contextSaveGame = contextSaveGame;
     }
 
     /**
@@ -29,7 +30,7 @@ public class OnSaveMainSettings implements EventHandler<ActionEvent> {
         Optional<ButtonType> result = dialog.showAndWait();
 
         if (result.get() == ButtonType.OK) {
-            mainSettings.changeGlobalSpeedMove();
+            contextSaveGame.addListElement();
 
         }
     }

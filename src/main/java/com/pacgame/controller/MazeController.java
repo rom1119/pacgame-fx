@@ -1,5 +1,6 @@
 package com.pacgame.controller;
 
+import com.pacgame.App;
 import com.pacgame.Controller;
 import com.pacgame.Direction;
 import com.pacgame.event.MazeEvent;
@@ -117,8 +118,8 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
     public void initialize()
     {
-        root.getChildren().add(root.getChildren().size() - 2, getControlledObject().getCollider());
-        root.getChildren().add(root.getChildren().size() - 2, getControlledObject().getIcon());
+        root.getChildren().add(App.indexForMaze - 2, getControlledObject().getCollider());
+        root.getChildren().add(App.indexForMaze - 2, getControlledObject().getIcon());
 
         BidiMap allPoints = MapPathCreator.getAllPoints();
         movementManager = new MovementManager(allPoints, this.controlledObject, root);

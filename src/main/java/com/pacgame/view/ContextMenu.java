@@ -1,6 +1,7 @@
 package com.pacgame.view;
 
 import com.pacgame.App;
+import com.pacgame.View;
 import com.pacgame.event.eventHandler.menu.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -24,10 +25,12 @@ public class ContextMenu extends Menu {
 
     private Label resumeGameLabel;
     private Label startNewGameLabel;
+    private Label saveGameLabel;
     private Label settingsLabel;
     private Label exitToMainMenuLabel;
 
     private ContextSettings contextSettings;
+    private ContextSaveGame contextSaveGame;
 
 
     public ContextMenu(Scene scene) {
@@ -52,11 +55,12 @@ public class ContextMenu extends Menu {
         pane.getChildren().add(vBox);
         vBox.getChildren().add(createResumeGameLabel());
         vBox.getChildren().add(createStartNewGameLabel());
+        vBox.getChildren().add(saveGameLabel());
         vBox.getChildren().add(createSettingsLabel());
         vBox.getChildren().add(createExitToMainMenuLabel());
 
 
-        menuOptions.addAll(resumeGameLabel, startNewGameLabel, settingsLabel, exitToMainMenuLabel);
+        menuOptions.addAll(resumeGameLabel, startNewGameLabel, saveGameLabel, settingsLabel, exitToMainMenuLabel);
         removeBorderColorMenuOptions();
         checkMenuOption((Label) menuOptions.get(0));
 
@@ -90,6 +94,17 @@ public class ContextMenu extends Menu {
         return resumeGameLabel;
     }
 
+    public Label saveGameLabel()
+    {
+        saveGameLabel = new Label("Zapisz grę");
+        saveGameLabel.setFont(new Font(40));
+        saveGameLabel.setTextFill(Color.WHITE);
+
+        setSaveGameSelect();
+
+        return saveGameLabel;
+    }
+
 
     public Label createSettingsLabel()
     {
@@ -120,8 +135,14 @@ public class ContextMenu extends Menu {
     }
 
 
-    private void setOnResumeGameSelect() {
+    private void setOnResumeGameSelect()
+    {
         resumeGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnResumeGameSelect(this));
+    }
+
+    private void setSaveGameSelect()
+    {
+        saveGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnSaveGameSelect(this));
     }
 
     private void setOnContextSettingsSelect() {
@@ -143,5 +164,13 @@ public class ContextMenu extends Menu {
 
     public void setContextSettings(ContextSettings contextSettings) {
         this.contextSettings = contextSettings;
+    }
+
+    public ContextSaveGame getContextSaveGame() {
+        return contextSaveGame;
+    }
+
+    public void setContextSaveGame(ContextSaveGame contextSaveGame) {
+        this.contextSaveGame = contextSaveGame;
     }
 }

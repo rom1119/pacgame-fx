@@ -12,6 +12,7 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class Point extends Component {
 
+    protected String id;
     protected int value = 1;
     private boolean isVisible = true;
 
@@ -88,4 +89,11 @@ public abstract class Point extends Component {
         isVisible = visible;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

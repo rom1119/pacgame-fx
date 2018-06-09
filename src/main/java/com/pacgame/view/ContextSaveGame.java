@@ -4,22 +4,24 @@ import com.pacgame.View;
 import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
 import com.pacgame.event.eventHandler.menu.OnBackToMenu;
-import com.pacgame.event.eventHandler.menu.OnSaveMainSettings;
+import com.pacgame.event.eventHandler.menu.OnSaveContextSettings;
+import com.pacgame.event.eventHandler.menu.OnSaveGame;
+import com.pacgame.model.SavedGame;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class MainSettings extends SubView {
-
-    private Label speedLabel;
-    private Slider speedEl;
+public class ContextSaveGame extends SubView {
+    private Label nameLabel;
+    private TextField nameEl;
+    private ListView<SavedGame> savesList;
+    private ObservableList<SavedGame> savesCollection;
 
     private Button back;
     private Button save;
@@ -28,6 +30,10 @@ public class MainSettings extends SubView {
 
     private PacmanController pacmanController;
     private ObservableList<MazeController> mazeCollection;
+
+    public ContextSaveGame() {
+        savesCollection = FXCollections.observableArrayList();
+    }
 
     @Override
     public Node getView(int width, int height) {
@@ -45,10 +51,13 @@ public class MainSettings extends SubView {
 //        vBox.setAlignment(Pos.CENTER);
         pane.setPadding(new Insets(0, 0, 25, 0));
         pane.getChildren().add(vBox);
-        vBox.getChildren().add(createSpeedLabel());
-        vBox.getChildren().add(createSpeedEl());
+        vBox.getChildren().add(createNameLabel());
+        vBox.getChildren().add(createNameEl());
+        vBox.getChildren().add(createSavesList());
 
         BorderPane buttons = new BorderPane();
+        vBox.setAlignment(Pos.BOTTOM_CENTER);
+
 
         buttons.setPrefWidth(width);
         buttons.setPrefHeight(height);
@@ -66,28 +75,31 @@ public class MainSettings extends SubView {
         return pane;
     }
 
-    public Label createSpeedLabel()
+    public Label createNameLabel()
     {
-        speedLabel = new Label("Prędkość: ");
-        speedLabel.setFont(new Font(30));
-        speedLabel.setTextFill(Color.WHITE);
+        nameLabel = new Label("Nazwa: ");
+        nameLabel.setFont(new Font(30));
+        nameLabel.setTextFill(Color.WHITE);
 
-        return speedLabel;
+        return nameLabel;
     }
 
-    public Slider createSpeedEl()
+    public TextField createNameEl()
     {
-        speedEl = new Slider();
-        speedEl.setShowTickMarks(true);
-        speedEl.setShowTickLabels(true);
-        speedEl.setMin(5);
-        speedEl.setMax(20);
-        speedEl.setValue(10);
-        speedEl.setMajorTickUnit(50);
-        speedEl.setMinorTickCount(5);
-        speedEl.setBlockIncrement(10);
+        nameEl = new TextField();
+        nameEl.setMaxWidth(250);
 
-        return speedEl;
+        return nameEl;
+    }
+
+    public ListView createSavesList()
+    {
+        savesList = new ListView<>();
+        savesList.setItems(savesCollection);
+        savesList.setEditable(false);
+//        nameEl.setMaxWidth(250);
+
+        return savesList;
     }
 
     public Button createBackButton()
@@ -113,15 +125,24 @@ public class MainSettings extends SubView {
         return save;
     }
 
-    public void changeGlobalSpeedMove()
+    public void addListElement()
     {
-        int newSpeed = (int) speedEl.getValue();
+        SavedGame savedGame = createSavedGame();
 
-        pacmanController.getControlledObject().setSpeedMove(newSpeed);
+        savesCollection.add(savedGame);
+    }
 
-        for (MazeController mazeController : getMazeCollection()) {
-            mazeController.getControlledObject().setSpeedMove(newSpeed);
-        }
+    private SavedGame createSavedGame()
+    {
+        SavedGame savedGame = new SavedGame();
+
+        savedGame.setName(nameEl.getText());
+        savedGame.setLives(Integer.parseInt(pacmanController.getControlledObject().getLives()));
+        savedGame.setScore(Integer.parseInt(pacmanController.getScore()));
+        savedGame.setPacmanMapPoint(pacmanController.getMovementManager().getCurrentPoint());
+        savedGame.setMazeCollection(mazeCollection);
+
+        return savedGame;
     }
 
     private void setOnBackButton()
@@ -131,8 +152,9 @@ public class MainSettings extends SubView {
 
     private void setOnSaveButton()
     {
-        save.setOnAction(new OnSaveMainSettings(this));
+        save.setOnAction(new OnSaveGame(this));
     }
+
 
     @Override
     public Menu getMenu() {
@@ -144,19 +166,19 @@ public class MainSettings extends SubView {
         this.menu = menu;
     }
 
-    public PacmanController getPacmanController() {
-        return pacmanController;
-    }
-
-    public void setPacmanController(PacmanController pacmanController) {
-        this.pacmanController = pacmanController;
-    }
-
     public ObservableList<MazeController> getMazeCollection() {
         return mazeCollection;
     }
 
     public void setMazeCollection(ObservableList<MazeController> mazeCollection) {
         this.mazeCollection = mazeCollection;
+    }
+
+    public PacmanController getPacmanController() {
+        return pacmanController;
+    }
+
+    public void setPacmanController(PacmanController pacmanController) {
+        this.pacmanController = pacmanController;
     }
 }

@@ -3,10 +3,8 @@ package com.pacgame.view;
 import com.pacgame.View;
 import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
-import com.pacgame.event.eventHandler.menu.OnBackFromContextSettings;
-import com.pacgame.event.eventHandler.menu.OnBackFromMainSettings;
+import com.pacgame.event.eventHandler.menu.OnBackToMenu;
 import com.pacgame.event.eventHandler.menu.OnSaveContextSettings;
-import com.pacgame.event.eventHandler.menu.OnSaveMainSettings;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +16,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class ContextSettings extends View {
+public class ContextSettings extends SubView {
 
     private Label speedLabel;
     private Slider speedEl;
@@ -26,7 +24,7 @@ public class ContextSettings extends View {
     private Button back;
     private Button save;
 
-    private ContextMenu contextMenu;
+    private Menu menu;
 
     private PacmanController pacmanController;
     private ObservableList<MazeController> mazeCollection;
@@ -130,7 +128,7 @@ public class ContextSettings extends View {
 
     private void setOnBackButton()
     {
-        back.setOnAction(new OnBackFromContextSettings(this, getContextMenu()));
+        back.setOnAction(new OnBackToMenu(this));
     }
 
     private void setOnSaveButton()
@@ -155,11 +153,13 @@ public class ContextSettings extends View {
         this.mazeCollection = mazeCollection;
     }
 
-    public ContextMenu getContextMenu() {
-        return contextMenu;
+    @Override
+    public Menu getMenu() {
+        return menu;
     }
 
-    public void setContextMenu(ContextMenu contextMenu) {
-        this.contextMenu = contextMenu;
+    @Override
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 }

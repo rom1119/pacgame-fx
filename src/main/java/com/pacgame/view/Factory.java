@@ -46,5 +46,10 @@ public class Factory {
         return new ContextSettings();
     }
 
+    public static ContextSaveGame createContextSaveGame()
+    {
+        return new ContextSaveGame();
+    }
+
 
 }

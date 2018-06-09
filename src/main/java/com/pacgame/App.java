@@ -38,6 +38,7 @@ public class App extends Application {
     public static PacmanController pacmanController;
     public static EntryTimer entryTimer;
     public static MainMenu mainMenu;
+    public static int indexForMaze = 0;
 
     private static MazeController mazeControllerNew;
     private static boolean playing = false;
@@ -246,10 +247,13 @@ public class App extends Application {
         ContextMenu contextMenu = Factory.createContextMenu(scene);
         MainSettings mainSettings = Factory.createMainSettings();
         ContextSettings contextSettings = Factory.createContextSettings();
+        ContextSaveGame contextSaveGame = Factory.createContextSaveGame();
         mainMenu.setMainSettings(mainSettings);
         contextMenu.setContextSettings(contextSettings);
-        mainSettings.setMainMenu(mainMenu);
-        contextSettings.setContextMenu(contextMenu);
+        contextMenu.setContextSaveGame(contextSaveGame);
+        mainSettings.setMenu(mainMenu);
+        contextSettings.setMenu(contextMenu);
+        contextSaveGame.setMenu(contextMenu);
 
         Node gameCanvas = mapMain.getView(500, 500);
         Node entryTimerEl = entryTimer.getView(500, 500);
@@ -265,6 +269,7 @@ public class App extends Application {
         // settings
         Node mainSettingsPane = mainSettings.getView(500, 500);
         Node contextSettingsPane = contextSettings.getView(500, 500);
+        Node contextSaveGamePane = contextSaveGame.getView(500, 500);
 
 
         root.getChildren().add(gameCanvas);
@@ -289,7 +294,8 @@ public class App extends Application {
         mazesCollection = FXCollections.observableArrayList(mazes);
 
 
-        createMazeTimeline(root);
+        contextSaveGame.setMazeCollection(mazesCollection);
+        contextSaveGame.setPacmanController(pacmanController);
 
         entryTimer.setPacmanController(pacmanController);
 
@@ -298,12 +304,16 @@ public class App extends Application {
         root.getChildren().add(mainSettingsPane);
         root.getChildren().add(contextMenuPane);
         root.getChildren().add(contextSettingsPane);
+        root.getChildren().add(contextSaveGamePane);
 
 
+        indexForMaze = root.getChildren().indexOf(entryTimerEl);
 //        mazeCreateTimeline.playFromStart();
 
         pacmanController.setMazeControllerList(mazesCollection);
         pacmanController.startEatAnimation();
+
+        createMazeTimeline(root);
 
         mainMenu.updateFocusMenuOption();
 

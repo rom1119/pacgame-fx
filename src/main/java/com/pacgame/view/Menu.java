@@ -67,14 +67,12 @@ public abstract class Menu extends View {
 
 
                 if(event.getButton().equals(MouseButton.PRIMARY)){
-                    if(event.getClickCount() == 2){
-                        if (event.getTarget() instanceof Label) {
-                            Label l = (Label) event.getTarget();
-                            l.fireEvent(new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.ENTER, false, false, false, false));
-                        } else {
-                            Text l = (Text) event.getTarget();
-                            l.getParent().fireEvent(new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.ENTER, false, false, false, false));
-                        }
+                    if (event.getTarget() instanceof Label) {
+                        Label l = (Label) event.getTarget();
+                        l.fireEvent(new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.ENTER, false, false, false, false));
+                    } else {
+                        Text l = (Text) event.getTarget();
+                        l.getParent().fireEvent(new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.ENTER, false, false, false, false));
                     }
                 }
 
