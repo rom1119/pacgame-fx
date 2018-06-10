@@ -51,5 +51,10 @@ public class Factory {
         return new ContextSaveGame();
     }
 
+    public static MainReadGame createMainReadGame()
+    {
+        return new MainReadGame();
+    }
+
 
 }

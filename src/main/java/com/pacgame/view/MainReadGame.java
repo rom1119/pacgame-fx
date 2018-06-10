@@ -3,6 +3,7 @@ package com.pacgame.view;
 import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
 import com.pacgame.event.eventHandler.menu.OnBackToMenu;
+import com.pacgame.event.eventHandler.menu.OnReadGameSelect;
 import com.pacgame.event.eventHandler.menu.OnSaveGame;
 import com.pacgame.model.SavedGame;
 import javafx.collections.FXCollections;
@@ -10,14 +11,17 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class ContextSaveGame extends SubView {
+public class MainReadGame extends SubView {
+
     private Label nameLabel;
-    private TextField nameEl;
     private ListView<SavedGame> savesList;
     private ObservableList<SavedGame> savesCollection;
 
@@ -29,7 +33,7 @@ public class ContextSaveGame extends SubView {
     private PacmanController pacmanController;
     private ObservableList<MazeController> mazeCollection;
 
-    public ContextSaveGame() {
+    public MainReadGame() {
         savesCollection = FXCollections.observableArrayList();
     }
 
@@ -50,7 +54,6 @@ public class ContextSaveGame extends SubView {
         pane.setPadding(new Insets(0, 0, 25, 0));
         pane.getChildren().add(vBox);
         vBox.getChildren().add(createNameLabel());
-        vBox.getChildren().add(createNameEl());
         vBox.getChildren().add(createSavesList());
 
         BorderPane buttons = new BorderPane();
@@ -82,14 +85,6 @@ public class ContextSaveGame extends SubView {
         return nameLabel;
     }
 
-    public TextField createNameEl()
-    {
-        nameEl = new TextField();
-        nameEl.setMaxWidth(250);
-
-        return nameEl;
-    }
-
     public ListView createSavesList()
     {
         savesList = new ListView<>();
@@ -113,10 +108,10 @@ public class ContextSaveGame extends SubView {
 
     public Button createSaveButton()
     {
-        readGameBtn = new Button("Zapisz");
+        readGameBtn = new Button("Wczytaj");
         readGameBtn.setFont(new Font(20));
 
-        setOnSaveButton();
+        setOnReadGameButton();
 
 //        backBtn.setTextFill(Color.WHITE);
 
@@ -125,20 +120,14 @@ public class ContextSaveGame extends SubView {
 
     public void addListElement()
     {
-        SavedGame savedGame = createSavedGame();
 
-        savesCollection.add(savedGame);
+//        savesCollection.add(savedGame);
     }
 
-    private SavedGame createSavedGame()
+    private SavedGame createReadGame()
     {
         SavedGame savedGame = new SavedGame();
 
-        savedGame.setName(nameEl.getText());
-        savedGame.setLives(Integer.parseInt(pacmanController.getControlledObject().getLives()));
-        savedGame.setScore(Integer.parseInt(pacmanController.getScore()));
-        savedGame.setPacmanMapPoint(pacmanController.getMovementManager().getCurrentPoint());
-        savedGame.setMazeCollection(mazeCollection);
 
         return savedGame;
     }
@@ -148,9 +137,9 @@ public class ContextSaveGame extends SubView {
         backBtn.setOnAction(new OnBackToMenu(this));
     }
 
-    private void setOnSaveButton()
+    private void setOnReadGameButton()
     {
-        readGameBtn.setOnAction(new OnSaveGame(this));
+        readGameBtn.setOnAction(new OnReadGameSelect(this.getMenu()));
     }
 
 

@@ -248,12 +248,16 @@ public class App extends Application {
         MainSettings mainSettings = Factory.createMainSettings();
         ContextSettings contextSettings = Factory.createContextSettings();
         ContextSaveGame contextSaveGame = Factory.createContextSaveGame();
+        MainReadGame mainReadGame = Factory.createMainReadGame();
+
         mainMenu.setMainSettings(mainSettings);
         contextMenu.setContextSettings(contextSettings);
         contextMenu.setContextSaveGame(contextSaveGame);
         mainSettings.setMenu(mainMenu);
         contextSettings.setMenu(contextMenu);
         contextSaveGame.setMenu(contextMenu);
+        mainReadGame.setMenu(mainMenu);
+        mainMenu.setMainReadGame(mainReadGame);
 
         Node gameCanvas = mapMain.getView(500, 500);
         Node entryTimerEl = entryTimer.getView(500, 500);
@@ -270,6 +274,7 @@ public class App extends Application {
         Node mainSettingsPane = mainSettings.getView(500, 500);
         Node contextSettingsPane = contextSettings.getView(500, 500);
         Node contextSaveGamePane = contextSaveGame.getView(500, 500);
+        Node mainReadGamePane = mainReadGame.getView(500, 500);
 
 
         root.getChildren().add(gameCanvas);
@@ -305,6 +310,7 @@ public class App extends Application {
         root.getChildren().add(contextMenuPane);
         root.getChildren().add(contextSettingsPane);
         root.getChildren().add(contextSaveGamePane);
+        root.getChildren().add(mainReadGamePane);
 
 
         indexForMaze = root.getChildren().indexOf(entryTimerEl);

@@ -29,6 +29,7 @@ public class MainMenu extends Menu {
     private Label settingsLabel;
     private Label exitLabel;
     private MainSettings mainSettings;
+    private MainReadGame mainReadGame;
 
     public MainMenu(Scene scene) {
         super(scene);
@@ -141,5 +142,13 @@ public class MainMenu extends Menu {
 
     public void setMainSettings(MainSettings mainSettings) {
         this.mainSettings = mainSettings;
+    }
+
+    public MainReadGame getMainReadGame() {
+        return mainReadGame;
+    }
+
+    public void setMainReadGame(MainReadGame mainReadGame) {
+        this.mainReadGame = mainReadGame;
     }
 }
