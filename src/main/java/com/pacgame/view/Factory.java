@@ -55,6 +55,20 @@ public class Factory {
     {
         return new MainReadGame();
     }
+    public static UserAccount createUserAccount()
+    {
+        return new UserAccount();
+    }
+
+    public static LoginForm createLoginForm()
+    {
+        return new LoginForm();
+    }
+
+    public static RegisterForm createRegisterForm()
+    {
+        return new RegisterForm();
+    }
 
 
 }

@@ -66,7 +66,7 @@ public class ContextSaveGame extends SubView {
         vBox.getChildren().add(buttons);
 
 
-        invisible();
+        hide();
 
         pane.toFront();
 
@@ -145,7 +145,7 @@ public class ContextSaveGame extends SubView {
 
     private void setOnBackButton()
     {
-        backBtn.setOnAction(new OnBackToMenu(this));
+        backBtn.setOnAction(new OnBackToMenu(this, getMenu()));
     }
 
     private void setOnSaveButton()

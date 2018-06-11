@@ -1,13 +1,7 @@
 package com.pacgame.view;
 
 import com.pacgame.App;
-import com.pacgame.View;
 import com.pacgame.event.eventHandler.menu.*;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -17,9 +11,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
-import static javafx.scene.input.KeyCode.DOWN;
-import static javafx.scene.input.KeyCode.UP;
 
 public class ContextMenu extends Menu {
 
@@ -64,10 +55,10 @@ public class ContextMenu extends Menu {
         removeBorderColorMenuOptions();
         checkMenuOption((Label) menuOptions.get(0));
 
-        invisible();
+        hide();
         setCheckedMenuOptionOnFirst();
         setOnMouseOver();
-        setOnMouseDoubleClick();
+        setOnMouseClick();
 
         return pane;
     }
@@ -131,27 +122,27 @@ public class ContextMenu extends Menu {
 
     private void setOnStartNewGameSelect()
     {
-        startNewGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnStartNewGameSelect(this));
+        startNewGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnStartNewGameSelect(this, null));
     }
 
 
     private void setOnResumeGameSelect()
     {
-        resumeGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnResumeGameSelect(this));
+        resumeGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnResumeGameSelect(this, null));
     }
 
     private void setSaveGameSelect()
     {
-        saveGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnSaveGameSelect(this));
+        saveGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnSaveGameSelect(this, getContextSaveGame()));
     }
 
     private void setOnContextSettingsSelect() {
-        settingsLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnContextSettingsSelect(this));
+        settingsLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnContextSettingsSelect(this, getContextSettings()));
     }
 
     private void setOnExitToMainMenuSelect()
     {
-        exitToMainMenuLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnExitToMainMenuSelect(this));
+        exitToMainMenuLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnExitToMainMenuSelect(this, App.getMainMenu()));
     }
     public void updateFocusMenuOption()
     {

@@ -1,6 +1,7 @@
 package com.pacgame.event.eventHandler.menu;
 
 import com.pacgame.App;
+import com.pacgame.View;
 import com.pacgame.view.ContextMenu;
 import com.pacgame.view.Menu;
 import javafx.event.Event;
@@ -9,8 +10,8 @@ import javafx.scene.input.KeyEvent;
 
 public class OnSaveGameSelect extends MenuHandler {
 
-    public OnSaveGameSelect(Menu menu) {
-        super(menu);
+    public OnSaveGameSelect(View viewToHide, View viewToShow) {
+        super(viewToHide, viewToShow);
     }
 
     /**
@@ -26,9 +27,9 @@ public class OnSaveGameSelect extends MenuHandler {
             return;
         }
 
-        if (getMenu().isVisible() && !App.isPlaying()) {
-            getMenu().invisible();
-            ((ContextMenu)getMenu()).getContextSaveGame().visible();
+        if (getViewToHide().isVisible() && !App.isPlaying()) {
+            getViewToHide().hide();
+            getViewToShow().show();
         }
     }
 }

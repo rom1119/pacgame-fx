@@ -15,12 +15,12 @@ public abstract class View {
         this.pane = pane;
     }
 
-    public void visible()
+    public void show()
     {
         pane.setVisible(true);
     }
 
-    public void invisible()
+    public void hide()
     {
         pane.setVisible(false);
     }

@@ -1,10 +1,7 @@
 package com.pacgame.view;
 
 import com.pacgame.App;
-import com.pacgame.event.eventHandler.menu.OnExitSelect;
-import com.pacgame.event.eventHandler.menu.OnMainSettingsSelect;
-import com.pacgame.event.eventHandler.menu.OnReadGameSelect;
-import com.pacgame.event.eventHandler.menu.OnStartNewGameSelect;
+import com.pacgame.event.eventHandler.menu.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -26,10 +23,17 @@ import static javafx.scene.input.KeyCode.UP;
 public class MainMenu extends Menu {
     private Label startGameLabel;
     private Label readGameLabel;
+    private Label loginLabel;
+    private Label registerLabel;
+    private Label userAccountLabel;
     private Label settingsLabel;
     private Label exitLabel;
+
     private MainSettings mainSettings;
     private MainReadGame mainReadGame;
+    private LoginForm loginForm;
+    private RegisterForm registerForm;
+    private UserAccount userAccount;
 
     public MainMenu(Scene scene) {
         super(scene);
@@ -52,15 +56,18 @@ public class MainMenu extends Menu {
         pane.getChildren().add(vBox);
         vBox.getChildren().add(createStartGameLabel());
         vBox.getChildren().add(createReadGameLabel());
+        vBox.getChildren().add(createLoginLabel());
+        vBox.getChildren().add(createRegisterLabel());
+        vBox.getChildren().add(createUserAccountLabel());
         vBox.getChildren().add(createSettingsLabel());
         vBox.getChildren().add(createExitLabel());
 
 
-        menuOptions.addAll(startGameLabel, readGameLabel, settingsLabel, exitLabel);
+        menuOptions.addAll(startGameLabel, readGameLabel, loginLabel, registerLabel, userAccountLabel, settingsLabel, exitLabel);
         removeBorderColorMenuOptions();
         checkMenuOption((Label) menuOptions.get(0));
         setOnMouseOver();
-        setOnMouseDoubleClick();
+        setOnMouseClick();
 
         pane.toFront();
 
@@ -72,6 +79,7 @@ public class MainMenu extends Menu {
         startGameLabel = new Label("Rozpocznij");
         startGameLabel.setFont(new Font(40));
         startGameLabel.setTextFill(Color.WHITE);
+        startGameLabel.setVisible(false);
 
         setOnStartGameSelect();
 
@@ -83,10 +91,45 @@ public class MainMenu extends Menu {
         readGameLabel = new Label("Wczytaj grę");
         readGameLabel.setFont(new Font(40));
         readGameLabel.setTextFill(Color.WHITE);
+        readGameLabel.setVisible(false);
 
         setOnReadGameSelect();
 
         return readGameLabel;
+    }
+
+    public Label createLoginLabel()
+    {
+        loginLabel = new Label("Zaloguj się");
+        loginLabel.setFont(new Font(40));
+        loginLabel.setTextFill(Color.WHITE);
+
+        setOnLoginSelect();
+
+        return loginLabel;
+    }
+
+    public Label createRegisterLabel()
+    {
+        registerLabel = new Label("Załóż konto");
+        registerLabel.setFont(new Font(40));
+        registerLabel.setTextFill(Color.WHITE);
+
+        setOnRegisterSelect();
+
+        return registerLabel;
+    }
+
+    public Label createUserAccountLabel()
+    {
+        userAccountLabel = new Label("Konto użytkownika");
+        userAccountLabel.setFont(new Font(40));
+        userAccountLabel.setTextFill(Color.WHITE);
+        userAccountLabel.setVisible(false);
+
+        setOnUserAccountSelect();
+
+        return userAccountLabel;
     }
 
     public Label createSettingsLabel()
@@ -94,6 +137,7 @@ public class MainMenu extends Menu {
         settingsLabel = new Label("Ustawienia");
         settingsLabel.setFont(new Font(40));
         settingsLabel.setTextFill(Color.WHITE);
+        settingsLabel.setVisible(false);
 
         setOnSettingsSelect();
 
@@ -113,22 +157,36 @@ public class MainMenu extends Menu {
 
     private void setOnStartGameSelect()
     {
-        startGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnStartNewGameSelect(this));
+        startGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnStartNewGameSelect(this, null));
     }
 
     private void setOnReadGameSelect()
     {
-        readGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnReadGameSelect(this));
+        readGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnReadGameSelect(this, getMainReadGame()));
+    }
+
+    private void setOnLoginSelect()
+    {
+        loginLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnLoginFormSelect(this, getLoginForm()));
+    }
+    private void setOnRegisterSelect()
+    {
+        registerLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnRegisterFormSelect(this, getRegisterForm()));
+    }
+
+    private void setOnUserAccountSelect()
+    {
+        userAccountLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnUserAccountSelect(this, getUserAccount()));
     }
 
     private void setOnSettingsSelect()
     {
-        settingsLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnMainSettingsSelect(this));
+        settingsLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnMainSettingsSelect(this, getMainSettings()));
     }
 
     private void setOnExitSelect()
     {
-        exitLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnExitSelect(this));
+        exitLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnExitSelect(this, null));
     }
 
     public void updateFocusMenuOption()
@@ -150,5 +208,78 @@ public class MainMenu extends Menu {
 
     public void setMainReadGame(MainReadGame mainReadGame) {
         this.mainReadGame = mainReadGame;
+    }
+
+    public LoginForm getLoginForm() {
+        return loginForm;
+    }
+
+    public void setLoginForm(LoginForm loginForm) {
+        this.loginForm = loginForm;
+    }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+
+    public RegisterForm getRegisterForm() {
+        return registerForm;
+    }
+
+    public void setRegisterForm(RegisterForm registerForm) {
+        this.registerForm = registerForm;
+    }
+
+    public Label getStartGameLabel() {
+        return startGameLabel;
+    }
+
+    public Label getReadGameLabel() {
+        return readGameLabel;
+    }
+
+    public Label getLoginLabel() {
+        return loginLabel;
+    }
+
+    public Label getUserAccountLabel() {
+        return userAccountLabel;
+    }
+
+    public Label getSettingsLabel() {
+        return settingsLabel;
+    }
+
+    public Label getExitLabel() {
+        return exitLabel;
+    }
+
+    public Label getRegisterLabel() {
+        return registerLabel;
+    }
+
+    public void updateMenuElementsVisibility(boolean isLoggedUser)
+    {
+        if (isLoggedUser) {
+            getStartGameLabel().setVisible(true);
+            getReadGameLabel().setVisible(true);
+            getSettingsLabel().setVisible(true);
+            getUserAccountLabel().setVisible(true);
+
+            getRegisterLabel().setVisible(false);
+            getLoginLabel().setVisible(false);
+        } else {
+            getStartGameLabel().setVisible(false);
+            getReadGameLabel().setVisible(false);
+            getSettingsLabel().setVisible(false);
+            getUserAccountLabel().setVisible(false);
+
+            getRegisterLabel().setVisible(true);
+            getLoginLabel().setVisible(true);
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.pacgame.view;
 
-import com.pacgame.View;
 import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
 import com.pacgame.event.eventHandler.menu.OnBackToMenu;
@@ -59,7 +58,7 @@ public class ContextSettings extends SubView {
         vBox.getChildren().add(buttons);
 
 
-        invisible();
+        hide();
 
         pane.toFront();
 
@@ -128,7 +127,7 @@ public class ContextSettings extends SubView {
 
     private void setOnBackButton()
     {
-        back.setOnAction(new OnBackToMenu(this));
+        back.setOnAction(new OnBackToMenu(this, getMenu()));
     }
 
     private void setOnSaveButton()

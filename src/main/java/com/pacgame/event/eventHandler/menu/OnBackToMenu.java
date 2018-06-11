@@ -6,28 +6,25 @@ import com.pacgame.view.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
 
-public class OnBackToMenu implements EventHandler<ActionEvent> {
+public class OnBackToMenu extends MenuHandler{
 
-    private SubView thisView;
-
-    public OnBackToMenu(SubView thisView) {
-        this.thisView = thisView;
+    public OnBackToMenu(View viewToHide, View viewToShow) {
+        super(viewToHide, viewToShow);
     }
 
     /**
      * Invoked when a specific event of the type for which this handler is
      * registered happens.
      *
-     * @param event the event which occurred
+     * @param e the event which occurred
      */
     @Override
-    public void handle(ActionEvent event) {
-
-        if (thisView.isVisible() && !App.isPlaying()) {
-            thisView.getMenu().visible();
-            thisView.invisible();
+    public void handle(Event e) {
+        ActionEvent event = (ActionEvent) e;
+        if (getViewToHide().isVisible() && !App.isPlaying()) {
+            getViewToHide().hide();
+            getViewToShow().show();
         }
     }
 }

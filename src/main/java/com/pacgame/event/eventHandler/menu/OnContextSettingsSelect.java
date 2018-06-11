@@ -1,6 +1,7 @@
 package com.pacgame.event.eventHandler.menu;
 
 import com.pacgame.App;
+import com.pacgame.View;
 import com.pacgame.view.ContextMenu;
 import com.pacgame.view.Menu;
 import javafx.event.Event;
@@ -9,8 +10,8 @@ import javafx.scene.input.KeyEvent;
 
 public class OnContextSettingsSelect extends MenuHandler {
 
-    public OnContextSettingsSelect(Menu menu) {
-        super(menu);
+    public OnContextSettingsSelect(View viewToHide, View viewToShow) {
+        super(viewToHide, viewToShow);
     }
 
     /**
@@ -25,9 +26,9 @@ public class OnContextSettingsSelect extends MenuHandler {
         if (event.getCode() != KeyCode.ENTER) {
             return;
         }
-        if (getMenu().isVisible() && !App.isPlaying()) {
-            getMenu().invisible();
-            ((ContextMenu)getMenu()).getContextSettings().visible();
+        if (getViewToHide().isVisible() && !App.isPlaying()) {
+            getViewToHide().hide();
+            getViewToShow().show();
         }
     }
 }

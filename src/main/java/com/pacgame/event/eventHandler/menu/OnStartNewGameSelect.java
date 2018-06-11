@@ -1,16 +1,16 @@
 package com.pacgame.event.eventHandler.menu;
 
 import com.pacgame.App;
+import com.pacgame.View;
 import com.pacgame.view.Menu;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class OnStartNewGameSelect extends MenuHandler {
 
-    public OnStartNewGameSelect(Menu menu) {
-        super(menu);
+    public OnStartNewGameSelect(View viewToHide, View viewToShow) {
+        super(viewToHide, viewToShow);
     }
 
     /**
@@ -25,9 +25,9 @@ public class OnStartNewGameSelect extends MenuHandler {
         if (event.getCode() != KeyCode.ENTER) {
             return;
         }
-        if (menu.isVisible() && !App.isPlaying()) {
+        if (getViewToHide().isVisible() && !App.isPlaying()) {
             App.pacmanController.setInitPosition();
-            menu.invisible();
+            getViewToHide().hide();
             App.clearAllMazesController();
             App.pause();
             App.entryTimer.startEntryTimer();

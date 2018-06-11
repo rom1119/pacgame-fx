@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -55,7 +54,7 @@ public abstract class Menu extends View {
 
     }
 
-    protected void setOnMouseDoubleClick()
+    protected void setOnMouseClick()
     {
 
         for (Node el: menuOptions) {
@@ -202,10 +201,10 @@ public abstract class Menu extends View {
     }
 
     @Override
-    public void visible()
+    public void show()
     {
 
-        super.visible();
+        super.show();
         setCheckedMenuOptionOnFirst();
     }
 

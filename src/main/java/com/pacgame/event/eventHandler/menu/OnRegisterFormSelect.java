@@ -2,14 +2,13 @@ package com.pacgame.event.eventHandler.menu;
 
 import com.pacgame.App;
 import com.pacgame.View;
-import com.pacgame.view.Menu;
 import javafx.event.Event;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class OnExitSelect extends MenuHandler {
+public class OnRegisterFormSelect extends MenuHandler {
 
-    public OnExitSelect(View viewToHide, View viewToShow) {
+    public OnRegisterFormSelect(View viewToHide, View viewToShow) {
         super(viewToHide, viewToShow);
     }
 
@@ -17,17 +16,21 @@ public class OnExitSelect extends MenuHandler {
      * Invoked when a specific event of the type for which this handler is
      * registered happens.
      *
-     * @param e the event which occurred
+     * @param event the event which occurred
      */
     @Override
-    public void handle(Event e) {
-        KeyEvent event = (KeyEvent) e;
-
-        if (event.getCode() != KeyCode.ENTER) {
-            return;
+    public void handle(Event event) {
+        if (event instanceof KeyEvent) {
+            if (((KeyEvent)event).getCode() != KeyCode.ENTER) {
+                return;
+            }
         }
+
+
         if (!App.isPlaying()) {
-            App.exit();
+            getViewToHide().hide();
+            getViewToShow().show();
         }
     }
+
 }

@@ -1,10 +1,10 @@
 package com.pacgame.view;
 
+import com.pacgame.App;
 import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
 import com.pacgame.event.eventHandler.menu.OnBackToMenu;
 import com.pacgame.event.eventHandler.menu.OnReadGameSelect;
-import com.pacgame.event.eventHandler.menu.OnSaveGame;
 import com.pacgame.model.SavedGame;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +14,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -69,7 +68,7 @@ public class MainReadGame extends SubView {
         vBox.getChildren().add(buttons);
 
 
-        invisible();
+        hide();
 
         pane.toFront();
 
@@ -134,12 +133,12 @@ public class MainReadGame extends SubView {
 
     private void setOnBackButton()
     {
-        backBtn.setOnAction(new OnBackToMenu(this));
+        backBtn.setOnAction(new OnBackToMenu(this, App.getMainMenu()));
     }
 
     private void setOnReadGameButton()
     {
-        readGameBtn.setOnAction(new OnReadGameSelect(this.getMenu()));
+        readGameBtn.setOnAction(new OnReadGameSelect(this, App.getMainMenu()));
     }
 
 

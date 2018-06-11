@@ -41,8 +41,11 @@ public class App extends Application {
     public static int indexForMaze = 0;
 
     private static MazeController mazeControllerNew;
+
     private static boolean playing = false;
     private static boolean runningGame = false;
+    private static boolean loggedUser = false;
+
     private static Timeline mazeCreateTimeline;
 
     public static MainMenu getMainMenu() {
@@ -67,6 +70,15 @@ public class App extends Application {
 
     public static void setRunningGame(boolean runningGame) {
         App.runningGame = runningGame;
+    }
+
+    public static boolean isLoggedUser() {
+        return loggedUser;
+    }
+
+    public static void setLoggedUser(boolean loggedUser) {
+        App.loggedUser = loggedUser;
+        mainMenu.updateMenuElementsVisibility(loggedUser);
     }
 
     public static void play()
@@ -249,15 +261,24 @@ public class App extends Application {
         ContextSettings contextSettings = Factory.createContextSettings();
         ContextSaveGame contextSaveGame = Factory.createContextSaveGame();
         MainReadGame mainReadGame = Factory.createMainReadGame();
+        UserAccount userAccount = Factory.createUserAccount();
+        LoginForm loginForm = Factory.createLoginForm();
+        RegisterForm registerForm = Factory.createRegisterForm();
 
         mainMenu.setMainSettings(mainSettings);
+        mainMenu.setLoginForm(loginForm);
+        mainMenu.setRegisterForm(registerForm);
+        mainMenu.setUserAccount(userAccount);
+        mainMenu.setMainReadGame(mainReadGame);
         contextMenu.setContextSettings(contextSettings);
         contextMenu.setContextSaveGame(contextSaveGame);
         mainSettings.setMenu(mainMenu);
         contextSettings.setMenu(contextMenu);
         contextSaveGame.setMenu(contextMenu);
         mainReadGame.setMenu(mainMenu);
-        mainMenu.setMainReadGame(mainReadGame);
+        userAccount.setMenu(mainMenu);
+        loginForm.setRegisterForm(registerForm);
+        registerForm.setLoginForm(loginForm);
 
         Node gameCanvas = mapMain.getView(500, 500);
         Node entryTimerEl = entryTimer.getView(500, 500);
@@ -266,7 +287,7 @@ public class App extends Application {
         Label livesUIControll = gameInfo.getLives();
         gameInfoPane.setTranslateX(500);
 
-        // menu
+        // menuToHide
         Node mainMenuPane = mainMenu.getView(500, 500);
         Node contextMenuPane = contextMenu.getView(500, 500);
 
@@ -275,6 +296,9 @@ public class App extends Application {
         Node contextSettingsPane = contextSettings.getView(500, 500);
         Node contextSaveGamePane = contextSaveGame.getView(500, 500);
         Node mainReadGamePane = mainReadGame.getView(500, 500);
+        Node loginFormPane = loginForm.getView(500, 500);
+        Node registerFormPane = registerForm.getView(500, 500);
+        Node userAccountPane = userAccount.getView(500, 500);
 
 
         root.getChildren().add(gameCanvas);
@@ -284,7 +308,7 @@ public class App extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.setTitle("PAC-GAME new PACMAN :-)");
+        primaryStage.setTitle("PAC-GAME this is new PACMAN :-)");
         primaryStage.show();
 
         pacmanController = new PacmanController(scene, root);
@@ -311,6 +335,9 @@ public class App extends Application {
         root.getChildren().add(contextSettingsPane);
         root.getChildren().add(contextSaveGamePane);
         root.getChildren().add(mainReadGamePane);
+        root.getChildren().add(loginFormPane);
+        root.getChildren().add(registerFormPane);
+        root.getChildren().add(userAccountPane);
 
 
         indexForMaze = root.getChildren().indexOf(entryTimerEl);

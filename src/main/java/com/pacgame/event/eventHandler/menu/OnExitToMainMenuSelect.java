@@ -1,7 +1,7 @@
 package com.pacgame.event.eventHandler.menu;
 
 import com.pacgame.App;
-import com.pacgame.view.MainMenu;
+import com.pacgame.View;
 import com.pacgame.view.Menu;
 import javafx.event.Event;
 import javafx.scene.input.KeyCode;
@@ -9,8 +9,8 @@ import javafx.scene.input.KeyEvent;
 
 public class OnExitToMainMenuSelect extends MenuHandler {
 
-    public OnExitToMainMenuSelect(Menu menu) {
-        super(menu);
+    public OnExitToMainMenuSelect(View viewToHide, View viewToShow) {
+        super(viewToHide, viewToShow);
     }
 
     /**
@@ -28,8 +28,8 @@ public class OnExitToMainMenuSelect extends MenuHandler {
         }
 
         if (!App.isPlaying()) {
-            menu.invisible();
-            App.getMainMenu().visible();
+            getViewToHide().hide();
+            getViewToShow().show();
             App.setRunningGame(false);
             App.mainMenu.updateFocusMenuOption();
 

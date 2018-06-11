@@ -1,24 +1,32 @@
 package com.pacgame.event.eventHandler.menu;
 
+import com.pacgame.View;
 import com.pacgame.view.Menu;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.scene.input.KeyEvent;
 
 public abstract class MenuHandler implements EventHandler {
 
-    protected Menu menu;
+    protected View viewToHide;
+    protected View viewToShow;
 
-    public MenuHandler(Menu menu) {
-        this.menu = menu;
+    public MenuHandler(View viewToHide, View viewToShow) {
+        this.viewToHide = viewToHide;
+        this.viewToShow = viewToShow;
     }
 
-    public Menu getMenu() {
-        return menu;
+    public View getViewToHide() {
+        return viewToHide;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setViewToHide(View viewToHide) {
+        this.viewToHide = viewToHide;
+    }
+
+    public View getViewToShow() {
+        return viewToShow;
+    }
+
+    public void setViewToShow(View viewToShow) {
+        this.viewToShow = viewToShow;
     }
 }

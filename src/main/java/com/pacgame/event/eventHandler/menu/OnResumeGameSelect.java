@@ -1,16 +1,16 @@
 package com.pacgame.event.eventHandler.menu;
 
 import com.pacgame.App;
+import com.pacgame.View;
 import com.pacgame.view.Menu;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class OnResumeGameSelect extends MenuHandler {
 
-    public OnResumeGameSelect(Menu menu) {
-        super(menu);
+    public OnResumeGameSelect(View viewToHide, View viewToShow) {
+        super(viewToHide, viewToShow);
     }
 
     /**
@@ -27,7 +27,7 @@ public class OnResumeGameSelect extends MenuHandler {
         }
 
         if (!App.isPlaying()) {
-            menu.invisible();
+            getViewToHide().hide();
             App.play();
         }
     }
