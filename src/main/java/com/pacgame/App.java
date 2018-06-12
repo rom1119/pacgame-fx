@@ -5,6 +5,7 @@ import com.pacgame.controller.PacmanController;
 import com.pacgame.event.MazeEvent;
 import com.pacgame.event.eventHandler.OnEscapeKey;
 import com.pacgame.event.eventHandler.OnPacmanTouchMaze;
+import com.pacgame.model.User;
 import com.pacgame.service.MapPathCreator;
 import com.pacgame.service.PointPopulator;
 import com.pacgame.view.*;
@@ -14,6 +15,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,8 +46,14 @@ public class App extends Application {
 
     private static boolean playing = false;
     private static boolean runningGame = false;
-    private static boolean loggedUser = false;
+    private static SimpleBooleanProperty loggedUser;
 
+    static {
+        loggedUser = new SimpleBooleanProperty();
+        loggedUser.set(false);
+    }
+
+    public static User user;
     private static Timeline mazeCreateTimeline;
 
     public static MainMenu getMainMenu() {
@@ -73,12 +81,24 @@ public class App extends Application {
     }
 
     public static boolean isLoggedUser() {
+        return loggedUser.get();
+    }
+
+    public static SimpleBooleanProperty loggedUserProperty() {
         return loggedUser;
     }
 
     public static void setLoggedUser(boolean loggedUser) {
-        App.loggedUser = loggedUser;
+        App.loggedUser.set(loggedUser);
         mainMenu.updateMenuElementsVisibility(loggedUser);
+    }
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        App.user = user;
     }
 
     public static void play()

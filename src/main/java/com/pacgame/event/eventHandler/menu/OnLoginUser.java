@@ -2,6 +2,7 @@ package com.pacgame.event.eventHandler.menu;
 
 import com.pacgame.App;
 import com.pacgame.View;
+import com.pacgame.model.User;
 import com.pacgame.view.LoginForm;
 import com.pacgame.view.RegisterForm;
 import javafx.event.ActionEvent;
@@ -27,8 +28,18 @@ public class OnLoginUser extends MenuHandler {
         if (loginForm.isValid()) {
             loginForm.hide();
             getViewToShow().show();
+            createUser(loginForm);
             App.setLoggedUser(true);
             System.out.println("login success");
         }
+    }
+
+
+    private void createUser(LoginForm loginForm) {
+
+        User user = new User();
+        user.setEmail(loginForm.getEmailEl().getText());
+
+        App.setUser(user);
     }
 }

@@ -1,9 +1,15 @@
 package com.pacgame.view;
 
+import com.pacgame.App;
 import com.pacgame.View;
+import com.pacgame.event.eventHandler.menu.OnLogout;
+import com.pacgame.model.User;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
@@ -14,6 +20,8 @@ public class GameInfo extends View {
 
     private Label score;
     private Label lives;
+    private Button logout;
+    private Label loggedAs;
 
     @Override
     public Node getView(int width, int height) {
@@ -31,11 +39,17 @@ public class GameInfo extends View {
 
         VBox vBox2 = new VBox();
         pane.getChildren().add(vBox2);
-
+        VBox vBox3 = new VBox();
+        pane.getChildren().add(vBox3);
 
 
         vBox2.getChildren().add(createLivesLabel());
         vBox2.getChildren().add(createLivesEl());
+
+        vBox2.getChildren().add(createLogoutBtn());
+        vBox2.getChildren().add(createLoggedAsLabel());
+
+        setOnLoggedUserChange();
 //        pane.getC
 
 
@@ -46,7 +60,6 @@ public class GameInfo extends View {
     {
         Label scoreLabel = new Label("Punkty: ");
         scoreLabel.setFont(new Font(18));
-        pane.getChildren().add(scoreLabel);
 
         return scoreLabel;
     }
@@ -55,7 +68,6 @@ public class GameInfo extends View {
     {
         Label livesLabel = new Label("Życia: ");
         livesLabel.setFont(new Font(18));
-        pane.getChildren().add(livesLabel);
 
         return livesLabel;
     }
@@ -64,7 +76,6 @@ public class GameInfo extends View {
     {
         score = new Label("");
         score.setFont(new Font(18));
-        pane.getChildren().add(score);
 
         return score;
     }
@@ -73,9 +84,33 @@ public class GameInfo extends View {
     {
         lives = new Label("");
         lives.setFont(new Font(18));
-        pane.getChildren().add(lives);
 
         return lives;
+    }
+
+    public Button createLogoutBtn()
+    {
+        logout = new Button("Wyloguj");
+        logout.setFont(new Font(18));
+        logout.setVisible(false);
+
+        setOnLogoutBtn();
+
+        return logout;
+    }
+
+    public Label createLoggedAsLabel()
+    {
+        loggedAs = new Label("");
+        loggedAs.setFont(new Font(18));
+        loggedAs.setVisible(false);
+
+        return loggedAs;
+    }
+
+    private void setOnLogoutBtn()
+    {
+        logout.setOnAction(new OnLogout(this));
     }
 
     public Label getLives() {
@@ -92,5 +127,29 @@ public class GameInfo extends View {
 
     public void setScore(Label score) {
         this.score = score;
+    }
+
+    private void setOnLoggedUserChange()
+    {
+        App.loggedUserProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                User loggedUser = App.getUser();
+                if (newValue) {
+                    if (loggedUser == null) {
+                        return;
+                    }
+                    loggedAs.setText(loggedUser.getEmail());
+                    loggedAs.setVisible(true);
+                    logout.setVisible(true);
+                } else {
+                    loggedAs.setText("");
+                    loggedAs.setVisible(false);
+                    logout.setVisible(false);
+                }
+
+
+            }
+        });
     }
 }

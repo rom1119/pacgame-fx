@@ -6,6 +6,7 @@ import com.pacgame.controller.MazeController;
 import com.pacgame.controller.PacmanController;
 import com.pacgame.event.eventHandler.menu.OnLoginUser;
 import com.pacgame.event.eventHandler.menu.OnRegisterFormSelect;
+import com.pacgame.model.User;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -94,7 +95,7 @@ public class LoginForm extends View {
 
     private Label createPasswordLabel()
     {
-        passwordLabel = new Label("Email: ");
+        passwordLabel = new Label("Hasło: ");
         passwordLabel.setFont(new Font(30));
         passwordLabel.setTextFill(Color.WHITE);
 
@@ -153,6 +154,13 @@ public class LoginForm extends View {
         this.registerForm = registerForm;
     }
 
+    public TextField getEmailEl() {
+        return emailEl;
+    }
+
+    public PasswordField getPasswordEl() {
+        return passwordEl;
+    }
 
     public boolean isValid() {
 
@@ -167,6 +175,5 @@ public class LoginForm extends View {
 
         return true;
     }
-
 
 }
