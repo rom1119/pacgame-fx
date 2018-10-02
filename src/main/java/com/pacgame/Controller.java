@@ -1,11 +1,10 @@
 package com.pacgame;
 
-import com.pacgame.model.Pacman;
-import com.pacgame.model.Player;
-import com.pacgame.service.MovementManager;
+import com.pacgame.board.model.Pacman;
+import com.pacgame.board.model.Player;
+import com.pacgame.board.service.MovementManager;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 
 public abstract class Controller {
 

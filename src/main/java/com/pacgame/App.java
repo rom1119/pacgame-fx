@@ -1,15 +1,16 @@
 package com.pacgame;
 
-import com.pacgame.controller.MazeController;
-import com.pacgame.controller.PacmanController;
-import com.pacgame.event.MazeEvent;
-import com.pacgame.event.eventHandler.OnEscapeKey;
-import com.pacgame.event.eventHandler.OnPacmanTouchMaze;
-import com.pacgame.model.User;
-import com.pacgame.service.MapPathCreator;
-import com.pacgame.service.PointPopulator;
-import com.pacgame.view.*;
-import com.pacgame.view.Map;
+import com.pacgame.board.controller.MazeController;
+import com.pacgame.board.controller.PacmanController;
+import com.pacgame.board.event.MazeEvent;
+import com.pacgame.board.event.eventHandler.OnEscapeKey;
+import com.pacgame.board.event.eventHandler.OnPacmanTouchMaze;
+import com.pacgame.board.model.User;
+import com.pacgame.board.service.MapPathCreator;
+import com.pacgame.board.service.PointPopulator;
+import com.pacgame.ui.component.*;
+import com.pacgame.ui.component.Map;
+import com.pacgame.ui.service.Factory;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
