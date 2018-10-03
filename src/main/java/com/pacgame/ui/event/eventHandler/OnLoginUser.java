@@ -2,9 +2,13 @@ package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.App;
 import com.pacgame.View;
-import com.pacgame.board.model.User;
+import com.pacgame.data.model.User;
 import com.pacgame.ui.component.LoginForm;
+import com.pacgame.ui.event.MenuHandler;
+import com.pacgame.data.service.ApiImpl;
 import javafx.event.Event;
+
+import java.io.UnsupportedEncodingException;
 
 public class OnLoginUser extends MenuHandler {
 
@@ -25,18 +29,28 @@ public class OnLoginUser extends MenuHandler {
         if (loginForm.isValid()) {
             loginForm.hide();
             getViewToShow().show();
-            createUser(loginForm);
+            User user = createUser(loginForm);
+
+            try {
+                ApiImpl.loginUser(user);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
             App.setLoggedUser(true);
             System.out.println("login success");
         }
     }
 
 
-    private void createUser(LoginForm loginForm) {
+    private User createUser(LoginForm loginForm) {
 
         User user = new User();
         user.setEmail(loginForm.getEmailEl().getText());
+        user.setPassword(loginForm.getPasswordEl().getText());
 
         App.setUser(user);
+
+        return user;
     }
 }

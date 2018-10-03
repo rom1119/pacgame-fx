@@ -1,7 +1,7 @@
 package com.pacgame.board.controller;
 
 import com.pacgame.App;
-import com.pacgame.Controller;
+import com.pacgame.board.Controller;
 import com.pacgame.Direction;
 import com.pacgame.board.model.*;
 import com.pacgame.board.event.MazeEvent;

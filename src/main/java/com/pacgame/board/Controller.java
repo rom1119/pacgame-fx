@@ -1,4 +1,4 @@
-package com.pacgame;
+package com.pacgame.board;
 
 import com.pacgame.board.model.Pacman;
 import com.pacgame.board.model.Player;

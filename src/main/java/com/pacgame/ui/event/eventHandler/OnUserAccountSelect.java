@@ -2,6 +2,7 @@ package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.App;
 import com.pacgame.View;
+import com.pacgame.ui.event.MenuHandler;
 import javafx.event.Event;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;

@@ -1,4 +1,4 @@
-package com.pacgame.board.model;
+package com.pacgame.data.model;
 
 public class User {
 

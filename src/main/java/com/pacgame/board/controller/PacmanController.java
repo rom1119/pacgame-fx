@@ -1,7 +1,7 @@
 package com.pacgame.board.controller;
 
 import com.pacgame.App;
-import com.pacgame.Controller;
+import com.pacgame.board.Controller;
 import com.pacgame.Point;
 import com.pacgame.board.model.Pacman;
 import com.pacgame.board.event.PointEvent;

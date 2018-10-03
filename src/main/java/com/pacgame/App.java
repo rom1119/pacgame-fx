@@ -5,7 +5,7 @@ import com.pacgame.board.controller.PacmanController;
 import com.pacgame.board.event.MazeEvent;
 import com.pacgame.board.event.eventHandler.OnEscapeKey;
 import com.pacgame.board.event.eventHandler.OnPacmanTouchMaze;
-import com.pacgame.board.model.User;
+import com.pacgame.data.model.User;
 import com.pacgame.board.service.MapPathCreator;
 import com.pacgame.board.service.PointPopulator;
 import com.pacgame.ui.component.*;

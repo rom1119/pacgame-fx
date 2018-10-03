@@ -2,6 +2,7 @@ package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.View;
 import com.pacgame.ui.component.RegisterForm;
+import com.pacgame.ui.event.MenuHandler;
 import javafx.event.Event;
 
 public class OnRegisterUser extends MenuHandler {

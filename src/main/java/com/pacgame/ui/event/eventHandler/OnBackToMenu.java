@@ -2,10 +2,11 @@ package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.App;
 import com.pacgame.View;
+import com.pacgame.ui.event.MenuHandler;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 
-public class OnBackToMenu extends MenuHandler{
+public class OnBackToMenu extends MenuHandler {
 
     public OnBackToMenu(View viewToHide, View viewToShow) {
         super(viewToHide, viewToShow);

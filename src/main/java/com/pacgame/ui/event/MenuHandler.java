@@ -1,4 +1,4 @@
-package com.pacgame.ui.event.eventHandler;
+package com.pacgame.ui.event;
 
 import com.pacgame.View;
 import javafx.event.EventHandler;
