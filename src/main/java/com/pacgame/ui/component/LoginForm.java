@@ -26,6 +26,8 @@ public class LoginForm extends View {
     private Button loginBtn;
     private Button registerBtn;
 
+    private Label loginError;
+
     private RegisterForm registerForm;
 
     private PacmanController pacmanController;
@@ -52,6 +54,7 @@ public class LoginForm extends View {
         vBox.getChildren().add(createEmailEl());
         vBox.getChildren().add(createPasswordLabel());
         vBox.getChildren().add(createPasswordEl());
+        vBox.getChildren().add(createloginError());
 
 
         BorderPane buttons = new BorderPane();
@@ -109,6 +112,16 @@ public class LoginForm extends View {
         return passwordEl;
     }
 
+    private Label createloginError()
+    {
+        loginError = new Label("Invalid credential");
+        loginError.setFont(new Font(20));
+        loginError.setTextFill(Color.RED);
+        loginError.setVisible(false);
+
+        return loginError;
+    }
+
     private Button createLoginButton()
     {
         loginBtn = new Button("Zaloguj");
@@ -136,7 +149,7 @@ public class LoginForm extends View {
 
     private void setOnLoginButton()
     {
-        loginBtn.setOnAction(new OnLoginUser(this, App.getMainMenu()));
+        loginBtn.setOnAction(new OnLoginUser(this, App.getMainMenu(), App.API));
     }
 
     private void setOnRegisterButton()
@@ -159,6 +172,14 @@ public class LoginForm extends View {
 
     public PasswordField getPasswordEl() {
         return passwordEl;
+    }
+
+    public Label getLoginError() {
+        return loginError;
+    }
+
+    public void setLoginError(Label loginError) {
+        this.loginError = loginError;
     }
 
     public boolean isValid() {

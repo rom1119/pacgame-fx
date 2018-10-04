@@ -2,18 +2,25 @@ package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.App;
 import com.pacgame.View;
+import com.pacgame.data.model.Token;
 import com.pacgame.data.model.User;
+import com.pacgame.data.service.Api;
 import com.pacgame.ui.component.LoginForm;
 import com.pacgame.ui.event.MenuHandler;
-import com.pacgame.data.service.ApiImpl;
 import javafx.event.Event;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.ResourceAccessException;
 
-import java.io.UnsupportedEncodingException;
 
 public class OnLoginUser extends MenuHandler {
 
-    public OnLoginUser(View viewToHide, View viewToShow) {
+    @Autowired
+    private Api api;
+
+    public OnLoginUser(View viewToHide, View viewToShow, Api api) {
         super(viewToHide, viewToShow);
+        this.api = api;
     }
 
     /**
@@ -26,20 +33,33 @@ public class OnLoginUser extends MenuHandler {
     public void handle(Event event) {
         LoginForm loginForm = (LoginForm) getViewToHide();
 
-        if (loginForm.isValid()) {
-            loginForm.hide();
-            getViewToShow().show();
-            User user = createUser(loginForm);
-
-            try {
-                ApiImpl.loginUser(user);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
-            App.setLoggedUser(true);
-            System.out.println("login success");
+        if (!loginForm.isValid()) {
+            return;
         }
+
+        User user = createUser(loginForm);
+        try {
+            Token token = api.postApiToken(user);
+
+            if (!token.hasError()) {
+                loginForm.hide();
+                getViewToShow().show();
+                loginForm.getLoginError().setVisible(false);
+                App.setLoggedUser(true);
+                user = api.getLoggedUser();
+            } else {
+                loginForm.getLoginError().setVisible(true);
+            }
+        } catch (ResourceAccessException e) {
+            loginForm.getLoginError().setVisible(true);
+            loginForm.getLoginError().setText("Problem z serwerem");
+        } catch (HttpClientErrorException e) {
+            loginForm.getLoginError().setVisible(true);
+            loginForm.getLoginError().setText("Niepoprawne dane logowania");
+        }
+
+
+
     }
 
 

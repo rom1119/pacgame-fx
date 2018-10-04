@@ -12,11 +12,28 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserAccount extends SubView {
+
+    private Label idLabel;
+    private Label idEl;
 
     private Label emailLabel;
     private Label emailEl;
+
+    private Label nameLabel;
+    private Label nameEl;
+
+    private Label lastNameLabel;
+    private Label lastNameEl;
+
+    private Label imageLabel;
+    private Label imageEl;
+
+    private Label rolesLabel;
+    private Label rolesEl;
 
     private Label fullScoreLabel;
     private Label fullScoreEl;
@@ -45,10 +62,24 @@ public class UserAccount extends SubView {
 //        vBox.setAlignment(Pos.CENTER);
         pane.setPadding(new Insets(0, 0, 25, 0));
         pane.getChildren().add(vBox);
+
+        vBox.getChildren().add(createIdLabel());
+        vBox.getChildren().add(createIdEl());
+
+        vBox.getChildren().add(createNameLabel());
+        vBox.getChildren().add(createNameEl());
+
+        vBox.getChildren().add(createLastNameLabel());
+        vBox.getChildren().add(createLastNameEl());
+
         vBox.getChildren().add(createEmailLabel());
         vBox.getChildren().add(createEmailEl());
+
         vBox.getChildren().add(createFullScoreLabel());
         vBox.getChildren().add(createFullScoreEl());
+
+        vBox.getChildren().add(createRolesLabel());
+        vBox.getChildren().add(createRolesEl());
 
         BorderPane buttons = new BorderPane();
         vBox.setAlignment(Pos.BOTTOM_CENTER);
@@ -69,10 +100,78 @@ public class UserAccount extends SubView {
         return pane;
     }
 
+    private Label createLastNameLabel()
+    {
+        lastNameLabel = new Label("Nazwisko: ");
+        lastNameLabel.setFont(new Font(20));
+        lastNameLabel.setTextFill(Color.WHITE);
+
+        return lastNameLabel;
+    }
+
+    private Label createLastNameEl()
+    {
+        lastNameEl = new Label();
+        lastNameEl.setMaxWidth(250);
+
+        return lastNameEl;
+    }
+
+    private Label createNameLabel()
+    {
+        nameLabel = new Label("Imię: ");
+        nameLabel.setFont(new Font(20));
+        nameLabel.setTextFill(Color.WHITE);
+
+        return nameLabel;
+    }
+
+    private Label createNameEl()
+    {
+        nameLabel = new Label();
+        nameLabel.setMaxWidth(250);
+
+        return nameLabel;
+    }
+
+    private Label createIdLabel()
+    {
+        idLabel = new Label("ID użytkownika: ");
+        idLabel.setFont(new Font(20));
+        idLabel.setTextFill(Color.WHITE);
+
+        return idLabel;
+    }
+
+    private Label createRolesLabel()
+    {
+        rolesLabel = new Label("Role użytkownika w systemie: ");
+        rolesLabel.setFont(new Font(20));
+        rolesLabel.setTextFill(Color.WHITE);
+
+        return rolesLabel;
+    }
+
+    private Label createRolesEl()
+    {
+        rolesEl = new Label();
+        rolesEl.setMaxWidth(250);
+
+        return rolesEl;
+    }
+
+    private Label createIdEl()
+    {
+        idEl = new Label();
+        idEl.setMaxWidth(250);
+
+        return idEl;
+    }
+
     private Label createEmailLabel()
     {
         emailLabel = new Label("Email: ");
-        emailLabel.setFont(new Font(30));
+        emailLabel.setFont(new Font(20));
         emailLabel.setTextFill(Color.WHITE);
 
         return emailLabel;
@@ -89,8 +188,8 @@ public class UserAccount extends SubView {
 
     private Label createFullScoreLabel()
     {
-        fullScoreLabel = new Label("Email: ");
-        fullScoreLabel.setFont(new Font(30));
+        fullScoreLabel = new Label("Punkty: ");
+        fullScoreLabel.setFont(new Font(20));
         fullScoreLabel.setTextFill(Color.WHITE);
 
         return fullScoreLabel;
@@ -98,10 +197,10 @@ public class UserAccount extends SubView {
 
     private Label createFullScoreEl()
     {
-        fullScoreLabel = new Label();
-        fullScoreLabel.setMaxWidth(250);
+        fullScoreEl = new Label();
+        fullScoreEl.setMaxWidth(250);
 
-        return fullScoreLabel;
+        return fullScoreEl;
     }
 
 

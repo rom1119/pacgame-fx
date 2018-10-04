@@ -8,6 +8,8 @@ import com.pacgame.board.event.eventHandler.OnPacmanTouchMaze;
 import com.pacgame.data.model.User;
 import com.pacgame.board.service.MapPathCreator;
 import com.pacgame.board.service.PointPopulator;
+import com.pacgame.data.service.Api;
+import com.pacgame.data.service.ApiImpl;
 import com.pacgame.ui.component.*;
 import com.pacgame.ui.component.Map;
 import com.pacgame.ui.service.Factory;
@@ -29,6 +31,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.*;
 
@@ -42,6 +47,7 @@ public class App extends Application {
     public static EntryTimer entryTimer;
     public static MainMenu mainMenu;
     public static int indexForMaze = 0;
+    public static Api API = new ApiImpl();
 
     private static MazeController mazeControllerNew;
 
@@ -448,6 +454,7 @@ public class App extends Application {
      */
     public void start(Stage primaryStage) throws Exception {
 
+        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
         initApp(primaryStage);
 //        play();
         setPlaying(false);
