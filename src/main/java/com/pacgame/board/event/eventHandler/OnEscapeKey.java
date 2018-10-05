@@ -1,6 +1,7 @@
 package com.pacgame.board.event.eventHandler;
 
 import com.pacgame.App;
+import com.pacgame.View;
 import com.pacgame.ui.component.ContextMenu;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -31,6 +32,13 @@ public class OnEscapeKey implements EventHandler<KeyEvent> {
             contextMenu.updateFocusMenuOption();
             contextMenu.show();
             App.pause();
+        } else if(!App.isPlaying() && !contextMenu.isVisible()) {
+            contextMenu.updateFocusMenuOption();
+            View visibleComponentOnTop = App.getVisibleComponentOnTop();
+            if (visibleComponentOnTop != null) {
+                visibleComponentOnTop.hide();
+            }
+            contextMenu.show();
         } else {
             contextMenu.hide();
             App.play();

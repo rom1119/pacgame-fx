@@ -1,5 +1,7 @@
 package com.pacgame.data.model;
 
+import java.util.Set;
+
 public class User {
 
     private Long id;
@@ -9,6 +11,8 @@ public class User {
     private boolean acceptTerms;
 
     private UserDetails userDetails;
+
+    private String userRoles;
 
     public User() {
 
@@ -60,5 +64,13 @@ public class User {
 
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
+    }
+
+    public String getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(String userRoles) {
+        this.userRoles = userRoles;
     }
 }

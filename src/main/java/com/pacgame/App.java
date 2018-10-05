@@ -54,6 +54,7 @@ public class App extends Application {
     private static boolean playing = false;
     private static boolean runningGame = false;
     private static SimpleBooleanProperty loggedUser;
+    private static Set<View> allUIComponents;
 
     static {
         loggedUser = new SimpleBooleanProperty();
@@ -280,17 +281,43 @@ public class App extends Application {
         Scene scene = new Scene(root, 800, 500);
 
         Map mapMain = Factory.createMap("./map/map_first.png");
+        mapMain.setOrder(0);
         GameInfo gameInfo = Factory.createGameInfo();
+        gameInfo.setOrder(1);
         entryTimer = Factory.createEntryTimer();
+        entryTimer.setOrder(2);
         mainMenu = Factory.createMainMenu(scene);
+        mainMenu.setOrder(3);
         ContextMenu contextMenu = Factory.createContextMenu(scene);
+        contextMenu.setOrder(4);
         MainSettings mainSettings = Factory.createMainSettings();
+        mainSettings.setOrder(5);
         ContextSettings contextSettings = Factory.createContextSettings();
+        contextSettings.setOrder(6);
         ContextSaveGame contextSaveGame = Factory.createContextSaveGame();
+        contextSaveGame.setOrder(7);
         MainReadGame mainReadGame = Factory.createMainReadGame();
+        mainReadGame.setOrder(8);
         UserAccount userAccount = Factory.createUserAccount();
+        userAccount.setOrder(9);
         LoginForm loginForm = Factory.createLoginForm();
+        loginForm.setOrder(10);
         RegisterForm registerForm = Factory.createRegisterForm();
+        registerForm.setOrder(11);
+
+        allUIComponents = new HashSet<>();
+        allUIComponents.add(mapMain);
+        allUIComponents.add(gameInfo);
+        allUIComponents.add(entryTimer);
+        allUIComponents.add(mainMenu);
+        allUIComponents.add(contextMenu);
+        allUIComponents.add(mainSettings);
+        allUIComponents.add(contextSettings);
+        allUIComponents.add(contextSaveGame);
+        allUIComponents.add(mainReadGame);
+        allUIComponents.add(userAccount);
+        allUIComponents.add(loginForm);
+        allUIComponents.add(registerForm);
 
         mainMenu.setMainSettings(mainSettings);
         mainMenu.setLoginForm(loginForm);
@@ -400,6 +427,20 @@ public class App extends Application {
 
         setOnCloseOperation(primaryStage);
         setOnEscapeKey(scene, contextMenu);
+    }
+
+    public static View getVisibleComponentOnTop()
+    {
+        ArrayList<View> objects = new ArrayList<>(allUIComponents);
+        Collections.sort(objects, Collections.reverseOrder());
+
+        for (int i = 0; i <= objects.size(); i++) {
+            if (objects.get(i).isVisible()) {
+                return objects.get(i);
+            }
+        }
+
+        return null;
     }
 
     private static void createPacmanController()
