@@ -128,10 +128,12 @@ public class UserAccount extends SubView {
 
     private Label createNameEl()
     {
-        nameLabel = new Label();
-        nameLabel.setMaxWidth(250);
+        nameEl = new Label();
+        nameEl.setMaxWidth(250);
+        nameEl.setFont(new Font(20));
+        nameEl.setTextFill(Color.WHITE);
 
-        return nameLabel;
+        return nameEl;
     }
 
     private Label createIdLabel()
@@ -141,6 +143,14 @@ public class UserAccount extends SubView {
         idLabel.setTextFill(Color.WHITE);
 
         return idLabel;
+    }
+
+    private Label createIdEl()
+    {
+        idEl = new Label();
+        idEl.setMaxWidth(250);
+
+        return idEl;
     }
 
     private Label createRolesLabel()
@@ -156,17 +166,12 @@ public class UserAccount extends SubView {
     {
         rolesEl = new Label();
         rolesEl.setMaxWidth(250);
+        rolesEl.setFont(new Font(20));
+        rolesEl.setTextFill(Color.WHITE);
 
         return rolesEl;
     }
 
-    private Label createIdEl()
-    {
-        idEl = new Label();
-        idEl.setMaxWidth(250);
-
-        return idEl;
-    }
 
     private Label createEmailLabel()
     {
@@ -181,6 +186,8 @@ public class UserAccount extends SubView {
     {
         emailEl = new Label();
         emailEl.setMaxWidth(250);
+        emailEl.setFont(new Font(20));
+        emailEl.setTextFill(Color.WHITE);
 
 
         return emailEl;
@@ -236,4 +243,59 @@ public class UserAccount extends SubView {
         this.menu = menu;
     }
 
+    public Label getIdEl() {
+        return idEl;
+    }
+
+    public void setIdEl(Label idEl) {
+        this.idEl = idEl;
+    }
+
+    public Label getEmailEl() {
+        return emailEl;
+    }
+
+    public void setEmailEl(Label emailEl) {
+        this.emailEl = emailEl;
+    }
+
+    public Label getNameEl() {
+        return nameEl;
+    }
+
+    public void setNameEl(Label nameEl) {
+        this.nameEl = nameEl;
+    }
+
+    public Label getLastNameEl() {
+        return lastNameEl;
+    }
+
+    public void setLastNameEl(Label lastNameEl) {
+        this.lastNameEl = lastNameEl;
+    }
+
+    public Label getImageEl() {
+        return imageEl;
+    }
+
+    public void setImageEl(Label imageEl) {
+        this.imageEl = imageEl;
+    }
+
+    public Label getRolesEl() {
+        return rolesEl;
+    }
+
+    public void setRolesEl(Label rolesEl) {
+        this.rolesEl = rolesEl;
+    }
+
+    public Label getFullScoreEl() {
+        return fullScoreEl;
+    }
+
+    public void setFullScoreEl(Label fullScoreEl) {
+        this.fullScoreEl = fullScoreEl;
+    }
 }

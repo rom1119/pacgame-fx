@@ -1,53 +1,50 @@
 package com.pacgame.data.model;
 
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.Set;
 
 public class User {
 
-    private Long id;
-    private String email;
-    private String password;
-    private String passwordConfirm;
+    private SimpleStringProperty id;
+    private SimpleStringProperty email;
+    private SimpleStringProperty password;
+    private SimpleStringProperty passwordConfirm;
     private boolean acceptTerms;
 
-    private UserDetails userDetails;
+    private SimpleObjectProperty<UserDetails> userDetails;
 
-    private String userRoles;
+    private SimpleStringProperty userRoles;
 
     public User() {
 
+        id = new SimpleStringProperty();
+        email = new SimpleStringProperty();
+        password = new SimpleStringProperty();
+        passwordConfirm = new SimpleStringProperty();
+        userDetails = new SimpleObjectProperty<>();
+        userRoles = new SimpleStringProperty();
+
+        setUserDetails(new UserDetails());
     }
 
-    public Long getId() {
-        return id;
+    public String getId() {
+        return idProperty().get();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+        return emailProperty().get();
     }
 
     public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        return passwordProperty().get();
     }
 
     public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
+        return passwordConfirmProperty().get();
     }
 
     public boolean isAcceptTerms() {
@@ -59,18 +56,58 @@ public class User {
     }
 
     public UserDetails getUserDetails() {
-        return userDetails;
-    }
-
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
+        return userDetailsProperty().get();
     }
 
     public String getUserRoles() {
+        return userRolesProperty().get();
+    }
+
+    public SimpleStringProperty idProperty() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id.set(id);
+    }
+
+    public SimpleStringProperty emailProperty() {
+        return email;
+    }
+
+    public SimpleStringProperty passwordProperty() {
+        return password;
+    }
+
+    public SimpleStringProperty passwordConfirmProperty() {
+        return passwordConfirm;
+    }
+
+    public SimpleObjectProperty<UserDetails> userDetailsProperty() {
+        return userDetails;
+    }
+
+    public SimpleStringProperty userRolesProperty() {
         return userRoles;
     }
 
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
+
+    public void setPassword(String password) {
+        this.password.set(password);
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm.set(passwordConfirm);
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails.set(userDetails);
+    }
+
     public void setUserRoles(String userRoles) {
-        this.userRoles = userRoles;
+        this.userRoles.set(userRoles);
     }
 }

@@ -37,9 +37,9 @@ public class OnLoginUser extends MenuHandler {
             return;
         }
 
-        User user = createUser(loginForm);
+        User user;
         try {
-            Token token = api.postApiToken(user);
+            Token token = api.postApiToken(loginForm.getEmailEl().getText(), loginForm.getPasswordEl().getText());
 
             if (!token.hasError()) {
                 loginForm.hide();
@@ -47,6 +47,10 @@ public class OnLoginUser extends MenuHandler {
                 loginForm.getLoginError().setVisible(false);
                 App.setLoggedUser(true);
                 user = api.getLoggedUser();
+                App.setUser(user);
+                App.bindUserProperty();
+
+                App.setLoggedUser(true);
             } else {
                 loginForm.getLoginError().setVisible(true);
             }
@@ -60,17 +64,5 @@ public class OnLoginUser extends MenuHandler {
 
 
 
-    }
-
-
-    private User createUser(LoginForm loginForm) {
-
-        User user = new User();
-        user.setEmail(loginForm.getEmailEl().getText());
-        user.setPassword(loginForm.getPasswordEl().getText());
-
-        App.setUser(user);
-
-        return user;
     }
 }

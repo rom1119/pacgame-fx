@@ -36,7 +36,7 @@ public class ApiImpl implements Api {
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
     }
 
-    public Token postApiToken(User user) throws ResourceAccessException, HttpClientErrorException {
+    public Token postApiToken(String username, String password) throws ResourceAccessException, HttpClientErrorException {
 
 //        TokenRequest tokenRequest = new TokenRequest();
 //        tokenRequest.setGrantType("password");
@@ -45,8 +45,8 @@ public class ApiImpl implements Api {
 
         HashMap<String, String> bodyRequest = new HashMap<>();
         bodyRequest.put("grant_type", "password");
-        bodyRequest.put("username", user.getEmail());
-        bodyRequest.put("password", user.getPassword());
+        bodyRequest.put("username", username);
+        bodyRequest.put("password", password);
 
         String clientIdAndSecret = CLIENT_ID + ":" + CLIENT_SECRET;
         String encodedClientIdAndSecret = Base64Utils.encodeToString(clientIdAndSecret.getBytes());

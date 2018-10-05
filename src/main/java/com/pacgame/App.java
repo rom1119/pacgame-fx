@@ -46,6 +46,8 @@ public class App extends Application {
     public static PacmanController pacmanController;
     public static EntryTimer entryTimer;
     public static MainMenu mainMenu;
+    private static UserAccount userAccount;
+
     public static int indexForMaze = 0;
     public static Api API = new ApiImpl();
 
@@ -275,10 +277,24 @@ public class App extends Application {
                     }));
     }
 
+    public static void bindUserProperty() {
+
+        userAccount.getIdEl().textProperty().bindBidirectional(user.idProperty());
+        userAccount.getEmailEl().textProperty().bindBidirectional(user.emailProperty());
+        userAccount.getRolesEl().textProperty().bindBidirectional(user.userRolesProperty());
+
+        userAccount.getNameEl().textProperty().bindBidirectional(user.getUserDetails().firstNameProperty());
+        userAccount.getLastNameEl().textProperty().bindBidirectional(user.getUserDetails().lastNameProperty());
+        userAccount.getFullScoreEl().textProperty().bindBidirectional(user.getUserDetails().scoreProperty());
+
+
+    }
+
     private static void initApp(Stage primaryStage)
     {
         root = new Group();
         Scene scene = new Scene(root, 800, 500);
+
 
         Map mapMain = Factory.createMap("./map/map_first.png");
         mapMain.setOrder(0);
@@ -298,7 +314,7 @@ public class App extends Application {
         contextSaveGame.setOrder(7);
         MainReadGame mainReadGame = Factory.createMainReadGame();
         mainReadGame.setOrder(8);
-        UserAccount userAccount = Factory.createUserAccount();
+        userAccount = Factory.createUserAccount();
         userAccount.setOrder(9);
         LoginForm loginForm = Factory.createLoginForm();
         loginForm.setOrder(10);
@@ -357,6 +373,10 @@ public class App extends Application {
 
         root.getChildren().add(gameCanvas);
         root.getChildren().add(gameInfoPane);
+
+        setUser(new User());
+
+
 
         ObservableList<Point> allPoints = PointPopulator.populate(MapPathCreator.getAllPoints(), root);
 
