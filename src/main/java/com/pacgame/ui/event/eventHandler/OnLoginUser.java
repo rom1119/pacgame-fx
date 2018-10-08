@@ -4,7 +4,7 @@ import com.pacgame.App;
 import com.pacgame.View;
 import com.pacgame.data.model.Token;
 import com.pacgame.data.model.User;
-import com.pacgame.data.service.Api;
+import com.pacgame.data.service.ApiService;
 import com.pacgame.ui.component.LoginForm;
 import com.pacgame.ui.event.MenuHandler;
 import javafx.event.Event;
@@ -15,12 +15,11 @@ import org.springframework.web.client.ResourceAccessException;
 
 public class OnLoginUser extends MenuHandler {
 
-    @Autowired
-    private Api api;
+    private ApiService apiService;
 
-    public OnLoginUser(View viewToHide, View viewToShow, Api api) {
+    public OnLoginUser(View viewToHide, View viewToShow, ApiService apiService) {
         super(viewToHide, viewToShow);
-        this.api = api;
+        this.apiService = apiService;
     }
 
     /**
@@ -37,31 +36,20 @@ public class OnLoginUser extends MenuHandler {
             return;
         }
 
-        User user;
-        try {
-            Token token = api.postApiToken(loginForm.getEmailEl().getText(), loginForm.getPasswordEl().getText());
+        Token token = apiService.loginUser(loginForm.getEmailEl().getText(), loginForm.getPasswordEl().getText());
 
-            if (!token.hasError()) {
-                loginForm.hide();
-                getViewToShow().show();
-                loginForm.getLoginError().setVisible(false);
-                App.setLoggedUser(true);
-                user = api.getLoggedUser();
-                App.setUser(user);
-                App.bindUserProperty();
-
-                App.setLoggedUser(true);
-            } else {
-                loginForm.getLoginError().setVisible(true);
+        if (!token.hasError()) {
+            loginForm.hide();
+            getViewToShow().show();
+            loginForm.getLoginError().setVisible(false);
+        } else {
+            if (token.getErrorType() == Token.CREDENTIALS_ERROR) {
+                loginForm.getLoginError().setText("Niepoprawne dane logowania");
+            } else if (token.getErrorType() == Token.SERVER_ERROR) {
+                loginForm.getLoginError().setText("Problem z serwerem");
             }
-        } catch (ResourceAccessException e) {
             loginForm.getLoginError().setVisible(true);
-            loginForm.getLoginError().setText("Problem z serwerem");
-        } catch (HttpClientErrorException e) {
-            loginForm.getLoginError().setVisible(true);
-            loginForm.getLoginError().setText("Niepoprawne dane logowania");
         }
-
 
 
     }

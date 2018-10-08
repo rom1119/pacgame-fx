@@ -86,4 +86,10 @@ public class MainConfig
     {
         ApiImpl.CLIENT_SECRET = env.getProperty("oauth.clientSecret");
     }
+
+    @Autowired
+    public void setLogout(Environment env)
+    {
+        ApiImpl.LOGOUT_URL = env.getProperty("oauth.url.logout");
+    }
 }

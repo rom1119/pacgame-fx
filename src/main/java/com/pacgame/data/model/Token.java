@@ -1,6 +1,15 @@
 package com.pacgame.data.model;
 
+import java.util.Map;
+
 public class Token {
+
+    public static int SERVER_ERROR = 0;
+    public static int CREDENTIALS_ERROR = 1;
+
+    private int errorType;
+
+    private User user;
 
     private String access_token;
     private String token_type;
@@ -69,5 +78,21 @@ public class Token {
     public boolean hasError()
     {
         return error != null ;
+    }
+
+    public int getErrorType() {
+        return errorType;
+    }
+
+    public void setErrorType(int errorType) {
+        this.errorType = errorType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

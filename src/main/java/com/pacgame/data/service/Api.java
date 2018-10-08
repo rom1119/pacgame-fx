@@ -7,6 +7,18 @@ import org.springframework.web.client.ResourceAccessException;
 
 public interface Api {
 
-    Token postApiToken(String username, String password) throws ResourceAccessException, HttpClientErrorException;
-    User getLoggedUser() throws ResourceAccessException, HttpClientErrorException;
+    Token postToken(String username, String password) throws ResourceAccessException, HttpClientErrorException;
+
+    User getUser(Long id) throws ResourceAccessException, HttpClientErrorException;
+
+    boolean logoutUser();
+
+    public Token getToken();
+
+    public void setToken(Token token);
+
+    public void setLoggedUser(User loggedUser);
+
+    public User getLoggedUser();
+
 }

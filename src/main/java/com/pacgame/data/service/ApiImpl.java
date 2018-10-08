@@ -10,11 +10,13 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ApiImpl implements Api {
 
+    public static String LOGOUT_URL;
     private Environment env;
 
     public static String GET_LOGGED_USER_URL;
@@ -28,7 +30,6 @@ public class ApiImpl implements Api {
     private RestTemplate restTemplate;
 
     private Token token;
-    private ResponseEntity<User> responseUser;
     private User loggedUser;
 
     public ApiImpl() {
@@ -36,33 +37,30 @@ public class ApiImpl implements Api {
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
     }
 
-    public Token postApiToken(String username, String password) throws ResourceAccessException, HttpClientErrorException {
+    @Override
+    public Token postToken(String username, String password) throws ResourceAccessException, HttpClientErrorException {
 
-//        TokenRequest tokenRequest = new TokenRequest();
-//        tokenRequest.setGrantType("password");
-//        tokenRequest.setUsername(user.getEmail());
-//        tokenRequest.setPassword(user.getPassword());
+        if (token != null) {
+            return token;
+        }
 
         HashMap<String, String> bodyRequest = new HashMap<>();
         bodyRequest.put("grant_type", "password");
         bodyRequest.put("username", username);
         bodyRequest.put("password", password);
 
-        String clientIdAndSecret = CLIENT_ID + ":" + CLIENT_SECRET;
-        String encodedClientIdAndSecret = Base64Utils.encodeToString(clientIdAndSecret.getBytes());
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setContentType(new MediaType("application", "x-www-form-urlencoded"));
-        requestHeaders.add("Authorization", "Basic " + encodedClientIdAndSecret);
+        requestHeaders.add("Authorization", "Basic " + hashClientIdAndPassword());
 
         HttpEntity<String> request = new HttpEntity<>(getDataString(bodyRequest), requestHeaders);
 
-        token = restTemplate.postForObject(GET_TOKEN_URL, request, Token.class);
-
-        return token;
+        return restTemplate.postForObject(GET_TOKEN_URL, request, Token.class);
 
     }
 
-    public User getLoggedUser() throws ResourceAccessException, HttpClientErrorException
+    @Override
+    public User getUser(Long id) throws ResourceAccessException, HttpClientErrorException
     {
         if (loggedUser != null) {
             return loggedUser;
@@ -74,13 +72,45 @@ public class ApiImpl implements Api {
 
         HttpEntity<String> request = new HttpEntity<>(requestHeaders);
 
-        responseUser = restTemplate.exchange(GET_LOGGED_USER_URL, HttpMethod.GET, request, User.class);
+        ResponseEntity<User> responseUser = null;
 
-        loggedUser = responseUser.getBody();
+        if (id == null) {
+            responseUser = restTemplate.exchange(GET_LOGGED_USER_URL, HttpMethod.GET, request, User.class);
+        } else {
 
-        return loggedUser;
+        }
+
+        return responseUser.getBody();
 
     }
+
+    @Override
+    public boolean logoutUser() throws ResourceAccessException, HttpClientErrorException {
+        if (token == null) {
+            return false;
+        }
+
+        HttpHeaders requestHeaders = new HttpHeaders();
+//        requestHeaders.setContentType(new MediaType("application", "x-www-form-urlencoded"));
+        requestHeaders.add("Authorization", "Basic " + hashClientIdAndPassword());
+        requestHeaders.add("AUTH-TOKEN", getToken().getAccess_token());
+
+        HttpEntity<String> request = new HttpEntity<>(requestHeaders);
+
+
+        restTemplate.exchange(LOGOUT_URL, HttpMethod.DELETE, request, Object.class);
+
+        return true;
+
+    }
+
+    private String hashClientIdAndPassword()
+    {
+        String clientIdAndSecret = CLIENT_ID + ":" + CLIENT_SECRET;
+
+        return Base64Utils.encodeToString(clientIdAndSecret.getBytes());
+    }
+
 
     private static String getDataString(HashMap<String, String> params)  {
         StringBuilder result = new StringBuilder();
@@ -97,5 +127,19 @@ public class ApiImpl implements Api {
         return result.toString();
     }
 
+    public Token getToken() {
+        return token;
+    }
 
+    public void setToken(Token token) {
+        this.token = token;
+    }
+
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
+    public User getLoggedUser() {
+        return loggedUser;
+    }
 }

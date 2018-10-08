@@ -8,8 +8,9 @@ import com.pacgame.board.event.eventHandler.OnPacmanTouchMaze;
 import com.pacgame.data.model.User;
 import com.pacgame.board.service.MapPathCreator;
 import com.pacgame.board.service.PointPopulator;
-import com.pacgame.data.service.Api;
 import com.pacgame.data.service.ApiImpl;
+import com.pacgame.data.service.ApiService;
+import com.pacgame.data.service.ApiServiceImpl;
 import com.pacgame.ui.component.*;
 import com.pacgame.ui.component.Map;
 import com.pacgame.ui.service.Factory;
@@ -49,7 +50,7 @@ public class App extends Application {
     private static UserAccount userAccount;
 
     public static int indexForMaze = 0;
-    public static Api API = new ApiImpl();
+    public static ApiService ApiService = new ApiServiceImpl(new ApiImpl());
 
     private static MazeController mazeControllerNew;
 

@@ -149,7 +149,7 @@ public class LoginForm extends View {
 
     private void setOnLoginButton()
     {
-        loginBtn.setOnAction(new OnLoginUser(this, App.getMainMenu(), App.API));
+        loginBtn.setOnAction(new OnLoginUser(this, App.getMainMenu(), App.ApiService));
     }
 
     private void setOnRegisterButton()

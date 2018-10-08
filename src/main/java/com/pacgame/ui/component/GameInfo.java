@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -107,7 +108,7 @@ public class GameInfo extends View {
 
     private void setOnLogoutBtn()
     {
-        logout.setOnAction(new OnLogout(this));
+        logout.setOnAction(new OnLogout(this, App.ApiService));
     }
 
     public Label getLives() {
@@ -148,5 +149,14 @@ public class GameInfo extends View {
 
             }
         });
+    }
+
+    public void showAlert(String errorMessage) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Problem z wylogowaniem");
+        alert.setHeaderText(null);
+        alert.setContentText(errorMessage);
+
+        alert.showAndWait();
     }
 }

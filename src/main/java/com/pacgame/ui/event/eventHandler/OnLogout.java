@@ -1,6 +1,7 @@
 package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.App;
+import com.pacgame.data.service.ApiService;
 import com.pacgame.ui.component.GameInfo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,9 +9,12 @@ import javafx.event.EventHandler;
 public class OnLogout implements EventHandler<ActionEvent> {
 
     private GameInfo gameInfo;
+    private ApiService apiService;
 
-    public OnLogout(GameInfo gameInfo) {
+
+    public OnLogout(GameInfo gameInfo, ApiService apiService) {
         this.gameInfo = gameInfo;
+        this.apiService = apiService;
     }
 
     /**
@@ -21,8 +25,9 @@ public class OnLogout implements EventHandler<ActionEvent> {
      */
     @Override
     public void handle(ActionEvent event) {
-        App.setUser(null);
-        App.setLoggedUser(false);
+        if (!apiService.logoutUser()) {
+            gameInfo.showAlert("Wystąpił problem podczas wylogowania.");
+        }
 
     }
 }
