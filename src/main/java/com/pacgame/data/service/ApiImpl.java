@@ -2,6 +2,7 @@ package com.pacgame.data.service;
 
 import com.pacgame.data.model.Token;
 import com.pacgame.data.model.User;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ApiImpl implements Api {
@@ -20,6 +22,8 @@ public class ApiImpl implements Api {
     private Environment env;
 
     public static String GET_LOGGED_USER_URL;
+    public static String GET_USER_URL;
+    public static String GET_USERS_URL;
 
     public static String CLIENT_ID;
 
@@ -62,8 +66,8 @@ public class ApiImpl implements Api {
     @Override
     public User getUser(Long id) throws ResourceAccessException, HttpClientErrorException
     {
-        if (loggedUser != null) {
-            return loggedUser;
+        if (token == null) {
+            throw new ResourceAccessException("Token not exist");
         }
 
         HttpHeaders requestHeaders = new HttpHeaders();
@@ -77,11 +81,31 @@ public class ApiImpl implements Api {
         if (id == null) {
             responseUser = restTemplate.exchange(GET_LOGGED_USER_URL, HttpMethod.GET, request, User.class);
         } else {
+            responseUser = restTemplate.exchange(GET_USER_URL + String.valueOf(id), HttpMethod.GET, request, User.class);
 
         }
 
         return responseUser.getBody();
 
+    }
+
+    @Override
+    public List<User> getUsers() throws ResourceAccessException, HttpClientErrorException {
+        if (token == null) {
+            throw new ResourceAccessException("Token not exist");
+        }
+
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(new MediaType("application", "json"));
+        requestHeaders.add("Authorization", "Bearer " + token.getAccess_token());
+
+        HttpEntity<String> request = new HttpEntity<>(requestHeaders);
+
+        ResponseEntity<List<User>> responseUser = null;
+
+        responseUser = restTemplate.exchange(GET_USERS_URL, HttpMethod.GET, request, new ParameterizedTypeReference<List<User>>(){});
+
+        return responseUser.getBody();
     }
 
     @Override

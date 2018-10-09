@@ -2,10 +2,12 @@ package com.pacgame.data.service;
 
 import com.pacgame.App;
 import com.pacgame.data.model.Token;
+import com.pacgame.data.model.User;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 
 import java.rmi.ServerError;
+import java.util.List;
 
 import static com.pacgame.App.user;
 
@@ -26,6 +28,8 @@ public class ApiServiceImpl implements ApiService {
             api.setToken(token);
             user = api.getUser(null);
             api.setLoggedUser(user);
+            api.getLoggedUser().setPassword("");
+            api.getLoggedUser().setPasswordConfirm("");
             App.setUser(user);
             App.bindUserProperty();
             App.setLoggedUser(true);
@@ -40,7 +44,24 @@ public class ApiServiceImpl implements ApiService {
             token.setError("error");
         }
 
+
+
         return token;
+    }
+
+    @Override
+    public List<User> getUsers() {
+
+        List<User> users = null;
+        try {
+            users = api.getUsers();
+        } catch (ResourceAccessException e) {
+
+        } catch (HttpClientErrorException e) {
+
+        }
+
+        return users;
     }
 
     @Override

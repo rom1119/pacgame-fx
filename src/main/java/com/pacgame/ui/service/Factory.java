@@ -61,6 +61,11 @@ public class Factory {
         return new UserAccount();
     }
 
+    public static UsersRanking createUsersRanking()
+    {
+        return new UsersRanking();
+    }
+
     public static LoginForm createLoginForm()
     {
         return new LoginForm();

@@ -70,6 +70,18 @@ public class MainConfig
     }
 
     @Autowired
+    public void setUserUrl(Environment env)
+    {
+        ApiImpl.GET_USER_URL = env.getProperty("oauth.url.getUser");
+    }
+
+    @Autowired
+    public void setUsersUrl(Environment env)
+    {
+        ApiImpl.GET_USERS_URL = env.getProperty("oauth.url.getUsers");
+    }
+
+    @Autowired
     public void setTokenUrl(Environment env)
     {
         ApiImpl.GET_TOKEN_URL = env.getProperty("oauth.url.getToken");

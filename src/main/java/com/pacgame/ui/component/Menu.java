@@ -35,8 +35,7 @@ public abstract class Menu extends View {
         menuOptions = FXCollections.observableArrayList();
         checkedMenuOption = new SimpleObjectProperty<>();
         iterator = 0;
-        setOnChangeCheckedOption();
-        setOnKeyPress();
+
     }
 
     protected void setOnMouseOver()
@@ -82,7 +81,7 @@ public abstract class Menu extends View {
 
     }
 
-    private void setOnKeyPress()
+    protected void setOnKeyPress()
     {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
             if (e.getCode() == UP && !App.isPlaying()) {
@@ -104,7 +103,7 @@ public abstract class Menu extends View {
         }
     }
 
-    private void setOnChangeCheckedOption()
+    protected void setOnChangeCheckedOption()
     {
         checkedMenuOption.addListener(new ChangeListener<Label>() {
             @Override
@@ -151,7 +150,10 @@ public abstract class Menu extends View {
     {
         for (Node el: menuOptions) {
             Label label = (Label) el;
-            label.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null, new BorderWidths(10))));
+            if (label != null) {
+
+                label.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, null, new BorderWidths(10))));
+            }
 
         }
     }

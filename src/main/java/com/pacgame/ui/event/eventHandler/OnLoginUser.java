@@ -41,6 +41,8 @@ public class OnLoginUser extends MenuHandler {
         if (!token.hasError()) {
             loginForm.hide();
             getViewToShow().show();
+            loginForm.getEmailEl().setText("");
+            loginForm.getPasswordEl().setText("");
             loginForm.getLoginError().setVisible(false);
         } else {
             if (token.getErrorType() == Token.CREDENTIALS_ERROR) {

@@ -1,15 +1,12 @@
 package com.pacgame.data.model;
 
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-
-import java.util.Set;
 
 public class User {
 
     private SimpleStringProperty id;
-    private SimpleStringProperty email;
+    private SimpleStringProperty username;
     private SimpleStringProperty password;
     private SimpleStringProperty passwordConfirm;
     private boolean acceptTerms;
@@ -21,7 +18,7 @@ public class User {
     public User() {
 
         id = new SimpleStringProperty();
-        email = new SimpleStringProperty();
+        username = new SimpleStringProperty();
         password = new SimpleStringProperty();
         passwordConfirm = new SimpleStringProperty();
         userDetails = new SimpleObjectProperty<>();
@@ -30,13 +27,22 @@ public class User {
         setUserDetails(new UserDetails());
     }
 
+    public User(String firstName, String lastName, String username, String score) {
+        this();
+        getUserDetails().setFirstName(firstName);
+        getUserDetails().setLastName(lastName);
+        getUserDetails().setScore(score);
+        setUsername(username);
+
+    }
+
     public String getId() {
         return idProperty().get();
     }
 
 
-    public String getEmail() {
-        return emailProperty().get();
+    public String getUsername() {
+        return usernameProperty().get();
     }
 
     public String getPassword() {
@@ -71,8 +77,8 @@ public class User {
         this.id.set(id);
     }
 
-    public SimpleStringProperty emailProperty() {
-        return email;
+    public SimpleStringProperty usernameProperty() {
+        return username;
     }
 
     public SimpleStringProperty passwordProperty() {
@@ -91,8 +97,8 @@ public class User {
         return userRoles;
     }
 
-    public void setEmail(String email) {
-        this.email.set(email);
+    public void setUsername(String username) {
+        this.username.set(username);
     }
 
     public void setPassword(String password) {

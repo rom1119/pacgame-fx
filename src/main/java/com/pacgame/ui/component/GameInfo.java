@@ -137,7 +137,7 @@ public class GameInfo extends View {
                     if (loggedUser == null) {
                         return;
                     }
-                    loggedAs.setText(loggedUser.getEmail());
+                    loggedAs.setText(loggedUser.getUsername());
                     loggedAs.setVisible(true);
                     logout.setVisible(true);
                 } else {

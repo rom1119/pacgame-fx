@@ -32,9 +32,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.*;
 
@@ -48,6 +46,7 @@ public class App extends Application {
     public static EntryTimer entryTimer;
     public static MainMenu mainMenu;
     private static UserAccount userAccount;
+    private static UsersRanking usersRanking;
 
     public static int indexForMaze = 0;
     public static ApiService ApiService = new ApiServiceImpl(new ApiImpl());
@@ -281,7 +280,7 @@ public class App extends Application {
     public static void bindUserProperty() {
 
         userAccount.getIdEl().textProperty().bindBidirectional(user.idProperty());
-        userAccount.getEmailEl().textProperty().bindBidirectional(user.emailProperty());
+        userAccount.getEmailEl().textProperty().bindBidirectional(user.usernameProperty());
         userAccount.getRolesEl().textProperty().bindBidirectional(user.userRolesProperty());
 
         userAccount.getNameEl().textProperty().bindBidirectional(user.getUserDetails().firstNameProperty());
@@ -321,6 +320,8 @@ public class App extends Application {
         loginForm.setOrder(10);
         RegisterForm registerForm = Factory.createRegisterForm();
         registerForm.setOrder(11);
+        usersRanking = Factory.createUsersRanking();
+        usersRanking.setOrder(12);
 
         allUIComponents = new HashSet<>();
         allUIComponents.add(mapMain);
@@ -335,12 +336,14 @@ public class App extends Application {
         allUIComponents.add(userAccount);
         allUIComponents.add(loginForm);
         allUIComponents.add(registerForm);
+        allUIComponents.add(usersRanking);
 
         mainMenu.setMainSettings(mainSettings);
         mainMenu.setLoginForm(loginForm);
         mainMenu.setRegisterForm(registerForm);
         mainMenu.setUserAccount(userAccount);
         mainMenu.setMainReadGame(mainReadGame);
+        mainMenu.setUsersRanking(usersRanking);
         contextMenu.setContextSettings(contextSettings);
         contextMenu.setContextSaveGame(contextSaveGame);
         mainSettings.setMenu(mainMenu);
@@ -350,6 +353,7 @@ public class App extends Application {
         userAccount.setMenu(mainMenu);
         loginForm.setRegisterForm(registerForm);
         registerForm.setLoginForm(loginForm);
+        usersRanking.setMenu(mainMenu);
 
         Node gameCanvas = mapMain.getView(500, 500);
         Node entryTimerEl = entryTimer.getView(500, 500);
@@ -370,10 +374,9 @@ public class App extends Application {
         Node loginFormPane = loginForm.getView(500, 500);
         Node registerFormPane = registerForm.getView(500, 500);
         Node userAccountPane = userAccount.getView(500, 500);
+        Node usersRankingPane = usersRanking.getView(500, 500);
 
 
-        root.getChildren().add(gameCanvas);
-        root.getChildren().add(gameInfoPane);
 
         setUser(new User());
 
@@ -403,6 +406,9 @@ public class App extends Application {
 
         entryTimer.setPacmanController(pacmanController);
 
+        root.getChildren().add(gameCanvas);
+        root.getChildren().add(gameInfoPane);
+
         root.getChildren().add(entryTimerEl);
         root.getChildren().add(mainMenuPane);
         root.getChildren().add(mainSettingsPane);
@@ -413,6 +419,7 @@ public class App extends Application {
         root.getChildren().add(loginFormPane);
         root.getChildren().add(registerFormPane);
         root.getChildren().add(userAccountPane);
+        root.getChildren().add(usersRankingPane);
 
 
         indexForMaze = root.getChildren().indexOf(entryTimerEl);
