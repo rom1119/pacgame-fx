@@ -74,8 +74,8 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
 
     public void initialize()
     {
-        root.getChildren().add(getControlledObject().getCollider());
-        root.getChildren().add(getControlledObject().getIcon());
+        root.getChildren().add(App.indexForMaze - 1, getControlledObject().getCollider());
+        root.getChildren().add(App.indexForMaze - 1, getControlledObject().getIcon());
 
         BidiMap allPoints = MapPathCreator.getAllPoints();
         movementManager = new MovementManager(allPoints, this.controlledObject, root);
@@ -90,6 +90,12 @@ public class PacmanController extends Controller implements EventHandler<KeyEven
         this.setOnPacmanMove();
 
 
+    }
+
+    public void deinitialize()
+    {
+        root.getChildren().remove(getControlledObject().getCollider());
+        root.getChildren().remove(getControlledObject().getIcon());
     }
 
     public void setInitPosition()

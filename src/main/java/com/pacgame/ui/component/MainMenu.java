@@ -4,6 +4,7 @@ import com.pacgame.App;
 import com.pacgame.ui.event.eventHandler.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -150,7 +151,7 @@ public class MainMenu extends Menu {
 
     private void setOnStartGameSelect()
     {
-        startGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnStartNewGameSelect(this, null));
+        startGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnStartNewGameSelect(this, null, getRootPane()));
     }
 
     private void setOnReadGameSelect()
@@ -318,16 +319,19 @@ public class MainMenu extends Menu {
         }
 
         removeBorderColorMenuOptions();
+        setOnChangeCheckedOption();
+        setIterator(0);
         checkMenuOption((Label) menuOptions.get(0));
         setOnMouseOver();
         setOnMouseClick();
 
-        setOnChangeCheckedOption();
-        setOnKeyPress();
 
-        setIterator(0);
     }
 
+    @Override
+    public void show() {
+        super.show();
+        updateMenuElementsVisibility(App.isLoggedUser());
 
-
+    }
 }

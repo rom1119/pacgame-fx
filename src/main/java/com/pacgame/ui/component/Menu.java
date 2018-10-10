@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -29,12 +30,17 @@ public abstract class Menu extends View {
     protected Scene scene;
     public ObservableList<Node> menuOptions;
     protected int iterator;
+    private Group root;
+
 
     public Menu(Scene scene) {
         this.scene = scene;
         menuOptions = FXCollections.observableArrayList();
         checkedMenuOption = new SimpleObjectProperty<>();
         iterator = 0;
+
+        setOnKeyPress();
+
 
     }
 
@@ -45,6 +51,8 @@ public abstract class Menu extends View {
             el.setOnMouseEntered(event -> {
                 if (!App.isPlaying()) {
                     Label l = (Label) event.getTarget();
+                    iterator = menuOptions.indexOf(l);
+
                     checkMenuOption(l);
                 }
             });
@@ -85,9 +93,11 @@ public abstract class Menu extends View {
     {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
             if (e.getCode() == UP && !App.isPlaying()) {
+                e.consume();
                 Label prev = (Label) getPrevMenuOption();
                 checkMenuOption(prev);
             } else if (e.getCode() == DOWN && !App.isPlaying()) {
+                e.consume();
                 Label next = (Label) getNextMenuOption();
                 checkMenuOption(next);
             }
@@ -98,6 +108,7 @@ public abstract class Menu extends View {
     protected void checkMenuOption(Label opt) {
         setCheckedMenuOption(opt);
         if (opt != null) {
+            opt.setFocusTraversable(false);
             opt.requestFocus();
 
         }
@@ -136,7 +147,7 @@ public abstract class Menu extends View {
         if (menuOptions.isEmpty()) {
             return null;
         }
-
+        System.out.println(menuOptions.size());
         if (iterator == 0) {
             iterator = menuOptions.size() - 1;
             return menuOptions.get(iterator);
@@ -192,6 +203,14 @@ public abstract class Menu extends View {
 
     public void setIterator(int iterator) {
         this.iterator = iterator;
+    }
+
+    public void setRootPane(Group root) {
+        this.root = root;
+    }
+
+    public Group getRootPane() {
+        return root;
     }
 
     protected void setCheckedMenuOptionOnFirst()

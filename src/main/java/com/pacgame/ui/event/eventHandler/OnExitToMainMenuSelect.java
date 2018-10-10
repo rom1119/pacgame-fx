@@ -1,16 +1,24 @@
 package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.App;
+import com.pacgame.Point;
 import com.pacgame.View;
+import com.pacgame.board.service.MapPathCreator;
+import com.pacgame.board.service.PointPopulator;
 import com.pacgame.ui.event.MenuHandler;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
+import javafx.scene.Group;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class OnExitToMainMenuSelect extends MenuHandler {
 
-    public OnExitToMainMenuSelect(View viewToHide, View viewToShow) {
+    private Group rootPane;
+
+    public OnExitToMainMenuSelect(View viewToHide, View viewToShow, Group rootPane) {
         super(viewToHide, viewToShow);
+        this.rootPane = rootPane;
     }
 
     /**
@@ -30,6 +38,10 @@ public class OnExitToMainMenuSelect extends MenuHandler {
         if (!App.isPlaying()) {
             getViewToHide().hide();
             getViewToShow().show();
+            PointPopulator.depopulate(rootPane);
+            App.pacmanController.deinitialize();
+            App.clearAllMazesController();
+
             App.setRunningGame(false);
             App.mainMenu.updateFocusMenuOption();
 

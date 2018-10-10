@@ -147,7 +147,7 @@ public class App extends Application {
             mazeCreateTimeline.pause();
 
         }
-        if (entryTimer != null) {
+        if (entryTimer != null && entryTimer.getTimer().getStatus() == Animation.Status.RUNNING) {
             entryTimer.pause();
         }
         pauseAllMazes();
@@ -344,8 +344,10 @@ public class App extends Application {
         mainMenu.setUserAccount(userAccount);
         mainMenu.setMainReadGame(mainReadGame);
         mainMenu.setUsersRanking(usersRanking);
+        mainMenu.setRootPane(root);
         contextMenu.setContextSettings(contextSettings);
         contextMenu.setContextSaveGame(contextSaveGame);
+        contextMenu.setRootPane(root);
         mainSettings.setMenu(mainMenu);
         contextSettings.setMenu(contextMenu);
         contextSaveGame.setMenu(contextMenu);
@@ -380,32 +382,6 @@ public class App extends Application {
 
         setUser(new User());
 
-
-
-        ObservableList<Point> allPoints = PointPopulator.populate(MapPathCreator.getAllPoints(), root);
-
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("PAC-GAME this is new PACMAN :-)");
-        primaryStage.show();
-
-        pacmanController = new PacmanController(scene, root);
-        pacmanController.scoreProperty().bindBidirectional(scoreUIControll.textProperty());
-        pacmanController.getControlledObject().livesProperty().bindBidirectional(livesUIControll.textProperty());
-        pacmanController.setAllPoints(allPoints);
-        pacmanController.initialize();
-
-
-
-        List<MazeController> mazes = new ArrayList();
-        mazesCollection = FXCollections.observableArrayList(mazes);
-
-
-        contextSaveGame.setMazeCollection(mazesCollection);
-        contextSaveGame.setPacmanController(pacmanController);
-
-        entryTimer.setPacmanController(pacmanController);
-
         root.getChildren().add(gameCanvas);
         root.getChildren().add(gameInfoPane);
 
@@ -421,14 +397,35 @@ public class App extends Application {
         root.getChildren().add(userAccountPane);
         root.getChildren().add(usersRankingPane);
 
-
         indexForMaze = root.getChildren().indexOf(entryTimerEl);
+
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("PAC-GAME this is new PACMAN :-)");
+        primaryStage.show();
+
+
+        pacmanController = new PacmanController(scene, root);
+        pacmanController.scoreProperty().bindBidirectional(scoreUIControll.textProperty());
+        pacmanController.getControlledObject().livesProperty().bindBidirectional(livesUIControll.textProperty());
+
+
+
+
+        List<MazeController> mazes = new ArrayList();
+        mazesCollection = FXCollections.observableArrayList(mazes);
+
+
+        contextSaveGame.setMazeCollection(mazesCollection);
+        contextSaveGame.setPacmanController(pacmanController);
+
+        entryTimer.setPacmanController(pacmanController);
+
 //        mazeCreateTimeline.playFromStart();
 
         pacmanController.setMazeControllerList(mazesCollection);
         pacmanController.startEatAnimation();
 
-        createMazeTimeline(root);
 
         mainMenu.updateFocusMenuOption();
 
@@ -436,6 +433,8 @@ public class App extends Application {
         mainSettings.setMazeCollection(mazesCollection);
         contextSettings.setPacmanController(pacmanController);
         contextSettings.setMazeCollection(mazesCollection);
+
+
 
 
 //        Button btn = new Button("usuń");
@@ -463,6 +462,7 @@ public class App extends Application {
         Collections.sort(objects, Collections.reverseOrder());
 
         for (int i = 0; i <= objects.size(); i++) {
+            System.out.println(objects.get(i));
             if (objects.get(i).isVisible()) {
                 return objects.get(i);
             }
@@ -489,9 +489,17 @@ public class App extends Application {
     {
         clearAllMazesController();
 
-        pacmanController.getMovementManager().stopAnimation();
-        pacmanController.getMainAnimation().stop();
-        pacmanController.getInitTimer().stop();
+        if (pacmanController.getMovementManager() != null) {
+            pacmanController.getMovementManager().stopAnimation();
+        }
+        if (pacmanController.getMainAnimation() != null) {
+            pacmanController.getMainAnimation().stop();
+
+        }
+        if (pacmanController.getInitTimer() != null) {
+            pacmanController.getInitTimer().stop();
+
+        }
         Platform.exit();
     }
 

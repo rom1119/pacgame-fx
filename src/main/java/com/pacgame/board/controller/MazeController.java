@@ -6,10 +6,7 @@ import com.pacgame.Direction;
 import com.pacgame.board.model.*;
 import com.pacgame.board.event.MazeEvent;
 import com.pacgame.board.event.eventHandler.OnDestroyBigPoint;
-import com.pacgame.board.service.AI;
-import com.pacgame.board.service.AnimationMoveHandler;
-import com.pacgame.board.service.MapPathCreator;
-import com.pacgame.board.service.MovementManager;
+import com.pacgame.board.service.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -118,8 +115,8 @@ public class MazeController extends Controller implements AnimationMoveHandler  
 
     public void initialize()
     {
-        root.getChildren().add(App.indexForMaze - 2, getControlledObject().getCollider());
-        root.getChildren().add(App.indexForMaze - 2, getControlledObject().getIcon());
+        root.getChildren().add(App.indexForMaze, getControlledObject().getCollider());
+        root.getChildren().add(App.indexForMaze, getControlledObject().getIcon());
 
         BidiMap allPoints = MapPathCreator.getAllPoints();
         movementManager = new MovementManager(allPoints, this.controlledObject, root);

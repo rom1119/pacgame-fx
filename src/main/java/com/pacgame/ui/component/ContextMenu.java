@@ -4,6 +4,7 @@ import com.pacgame.App;
 import com.pacgame.ui.event.eventHandler.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -26,6 +27,7 @@ public class ContextMenu extends Menu {
 
     public ContextMenu(Scene scene) {
         super(scene);
+
     }
 
 
@@ -52,15 +54,24 @@ public class ContextMenu extends Menu {
 
 
         menuOptions.addAll(resumeGameLabel, startNewGameLabel, saveGameLabel, settingsLabel, exitToMainMenuLabel);
+        hide();
+
+        onShowMenu();
+
+        return pane;
+    }
+
+    private void onShowMenu() {
         removeBorderColorMenuOptions();
+        setOnChangeCheckedOption();
         checkMenuOption((Label) menuOptions.get(0));
 
-        hide();
         setCheckedMenuOptionOnFirst();
         setOnMouseOver();
         setOnMouseClick();
 
-        return pane;
+
+        setIterator(0);
     }
 
     public Label createStartNewGameLabel()
@@ -122,7 +133,7 @@ public class ContextMenu extends Menu {
 
     private void setOnStartNewGameSelect()
     {
-        startNewGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnStartNewGameSelect(this, null));
+        startNewGameLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnStartNewGameSelect(this, null, getRootPane()));
     }
 
 
@@ -142,7 +153,7 @@ public class ContextMenu extends Menu {
 
     private void setOnExitToMainMenuSelect()
     {
-        exitToMainMenuLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnExitToMainMenuSelect(this, App.getMainMenu()));
+        exitToMainMenuLabel.addEventHandler(KeyEvent.KEY_PRESSED, new OnExitToMainMenuSelect(this, App.getMainMenu(), getRootPane()));
     }
     public void updateFocusMenuOption()
     {
@@ -164,4 +175,12 @@ public class ContextMenu extends Menu {
     public void setContextSaveGame(ContextSaveGame contextSaveGame) {
         this.contextSaveGame = contextSaveGame;
     }
+
+    @Override
+    public void show() {
+        super.show();
+        onShowMenu();
+
+    }
+
 }

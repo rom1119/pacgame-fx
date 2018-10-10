@@ -109,8 +109,8 @@ public class EntryTimer extends View {
         timer.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                App.clearAllMazesController();
-                App.createMazeTimeline(App.root);
+//                App.clearAllMazesController();
+//                App.createMazeTimeline(App.root);
                 getPacmanController().getControlledObject().setSelectFirstPoint(false);
                 App.play();
                 getTimerLabel().setVisible(false);

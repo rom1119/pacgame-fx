@@ -1,5 +1,6 @@
 package com.pacgame.board.service;
 
+import com.pacgame.App;
 import com.pacgame.board.model.MapPoint;
 import com.pacgame.board.model.point.BigPoint;
 import com.pacgame.board.model.point.NormalPoint;
@@ -21,9 +22,17 @@ public class PointPopulator {
     private static final int size = 6;
 
     protected static PointFactory pointFactory;
-    protected static ObservableList<Point> allPoints;
+    public static ObservableList<Point> allPoints;
     static {
         allPoints = FXCollections.observableArrayList();
+    }
+
+    public static void depopulate(Group root)
+    {
+        allPoints.stream().forEach(el -> {
+            root.getChildren().remove(el.getCollider());
+            root.getChildren().remove(el.getIcon());
+        });
     }
 
     public static ObservableList<Point> populate(BidiMap arrayOfpoints, Group root)
@@ -62,8 +71,8 @@ public class PointPopulator {
 
             }
 
-            root.getChildren().add(normalPoint.getCollider());
-            root.getChildren().add(normalPoint.getIcon());
+            root.getChildren().add(App.indexForMaze - 1, normalPoint.getCollider());
+            root.getChildren().add(App.indexForMaze - 1, normalPoint.getIcon());
 
             tryAddNormalPointInterX(mapPoint, root, key);
             tryAddNormalPointInterY(mapPoint, root, key);
@@ -188,9 +197,8 @@ public class PointPopulator {
 
             while (i <= amountPoints) {
                 morePoint = createNormalPoint(((mapPoint.getX() + (25 * i)) / 2), (mapPoint.getY() / 2) - 3);
-                root.getChildren().add(morePoint.getCollider());
-                root.getChildren().add(morePoint.getIcon());
-
+                root.getChildren().add(App.indexForMaze - 1, morePoint.getCollider());
+                root.getChildren().add(App.indexForMaze - 1, morePoint.getIcon());
                 i++;
             }
 
@@ -199,8 +207,8 @@ public class PointPopulator {
 
             while (i <= amountPoints) {
                 morePoint = createNormalPoint(((mapPoint.getX() + (25 * i)) / 2), (mapPoint.getY() / 2));
-                root.getChildren().add(morePoint.getCollider());
-                root.getChildren().add(morePoint.getIcon());
+                root.getChildren().add(App.indexForMaze - 1, morePoint.getCollider());
+                root.getChildren().add(App.indexForMaze - 1, morePoint.getIcon());
 
                 i++;
             }
@@ -236,8 +244,8 @@ public class PointPopulator {
                     morePoint = createNormalPoint(((mapPoint.getX()) / 2), ((mapPoint.getY()+ (22 * i)) / 2) - 3);
                 }
 
-                root.getChildren().add(morePoint.getCollider());
-                root.getChildren().add(morePoint.getIcon());
+                root.getChildren().add(App.indexForMaze - 1, morePoint.getCollider());
+                root.getChildren().add(App.indexForMaze - 1, morePoint.getIcon());
                 i++;
             }
 
@@ -250,8 +258,8 @@ public class PointPopulator {
                 } else {
                     morePoint = createNormalPoint(((mapPoint.getX()) / 2), ((mapPoint.getY() + (22 * i)) / 2));
                 }
-                root.getChildren().add(morePoint.getCollider());
-                root.getChildren().add(morePoint.getIcon());
+                root.getChildren().add(App.indexForMaze - 1, morePoint.getCollider());
+                root.getChildren().add(App.indexForMaze - 1, morePoint.getIcon());
                 i++;
             }
 
