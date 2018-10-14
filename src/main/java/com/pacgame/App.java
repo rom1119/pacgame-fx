@@ -6,8 +6,6 @@ import com.pacgame.board.event.MazeEvent;
 import com.pacgame.board.event.eventHandler.OnEscapeKey;
 import com.pacgame.board.event.eventHandler.OnPacmanTouchMaze;
 import com.pacgame.data.model.User;
-import com.pacgame.board.service.MapPathCreator;
-import com.pacgame.board.service.PointPopulator;
 import com.pacgame.data.service.ApiImpl;
 import com.pacgame.data.service.ApiService;
 import com.pacgame.data.service.ApiServiceImpl;

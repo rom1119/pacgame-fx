@@ -4,6 +4,7 @@ import com.pacgame.App;
 import com.pacgame.View;
 import com.pacgame.board.controller.MazeController;
 import com.pacgame.board.controller.PacmanController;
+import com.pacgame.data.model.ResponseError;
 import com.pacgame.ui.event.eventHandler.OnLoginFormSelect;
 import com.pacgame.ui.event.eventHandler.OnRegisterUser;
 import javafx.collections.ObservableList;
@@ -14,6 +15,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterForm extends View {
     private Label emailLabel;
@@ -29,6 +33,14 @@ public class RegisterForm extends View {
 
     private Button backToLoginBtn;
     private Button registerBtn;
+
+    private Label mainError;
+    private Label passwordError;
+    private Label passwordConfError;
+    private Label usernameError;
+
+    private Map<String, Label> formErrorsMap = new HashMap<>();
+
 
     private LoginForm loginForm;
 
@@ -54,11 +66,15 @@ public class RegisterForm extends View {
         pane.getChildren().add(vBox);
         vBox.getChildren().add(createEmailLabel());
         vBox.getChildren().add(createEmailEl());
+        vBox.getChildren().add(createUsernameError());
+        vBox.getChildren().add(createPasswordLabel());
         vBox.getChildren().add(createPasswordEl());
+        vBox.getChildren().add(createPasswordError());
         vBox.getChildren().add(createPasswordConfLabel());
         vBox.getChildren().add(createPasswordConfEl());
-        vBox.getChildren().add(createPasswordLabel());
+        vBox.getChildren().add(createPasswordConfError());
         vBox.getChildren().add(createAgreeTermsEl());
+        vBox.getChildren().add(createMainError());
 
         BorderPane buttons = new BorderPane();
         vBox.setAlignment(Pos.BOTTOM_CENTER);
@@ -135,9 +151,59 @@ public class RegisterForm extends View {
     private CheckBox createAgreeTermsEl()
     {
         agreeTerms = new CheckBox("Akceptuję warunki");
+        agreeTerms.setFont(new Font(20));
+        agreeTerms.setTextFill(Color.WHITE);
         agreeTerms.setMaxWidth(250);
 
         return agreeTerms;
+    }
+
+    private Label createMainError()
+    {
+        mainError = new Label("Invalid credential");
+        mainError.setFont(new Font(20));
+        mainError.setTextFill(Color.RED);
+        mainError.setVisible(false);
+
+
+        return mainError;
+    }
+
+    private Label createUsernameError()
+    {
+        usernameError = new Label("Username incorrect");
+        usernameError.setFont(new Font(20));
+        usernameError.setTextFill(Color.RED);
+        usernameError.setVisible(false);
+
+        formErrorsMap.put("username", usernameError);
+
+        return usernameError;
+    }
+
+    private Label createPasswordError()
+    {
+        passwordError = new Label("Password incorrect");
+        passwordError.setFont(new Font(20));
+        passwordError.setTextFill(Color.RED);
+        passwordError.setVisible(false);
+
+        formErrorsMap.put("password", passwordError);
+
+
+        return passwordError;
+    }
+
+    private Label createPasswordConfError()
+    {
+        passwordConfError = new Label("Password confirm incorrect");
+        passwordConfError.setFont(new Font(20));
+        passwordConfError.setTextFill(Color.RED);
+        passwordConfError.setVisible(false);
+
+        formErrorsMap.put("confirmPassword", passwordConfError);
+
+        return passwordConfError;
     }
 
 
@@ -171,7 +237,7 @@ public class RegisterForm extends View {
 
     private void setOnRegisterButton()
     {
-        registerBtn.setOnAction(new OnRegisterUser(this, App.getMainMenu()));
+        registerBtn.setOnAction(new OnRegisterUser(this, App.getMainMenu(), App.ApiService));
     }
 
     public LoginForm getLoginForm() {
@@ -180,6 +246,30 @@ public class RegisterForm extends View {
 
     public void setLoginForm(LoginForm loginForm) {
         this.loginForm = loginForm;
+    }
+
+    public TextField getEmailEl() {
+        return emailEl;
+    }
+
+    public void setEmailEl(TextField emailEl) {
+        this.emailEl = emailEl;
+    }
+
+    public PasswordField getPasswordEl() {
+        return passwordEl;
+    }
+
+    public void setPasswordEl(PasswordField passwordEl) {
+        this.passwordEl = passwordEl;
+    }
+
+    public PasswordField getPasswordConfEl() {
+        return passwordConfEl;
+    }
+
+    public void setPasswordConfEl(PasswordField passwordConfEl) {
+        this.passwordConfEl = passwordConfEl;
     }
 
     public boolean isValid() {
@@ -202,5 +292,68 @@ public class RegisterForm extends View {
         }
 
         return true;
+    }
+
+    public Label getMainError() {
+        return mainError;
+    }
+
+    public void setMainError(Label mainError) {
+        this.mainError = mainError;
+    }
+
+    public Label getPasswordError() {
+        return passwordError;
+    }
+
+    public void setPasswordError(Label passwordError) {
+        this.passwordError = passwordError;
+    }
+
+    public Label getPasswordConfError() {
+        return passwordConfError;
+    }
+
+    public void setPasswordConfError(Label passwordConfError) {
+        this.passwordConfError = passwordConfError;
+    }
+
+    public Label getUsernameError() {
+        return usernameError;
+    }
+
+    public void setUsernameError(Label usernameError) {
+        this.usernameError = usernameError;
+    }
+
+    public CheckBox getAgreeTerms() {
+        return agreeTerms;
+    }
+
+    public void showFormErrors(ResponseError responseError) {
+        responseError.getErrors().forEach(el -> {
+            if (formErrorsMap.containsKey(el.getField())) {
+                formErrorsMap.get(el.getField()).setVisible(true);
+                formErrorsMap.get(el.getField()).setText(el.getMessage());
+            }
+        });
+    }
+
+    public void resetErrors()
+    {
+        formErrorsMap.forEach((key, el) -> {
+            el.setText("");
+            el.setVisible(false);
+        });
+
+        getMainError().setText("");
+        getMainError().setVisible(false);
+    }
+
+    public void resetFields() {
+        getEmailEl().setText("");
+        getPasswordEl().setText("");
+        getPasswordConfEl().setText("");
+        getAgreeTerms().setSelected(false);
     }
 }

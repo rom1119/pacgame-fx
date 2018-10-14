@@ -18,6 +18,8 @@ import org.springframework.core.env.Environment;
 public class MainConfig
 {
 
+    private String ADDRESS_HOST;
+
 //    @Autowired
 //    private MainSettings mainSettings;
 //
@@ -64,27 +66,33 @@ public class MainConfig
 //    }
 
     @Autowired
+    public void setAddressHost(Environment env)
+    {
+        ADDRESS_HOST = env.getProperty("oauth.host");
+    }
+
+    @Autowired
     public void setLoggedUserUrl(Environment env)
     {
-        ApiImpl.GET_LOGGED_USER_URL = env.getProperty("oauth.url.getLoggedUser");
+        ApiImpl.GET_LOGGED_USER_URL = ADDRESS_HOST + env.getProperty("oauth.url.getLoggedUser");
     }
 
     @Autowired
     public void setUserUrl(Environment env)
     {
-        ApiImpl.GET_USER_URL = env.getProperty("oauth.url.getUser");
+        ApiImpl.GET_USER_URL = ADDRESS_HOST + env.getProperty("oauth.url.getUser");
     }
 
     @Autowired
     public void setUsersUrl(Environment env)
     {
-        ApiImpl.GET_USERS_URL = env.getProperty("oauth.url.getUsers");
+        ApiImpl.GET_USERS_URL = ADDRESS_HOST + env.getProperty("oauth.url.getUsers");
     }
 
     @Autowired
     public void setTokenUrl(Environment env)
     {
-        ApiImpl.GET_TOKEN_URL = env.getProperty("oauth.url.getToken");
+        ApiImpl.GET_TOKEN_URL = ADDRESS_HOST + env.getProperty("oauth.url.getToken");
     }
 
     @Autowired
@@ -102,6 +110,12 @@ public class MainConfig
     @Autowired
     public void setLogout(Environment env)
     {
-        ApiImpl.LOGOUT_URL = env.getProperty("oauth.url.logout");
+        ApiImpl.LOGOUT_URL = ADDRESS_HOST + env.getProperty("oauth.url.logout");
+    }
+
+    @Autowired
+    public void setRegisterUrl(Environment env)
+    {
+        ApiImpl.REGISTER_URL = ADDRESS_HOST + env.getProperty("oauth.url.register");
     }
 }

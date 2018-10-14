@@ -2,8 +2,8 @@ package com.pacgame.ui.component;
 
 import com.pacgame.App;
 import com.pacgame.View;
-import com.pacgame.ui.event.eventHandler.OnLogout;
 import com.pacgame.data.model.User;
+import com.pacgame.ui.event.eventHandler.OnLogout;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;

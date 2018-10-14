@@ -1,15 +1,14 @@
 package com.pacgame.data.model;
 
-import java.util.Map;
-
 public class Token {
 
-    public static int SERVER_ERROR = 0;
-    public static int CREDENTIALS_ERROR = 1;
+    public static int SERVER_ERROR = 1;
+    public static int CREDENTIALS_ERROR = 2;
 
     private int errorType;
 
-    private User user;
+    private User body;
+    private ResponseError responseError;
 
     private String access_token;
     private String token_type;
@@ -18,6 +17,7 @@ public class Token {
     private String scope;
     private String error;
     private String error_description;
+
 
     public String getAccess_token() {
         return access_token;
@@ -88,11 +88,19 @@ public class Token {
         this.errorType = errorType;
     }
 
-    public User getUser() {
-        return user;
+    public User getBody() {
+        return body;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setBody(User body) {
+        this.body = body;
+    }
+
+    public ResponseError getResponseError() {
+        return responseError;
+    }
+
+    public void setResponseError(ResponseError responseError) {
+        this.responseError = responseError;
     }
 }

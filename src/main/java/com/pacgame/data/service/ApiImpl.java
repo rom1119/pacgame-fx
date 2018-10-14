@@ -2,6 +2,8 @@ package com.pacgame.data.service;
 
 import com.pacgame.data.model.Token;
 import com.pacgame.data.model.User;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
 import org.springframework.http.*;
@@ -11,7 +13,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +25,9 @@ public class ApiImpl implements Api {
     public static String GET_LOGGED_USER_URL;
     public static String GET_USER_URL;
     public static String GET_USERS_URL;
+    public static String REGISTER_URL;
 
     public static String CLIENT_ID;
-
     public static String CLIENT_SECRET;
 
     public static String GET_TOKEN_URL;
@@ -77,16 +78,39 @@ public class ApiImpl implements Api {
         HttpEntity<String> request = new HttpEntity<>(requestHeaders);
 
         ResponseEntity<User> responseUser = null;
-
+        System.out.println(GET_LOGGED_USER_URL);
         if (id == null) {
             responseUser = restTemplate.exchange(GET_LOGGED_USER_URL, HttpMethod.GET, request, User.class);
         } else {
             responseUser = restTemplate.exchange(GET_USER_URL + String.valueOf(id), HttpMethod.GET, request, User.class);
 
         }
-
         return responseUser.getBody();
 
+    }
+
+    @Override
+    public User registerUser(User user) throws ResourceAccessException, HttpClientErrorException, JSONException {
+
+//        HashMap<String, String> bodyRequest = new HashMap<>();
+//        bodyRequest.put("username", user.getUsername());
+//        bodyRequest.put("password", user.getPassword());
+//        bodyRequest.put("confirmPassword", user.getConfirmPassword());
+
+        JSONObject bodyRequest = new JSONObject();
+        bodyRequest.put("username", user.getUsername());
+        bodyRequest.put("password", user.getPassword());
+        bodyRequest.put("confirmPassword", user.getConfirmPassword());
+
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(new MediaType("application", "json"));
+
+        HttpEntity<String> request = new HttpEntity<>(bodyRequest.toString(), requestHeaders);
+
+        User responseUser = null;
+
+        responseUser = restTemplate.postForObject(REGISTER_URL, request, User.class);
+        return responseUser;
     }
 
     @Override
@@ -122,7 +146,7 @@ public class ApiImpl implements Api {
         HttpEntity<String> request = new HttpEntity<>(requestHeaders);
 
 
-        restTemplate.exchange(LOGOUT_URL, HttpMethod.DELETE, request, Object.class);
+        restTemplate.exchange(LOGOUT_URL, HttpMethod.DELETE, request, java.lang.Object.class);
 
         return true;
 

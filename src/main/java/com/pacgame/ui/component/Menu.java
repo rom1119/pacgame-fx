@@ -147,7 +147,7 @@ public abstract class Menu extends View {
         if (menuOptions.isEmpty()) {
             return null;
         }
-        System.out.println(menuOptions.size());
+//        System.out.println(menuOptions.size());
         if (iterator == 0) {
             iterator = menuOptions.size() - 1;
             return menuOptions.get(iterator);

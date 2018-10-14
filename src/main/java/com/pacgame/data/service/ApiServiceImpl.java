@@ -1,13 +1,19 @@
 package com.pacgame.data.service;
 
 import com.pacgame.App;
-import com.pacgame.data.model.Token;
+import com.pacgame.data.model.ResponseError;
+import com.pacgame.data.model.SubError;
 import com.pacgame.data.model.User;
+import com.pacgame.data.model.Token;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 
-import java.rmi.ServerError;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.pacgame.App.user;
 
@@ -25,15 +31,16 @@ public class ApiServiceImpl implements ApiService {
         Token token = null;
         try {
             token = api.postToken(username, password);
+            System.out.println(token.getAccess_token());
             api.setToken(token);
             user = api.getUser(null);
             api.setLoggedUser(user);
             api.getLoggedUser().setPassword("");
-            api.getLoggedUser().setPasswordConfirm("");
+            api.getLoggedUser().setConfirmPassword("");
             App.setUser(user);
             App.bindUserProperty();
             App.setLoggedUser(true);
-            token.setUser(user);
+            token.setBody(user);
         } catch (ResourceAccessException e) {
             token = new Token();
             token.setErrorType(Token.SERVER_ERROR);
@@ -45,6 +52,33 @@ public class ApiServiceImpl implements ApiService {
         }
 
 
+
+        return token;
+    }
+
+    @Override
+    public Token registerUser(User user) {
+
+        Token token = new Token();
+        try {
+            token.setBody(api.registerUser(user));
+        } catch (ResourceAccessException e) {
+            token.setErrorType(Token.SERVER_ERROR);
+            token.setError("error");
+        } catch (HttpClientErrorException e) {
+            token.setErrorType(Token.CREDENTIALS_ERROR);
+
+            ResponseError responseError = null;
+            try {
+                responseError = createResponseErrorFromJsonString(e.getResponseBodyAsString());
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+            token.setResponseError(responseError);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         return token;
     }
@@ -77,6 +111,28 @@ public class ApiServiceImpl implements ApiService {
 
         return true;
     }
+
+    private ResponseError createResponseErrorFromJsonString(String json) throws JSONException {
+        JSONObject bodyResponse = new JSONObject(json);
+        ResponseError responseError = new ResponseError();
+        responseError.setStatus((String) bodyResponse.get("status"));
+        responseError.setMessage((String) bodyResponse.get("message"));
+        Set<SubError> errors = new HashSet<>();
+        JSONArray errorsJson = bodyResponse.getJSONArray("errors");
+        if (errorsJson != null) {
+            for (int i = 0; i < errorsJson.length(); i++){
+                JSONObject el = new JSONObject(errorsJson.getString(i));
+                System.out.println(el.getString("objectName"));
+                SubError subError = new SubError((String) el.get("objectName"), (String) el.get("field"), (String) el.get("rejectedValue"), (String) el.get("message"));
+                errors.add(subError);
+            }
+        }
+
+        responseError.setErrors(errors);
+
+        return responseError;
+    }
+
 
     private void onLogoutSuccess()
     {

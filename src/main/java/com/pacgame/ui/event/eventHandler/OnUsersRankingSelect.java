@@ -4,7 +4,6 @@ import com.pacgame.App;
 import com.pacgame.View;
 import com.pacgame.data.model.User;
 import com.pacgame.data.service.ApiService;
-import com.pacgame.ui.component.MainMenu;
 import com.pacgame.ui.component.UsersRanking;
 import com.pacgame.ui.event.MenuHandler;
 import javafx.event.Event;

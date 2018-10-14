@@ -89,7 +89,7 @@ public class SavedGame
      * person to read.
      * It is recommended that all subclasses override this method.
      * <p>
-     * The {@code toString} method for class {@code Object}
+     * The {@code toString} method for class {@code User}
      * returns a string consisting of the name of the class of which the
      * object is an instance, the at-sign character `{@code @}', and
      * the unsigned hexadecimal representation of the hash code of the

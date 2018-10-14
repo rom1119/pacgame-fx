@@ -8,19 +8,25 @@ public class User {
     private SimpleStringProperty id;
     private SimpleStringProperty username;
     private SimpleStringProperty password;
-    private SimpleStringProperty passwordConfirm;
+    private SimpleStringProperty confirmPassword;
     private boolean acceptTerms;
 
     private SimpleObjectProperty<UserDetails> userDetails;
 
     private SimpleStringProperty userRoles;
 
+    public User(SimpleStringProperty username, SimpleStringProperty password, SimpleStringProperty confirmPassword) {
+        this.username = username;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
     public User() {
 
         id = new SimpleStringProperty();
         username = new SimpleStringProperty();
         password = new SimpleStringProperty();
-        passwordConfirm = new SimpleStringProperty();
+        confirmPassword = new SimpleStringProperty();
         userDetails = new SimpleObjectProperty<>();
         userRoles = new SimpleStringProperty();
 
@@ -49,8 +55,8 @@ public class User {
         return passwordProperty().get();
     }
 
-    public String getPasswordConfirm() {
-        return passwordConfirmProperty().get();
+    public String getConfirmPassword() {
+        return confirmPasswordProperty().get();
     }
 
     public boolean isAcceptTerms() {
@@ -85,8 +91,8 @@ public class User {
         return password;
     }
 
-    public SimpleStringProperty passwordConfirmProperty() {
-        return passwordConfirm;
+    public SimpleStringProperty confirmPasswordProperty() {
+        return confirmPassword;
     }
 
     public SimpleObjectProperty<UserDetails> userDetailsProperty() {
@@ -105,8 +111,8 @@ public class User {
         this.password.set(password);
     }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm.set(passwordConfirm);
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword.set(confirmPassword);
     }
 
     public void setUserDetails(UserDetails userDetails) {
