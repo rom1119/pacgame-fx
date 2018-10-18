@@ -1,4 +1,4 @@
-package com.pacgame;
+package com.pacgame.ui.component;
 
 import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
