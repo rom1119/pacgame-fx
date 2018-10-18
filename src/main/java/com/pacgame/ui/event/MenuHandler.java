@@ -1,6 +1,6 @@
 package com.pacgame.ui.event;
 
-import com.pacgame.View;
+import com.pacgame.ui.component.View;
 import javafx.event.EventHandler;
 
 public abstract class MenuHandler implements EventHandler {

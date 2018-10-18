@@ -2,6 +2,12 @@ package com.pacgame.ui.service;
 
 import com.pacgame.board.model.Pacman;
 import com.pacgame.ui.component.*;
+import com.pacgame.ui.component.board.EntryTimer;
+import com.pacgame.ui.component.board.Map;
+import com.pacgame.ui.component.contextmenu.ContextMenu;
+import com.pacgame.ui.component.contextmenu.ContextSaveGame;
+import com.pacgame.ui.component.contextmenu.ContextSettings;
+import com.pacgame.ui.component.mainmenu.*;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 

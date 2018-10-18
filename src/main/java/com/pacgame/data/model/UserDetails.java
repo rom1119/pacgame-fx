@@ -3,6 +3,8 @@ package com.pacgame.data.model;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.File;
+
 public class UserDetails {
 
     private SimpleStringProperty firstName;
@@ -10,6 +12,8 @@ public class UserDetails {
     private SimpleStringProperty lastName;
 
     private SimpleStringProperty fileName;
+
+    private File file;
 
     private SimpleStringProperty score;
 
@@ -68,5 +72,13 @@ public class UserDetails {
 
     public void setScore(String score) {
         this.score.set(score);
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }

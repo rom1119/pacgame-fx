@@ -1,7 +1,6 @@
 package com.pacgame.ui.component;
 
 import com.pacgame.App;
-import com.pacgame.View;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

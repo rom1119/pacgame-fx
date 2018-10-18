@@ -1,7 +1,8 @@
 package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.App;
-import com.pacgame.View;
+import com.pacgame.ui.component.View;
+import com.pacgame.ui.component.mainmenu.UserAccount;
 import com.pacgame.ui.event.MenuHandler;
 import javafx.event.Event;
 import javafx.scene.control.Alert;
@@ -35,7 +36,8 @@ public class OnUserAccountSelect extends MenuHandler {
 
             alert.showAndWait();
         }
-
+        UserAccount userAccount = (UserAccount) viewToShow;
+        userAccount.resetErrors();
         getViewToHide().hide();
         getViewToShow().show();
 

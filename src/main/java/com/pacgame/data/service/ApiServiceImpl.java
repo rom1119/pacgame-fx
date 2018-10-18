@@ -5,12 +5,14 @@ import com.pacgame.data.model.ResponseError;
 import com.pacgame.data.model.SubError;
 import com.pacgame.data.model.User;
 import com.pacgame.data.model.Token;
+import javafx.scene.image.Image;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,8 +32,8 @@ public class ApiServiceImpl implements ApiService {
 
         Token token = null;
         try {
+            api.logoutUser();
             token = api.postToken(username, password);
-            System.out.println(token.getAccess_token());
             api.setToken(token);
             user = api.getUser(null);
             api.setLoggedUser(user);
@@ -67,6 +69,7 @@ public class ApiServiceImpl implements ApiService {
             token.setError("error");
         } catch (HttpClientErrorException e) {
             token.setErrorType(Token.CREDENTIALS_ERROR);
+            token.setError("error");
 
             ResponseError responseError = null;
             try {
@@ -78,6 +81,68 @@ public class ApiServiceImpl implements ApiService {
 
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+
+        return token;
+    }
+
+    @Override
+    public Token updateUser(User userArg) {
+
+        Token token = null;
+        try {
+            user = api.putUser(userArg);
+            api.setLoggedUser(user);
+            App.setUser(user);
+            App.bindUserProperty();
+            App.setLoggedUser(true);
+            token.setBody(user);
+        } catch (ResourceAccessException e) {
+            token = new Token();
+            token.setErrorType(Token.SERVER_ERROR);
+            token.setError("error");
+        } catch (HttpClientErrorException e) {
+            token = new Token();
+            token.setErrorType(Token.CREDENTIALS_ERROR);
+            token.setError("error");
+            ResponseError responseError = null;
+            try {
+                responseError = createResponseErrorFromJsonString(e.getResponseBodyAsString());
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+            token.setResponseError(responseError);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return token;
+    }
+
+    @Override
+    public Token updateUserImage(File file) {
+
+        Token token = new Token();
+        try {
+            user = api.putUserImage(file);
+            api.setLoggedUser(user);
+            App.setUser(user);
+            App.bindUserProperty();
+            App.setLoggedUser(true);
+            token.setBody(user);
+        } catch (ResourceAccessException e) {
+            token.setErrorType(Token.SERVER_ERROR);
+            token.setError("error");
+        } catch (HttpClientErrorException e) {
+            token.setErrorType(Token.CREDENTIALS_ERROR);
+            token.setError("error");
+            ResponseError responseError = null;
+            try {
+                responseError = createResponseErrorFromJsonString(e.getResponseBodyAsString());
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+            token.setResponseError(responseError);
         }
 
         return token;
@@ -131,6 +196,16 @@ public class ApiServiceImpl implements ApiService {
         responseError.setErrors(errors);
 
         return responseError;
+    }
+
+    @Override
+    public Image getImageUser(User user)
+    {
+        if (user.getUserDetails() == null) {
+            return null;
+        }
+
+        return user.getUserDetails().getFileName() == null ? null : api.getUserImage(user);
     }
 
 

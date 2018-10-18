@@ -1,6 +1,6 @@
 package com.pacgame.ui.event.eventHandler;
 
-import com.pacgame.ui.component.MainSettings;
+import com.pacgame.ui.component.mainmenu.MainSettings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;

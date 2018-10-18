@@ -10,7 +10,12 @@ import com.pacgame.data.service.ApiImpl;
 import com.pacgame.data.service.ApiService;
 import com.pacgame.data.service.ApiServiceImpl;
 import com.pacgame.ui.component.*;
-import com.pacgame.ui.component.Map;
+import com.pacgame.ui.component.board.Map;
+import com.pacgame.ui.component.board.EntryTimer;
+import com.pacgame.ui.component.contextmenu.ContextMenu;
+import com.pacgame.ui.component.contextmenu.ContextSaveGame;
+import com.pacgame.ui.component.contextmenu.ContextSettings;
+import com.pacgame.ui.component.mainmenu.*;
 import com.pacgame.ui.service.Factory;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -26,6 +31,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -216,7 +222,6 @@ public class App extends Application {
             root.getChildren().remove(mazeController.getControlledObject().getCollider());
             root.getChildren().remove(mazeController.getControlledObject().getIcon());
 
-
         }
         mazeController.setControlledObject(null);
         mazeController.setMovementManager(null);
@@ -277,14 +282,16 @@ public class App extends Application {
 
     public static void bindUserProperty() {
 
-        userAccount.getIdEl().textProperty().bindBidirectional(user.idProperty());
-        userAccount.getEmailEl().textProperty().bindBidirectional(user.usernameProperty());
-        userAccount.getRolesEl().textProperty().bindBidirectional(user.userRolesProperty());
+        System.out.println(user.idProperty().get());
+        userAccount.getIdEl().textProperty().bind(user.idProperty());
+        userAccount.getUsernameEl().textProperty().bind(user.usernameProperty());
+        userAccount.getRolesEl().textProperty().bind(user.userRolesProperty());
 
-        userAccount.getNameEl().textProperty().bindBidirectional(user.getUserDetails().firstNameProperty());
-        userAccount.getLastNameEl().textProperty().bindBidirectional(user.getUserDetails().lastNameProperty());
-        userAccount.getFullScoreEl().textProperty().bindBidirectional(user.getUserDetails().scoreProperty());
+        userAccount.getNameEl().textProperty().bind(user.getUserDetails().firstNameProperty());
+        userAccount.getLastNameEl().textProperty().bind(user.getUserDetails().lastNameProperty());
+        userAccount.getFullScoreEl().textProperty().bind(user.getUserDetails().scoreProperty());
 
+        userAccount.updateImage(ApiService.getImageUser(user));
 
     }
 
@@ -351,6 +358,7 @@ public class App extends Application {
         contextSaveGame.setMenu(contextMenu);
         mainReadGame.setMenu(mainMenu);
         userAccount.setMenu(mainMenu);
+        userAccount.setMainStage(primaryStage);
         loginForm.setRegisterForm(registerForm);
         registerForm.setLoginForm(loginForm);
         usersRanking.setMenu(mainMenu);

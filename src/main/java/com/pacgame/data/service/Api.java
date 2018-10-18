@@ -2,10 +2,12 @@ package com.pacgame.data.service;
 
 import com.pacgame.data.model.User;
 import com.pacgame.data.model.Token;
+import javafx.scene.image.Image;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 
+import java.io.File;
 import java.util.List;
 
 public interface Api {
@@ -28,4 +30,9 @@ public interface Api {
 
     User getLoggedUser();
 
+    User putUser(User user) throws ResourceAccessException, HttpClientErrorException, JSONException;
+
+    User putUserImage(File file) throws ResourceAccessException, HttpClientErrorException;
+
+    Image getUserImage(User user);
 }

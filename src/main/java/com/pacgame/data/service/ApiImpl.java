@@ -2,20 +2,26 @@ package com.pacgame.data.service;
 
 import com.pacgame.data.model.Token;
 import com.pacgame.data.model.User;
+import com.sun.imageio.plugins.common.LZWCompressor;
+import javafx.scene.image.Image;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.util.Base64Utils;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.net.URI;
+import java.util.*;
 
 public class ApiImpl implements Api {
 
@@ -25,7 +31,10 @@ public class ApiImpl implements Api {
     public static String GET_LOGGED_USER_URL;
     public static String GET_USER_URL;
     public static String GET_USERS_URL;
+    public static String PUT_USER_URL;
+    public static String PUT_USER_IMAGE_URL;
     public static String REGISTER_URL;
+    public static String RESOURCE_URL;
 
     public static String CLIENT_ID;
     public static String CLIENT_SECRET;
@@ -59,7 +68,6 @@ public class ApiImpl implements Api {
         requestHeaders.add("Authorization", "Basic " + hashClientIdAndPassword());
 
         HttpEntity<String> request = new HttpEntity<>(getDataString(bodyRequest), requestHeaders);
-
         return restTemplate.postForObject(GET_TOKEN_URL, request, Token.class);
 
     }
@@ -78,7 +86,6 @@ public class ApiImpl implements Api {
         HttpEntity<String> request = new HttpEntity<>(requestHeaders);
 
         ResponseEntity<User> responseUser = null;
-        System.out.println(GET_LOGGED_USER_URL);
         if (id == null) {
             responseUser = restTemplate.exchange(GET_LOGGED_USER_URL, HttpMethod.GET, request, User.class);
         } else {
@@ -189,5 +196,76 @@ public class ApiImpl implements Api {
 
     public User getLoggedUser() {
         return loggedUser;
+    }
+
+    @Override
+    public User putUser(User user) throws ResourceAccessException, HttpClientErrorException, JSONException {
+        if (token == null) {
+            throw new ResourceAccessException("Token not exist");
+        }
+
+        JSONObject bodyRequest = new JSONObject();
+        JSONObject userDetails = new JSONObject();
+        bodyRequest.put("id", getLoggedUser().getId());
+        userDetails.put("firstName", user.getUserDetails().getFirstName());
+        userDetails.put("lastName", user.getUserDetails().getFirstName());
+        bodyRequest.put("userDetails", userDetails);
+
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(new MediaType("application", "json"));
+        requestHeaders.add("Authorization", "Bearer " + token.getAccess_token());
+
+        HttpEntity<String> request = new HttpEntity<>(bodyRequest.toString(), requestHeaders);
+
+        ResponseEntity<User> responseUser = null;
+
+        responseUser = restTemplate.exchange(PUT_USER_URL, HttpMethod.PUT, request, User.class);
+
+        return responseUser.getBody();
+    }
+
+    @Override
+    public User putUserImage(File file) throws ResourceAccessException, HttpClientErrorException {
+        if (token == null) {
+            throw new ResourceAccessException("Token not exist");
+        }
+
+//        try (FileInputStream fileInputStream = new FileInputStream(file)) {
+//            byte imageData[] = new byte[(int) file.length()];
+//            fileInputStream.read(imageData);
+//            String base64Image = Base64.getEncoder().encodeToString(imageData);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        MultiValueMap<String, Object> body
+                = new LinkedMultiValueMap<>();
+
+        HttpEntity fileSend = new HttpEntity(new FileSystemResource(file));
+
+        body.add("file", fileSend);
+
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
+        requestHeaders.add("Authorization", "Bearer " + token.getAccess_token());
+
+        HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(body, requestHeaders);
+
+        ResponseEntity<User> responseUser = null;
+
+        responseUser = restTemplate.exchange(getUrlWithParams(PUT_USER_IMAGE_URL), HttpMethod.PUT, request, User.class);
+
+        return responseUser.getBody();
+    }
+
+    private String getUrlWithParams(String putUserImageUrl) {
+        return putUserImageUrl.replaceFirst("\\{id\\}", getLoggedUser().getId());
+    }
+
+    @Override
+    public Image getUserImage(User user) {
+        return new Image(RESOURCE_URL + "userdetails/" +  user.getUserDetails().getFileName());
     }
 }

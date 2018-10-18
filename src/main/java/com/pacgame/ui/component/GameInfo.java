@@ -1,7 +1,6 @@
 package com.pacgame.ui.component;
 
 import com.pacgame.App;
-import com.pacgame.View;
 import com.pacgame.data.model.User;
 import com.pacgame.ui.event.eventHandler.OnLogout;
 import javafx.beans.value.ChangeListener;

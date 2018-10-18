@@ -1,6 +1,6 @@
 package com.pacgame.ui.event.eventHandler;
 
-import com.pacgame.ui.component.ContextSettings;
+import com.pacgame.ui.component.contextmenu.ContextSettings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 

@@ -1,13 +1,12 @@
 package com.pacgame.ui.event.eventHandler;
 
-import com.pacgame.View;
+import com.pacgame.ui.component.View;
 import com.pacgame.data.model.User;
 import com.pacgame.data.model.Token;
 import com.pacgame.data.service.ApiService;
-import com.pacgame.ui.component.RegisterForm;
+import com.pacgame.ui.component.mainmenu.RegisterForm;
 import com.pacgame.ui.event.MenuHandler;
 import javafx.event.Event;
-import org.springframework.boot.configurationprocessor.json.JSONException;
 
 public class OnRegisterUser extends MenuHandler {
 
