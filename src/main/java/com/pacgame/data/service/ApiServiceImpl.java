@@ -89,7 +89,7 @@ public class ApiServiceImpl implements ApiService {
     @Override
     public Token updateUser(User userArg) {
 
-        Token token = null;
+        Token token = new Token();
         try {
             user = api.putUser(userArg);
             api.setLoggedUser(user);
@@ -98,14 +98,13 @@ public class ApiServiceImpl implements ApiService {
             App.setLoggedUser(true);
             token.setBody(user);
         } catch (ResourceAccessException e) {
-            token = new Token();
             token.setErrorType(Token.SERVER_ERROR);
             token.setError("error");
         } catch (HttpClientErrorException e) {
-            token = new Token();
             token.setErrorType(Token.CREDENTIALS_ERROR);
             token.setError("error");
             ResponseError responseError = null;
+            System.out.println(e.getResponseBodyAsString());
             try {
                 responseError = createResponseErrorFromJsonString(e.getResponseBodyAsString());
             } catch (JSONException e1) {

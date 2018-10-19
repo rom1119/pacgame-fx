@@ -3,6 +3,7 @@ package com.pacgame.ui.component.mainmenu;
 import com.pacgame.App;
 import com.pacgame.board.controller.MazeController;
 import com.pacgame.board.controller.PacmanController;
+import com.pacgame.data.model.ResponseError;
 import com.pacgame.ui.component.Menu;
 import com.pacgame.ui.component.SubView;
 import com.pacgame.ui.event.eventHandler.OnBackToMenu;
@@ -23,8 +24,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class UserAccount extends SubView {
@@ -37,9 +41,15 @@ public class UserAccount extends SubView {
 
     private Label nameLabel;
     private Label nameEl;
+    private TextField nameInput;
+    private Label nameError;
+
 
     private Label lastNameLabel;
     private Label lastNameEl;
+    private TextField lastNameInput;
+    private Label lastNameError;
+
 
     private Label imageLabel;
     private ImageView imageEl;
@@ -67,6 +77,11 @@ public class UserAccount extends SubView {
     private ObservableList<MazeController> mazeCollection;
     private boolean editable;
 
+    private Map<String, Label> formErrorsMap = new HashMap<>();
+    private Map<String, TextField> formInputsMap = new HashMap<>();
+    private VBox firstNamePane;
+    private VBox lastNamePane;
+
 
     @Override
     public Node getView(int width, int height) {
@@ -90,19 +105,17 @@ public class UserAccount extends SubView {
 
         FlowPane namePane = new FlowPane();
 
-        BorderPane firstNamePane =  new BorderPane();
+        firstNamePane =  new VBox();
         firstNamePane.setPrefWidth(width / 2);
 //        firstNamePane.setPrefHeight(height / 2);
 
-        firstNamePane.setTop(createNameLabel());
-        firstNamePane.setBottom(createNameEl());
+        firstNamePane.getChildren().addAll(createNameLabel(), createNameEl());
 
-        BorderPane lastNamePane =  new BorderPane();
+        lastNamePane =  new VBox();
         lastNamePane.setPrefWidth(width / 2);
 //        lastNamePane.setPrefHeight(height / 2);
 
-        lastNamePane.setTop(createLastNameLabel());
-        lastNamePane.setBottom(createLastNameEl());
+        lastNamePane.getChildren().addAll(createLastNameLabel(), createLastNameEl());
 
         namePane.getChildren().addAll(firstNamePane, lastNamePane);
         vBox.getChildren().add(namePane);
@@ -153,12 +166,37 @@ public class UserAccount extends SubView {
 
     private Label createLastNameEl()
     {
-        lastNameEl = new Label();
+        if (lastNameEl == null) {
+            lastNameEl = new Label();
+        }
         lastNameEl.setMaxWidth(250);
         lastNameEl.setFont(new Font(20));
         lastNameEl.setTextFill(Color.WHITE);
 
         return lastNameEl;
+    }
+
+    private TextField createLastNameInput()
+    {
+        lastNameInput = new TextField();
+        lastNameInput.setMaxWidth(250);
+        lastNameInput.setVisible(false);
+
+        formInputsMap.put("lastName", lastNameInput);
+
+        return lastNameInput;
+    }
+
+    private Label createLastNameError()
+    {
+        lastNameError = new Label("Username incorrect");
+        lastNameError.setFont(new Font(20));
+        lastNameError.setTextFill(Color.RED);
+        lastNameError.setVisible(false);
+
+        formErrorsMap.put("lastName", lastNameError);
+
+        return lastNameError;
     }
 
     private Label createNameLabel()
@@ -172,12 +210,38 @@ public class UserAccount extends SubView {
 
     private Label createNameEl()
     {
-        nameEl = new Label();
+        if (nameEl == null) {
+            nameEl = new Label();
+        }
         nameEl.setMaxWidth(250);
         nameEl.setFont(new Font(20));
         nameEl.setTextFill(Color.WHITE);
+        nameEl.setVisible(true);
 
         return nameEl;
+    }
+
+    private TextField createNameInput()
+    {
+        nameInput = new TextField();
+        nameInput.setMaxWidth(250);
+        nameInput.setVisible(false);
+
+        formInputsMap.put("firstName", nameInput);
+
+        return nameInput;
+    }
+
+    private Label createNameError()
+    {
+        nameError = new Label("Username incorrect");
+        nameError.setFont(new Font(20));
+        nameError.setTextFill(Color.RED);
+        nameError.setVisible(false);
+
+        formErrorsMap.put("firstName", nameError);
+
+        return nameError;
     }
 
     private Label createIdLabel()
@@ -461,13 +525,134 @@ public class UserAccount extends SubView {
         this.imageError = imageError;
     }
 
-    public void resetErrors()
-    {
-        imageError.setText("");
-        imageError.setVisible(false);
+    public Label getNameError() {
+        return nameError;
+    }
+
+    public void setNameError(Label nameError) {
+        this.nameError = nameError;
+    }
+
+    public Label getLastNameError() {
+        return lastNameError;
+    }
+
+    public void setLastNameError(Label lastNameError) {
+        this.lastNameError = lastNameError;
+    }
+
+    public TextField getNameInput() {
+        return nameInput;
+    }
+
+    public void setNameInput(TextField nameInput) {
+        this.nameInput = nameInput;
+    }
+
+    public TextField getLastNameInput() {
+        return lastNameInput;
+    }
+
+    public void setLastNameInput(TextField lastNameInput) {
+        this.lastNameInput = lastNameInput;
     }
 
     public void changeLabelsOnInputs() {
+        getNameEl().setVisible(false);
+        getLastNameEl().setVisible(false);
+        firstNamePane.getChildren().remove(getNameEl());
+        lastNamePane.getChildren().remove(getLastNameEl());
+
+        firstNamePane.getChildren().add(createNameInput());
+        lastNamePane.getChildren().add(createLastNameInput());
+
+        getNameInput().setVisible(true);
+        getNameInput().setText(getNameEl().getText());
+        getLastNameInput().setVisible(true);
+        getLastNameInput().setText(getLastNameEl().getText());
 
     }
+
+    public void changeInputsOnLabels() {
+        firstNamePane.getChildren().add(getNameEl());
+        lastNamePane.getChildren().add(getLastNameEl());
+        getNameEl().setVisible(true);
+        getLastNameEl().setVisible(true);
+
+        firstNamePane.getChildren().remove(getNameInput());
+        lastNamePane.getChildren().remove(getLastNameInput());
+
+        getNameInput().setVisible(false);
+        getNameInput().setText("");
+        getLastNameInput().setVisible(false);
+        getLastNameInput().setText("");
+
+    }
+
+    public void showFormErrors(ResponseError responseError) {
+        responseError.getErrors().forEach(el -> {
+            if (formErrorsMap.containsKey(el.getField())) {
+                formErrorsMap.get(el.getField()).setVisible(true);
+                formErrorsMap.get(el.getField()).setText(el.getMessage());
+                switch (el.getField()) {
+                    case "firstName":
+                        firstNamePane.getChildren().add( formErrorsMap.get(el.getField()));
+                        break;
+                    case  "lastName":
+                        lastNamePane.getChildren().add( formErrorsMap.get(el.getField()));
+                        break;
+                    default:
+                        showMainError(el.getMessage());
+                }
+            }
+        });
+    }
+
+    public void resetErrors()
+    {
+        formErrorsMap.forEach((key, el) -> {
+            el.setText("");
+            el.setVisible(false);
+            switch (key) {
+                case "firstName":
+                    firstNamePane.getChildren().remove( formErrorsMap.get(key));
+                    break;
+                case  "lastName":
+                    lastNamePane.getChildren().remove( formErrorsMap.get(key));
+                    break;
+                default:
+            }
+        });
+
+        imageError.setText("");
+        imageError.setVisible(false);
+
+//        getMainError().setText("");
+//        getMainError().setVisible(false);
+    }
+
+    public void showMainError(String msgError) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Problem z zapisem");
+        alert.setHeaderText(null);
+        alert.setContentText(msgError);
+
+        alert.showAndWait();
+    }
+
+    public void showSuccessSaveMsg() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Powiadomienie o zapisie");
+        alert.setHeaderText(null);
+        alert.setContentText("Zapisano");
+
+        alert.showAndWait();
+    }
+
+//    public void resetFields() {
+//        getEmailEl().setText("");
+//        getPasswordEl().setText("");
+//        getPasswordConfEl().setText("");
+//        getAgreeTerms().setSelected(false);
+//    }
 }

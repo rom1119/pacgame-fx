@@ -205,11 +205,10 @@ public class ApiImpl implements Api {
         }
 
         JSONObject bodyRequest = new JSONObject();
-        JSONObject userDetails = new JSONObject();
-        bodyRequest.put("id", getLoggedUser().getId());
-        userDetails.put("firstName", user.getUserDetails().getFirstName());
-        userDetails.put("lastName", user.getUserDetails().getFirstName());
-        bodyRequest.put("userDetails", userDetails);
+//        JSONObject userDetails = new JSONObject();
+        bodyRequest.put("firstName", user.getUserDetails().getFirstName());
+        bodyRequest.put("lastName", user.getUserDetails().getLastName());
+//        bodyRequest.put("userDetails", userDetails);
 
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setContentType(new MediaType("application", "json"));
@@ -219,8 +218,8 @@ public class ApiImpl implements Api {
 
         ResponseEntity<User> responseUser = null;
 
-        responseUser = restTemplate.exchange(PUT_USER_URL, HttpMethod.PUT, request, User.class);
-
+        responseUser = restTemplate.exchange(getUrlWithParams(PUT_USER_URL), HttpMethod.PUT, request, User.class);
+//        System.out.println(responseUser.getBody().getUserDetails().getFirstName());
         return responseUser.getBody();
     }
 

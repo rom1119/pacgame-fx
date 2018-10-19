@@ -2,55 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77da18e3-268f-4571-9761-d457f08b7b19" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnEditUserAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSelectImageButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/MainConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/MainConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/View.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/eventHandler/OnEscapeKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/eventHandler/OnEscapeKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/UserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/UserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/Api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/Api.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/ContextMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/contextmenu/ContextMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/ContextSaveGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/contextmenu/ContextSaveGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/ContextSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/contextmenu/ContextSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/EntryTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/board/EntryTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/GameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/LoginForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/MainReadGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/MainReadGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/MainSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/MainSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/board/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/RegisterForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/SubView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/SubView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UserAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/UsersRanking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UsersRanking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnBackToMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnBackToMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnContextSettingsSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnContextSettingsSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnExitSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnExitSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnExitToMainMenuSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnExitToMainMenuSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnLoginFormSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnLoginFormSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnLoginUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnLoginUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnMainSettingsSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnMainSettingsSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnReadGameSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnReadGameSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterFormSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterFormSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnResumeGameSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnResumeGameSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveContextSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveContextSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveGameSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveGameSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveMainSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveMainSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnStartNewGameSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnStartNewGameSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUserAccountSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUserAccountSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUsersRankingSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUsersRankingSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/service/Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/service/Factory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UserAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnEditUserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnEditUserAccount.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -81,44 +37,61 @@
       <file leaf-file-name="UserAccount.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UserAccount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
+            <state relative-caret-position="-499">
+              <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
               <folding>
-                <element signature="e#8821#8822#0" expanded="true" />
-                <element signature="e#8861#8862#0" expanded="true" />
-                <element signature="e#8936#8937#0" expanded="true" />
-                <element signature="e#8964#8965#0" expanded="true" />
-                <element signature="e#9004#9005#0" expanded="true" />
-                <element signature="e#9038#9039#0" expanded="true" />
-                <element signature="e#10290#10291#0" expanded="true" />
-                <element signature="e#10323#10324#0" expanded="true" />
-                <element signature="e#10374#10375#0" expanded="true" />
-                <element signature="e#10418#10419#0" expanded="true" />
-                <element signature="e#10499#10500#0" expanded="true" />
-                <element signature="e#10548#10549#0" expanded="true" />
-                <element signature="e#10856#10857#0" expanded="true" />
-                <element signature="e#10889#10890#0" expanded="true" />
-                <element signature="e#10940#10941#0" expanded="true" />
-                <element signature="e#10984#10985#0" expanded="true" />
+                <element signature="e#9482#9483#0" expanded="true" />
+                <element signature="e#9511#9512#0" expanded="true" />
+                <element signature="e#11815#11816#0" expanded="true" />
+                <element signature="e#11847#11848#0" expanded="true" />
+                <element signature="e#11896#11897#0" expanded="true" />
+                <element signature="e#11938#11939#0" expanded="true" />
+                <element signature="e#11977#11978#0" expanded="true" />
+                <element signature="e#12013#12014#0" expanded="true" />
+                <element signature="e#12070#12071#0" expanded="true" />
+                <element signature="e#12120#12121#0" expanded="true" />
+                <element signature="e#11710#11711#0" expanded="true" />
+                <element signature="e#11742#11743#0" expanded="true" />
+                <element signature="e#11795#11796#0" expanded="true" />
+                <element signature="e#11837#11838#0" expanded="true" />
+                <element signature="e#11880#11881#0" expanded="true" />
+                <element signature="e#11916#11917#0" expanded="true" />
+                <element signature="e#11977#11978#0" expanded="true" />
+                <element signature="e#12027#12028#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OnUserAccountSelect.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUserAccountSelect.java">
+      <file leaf-file-name="RegisterForm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/RegisterForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="39" column="33" selection-start-line="39" selection-end-line="40" />
+            <state relative-caret-position="3420">
+              <caret line="171" column="4" selection-start-line="171" selection-start-column="4" selection-end-line="181" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OnSelectImageButton.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSelectImageButton.java">
+      <file leaf-file-name="OnUsersRankingSelect.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUsersRankingSelect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="263">
+              <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="47" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OnEditUserAccount.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnEditUserAccount.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -126,8 +99,8 @@
       <file leaf-file-name="ApiServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="126" selection-start-line="126" selection-end-line="126" />
+            <state relative-caret-position="230">
+              <caret line="96" column="20" lean-forward="true" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,7 +112,31 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/Api.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="533">
-              <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+              <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApiImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/App.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="288" lean-forward="true" selection-start-line="288" selection-end-line="288" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -150,8 +147,8 @@
       <file leaf-file-name="ApiService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+            <state relative-caret-position="340">
+              <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -159,14 +156,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApiImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiImpl.java">
+      <file leaf-file-name="OnRegisterUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="247" selection-start-line="247" selection-end-line="247" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="420">
+              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -210,6 +204,7 @@
       <find>getEmail</find>
       <find>get</find>
       <find>Syste</find>
+      <find>map/</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -254,21 +249,21 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/Token.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterFormSelect.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/RegisterForm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/board/Map.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/UserDetails.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnEditUserAccount.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/Api.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/MainConfig.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUserAccountSelect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UserAccount.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSelectImageButton.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/board/Map.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UserAccount.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnEditUserAccount.java" />
       </list>
     </option>
   </component>
@@ -458,13 +453,6 @@
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
@@ -494,11 +482,6 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.pacgame.ui.event.eventHandler" />
-      <recent name="com.pacgame.data.model" />
-      <recent name="com.pacgame.ui.service" />
-    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.pacgame.controller" />
       <recent name="com.pacgame.model" />
@@ -511,15 +494,21 @@
       <recent name="com.pacgame.board.controller" />
       <recent name="com.pacgame" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/target/classes" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.pacgame.model" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.pacgame.ui.event.eventHandler" />
+      <recent name="com.pacgame.data.model" />
+      <recent name="com.pacgame.ui.service" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -785,38 +774,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/board/controller/MazeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="118" column="47" selection-start-line="118" selection-start-column="47" selection-end-line="118" selection-end-column="47" />
-          <folding>
-            <element signature="e#5569#5570#0" expanded="true" />
-            <element signature="e#5635#5636#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/board/service/PointPopulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="71" column="13" lean-forward="true" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnExitToMainMenuSelect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="42" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/board/controller/PacmanController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnStartNewGameSelect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -828,6 +785,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
           <caret line="135" column="23" selection-start-line="135" selection-start-column="23" selection-end-line="135" selection-end-column="23" />
+          <folding>
+            <element signature="e#5045#5046#0" expanded="true" />
+            <element signature="e#5106#5107#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -853,13 +814,6 @@
             <element signature="e#771#772#0" expanded="true" />
             <element signature="e#809#810#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUsersRankingSelect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="43" column="46" lean-forward="true" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -950,27 +904,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UsersRanking.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/board/EntryTimer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
           <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/board/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
@@ -1042,16 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnEditUserAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/model/UserDetails.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1079,16 +1006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="293" selection-start-line="293" selection-end-line="293" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1126,72 +1043,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/RegisterForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="332" column="42" lean-forward="true" selection-start-line="332" selection-start-column="42" selection-end-line="332" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="48" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUserAccountSelect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
           <caret line="39" column="33" selection-start-line="39" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/Api.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UserAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
-          <folding>
-            <element signature="e#8821#8822#0" expanded="true" />
-            <element signature="e#8861#8862#0" expanded="true" />
-            <element signature="e#8936#8937#0" expanded="true" />
-            <element signature="e#8964#8965#0" expanded="true" />
-            <element signature="e#9004#9005#0" expanded="true" />
-            <element signature="e#9038#9039#0" expanded="true" />
-            <element signature="e#10290#10291#0" expanded="true" />
-            <element signature="e#10323#10324#0" expanded="true" />
-            <element signature="e#10374#10375#0" expanded="true" />
-            <element signature="e#10418#10419#0" expanded="true" />
-            <element signature="e#10499#10500#0" expanded="true" />
-            <element signature="e#10548#10549#0" expanded="true" />
-            <element signature="e#10856#10857#0" expanded="true" />
-            <element signature="e#10889#10890#0" expanded="true" />
-            <element signature="e#10940#10941#0" expanded="true" />
-            <element signature="e#10984#10985#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1226,10 +1081,128 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/map/map_first.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/scene/image/Image.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="1104" column="61" selection-start-line="1104" selection-start-column="50" selection-end-line="1104" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/application.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="982" column="45" selection-start-line="982" selection-start-column="45" selection-end-line="982" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/board/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UsersRanking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/RegisterForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3420">
+          <caret line="171" column="4" selection-start-line="171" selection-start-column="4" selection-end-line="181" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUsersRankingSelect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="47" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/Api.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        <state relative-caret-position="230">
+          <caret line="96" column="20" lean-forward="true" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UserAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-499">
+          <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
+          <folding>
+            <element signature="e#9482#9483#0" expanded="true" />
+            <element signature="e#9511#9512#0" expanded="true" />
+            <element signature="e#11815#11816#0" expanded="true" />
+            <element signature="e#11847#11848#0" expanded="true" />
+            <element signature="e#11896#11897#0" expanded="true" />
+            <element signature="e#11938#11939#0" expanded="true" />
+            <element signature="e#11977#11978#0" expanded="true" />
+            <element signature="e#12013#12014#0" expanded="true" />
+            <element signature="e#12070#12071#0" expanded="true" />
+            <element signature="e#12120#12121#0" expanded="true" />
+            <element signature="e#11710#11711#0" expanded="true" />
+            <element signature="e#11742#11743#0" expanded="true" />
+            <element signature="e#11795#11796#0" expanded="true" />
+            <element signature="e#11837#11838#0" expanded="true" />
+            <element signature="e#11880#11881#0" expanded="true" />
+            <element signature="e#11916#11917#0" expanded="true" />
+            <element signature="e#11977#11978#0" expanded="true" />
+            <element signature="e#12027#12028#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="288" lean-forward="true" selection-start-line="288" selection-end-line="288" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1238,8 +1211,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="247" selection-start-line="247" selection-end-line="247" />
+        <state relative-caret-position="258">
+          <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnEditUserAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
