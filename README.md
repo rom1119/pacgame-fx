@@ -1,7 +1,8 @@
 # pacgame-fx
 frontend application write in javafx , like popular game PACMAN
 
-this application is server part of pacgame app
+this application is frontend part of pacgame app
+First you must run pacgame-server app
 
 1. open project in IDE eg IntelliJ IDEA
 6. move to root dir project
