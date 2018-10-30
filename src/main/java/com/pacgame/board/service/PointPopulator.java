@@ -120,22 +120,22 @@ public class PointPopulator {
         if (mapPoint.getRightPoint() != null && diffY > 180) {
 //            System.out.println(diffY);
             addRightPoints(key, mapPoint, root, 7);
-//            NormalPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
+//            SmallPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
 
         } else if (mapPoint.getRightPoint() != null && diffY > 100) {
 //            System.out.println(diffY);
             addRightPoints(key, mapPoint, root, 4);
-//            NormalPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
+//            SmallPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
 
         } else if (mapPoint.getRightPoint() != null && diffY > 90) {
 //            System.out.println(diffY);
             addRightPoints(key, mapPoint, root, 3);
-//            NormalPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
+//            SmallPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
 
         } else if (mapPoint.getRightPoint() != null && diffY > 40) {
 //            System.out.println(diffY);
             addRightPoints(key, mapPoint, root, 1);
-//            NormalPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
+//            SmallPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
 
         }
 
@@ -156,22 +156,22 @@ public class PointPopulator {
         if (mapPoint.getDownPoint() != null && diffY > 80) {
 //            System.out.println(diffY);
             addDownPoints(key, mapPoint, root, 3);
-//            NormalPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
+//            SmallPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
 
         } else if (mapPoint.getDownPoint() != null && diffY > 60) {
 //            System.out.println(diffY);
             addDownPoints(key, mapPoint, root, 2);
-//            NormalPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
+//            SmallPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
 
         } else if (mapPoint.getDownPoint() != null && diffY > 35) {
 //            System.out.println(diffY);
             addDownPoints(key, mapPoint, root, 1);
-//            NormalPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
+//            SmallPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
 
         } else if (mapPoint.getDownPoint() != null && diffY > 30) {
 //            System.out.println(diffY);
             addDownPoints(key, mapPoint, root, 1);
-//            NormalPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
+//            SmallPoint morePoint = createNormalPoint(((mapPoint.getX() + 20) / 2), ((mapPoint.getY() ) / 2));
 
         }
 

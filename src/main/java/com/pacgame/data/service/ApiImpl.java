@@ -219,7 +219,7 @@ public class ApiImpl implements Api {
 
         ResponseEntity<User> responseUser = null;
 
-        responseUser = restTemplate.exchange(PUT_USER_URL, HttpMethod.PUT, request, User.class);
+        responseUser = restTemplate.exchange(getUrlWithParams(PUT_USER_URL), HttpMethod.PUT, request, User.class);
 
         return responseUser.getBody();
     }

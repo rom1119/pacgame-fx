@@ -20,6 +20,7 @@ public class MapPoint extends Point2D {
         super(x, y);
     }
 
+    @Override
     public MapPoint add(double x, double y) {
         return new MapPoint(
                 getX() + x,
