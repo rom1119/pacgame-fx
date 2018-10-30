@@ -1,6 +1,7 @@
 package com.pacgame.board.model;
 
 import com.pacgame.Component;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -8,9 +9,10 @@ import javafx.scene.paint.ImagePattern;
 public abstract class Player extends Component implements Moveable, Turnable {
 
     protected int checkedDirection = 0;
+
     protected boolean animated = false;
     private SimpleIntegerProperty speedMove;
-    public final int INITIAL_SPEED = 10;
+    public final int INITIAL_SPEED = 30;
     protected String name;
     protected boolean isSelectFirstPoint;
 
@@ -137,6 +139,21 @@ public abstract class Player extends Component implements Moveable, Turnable {
         icon.setTranslateY(point.getY());
 
 
+    }
+
+    public void updatePosition()
+    {
+        Platform.runLater(new Runnable() {
+            public void run() {
+                collider.setTranslateX(point.getX());
+                collider.setTranslateY(point.getY());
+
+                icon.setTranslateX(point.getX());
+                icon.setTranslateY(point.getY());
+
+
+            }
+        });
     }
 
 

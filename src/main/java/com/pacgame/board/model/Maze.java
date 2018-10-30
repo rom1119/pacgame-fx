@@ -40,7 +40,7 @@ public abstract class Maze extends Player implements Eatable {
 
     }
 
-    abstract String getIconPath(int direction);
+    protected abstract String getIconPath(int direction);
 
     protected String getGhostIconPath(int direction)
     {

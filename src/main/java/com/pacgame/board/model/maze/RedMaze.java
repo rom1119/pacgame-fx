@@ -1,6 +1,7 @@
-package com.pacgame.board.model;
+package com.pacgame.board.model.maze;
 
 import com.pacgame.Direction;
+import com.pacgame.board.model.Maze;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
 
@@ -15,7 +16,7 @@ public class RedMaze extends Maze {
     }
 
     @Override
-    protected String getIconPath(int direction)
+    public String getIconPath(int direction)
     {
         switch (direction) {
             case Direction.UP :
@@ -32,7 +33,8 @@ public class RedMaze extends Maze {
         }
     }
 
-    protected void updatePosition()
+    @Override
+    public void updatePosition()
     {
         Platform.runLater(new Runnable() {
             public void run() {

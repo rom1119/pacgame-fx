@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class GameInfo extends View {
@@ -27,7 +28,7 @@ public class GameInfo extends View {
         pane.setPadding(new Insets(10));
         pane.setPrefWidth(width);
         pane.setPrefHeight(height);
-//        pane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        pane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 //        pane.setTranslateX();
 
         pane.getChildren().add(vBox);

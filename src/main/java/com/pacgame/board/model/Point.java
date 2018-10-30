@@ -1,4 +1,4 @@
-package com.pacgame;
+package com.pacgame.board.model;
 
 import com.pacgame.Component;
 import javafx.event.EventHandler;

@@ -6,6 +6,8 @@ import com.pacgame.Direction;
 import com.pacgame.board.model.*;
 import com.pacgame.board.event.MazeEvent;
 import com.pacgame.board.event.eventHandler.OnDestroyBigPoint;
+import com.pacgame.board.model.maze.AquaMaze;
+import com.pacgame.board.model.maze.RedMaze;
 import com.pacgame.board.service.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,6 +24,8 @@ import javafx.util.Duration;
 import org.apache.commons.collections.BidiMap;
 
 import java.util.Random;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class MazeController extends Controller implements AnimationMoveHandler  {
 
@@ -48,17 +52,6 @@ public class MazeController extends Controller implements AnimationMoveHandler  
         this.controlledObject = createNewMaze(randomNumber);
         this.root = root;
 
-        getControlledObject().getIcon().addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-//                System.out.println("direction maze: " + getControlledObject().getCheckedDirection());
-//                System.out.println("direction manager: " + getMovementManager().getCurrentDirection());
-//                System.out.println("current point manager: " + getMovementManager().getCurrentPoint());
-//                System.out.println("timer: " + getMovementManager().getTimer());
-//                System.out.println("isAnimated: " + getControlledObject().isAnimated());
-            }
-        });
-
     }
 
     public Maze createNewMaze(int type)
@@ -73,7 +66,7 @@ public class MazeController extends Controller implements AnimationMoveHandler  
         }
     }
 
-    private void setOnPacmanMove()
+    private void setOnPacmanMove() throws NullPointerException
     {
         if (getPacmanController() == null) {
             throw new NullPointerException("Pacman Controller must be set to run this method");

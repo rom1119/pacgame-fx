@@ -79,4 +79,6 @@ public class MapPoint extends Point2D {
     public void setDoor(boolean door) {
         isDoor = door;
     }
+
+
 }

@@ -1,7 +1,7 @@
 package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.App;
-import com.pacgame.Point;
+import com.pacgame.board.model.Point;
 import com.pacgame.ui.component.View;
 import com.pacgame.board.service.MapPathCreator;
 import com.pacgame.board.service.PointPopulator;
@@ -50,7 +50,7 @@ public class OnStartNewGameSelect extends MenuHandler {
             ObservableList<Point> allPoints = PointPopulator.populate(MapPathCreator.getAllPoints(), rootPane);
             App.indexForMaze = rootPane.getChildren().indexOf(App.entryTimer.getPane());
 
-            App.createMazeTimeline(rootPane);
+//            App.createMazeTimeline(rootPane);
             App.pacmanController.setAllPoints(allPoints);
 
             App.pause();

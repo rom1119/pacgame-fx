@@ -5,6 +5,7 @@ import com.pacgame.board.controller.PacmanController;
 import com.pacgame.board.event.MazeEvent;
 import com.pacgame.board.event.eventHandler.OnEscapeKey;
 import com.pacgame.board.event.eventHandler.OnPacmanTouchMaze;
+import com.pacgame.board.service.MirrorDoorEffect;
 import com.pacgame.data.model.User;
 import com.pacgame.data.service.ApiImpl;
 import com.pacgame.data.service.ApiService;
@@ -64,7 +65,7 @@ public class App extends Application {
 
     static {
         loggedUser = new SimpleBooleanProperty();
-        loggedUser.set(false);
+        loggedUser.set(true);
     }
 
     public static User user;
@@ -100,6 +101,14 @@ public class App extends Application {
 
     public static SimpleBooleanProperty loggedUserProperty() {
         return loggedUser;
+    }
+
+    public static PacmanController getPacmanController() {
+        return pacmanController;
+    }
+
+    public static void setPacmanController(PacmanController pacmanController) {
+        App.pacmanController = pacmanController;
     }
 
     public static void setLoggedUser(boolean loggedUser) {
@@ -157,6 +166,27 @@ public class App extends Application {
         pauseAllMazes();
 
     }
+
+    public static void stopPacmanController(PacmanController pacmanController)
+    {
+        if (pacmanController != null) {
+            pacmanController.getMovementManager().stopAnimation();
+            pacmanController.stopInitTimer();
+            pacmanController.stopEatAnimation();
+            pacmanController.stopMainAnimation();
+        }
+    }
+
+    public static void startPacmanController(PacmanController pacmanController)
+    {
+        if (pacmanController != null) {
+            pacmanController.getMovementManager().playAnimation();
+            pacmanController.playInitTimer();
+            pacmanController.startEatAnimation();
+            pacmanController.playMainAnimation();
+        }
+    }
+
 
     private static void playAllMazes()
     {
@@ -330,7 +360,6 @@ public class App extends Application {
 
         allUIComponents = new HashSet<>();
         allUIComponents.add(mapMain);
-        allUIComponents.add(gameInfo);
         allUIComponents.add(entryTimer);
         allUIComponents.add(mainMenu);
         allUIComponents.add(contextMenu);
@@ -342,6 +371,7 @@ public class App extends Application {
         allUIComponents.add(loginForm);
         allUIComponents.add(registerForm);
         allUIComponents.add(usersRanking);
+        allUIComponents.add(gameInfo);
 
         mainMenu.setMainSettings(mainSettings);
         mainMenu.setLoginForm(loginForm);
@@ -389,7 +419,6 @@ public class App extends Application {
         setUser(new User());
 
         root.getChildren().add(gameCanvas);
-        root.getChildren().add(gameInfoPane);
 
         root.getChildren().add(entryTimerEl);
         root.getChildren().add(mainMenuPane);
@@ -402,9 +431,9 @@ public class App extends Application {
         root.getChildren().add(registerFormPane);
         root.getChildren().add(userAccountPane);
         root.getChildren().add(usersRankingPane);
+        root.getChildren().add(gameInfoPane);
 
         indexForMaze = root.getChildren().indexOf(entryTimerEl);
-
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.setTitle("PAC-GAME this is new PACMAN :-)");
@@ -412,9 +441,9 @@ public class App extends Application {
 
 
         pacmanController = new PacmanController(scene, root);
-        pacmanController.scoreProperty().bindBidirectional(scoreUIControll.textProperty());
-        pacmanController.getControlledObject().livesProperty().bindBidirectional(livesUIControll.textProperty());
 
+        scoreUIControll.textProperty().bind(pacmanController.scoreProperty());
+        pacmanController.getControlledObject().livesProperty().bindBidirectional(livesUIControll.textProperty());
 
 
 
@@ -432,7 +461,7 @@ public class App extends Application {
         pacmanController.setMazeControllerList(mazesCollection);
         pacmanController.startEatAnimation();
 
-
+        setLoggedUser(true);
         mainMenu.updateFocusMenuOption();
 
         mainSettings.setPacmanController(pacmanController);
@@ -494,6 +523,10 @@ public class App extends Application {
     public static void exit()
     {
         clearAllMazesController();
+
+        if (pacmanController == null) {
+            return;
+        }
 
         if (pacmanController.getMovementManager() != null) {
             pacmanController.getMovementManager().stopAnimation();

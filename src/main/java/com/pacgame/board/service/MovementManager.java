@@ -4,6 +4,7 @@ import com.pacgame.Component;
 import com.pacgame.Direction;
 import com.pacgame.board.model.MapPoint;
 import com.pacgame.board.model.Player;
+import com.pacgame.board.model.SpecialAction.SpecialAction;
 import javafx.animation.*;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -22,6 +23,7 @@ public class MovementManager implements EventHandler {
     private int currentDirection;
     private AnimationMoveHandler animationMoveEndHandler;
     private boolean canMoveInDoor = true;
+    private SpecialAction specialAction;
 
     public static final int STEP_ANIMATE = 2;
     public static final int PERIOD_ANIMATE = 10;
@@ -81,7 +83,7 @@ public class MovementManager implements EventHandler {
     }
 
 
-    public void moveAnimate(int x, int y, Component objectToMove)
+    public Timeline moveAnimate(int x, int y, Component objectToMove)
     {
 
         if (animation != null) {
@@ -112,7 +114,7 @@ public class MovementManager implements EventHandler {
 //            }
 //        });
 
-        KeyFrame keyFrame = new KeyFrame(Duration.millis(calculateAnimationDuration()), keyValueIconX, keyValueIconY, keyValueColliderX, keyValueColliderY);
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(calculateAnimationDuration(x, y)), keyValueIconX, keyValueIconY, keyValueColliderX, keyValueColliderY);
 
 
 
@@ -127,7 +129,7 @@ public class MovementManager implements EventHandler {
 
         this.getObjectToMove().setAnimated(true);
 
-
+        return animation;
 //        MoveTo moveTo = new MoveTo(currentPoint.getX(), currentPoint.getY());
 
 
@@ -144,19 +146,19 @@ public class MovementManager implements EventHandler {
 
     }
 
-    public int calculateAnimationDuration()
+    public int calculateAnimationDuration(double x, double y)
     {
 
         if (this.getCurrentDirection() == Direction.UP  || this.getCurrentDirection() == Direction.DOWN) {
             double translateYObject = this.getObjectToMove().getCollider().getTranslateY();
-            double pointY = this.getCurrentPoint().getY();
+            double pointY = y;
 
 //            System.out.println(pointY - translateYObject);
 
             return (int) (getSpeedMove() * Math.abs( translateYObject - pointY)) ;
         } else {
             double translateXObject = this.getObjectToMove().getCollider().getTranslateX();
-            double pointX = this.getCurrentPoint().getX();
+            double pointX = x;
             return (int) (getSpeedMove() * Math.abs( translateXObject - pointX)) ;
         }
     }
@@ -252,8 +254,15 @@ public class MovementManager implements EventHandler {
         }
 //        timer.cancel();
 //        timer = new Timer();
+        if (specialAction.isClone()) {
+            return true;
+        }
 
         stopAnimation();
+
+
+
+
 
         if (this.isTurnedTo(Direction.UP)) {
             if (getCurrentPoint().getDownPoint() == null || getCurrentPoint().getDownPoint().isDoor()) {
@@ -289,7 +298,10 @@ public class MovementManager implements EventHandler {
             this.currentPoint = getCurrentPoint().getLeftPoint();
         }
 
+
+
         objectToMove.setAnimated(false);
+        specialAction.backAction();
 //        timer.cancel();
 //        timer = null;
         run();
@@ -305,6 +317,10 @@ public class MovementManager implements EventHandler {
     public boolean selectNextPoint()
     {
         if (getCurrentPoint() == null){
+            return false;
+        }
+
+        if (specialAction.tryStartAction() && specialAction.isClone()) {
             return false;
         }
 
@@ -397,6 +413,14 @@ public class MovementManager implements EventHandler {
 
     public int getCurrentDirection() {
         return currentDirection;
+    }
+
+    public SpecialAction getSpecialAction() {
+        return specialAction;
+    }
+
+    public void setSpecialAction(SpecialAction specialAction) {
+        this.specialAction = specialAction;
     }
 
     public boolean isTurnedTo(int side) {

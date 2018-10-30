@@ -1,7 +1,9 @@
 package com.pacgame.board;
 
+import com.pacgame.board.controller.PacmanController;
 import com.pacgame.board.model.Pacman;
 import com.pacgame.board.model.Player;
+import com.pacgame.board.model.SpecialAction.SpecialAction;
 import com.pacgame.board.service.MovementManager;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
@@ -35,6 +37,13 @@ public abstract class Controller {
     {
         if (mainAnimation != null) {
             mainAnimation.pause();
+        }
+    }
+
+    public void stopMainAnimation()
+    {
+        if (mainAnimation != null) {
+            mainAnimation.stop();
         }
     }
 
