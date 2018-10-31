@@ -1,6 +1,5 @@
 package com.pacgame.board.model;
 
-import com.pacgame.Component;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;

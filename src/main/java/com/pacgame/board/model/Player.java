@@ -1,6 +1,5 @@
 package com.pacgame.board.model;
 
-import com.pacgame.Component;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;

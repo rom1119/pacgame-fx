@@ -1,8 +1,6 @@
 package com.pacgame;
 
-import com.pacgame.Component;
 import javafx.event.EventHandler;
-import javafx.event.EventTarget;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;

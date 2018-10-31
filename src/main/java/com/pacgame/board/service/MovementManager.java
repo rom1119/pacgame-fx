@@ -1,6 +1,5 @@
 package com.pacgame.board.service;
 
-import com.pacgame.Component;
 import com.pacgame.Direction;
 import com.pacgame.board.model.MapPoint;
 import com.pacgame.board.model.Player;

@@ -1,4 +1,9 @@
 package com.pacgame.gameElement;
 
-public class MovedComponent extends Component {
+import com.pacgame.Component;
+
+public class MovedComponent extends GameElement {
+    public MovedComponent(int width, int height) {
+        super(width, height);
+    }
 }
