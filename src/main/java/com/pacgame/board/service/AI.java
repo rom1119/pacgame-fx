@@ -2,7 +2,6 @@ package com.pacgame.board.service;
 
 import com.pacgame.board.controller.MazeController;
 import com.pacgame.board.controller.PacmanController;
-import com.pacgame.Direction;
 import com.pacgame.board.model.MapPoint;
 
 import java.util.*;

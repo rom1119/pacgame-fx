@@ -1,9 +1,10 @@
-package com.pacgame.provider.layer;
+package com.pacgame.provider.proxy.wrapper;
 
 import com.pacgame.provider.IProxy;
+import com.pacgame.provider.proxy.ViewProxy;
 import javafx.scene.Group;
 
-public abstract class WrapperProxy implements IProxy {
+public abstract class WrapperProxy extends ViewProxy {
 
     protected Group wrapper;
 

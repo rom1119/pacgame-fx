@@ -1,8 +1,5 @@
 package com.pacgame;
 
-import com.pacgame.App;
-import com.pacgame.MainConfig;
-import com.pacgame.View;
 import com.pacgame.board.controller.MazeController;
 import com.pacgame.board.controller.PacmanController;
 import com.pacgame.board.event.MazeEvent;
@@ -10,7 +7,6 @@ import com.pacgame.board.event.eventHandler.OnEscapeKey;
 import com.pacgame.board.event.eventHandler.OnPacmanTouchMaze;
 import com.pacgame.data.model.User;
 import com.pacgame.data.service.ApiImpl;
-import com.pacgame.data.service.ApiService;
 import com.pacgame.data.service.ApiServiceImpl;
 import com.pacgame.ui.component.GameInfo;
 import com.pacgame.ui.component.board.EntryTimer;
@@ -62,7 +58,7 @@ public class AppCp extends Application {
     private static boolean playing = false;
     private static boolean runningGame = false;
     private static SimpleBooleanProperty loggedUser;
-    private static Set<View> allUIComponents;
+    private static Set<Layer> allUIComponents;
 
     static {
         loggedUser = new SimpleBooleanProperty();
@@ -464,9 +460,9 @@ public class AppCp extends Application {
         setOnEscapeKey(scene, contextMenu);
     }
 
-    public static View getVisibleComponentOnTop()
+    public static Layer getVisibleComponentOnTop()
     {
-        ArrayList<View> objects = new ArrayList<>(allUIComponents);
+        ArrayList<Layer> objects = new ArrayList<>(allUIComponents);
         Collections.sort(objects, Collections.reverseOrder());
 
         for (int i = 0; i <= objects.size(); i++) {

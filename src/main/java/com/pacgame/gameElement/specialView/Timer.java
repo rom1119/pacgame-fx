@@ -1,9 +1,9 @@
 package com.pacgame.gameElement.specialView;
 
-import com.pacgame.gameElement.GameSpecialView;
+import com.pacgame.gameElement.GameSpecialLayer;
 import com.pacgame.provider.ILayerProvider;
 
-public class Timer extends GameSpecialView {
+public class Timer extends GameSpecialLayer {
 
     private int INIT_SECOND = 5;
 

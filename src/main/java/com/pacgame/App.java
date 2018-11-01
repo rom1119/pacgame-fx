@@ -1,41 +1,18 @@
 package com.pacgame;
 
-import com.pacgame.board.controller.MazeController;
-import com.pacgame.board.controller.PacmanController;
-import com.pacgame.board.event.MazeEvent;
 import com.pacgame.board.event.eventHandler.OnEscapeKey;
-import com.pacgame.board.event.eventHandler.OnPacmanTouchMaze;
-import com.pacgame.data.model.User;
-import com.pacgame.data.service.ApiImpl;
-import com.pacgame.data.service.ApiService;
-import com.pacgame.data.service.ApiServiceImpl;
-import com.pacgame.ui.component.*;
 import com.pacgame.ui.component.board.Map;
-import com.pacgame.ui.component.board.EntryTimer;
 import com.pacgame.ui.component.contextmenu.ContextMenu;
-import com.pacgame.ui.component.contextmenu.ContextSaveGame;
-import com.pacgame.ui.component.contextmenu.ContextSettings;
-import com.pacgame.ui.component.mainmenu.*;
 import com.pacgame.ui.service.Factory;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Duration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.*;
@@ -84,9 +61,9 @@ public class App extends Application {
         setOnEscapeKey(scene, contextMenu);
     }
 
-    public static View getVisibleComponentOnTop()
+    public static Layer getVisibleComponentOnTop()
     {
-        ArrayList<View> objects = new ArrayList<>(allUIComponents);
+        ArrayList<Layer> objects = new ArrayList<>(allUIComponents);
         Collections.sort(objects, Collections.reverseOrder());
 
         for (int i = 0; i <= objects.size(); i++) {

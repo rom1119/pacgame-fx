@@ -1,6 +1,5 @@
 package com.pacgame.board.model;
 
-import com.pacgame.Direction;
 import com.pacgame.board.event.MazeEvent;
 import com.pacgame.board.event.eventHandler.OnPacmanTouchMaze;
 import javafx.geometry.Point2D;

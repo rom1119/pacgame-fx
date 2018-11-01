@@ -1,6 +1,6 @@
-package com.pacgame.provider.layer;
+package com.pacgame.provider.proxy.layer;
 
-import com.pacgame.provider.IProxy;
+import com.pacgame.provider.proxy.LayerProxy;
 import javafx.scene.layout.BorderPane;
 
 public class BorderLayerProxy extends LayerProxy {

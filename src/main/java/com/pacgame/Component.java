@@ -1,10 +1,6 @@
 package com.pacgame;
 
-import com.pacgame.gameElement.Positionable;
-import javafx.geometry.Point2D;
-import javafx.scene.shape.Shape;
-
-public abstract class Component implements Positionable {
+public abstract class Component extends View implements Positionable {
 
     protected int width;
     protected int height;

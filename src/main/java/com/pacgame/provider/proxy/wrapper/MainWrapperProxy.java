@@ -1,6 +1,6 @@
-package com.pacgame.provider.layer;
+package com.pacgame.provider.proxy.wrapper;
 
-import javafx.scene.Group;
+import com.pacgame.provider.proxy.wrapper.WrapperProxy;
 
 public class MainWrapperProxy extends WrapperProxy {
     public MainWrapperProxy() {

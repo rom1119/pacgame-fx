@@ -1,4 +1,4 @@
-package com.pacgame.gameElement;
+package com.pacgame;
 
 public interface Positionable {
 

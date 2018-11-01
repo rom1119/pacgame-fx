@@ -5,7 +5,6 @@ import com.pacgame.board.Controller;
 import com.pacgame.Point;
 import com.pacgame.board.model.Pacman;
 import com.pacgame.board.event.PointEvent;
-import com.pacgame.Direction;
 import com.pacgame.board.model.MapPoint;
 import com.pacgame.board.service.MapPathCreator;
 import com.pacgame.board.service.MovementManager;

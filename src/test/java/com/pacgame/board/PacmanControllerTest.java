@@ -1,6 +1,5 @@
 package com.pacgame.board;
 
-import com.pacgame.Direction;
 import com.pacgame.board.controller.PacmanController;
 import com.pacgame.board.model.Pacman;
 import javafx.scene.Group;
