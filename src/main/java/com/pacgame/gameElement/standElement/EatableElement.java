@@ -7,4 +7,8 @@ public abstract class EatableElement extends StandComponent implements Valuable 
 
     protected int value = 1;
     protected boolean isVisible = true;
+
+    public EatableElement(int width, int height) {
+        super(width, height);
+    }
 }

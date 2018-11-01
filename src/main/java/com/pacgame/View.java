@@ -1,24 +1,20 @@
-package com.pacgame.ui.component;
+package com.pacgame;
 
-import javafx.scene.Node;
-import javafx.scene.layout.FlowPane;
+import com.pacgame.provider.ILayerProvider;
 
-public abstract class View implements Comparable<View> {
+public abstract class View implements Visible, Comparable<View> {
 
-    protected FlowPane pane;
-    private int order;
+    private ILayerProvider layerProvider;
+    protected int order;
 
-    public FlowPane getPane() {
-        return pane;
+    public View(ILayerProvider layerProvider) {
+        this.layerProvider = layerProvider;
     }
 
-    public void setPane(FlowPane pane) {
-        this.pane = pane;
-    }
+    protected abstract void createView();
 
-    public void show()
-    {
-        pane.setVisible(true);
+    public ILayerProvider getLayerProvider() {
+        return layerProvider;
     }
 
     /**
@@ -70,24 +66,4 @@ public abstract class View implements Comparable<View> {
 
         return order > o.order ? 1 : -1 ;
     }
-
-    public void hide()
-    {
-        pane.setVisible(false);
-    }
-
-    public boolean isVisible()
-    {
-        return pane.isVisible();
-    }
-
-    public abstract Node getView(int width, int height);
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-        }
 }
