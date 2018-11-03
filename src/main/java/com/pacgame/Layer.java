@@ -1,20 +1,62 @@
 package com.pacgame;
 
 import com.pacgame.provider.ILayerProvider;
+import com.pacgame.provider.IProvider;
+import com.pacgame.provider.proxy.LayerProxy;
 
-public abstract class Layer extends View implements Visible, Comparable<Layer> {
+import java.util.Map;
 
-    private ILayerProvider layerProvider;
+public abstract class Layer extends View implements Visible, Comparable<Layer>, Parentable<Layer>, IChildren<Component> {
+
+    private ILayerProvider provider;
     protected int order;
+    protected Layer parent;
+    protected Map<String, Component> children;
 
     public Layer(ILayerProvider layerProvider) {
-        this.layerProvider = layerProvider;
+        this.provider = layerProvider;
     }
 
     protected abstract void createView();
 
-    public ILayerProvider getLayerProvider() {
-        return layerProvider;
+    @Override
+    protected ILayerProvider getProvider() {
+        return provider;
+    }
+
+
+    @Override
+    public Map<String, Component> getChildren() {
+        return children;
+    }
+
+    @Override
+    public void addChildren(Component el) {
+        if (!hasChildren(el)) {
+            children.put(String.valueOf(el.hashCode()), el);
+        }
+    }
+
+    @Override
+    public void removeChildren(Component el) {
+        if (hasChildren(el)) {
+            children.remove(el.hashCode());
+        }
+    }
+
+    @Override
+    public boolean hasChildren(Component el) {
+        return children.containsKey(el.hashCode());
+    }
+
+    @Override
+    public void setParent(Layer el) {
+        parent = el;
+    }
+
+    @Override
+    public Layer getParent() {
+        return parent;
     }
 
     /**

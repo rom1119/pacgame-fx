@@ -1,4 +1,6 @@
 package com.pacgame.provider.layer;
 
-public class BorderLayer extends Layer {
+import com.pacgame.provider.LayerProvidedObject;
+
+public class BorderLayer extends LayerProvidedObject {
 }

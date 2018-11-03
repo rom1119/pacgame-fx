@@ -1,5 +1,6 @@
 package com.pacgame.board.model;
 
+import com.pacgame.Component;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -14,6 +15,7 @@ public abstract class Player extends Component implements Moveable, Turnable {
     protected boolean isSelectFirstPoint;
 
     public Player() {
+        super();
         speedMove = new SimpleIntegerProperty();
         speedMove.set(INITIAL_SPEED);
         setSelectFirstPoint(false);
@@ -66,97 +68,97 @@ public abstract class Player extends Component implements Moveable, Turnable {
 
         this.checkedDirection = checkedDirection;
     }
-
-    private void setRotate(int angle)
-    {
-        this.getIcon().setRotate(angle);
-        this.getCollider().setRotate(angle);
-    }
-
-
-    public void turnLeft() {
-        this.setRotate(180);
-    }
-
-    public void turnRight() {
-        this.setRotate(0);
-    }
-
-    public void turnUp() {
-        this.setRotate(270);
-    }
-
-    public void turnDown() {
-        this.setRotate(90);
-    }
-
-    public boolean isTurnedTo(int side) {
-        return this.getCheckedDirection() == side;
-    }
-
-    public void moveLeft(int step) {
-
-        int x = 0;
-        x = x - step;
-
-
-        point = point.add(x, 0);
-        collider.setTranslateX(point.getX());
-        icon.setTranslateX(point.getX());
-    }
-
-    public void moveRight(int step) {
-
-        int x = 0;
-        x = x + step;
-
-        point = point.add(x, 0);
-        collider.setTranslateX(point.getX());
-        icon.setTranslateX(point.getX());
-    }
-
-    public void moveUp(int step) {
-        int y = 0;
-        y = y - step;
-//        System.out.println("aefsrgdfhg");
-
-        point = point.add(0, y);
-        collider.setTranslateY(point.getY());
-        icon.setTranslateY(point.getY());
-    }
-
-
-    public void moveDown(int step) {
-
-        int y = 0;
-        y = y + step;
-
-        point = point.add(0, y);
-        collider.setTranslateY(point.getY());
-        icon.setTranslateY(point.getY());
-
-
-    }
-
-
-    @Override
-    public void initPosition() {
-        collider.setTranslateX(point.getX());
-        collider.setTranslateY(point.getY());
-
-        collider.setLayoutX(0);
-        collider.setLayoutY(0);
-
-        icon.setTranslateX(point.getX());
-        icon.setTranslateY(point.getY());
-
-    }
-
-    public void setIconBackground(String url)
-    {
-        Image img = new Image(url);
-        this.getIcon().setFill(new ImagePattern(img));
-    }
+//
+//    private void setRotate(int angle)
+//    {
+//        this.getIcon().setRotate(angle);
+//        this.getCollider().setRotate(angle);
+//    }
+//
+//
+//    public void turnLeft() {
+//        this.setRotate(180);
+//    }
+//
+//    public void turnRight() {
+//        this.setRotate(0);
+//    }
+//
+//    public void turnUp() {
+//        this.setRotate(270);
+//    }
+//
+//    public void turnDown() {
+//        this.setRotate(90);
+//    }
+//
+//    public boolean isTurnedTo(int side) {
+//        return this.getCheckedDirection() == side;
+//    }
+//
+//    public void moveLeft(int step) {
+//
+//        int x = 0;
+//        x = x - step;
+//
+//
+//        point = point.add(x, 0);
+//        collider.setTranslateX(point.getX());
+//        icon.setTranslateX(point.getX());
+//    }
+//
+//    public void moveRight(int step) {
+//
+//        int x = 0;
+//        x = x + step;
+//
+//        point = point.add(x, 0);
+//        collider.setTranslateX(point.getX());
+//        icon.setTranslateX(point.getX());
+//    }
+//
+//    public void moveUp(int step) {
+//        int y = 0;
+//        y = y - step;
+////        System.out.println("aefsrgdfhg");
+//
+//        point = point.add(0, y);
+//        collider.setTranslateY(point.getY());
+//        icon.setTranslateY(point.getY());
+//    }
+//
+//
+//    public void moveDown(int step) {
+//
+//        int y = 0;
+//        y = y + step;
+//
+//        point = point.add(0, y);
+//        collider.setTranslateY(point.getY());
+//        icon.setTranslateY(point.getY());
+//
+//
+//    }
+//
+//
+//    @Override
+//    public void initPosition() {
+//        collider.setTranslateX(point.getX());
+//        collider.setTranslateY(point.getY());
+//
+//        collider.setLayoutX(0);
+//        collider.setLayoutY(0);
+//
+//        icon.setTranslateX(point.getX());
+//        icon.setTranslateY(point.getY());
+//
+//    }
+//
+//    public void setIconBackground(String url)
+//    {
+//        Image img = new Image(url);
+//        this.getIcon().setFill(new ImagePattern(img));
+//    }
 
 
 }

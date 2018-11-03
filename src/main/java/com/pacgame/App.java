@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -34,8 +35,7 @@ public class App extends Application {
 
     private static void initApp(Stage primaryStage)
     {
-        root = new Group();
-        Scene scene = new Scene(root, 800, 500);
+        Scene scene = new Scene(new VBox(), 800, 500);
 
 
         Map mapMain = Factory.createMap("./map/map_first.png");

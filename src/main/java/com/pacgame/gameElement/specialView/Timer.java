@@ -13,9 +13,9 @@ public class Timer extends GameSpecialLayer {
 
     @Override
     protected void createView() {
-        this.getLayerProvider()
+        this.getProvider()
                 .Builder()
-                .borderLayer("timer")
+                .name("timer")
                 .with(width(200), height())
                 .and()
                 .textElement(String.valueOf(INIT_SECOND))
