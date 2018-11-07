@@ -1,6 +1,5 @@
 package com.pacgame.map.levels;
 
-import com.pacgame.map.ILevel;
 import com.pacgame.map.IMap;
 import com.pacgame.map.Level;
 import com.pacgame.map.maps.MapFirst;

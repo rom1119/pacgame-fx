@@ -1,11 +1,8 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.builder.ILayerBuilder;
+import com.pacgame.provider.layer.ILayerBuilder;
 
 public interface ILayerProvider extends IProvider {
-
-    @Override
-    LayerProvidedObject provide();
 
     ILayerBuilder Builder();
 

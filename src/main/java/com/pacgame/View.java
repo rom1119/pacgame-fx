@@ -8,7 +8,4 @@ public abstract class View {
 
     protected ProvidedObject providedObject;
 
-
-    abstract IProvider getProvider();
-
 }

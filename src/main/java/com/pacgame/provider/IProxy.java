@@ -1,6 +1,5 @@
 package com.pacgame.provider;
 
-public interface IProxy {
+public abstract class IProxy {
 
-    Object getProxyObject();
 }

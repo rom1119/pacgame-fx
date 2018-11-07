@@ -1,8 +1,6 @@
 package com.pacgame;
 
 import com.pacgame.provider.ILayerProvider;
-import com.pacgame.provider.IProvider;
-import com.pacgame.provider.proxy.LayerProxy;
 
 import java.util.Map;
 
@@ -20,7 +18,7 @@ public abstract class Layer extends View implements Visible, Comparable<Layer>, 
     protected abstract void createView();
 
     @Override
-    protected ILayerProvider getProvider() {
+    protected ILayerProvider    getProvider() {
         return provider;
     }
 
