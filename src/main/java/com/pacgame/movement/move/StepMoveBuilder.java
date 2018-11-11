@@ -13,11 +13,6 @@ public class StepMoveBuilder implements IMoveBuilder<IStepMove> {
     }
 
     @Override
-    public IStepMove buildedObject() {
-        return buildedInstance;
-    }
-
-    @Override
     public IMoveBuilder createMove() {
         buildedInstance = new StepMove();
         return this;

@@ -3,23 +3,15 @@ package com.pacgame.gameElement;
 import com.pacgame.Component;
 import com.pacgame.event.IEvent;
 import com.pacgame.event.target.IGameEventTarget;
-import javafx.scene.shape.Shape;
+import com.pacgame.provider.ComponentProvidedObject;
 
 public abstract class GameElement extends Component implements IGameEventTarget {
-    protected Shape icon;
 
-    public GameElement(int width, int height) {
+    protected ComponentProvidedObject providedObject;
+
+    public GameElement(int width, int height, ComponentProvidedObject providedObject) {
         super(width, height);
-    }
-
-    protected void initPosition()
-    {
-        icon.setTranslateX(x);
-        icon.setTranslateY(y);
-
-        icon.setLayoutX(x);
-        icon.setLayoutY(y);
-
+        this.providedObject = providedObject;
     }
 
     @Override

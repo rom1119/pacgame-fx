@@ -2,7 +2,7 @@ package com.pacgame;
 
 public interface Positionable {
 
-    int getX();
+    Property<Integer> getX();
 
-    int getY();
+    Property<Integer> getY();
 }

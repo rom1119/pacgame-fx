@@ -1,10 +1,12 @@
 package com.pacgame.map;
 
-public abstract class Map implements IMap {
+import com.pacgame.Layer;
+
+public abstract class Map {
 
     protected String imgUrl;
 
-    public Map(String imgUrl) {
+    public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
 }

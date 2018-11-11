@@ -1,6 +1,6 @@
 package com.pacgame.provider.animation;
 
-import com.pacgame.provider.IProperty;
+import com.pacgame.Property;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -29,7 +29,7 @@ class IntegerValueAnimationProxy extends AnimationProxy {
 
     }
 
-    private KeyValue newIntegerKeyValue(IProperty<Integer> property, int endValue, Interpolator interpolator)
+    private KeyValue newIntegerKeyValue(Property<Integer> property, int endValue, Interpolator interpolator)
     {
         KeyValue val = new KeyValue(new WritableValue<Integer>() {
             @Override
@@ -101,13 +101,13 @@ class IntegerValueAnimationProxy extends AnimationProxy {
 
     public static class Builder {
 
-        private List<IProperty<Integer>> properties;
+        private List<Property<Integer>> properties;
         private int endValue;
         private int cycleCount = 1;
         private Duration delay = Duration.millis(0);
         private boolean autoReverse = false;
 
-        public Builder animateProperty(IProperty<Integer> property){
+        public Builder animateProperty(Property<Integer> property){
             properties.add(property);
 
             return this;

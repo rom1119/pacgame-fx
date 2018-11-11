@@ -1,29 +1,37 @@
 package com.pacgame.map.levels;
 
-import com.pacgame.map.IMap;
 import com.pacgame.map.Level;
+import com.pacgame.map.Map;
 import com.pacgame.map.maps.MapFirst;
 
 public class FirstLevel extends Level {
-
-    private FirstLevel() {
-    }
 
     private FirstLevel(Builder builder) {
         if (builder == null) {
             return;
         }
 
+        this.levelMapPath = builder.mapPath;
         this.mapInstance = builder.mapInstance;
     }
 
     public static class Builder {
 
-        private IMap mapInstance;
+        private Map mapInstance = new MapFirst();
+        private LevelMapPath mapPath = new FirstLevelMapPath();
 
-        public Builder withMap(String imgUrl)
+
+
+        public Builder withMap(Map map)
         {
-            this.mapInstance = new MapFirst(imgUrl);
+            this.mapInstance = map;
+
+            return this;
+        }
+
+        public Builder withMapPath(LevelMapPath levelMapPath)
+        {
+            this.mapPath = levelMapPath;
 
             return this;
         }

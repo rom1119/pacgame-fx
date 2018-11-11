@@ -1,12 +1,10 @@
 package com.pacgame.board.service;
 
 import com.pacgame.board.model.MapPoint;
-import javafx.geometry.Point2D;
-import javafx.scene.canvas.Canvas;
+
 import org.apache.commons.collections.BidiMap;
 import org.apache.commons.collections.bidimap.DualHashBidiMap;
 
-import java.util.*;
 
 public class MapPathCreator {
 
@@ -844,25 +842,6 @@ public class MapPathCreator {
     public static BidiMap getAllPoints()
     {
 //        changePointsPosition();
-
-        return points;
-    }
-
-    public Map<String, MapPoint> createPoints(Canvas canvas)
-    {
-        int countInX = (int) canvas.getWidth() / 10;
-        int countInY = (int) canvas.getWidth() / 10;
-
-        for (int i = 1; i <= countInX; i++) {
-            for (int m = 1; m <= countInY; m++) {
-                Point2D point2D = new Point2D((countInX * i), (countInY * m));
-
-                boolean add = canvas.getGraphicsContext2D().isPointInPath(i, m);
-                if (add == true) {
-                    System.out.println("x= " + i + ", y= " + m);
-                }
-            }
-        }
 
         return points;
     }

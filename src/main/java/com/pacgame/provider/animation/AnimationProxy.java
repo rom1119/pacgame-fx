@@ -1,13 +1,13 @@
 package com.pacgame.provider.animation;
 
-import com.pacgame.provider.IProxy;
+import com.pacgame.provider.Proxy;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 
 import java.util.List;
 
-abstract class AnimationProxy extends IProxy {
+abstract class AnimationProxy extends Proxy {
     protected Timeline proxyObject;
     protected List<KeyFrame> keyFrames;
     protected Interpolator defaultInterpolator = Interpolator.LINEAR;

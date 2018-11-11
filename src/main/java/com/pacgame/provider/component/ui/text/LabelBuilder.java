@@ -20,7 +20,6 @@ public class LabelBuilder implements IUIElementBuilder<Label> {
         return buildedInstance;
     }
 
-    @Override
     public Label buildedObject() {
         return buildedInstance;
     }

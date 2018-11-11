@@ -12,11 +12,6 @@ public class ButtonSuccessBuilder implements IButtonBuilder<ButtonSuccess> {
     }
 
     @Override
-    public ButtonSuccess buildedObject() {
-        return null;
-    }
-
-    @Override
     public IButtonBuilder<ButtonSuccess> text(String text) {
         return null;
     }

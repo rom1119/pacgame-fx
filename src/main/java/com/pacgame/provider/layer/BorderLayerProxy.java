@@ -5,10 +5,10 @@ import javafx.scene.layout.BorderPane;
 
 public class BorderLayerProxy extends LayerProxy {
 
-    protected BorderPane layer;
+    protected BorderPane proxyObject;
 
     public BorderLayerProxy() {
         super();
-        layer = new BorderPane();
+        proxyObject = new BorderPane();
     }
 }

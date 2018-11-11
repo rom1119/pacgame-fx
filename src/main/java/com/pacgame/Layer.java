@@ -1,49 +1,40 @@
 package com.pacgame;
 
-import com.pacgame.provider.ILayerProvider;
+import com.pacgame.provider.LayerProvidedObject;
+import com.pacgame.provider.ViewProvidedObject;
 
 import java.util.Map;
 
-public abstract class Layer extends View implements Visible, Comparable<Layer>, Parentable<Layer>, IChildren<Component> {
+public abstract class Layer extends View implements Visible, Comparable<Layer>, Parentable<Layer>, IChildren<View> {
 
-    private ILayerProvider provider;
+    protected LayerProvidedObject providedObject;
     protected int order;
     protected Layer parent;
-    protected Map<String, Component> children;
+    protected Map<String, View> children;
 
-    public Layer(ILayerProvider layerProvider) {
-        this.provider = layerProvider;
-    }
-
-    protected abstract void createView();
-
-    @Override
-    protected ILayerProvider    getProvider() {
-        return provider;
-    }
-
-
-    @Override
-    public Map<String, Component> getChildren() {
-        return children;
+    public Layer(int width, int height, LayerProvidedObject providedObject) {
+        super(width, height);
+        this.providedObject = providedObject;
     }
 
     @Override
-    public void addChildren(Component el) {
+    public void addChildren(View el) {
         if (!hasChildren(el)) {
+            providedObject.addChildren(el.providedObject);
             children.put(String.valueOf(el.hashCode()), el);
         }
     }
 
     @Override
-    public void removeChildren(Component el) {
+    public void removeChildren(View el) {
         if (hasChildren(el)) {
+            providedObject.removeChildren(el.providedObject);
             children.remove(el.hashCode());
         }
     }
 
     @Override
-    public boolean hasChildren(Component el) {
+    public boolean hasChildren(View el) {
         return children.containsKey(el.hashCode());
     }
 

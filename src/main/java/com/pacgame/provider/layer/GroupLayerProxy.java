@@ -5,10 +5,10 @@ import javafx.scene.Group;
 
 public class GroupLayerProxy extends LayerProxy {
 
-    protected Group layer;
+    protected Group proxyObject;
 
     public GroupLayerProxy() {
         super();
-        layer = new Group();
+        proxyObject = new Group();
     }
 }

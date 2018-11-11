@@ -5,10 +5,10 @@ import javafx.scene.layout.FlowPane;
 
 public class FlowLayerProxy extends LayerProxy {
 
-    protected FlowPane layer;
+    protected FlowPane proxyObject;
 
     public FlowLayerProxy() {
         super();
-        layer = new FlowPane();
+        proxyObject = new FlowPane();
     }
 }

@@ -1,5 +1,5 @@
 package com.pacgame.provider;
 
-public abstract class IProxy {
+public abstract class Proxy {
 
 }

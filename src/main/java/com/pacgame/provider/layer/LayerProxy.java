@@ -3,7 +3,12 @@ package com.pacgame.provider.layer;
 import com.pacgame.IChildren;
 import com.pacgame.Parentable;
 import com.pacgame.provider.ViewProxy;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.Map;
 
@@ -15,12 +20,12 @@ public abstract class LayerProxy extends ViewProxy implements Parentable<LayerPr
     private Map<String, ViewProxy> children;
 
     public LayerProxy() {
+        super();
     }
 
-    public Map<String, ViewProxy> getChildren() {
-        return children;
+    public LayerProxy(int width, int height) {
+        super(width, height);
     }
-
 
     @Override
     public void addChildren(ViewProxy el) {
@@ -50,5 +55,50 @@ public abstract class LayerProxy extends ViewProxy implements Parentable<LayerPr
     @Override
     public LayerProxy getParent() {
         return parent;
+    }
+
+    public void setWidth(int width)
+    {
+        proxyObject.setPrefWidth(width);
+    }
+
+    public void setHeight(int height)
+    {
+        proxyObject.setPrefHeight(height);
+    }
+
+    @Override
+    public void fill(int red, int green, int blue, double alpha) {
+        proxyObject.setBackground(new Background(new BackgroundFill(new Color(red, green, blue, alpha), CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    @Override
+    public void fill(int red, int green, int blue) {
+        proxyObject.setBackground(new Background(new BackgroundFill(Color.rgb(red, green, blue), CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    @Override
+    public void fillRed() {
+        proxyObject.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    @Override
+    public void fillBlue() {
+        proxyObject.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    @Override
+    public void fillGreen() {
+        proxyObject.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    @Override
+    public void fillWhite() {
+        proxyObject.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    @Override
+    public void setColor(com.pacgame.provider.color.Color color) {
+        proxyObject.setBackground(new Background(new BackgroundFill(color.getValue(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

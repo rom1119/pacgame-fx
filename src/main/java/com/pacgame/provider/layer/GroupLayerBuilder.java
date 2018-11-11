@@ -3,56 +3,32 @@ package com.pacgame.provider.layer;
 
 import com.pacgame.provider.ViewProvidedObject;
 
-import java.util.Map;
-
 public class GroupLayerBuilder implements ILayerBuilder<GroupLayer> {
-    @Override
-    public ILayerBuilder create() {
-        return null;
-    }
+
+    private GroupLayer buildedEl;
 
     @Override
     public ILayerBuilder with(int width, int height) {
-        return null;
-    }
+        buildedEl.setWidth(width);
+        buildedEl.setHeight(height);
 
-    @Override
-    public ILayerBuilder and() {
-        return null;
+        return this;
     }
 
     @Override
     public ILayerBuilder textElement() {
-        return null;
+        return this;
     }
 
-    @Override
-    public Map<String, ViewProvidedObject> getChildren() {
-        return null;
-    }
-
-    @Override
     public void addChildren(ViewProvidedObject el) {
-
-    }
-
-    @Override
-    public void removeChildren(ViewProvidedObject el) {
-
-    }
-
-    @Override
-    public boolean hasChildren(ViewProvidedObject el) {
-        return false;
+        buildedEl.addChildren(el);
     }
 
     @Override
     public GroupLayer build() {
-        return null;
+        this.buildedEl = new GroupLayer();
+
+        return buildedEl;
     }
 
-    @Override
-    public GroupLayer buildedObject() {
-        return null;
-    }
 }

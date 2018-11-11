@@ -1,63 +1,34 @@
 package com.pacgame.provider.layer;
 
 import com.pacgame.provider.ViewProvidedObject;
-import com.pacgame.provider.layer.ILayerBuilder;
-import com.pacgame.provider.layer.FlowLayer;
-
-import java.util.Map;
 
 public class FlowLayerBuilder implements ILayerBuilder<FlowLayer> {
 
-    private FlowLayer buildedObject;
+    private FlowLayer buildedEl;
     private String name;
+
     @Override
     public FlowLayer build() {
-        return buildedObject;
-    }
+        this.buildedEl = new FlowLayer();
 
-    @Override
-    public FlowLayer buildedObject() {
-        return null;
-    }
-
-    @Override
-    public ILayerBuilder create() {
-        this.buildedObject = new FlowLayer();
-        return this;
+        return buildedEl;
     }
 
     @Override
     public ILayerBuilder with(int width, int height) {
-        return null;
-    }
-
-    @Override
-    public ILayerBuilder and() {
+        buildedEl.setWidth(width);
+        buildedEl.setHeight(height);
         return null;
     }
 
     @Override
     public ILayerBuilder textElement() {
-        return null;
+        return this;
     }
 
-    @Override
-    public Map<String, ViewProvidedObject> getChildren() {
-        return null;
+    public FlowLayerBuilder addChildren(ViewProvidedObject el) {
+        buildedEl.addChildren(el);
+        return this;
     }
 
-    @Override
-    public void addChildren(ViewProvidedObject el) {
-
-    }
-
-    @Override
-    public void removeChildren(ViewProvidedObject el) {
-
-    }
-
-    @Override
-    public boolean hasChildren(ViewProvidedObject el) {
-        return false;
-    }
 }

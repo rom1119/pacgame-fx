@@ -1,7 +1,7 @@
-package com.pacgame.provider.layer;
+package com.pacgame.provider;
 
 import com.pacgame.*;
-import com.pacgame.provider.ViewProvidedObject;
+import com.pacgame.provider.layer.LayerProxy;
 
 import java.util.Map;
 
@@ -12,9 +12,16 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     private LayerProvidedObject parent;
     private Map<String, ViewProvidedObject> children;
 
-    @Override
-    public Map<String, ViewProvidedObject> getChildren() {
-        return children;
+    public void setWidth(int width)
+    {
+        this.width = width;
+        proxy.setWidth(width);
+    }
+
+    public void setHeight(int height)
+    {
+        this.height = height;
+        proxy.setHeight(height);
     }
 
     @Override
