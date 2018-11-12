@@ -4,8 +4,8 @@ import com.pacgame.Colorable;
 import com.pacgame.Positionable;
 import com.pacgame.Property;
 import com.pacgame.provider.color.Color;
-import com.pacgame.provider.property.HeightProperty;
-import com.pacgame.provider.property.WidthProperty;
+import com.pacgame.property.HeightProperty;
+import com.pacgame.property.WidthProperty;
 
 public abstract class ViewProvidedObject extends ProvidedObject implements Positionable, Colorable {
 
@@ -35,42 +35,37 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
     }
 
     @Override
-    public ViewProxy getProxy() {
-        return proxy;
-    }
-
-    @Override
     public void fill(int red, int green, int blue, double alpha) {
-        getProxy().fill(red, green, blue, alpha);
+        proxy.fill(red, green, blue, alpha);
     }
 
     @Override
     public void fill(int red, int green, int blue) {
-        getProxy().fill(red, green, blue);
+        proxy.fill(red, green, blue);
     }
 
     @Override
     public void fillRed() {
-        getProxy().fillRed();
+        proxy.fillRed();
     }
 
     @Override
     public void fillBlue() {
-        getProxy().fillBlue();
+        proxy.fillBlue();
     }
 
     @Override
     public void fillGreen() {
-        getProxy().fillGreen();
+        proxy.fillGreen();
     }
 
     @Override
     public void fillWhite() {
-        getProxy().fillWhite();
+        proxy.fillWhite();
     }
 
     @Override
     public void setColor(Color color) {
-        getProxy().setColor(color);
+        proxy.setColor(color);
     }
 }

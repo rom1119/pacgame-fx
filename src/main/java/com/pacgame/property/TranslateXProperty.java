@@ -1,4 +1,4 @@
-package com.pacgame.provider.property;
+package com.pacgame.property;
 
 import com.pacgame.Property;
 

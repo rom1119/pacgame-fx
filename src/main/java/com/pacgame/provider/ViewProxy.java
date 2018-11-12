@@ -3,8 +3,8 @@ package com.pacgame.provider;
 import com.pacgame.Colorable;
 import com.pacgame.Positionable;
 import com.pacgame.Property;
-import com.pacgame.provider.property.HeightProperty;
-import com.pacgame.provider.property.WidthProperty;
+import com.pacgame.property.HeightProperty;
+import com.pacgame.property.WidthProperty;
 import javafx.scene.Node;
 
 public abstract class ViewProxy extends Proxy implements Colorable, Positionable {

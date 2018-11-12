@@ -3,8 +3,9 @@ package com.pacgame.provider;
 import com.pacgame.provider.layer.FlowLayerBuilder;
 import com.pacgame.provider.layer.GroupLayerBuilder;
 import com.pacgame.provider.layer.ILayerBuilder;
+import com.pacgame.provider.layer.VerticalLayerBuilder;
 
-public class LayerProvider<T extends LayerProvidedObject> implements ILayerProvider {
+public class LayerProvider implements ILayerProvider {
 
     @Override
     public FlowLayerBuilder flowLayerBuilder() {
@@ -14,5 +15,10 @@ public class LayerProvider<T extends LayerProvidedObject> implements ILayerProvi
     @Override
     public GroupLayerBuilder groupLayerBuilder() {
         return new GroupLayerBuilder();
+    }
+
+    @Override
+    public VerticalLayerBuilder verticalLayerBuilder() {
+        return new VerticalLayerBuilder();
     }
 }

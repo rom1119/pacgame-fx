@@ -2,15 +2,15 @@ package com.pacgame.provider.component.ui.text;
 
 import com.pacgame.provider.component.UIElementProvidedObject;
 
-class Label extends UIElementProvidedObject {
+public class Label extends UIElementProvidedObject {
 
-    protected String textElement;
+    protected LabelProxy proxy;
 
-    public Label(String textElement) {
-        this.textElement = textElement;
+    public Label(LabelProxy proxy) {
+        this.proxy = proxy;
     }
 
-    public String getTextElement() {
-        return textElement;
+    public String getText() {
+        return proxy.getText();
     }
 }

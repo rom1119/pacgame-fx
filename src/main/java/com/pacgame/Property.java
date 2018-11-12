@@ -7,6 +7,9 @@ public abstract class Property<T> {
     protected T property;
     protected ChangeListener<T> changeListener;
 
+    public Property() {
+    }
+
     public Property(T property) {
         this.property = property;
     }

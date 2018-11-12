@@ -3,8 +3,8 @@ package com.pacgame;
 
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.color.Color;
-import com.pacgame.provider.property.HeightProperty;
-import com.pacgame.provider.property.WidthProperty;
+import com.pacgame.property.HeightProperty;
+import com.pacgame.property.WidthProperty;
 
 public abstract class View implements Positionable, Colorable {
 
