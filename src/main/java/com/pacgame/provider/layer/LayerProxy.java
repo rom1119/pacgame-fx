@@ -2,6 +2,7 @@ package com.pacgame.provider.layer;
 
 import com.pacgame.IChildren;
 import com.pacgame.Parentable;
+import com.pacgame.Visible;
 import com.pacgame.provider.ViewProxy;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
@@ -12,7 +13,7 @@ import javafx.scene.paint.Color;
 
 import java.util.Map;
 
-public abstract class LayerProxy extends ViewProxy implements Parentable<LayerProxy>, IChildren<ViewProxy> {
+public abstract class LayerProxy extends ViewProxy implements Visible, Parentable<LayerProxy>, IChildren<ViewProxy> {
 
     protected Pane proxyObject;
 
@@ -57,6 +58,21 @@ public abstract class LayerProxy extends ViewProxy implements Parentable<LayerPr
         return parent;
     }
 
+    @Override
+    public boolean isVisible() {
+        return proxyObject.isVisible();
+    }
+
+    @Override
+    public void show() {
+        proxyObject.setVisible(true);
+    }
+
+    @Override
+    public void hide() {
+        proxyObject.setVisible(false);
+    }
+
     public void setWidth(int width)
     {
         proxyObject.setPrefWidth(width);
@@ -69,7 +85,7 @@ public abstract class LayerProxy extends ViewProxy implements Parentable<LayerPr
 
     @Override
     public void fill(int red, int green, int blue, double alpha) {
-        proxyObject.setBackground(new Background(new BackgroundFill(new Color(red, green, blue, alpha), CornerRadii.EMPTY, Insets.EMPTY)));
+        proxyObject.setBackground(new Background(new BackgroundFill(Color.rgb(red, green, blue, alpha), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     @Override

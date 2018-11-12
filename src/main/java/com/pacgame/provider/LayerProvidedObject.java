@@ -5,7 +5,7 @@ import com.pacgame.provider.layer.LayerProxy;
 
 import java.util.Map;
 
-public abstract class LayerProvidedObject extends ViewProvidedObject implements Parentable<LayerProvidedObject>, IChildren<ViewProvidedObject> {
+public abstract class LayerProvidedObject extends ViewProvidedObject implements Visible, Parentable<LayerProvidedObject>, IChildren<ViewProvidedObject> {
 
     protected LayerProxy proxy;
 
@@ -14,13 +14,13 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
 
     public void setWidth(int width)
     {
-        this.width = width;
+        this.width.set(width);
         proxy.setWidth(width);
     }
 
     public void setHeight(int height)
     {
-        this.height = height;
+        this.height.set(height);
         proxy.setHeight(height);
     }
 
@@ -37,6 +37,7 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     public void removeChildren(ViewProvidedObject el) {
         if (hasChildren(el)) {
             children.remove(el.hashCode());
+            proxy.removeChildren(el.getProxy());
         }
     }
 
@@ -53,5 +54,20 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     @Override
     public LayerProvidedObject getParent() {
         return parent;
+    }
+
+    @Override
+    public boolean isVisible() {
+        return parent.isVisible();
+    }
+
+    @Override
+    public void show() {
+        proxy.show();
+    }
+
+    @Override
+    public void hide() {
+        proxy.hide();
     }
 }

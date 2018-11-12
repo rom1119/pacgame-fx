@@ -2,19 +2,22 @@ package com.pacgame.provider;
 
 import com.pacgame.Colorable;
 import com.pacgame.Positionable;
+import com.pacgame.Property;
+import com.pacgame.provider.property.HeightProperty;
+import com.pacgame.provider.property.WidthProperty;
 import javafx.scene.Node;
 
 public abstract class ViewProxy extends Proxy implements Colorable, Positionable {
     protected Node proxyObject;
 
-    protected int width;
-    protected int height;
-    protected int x;
-    protected int y;
+    protected Property<Integer> width;
+    protected Property<Integer> height;
+    protected Property<Integer> x;
+    protected Property<Integer> y;
 
     public ViewProxy(int width, int height) {
-        this.width = width;
-        this.height = height;
+        this.width = new WidthProperty(width);
+        this.height = new HeightProperty(height);
     }
 
     public ViewProxy() {
@@ -26,14 +29,15 @@ public abstract class ViewProxy extends Proxy implements Colorable, Positionable
     }
 
     @Override
-    public int getX() {
+    public Property<Integer> getX() {
         return x;
     }
 
     @Override
-    public int getY() {
+    public Property<Integer> getY() {
         return y;
     }
+
 
 
 }

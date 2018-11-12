@@ -2,13 +2,17 @@ package com.pacgame.provider.layer;
 
 
 import com.pacgame.provider.ViewProvidedObject;
+import com.pacgame.provider.color.Color;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class GroupLayerBuilder implements ILayerBuilder<GroupLayer> {
 
     private GroupLayer buildedEl;
+    private Color color;
+
 
     @Override
-    public ILayerBuilder with(int width, int height) {
+    public GroupLayerBuilder with(int width, int height) {
         buildedEl.setWidth(width);
         buildedEl.setHeight(height);
 
@@ -16,12 +20,15 @@ public class GroupLayerBuilder implements ILayerBuilder<GroupLayer> {
     }
 
     @Override
-    public ILayerBuilder textElement() {
-        return this;
+    public GroupLayerBuilder textElement() {
+        throw new NotImplementedException();
     }
 
-    public void addChildren(ViewProvidedObject el) {
+    @Override
+    public GroupLayerBuilder addChildren(ViewProvidedObject el) {
         buildedEl.addChildren(el);
+
+        return this;
     }
 
     @Override
@@ -29,6 +36,13 @@ public class GroupLayerBuilder implements ILayerBuilder<GroupLayer> {
         this.buildedEl = new GroupLayer();
 
         return buildedEl;
+    }
+
+    @Override
+    public GroupLayerBuilder color(Color color) {
+        this.color = color;
+
+        return this;
     }
 
 }

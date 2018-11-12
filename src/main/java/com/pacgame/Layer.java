@@ -18,6 +18,21 @@ public abstract class Layer extends View implements Visible, Comparable<Layer>, 
     }
 
     @Override
+    public boolean isVisible() {
+        return providedObject.isVisible();
+    }
+
+    @Override
+    public void show() {
+        providedObject.show();
+    }
+
+    @Override
+    public void hide() {
+        providedObject.hide();
+    }
+
+    @Override
     public void addChildren(View el) {
         if (!hasChildren(el)) {
             providedObject.addChildren(el.providedObject);

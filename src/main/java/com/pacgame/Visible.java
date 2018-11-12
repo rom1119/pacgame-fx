@@ -2,7 +2,7 @@ package com.pacgame;
 
 public interface Visible {
 
-    boolean isVisisble();
+    boolean isVisible();
 
     void show();
 
