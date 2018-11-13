@@ -25,6 +25,11 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
     }
 
     @Override
+    ViewProxy getProxy() {
+        return proxy;
+    }
+
+    @Override
     public Property<Integer> getX() {
         return x;
     }

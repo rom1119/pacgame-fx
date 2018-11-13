@@ -1,8 +1,8 @@
 package com.pacgame.movement.move;
 
-import com.pacgame.provider.IBuilder;
+import com.pacgame.provider.IBuilderProvider;
 
-public interface IMoveBuilder<T extends IMove> extends IBuilder<T> {
+public interface IMoveBuilder<T extends IMove> extends IBuilderProvider<T> {
 
     IMoveBuilder createMove();
 

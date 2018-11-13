@@ -7,4 +7,8 @@ public class FlowLayer extends Layer {
     public FlowLayer(int width, int height, LayerProvidedObject providedObject) {
         super(width, height, providedObject);
     }
+
+    public FlowLayer(LayerProvidedObject providedObject) {
+        super(providedObject);
+    }
 }

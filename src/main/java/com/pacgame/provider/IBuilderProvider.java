@@ -1,6 +1,6 @@
 package com.pacgame.provider;
 
-public interface IBuilder<T> {
+public interface IBuilderProvider<T> {
 
     T build();
 }

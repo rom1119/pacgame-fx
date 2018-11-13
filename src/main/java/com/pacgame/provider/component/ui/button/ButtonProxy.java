@@ -13,15 +13,14 @@ import static javafx.scene.paint.Color.BLUE;
 import static javafx.scene.paint.Color.GREEN;
 import static javafx.scene.paint.Color.WHITE;
 
-
 public abstract class ButtonProxy extends UIElementProxy {
 
-    protected String name;
+    protected String text;
     protected Button proxyObject;
 
-    public ButtonProxy(String name) {
-        this.name = name;
-        proxyObject = new Button(this.name);
+    public ButtonProxy(String text) {
+        this.text = text;
+        proxyObject = new Button(this.text);
     }
 
     public Button getProxyObject() {
@@ -29,12 +28,22 @@ public abstract class ButtonProxy extends UIElementProxy {
     }
 
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setWidth(int width)
+    {
+        proxyObject.setPrefWidth(width);
+    }
+
+    public void setHeight(int height)
+    {
+        proxyObject.setPrefHeight(height);
     }
 
     @Override

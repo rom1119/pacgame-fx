@@ -47,4 +47,8 @@ class LabelProxy extends UIElementProxy {
 
         return proxyObject.getText();
     }
+
+    public void setText(String text) {
+        this.proxyObject.setText(text);
+    }
 }

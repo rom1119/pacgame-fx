@@ -1,9 +1,9 @@
 package com.pacgame.provider.animation;
 
-import com.pacgame.provider.IBuilder;
+import com.pacgame.provider.IBuilderProvider;
 import com.pacgame.Property;
 
-public class AnimationBuilder implements IBuilder<Animation> {
+public class AnimationBuilder implements IBuilderProvider<Animation> {
 
     private Animation buildedInstance;
 

@@ -90,14 +90,14 @@ public class SavedGame
      * It is recommended that all subclasses override this method.
      * <p>
      * The {@code toString} method for class {@code User}
-     * returns a string consisting of the name of the class of which the
+     * returns a string consisting of the text of the class of which the
      * object is an instance, the at-sign character `{@code @}', and
      * the unsigned hexadecimal representation of the hash code of the
      * object. In other words, this method returns a string equal to the
      * value of:
      * <blockquote>
      * <pre>
-     * getClass().getName() + '@' + Integer.toHexString(hashCode())
+     * getClass().getText() + '@' + Integer.toHexString(hashCode())
      * </pre></blockquote>
      *
      * @return a string representation of the object.

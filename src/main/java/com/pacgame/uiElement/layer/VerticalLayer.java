@@ -7,4 +7,8 @@ public class VerticalLayer extends Layer {
     public VerticalLayer(int width, int height, LayerProvidedObject providedObject) {
         super(width, height, providedObject);
     }
+
+    public VerticalLayer(LayerProvidedObject providedObject) {
+        super(providedObject);
+    }
 }

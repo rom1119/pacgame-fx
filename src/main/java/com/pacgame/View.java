@@ -15,6 +15,9 @@ public abstract class View implements Positionable, Colorable {
     protected Property<Integer> x;
     protected Property<Integer> y;
 
+    public View() {
+    }
+
     public View(int width, int height) {
         this.width = new WidthProperty(width);
         this.height = new HeightProperty(height);

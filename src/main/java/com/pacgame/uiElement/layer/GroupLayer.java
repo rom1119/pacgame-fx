@@ -7,4 +7,8 @@ public class GroupLayer extends Layer {
     public GroupLayer(int width, int height, LayerProvidedObject providedObject) {
         super(width, height, providedObject);
     }
+
+    public GroupLayer(LayerProvidedObject providedObject) {
+        super(providedObject);
+    }
 }

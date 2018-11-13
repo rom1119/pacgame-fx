@@ -7,5 +7,6 @@ public abstract class Component extends View {
         super(width, height);
     }
 
-
+    public Component() {
+    }
 }

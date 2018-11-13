@@ -201,7 +201,7 @@ public class MazeController extends Controller implements AnimationMoveHandler  
     public void animationMoveEnd(MapPoint currentPoint)
     {
 
-//                System.out.println(currentPoint.getName());
+//                System.out.println(currentPoint.getText());
         if (!isMovedByAI()) {
             setRandomDirection(currentPoint);
         } else {

@@ -12,9 +12,25 @@ public abstract class Layer extends View implements Visible, Comparable<Layer>, 
     protected Layer parent;
     protected Map<String, View> children;
 
+    public Layer(LayerProvidedObject providedObject) {
+        this.providedObject = providedObject;
+    }
+
     public Layer(int width, int height, LayerProvidedObject providedObject) {
         super(width, height);
         this.providedObject = providedObject;
+    }
+
+    public void setWidth(int width)
+    {
+        this.width.set(width);
+        providedObject.setWidth(width);
+    }
+
+    public void setHeight(int height)
+    {
+        this.height.set(height);
+        providedObject.setHeight(height);
     }
 
     @Override

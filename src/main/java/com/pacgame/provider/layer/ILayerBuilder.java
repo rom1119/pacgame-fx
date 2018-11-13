@@ -1,13 +1,11 @@
 package com.pacgame.provider.layer;
 
-import com.pacgame.provider.IBuilder;
-import com.pacgame.IChildren;
-import com.pacgame.provider.IChildrenBuilder;
+import com.pacgame.provider.IBuilderProvider;
 import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.color.Color;
 
-public interface ILayerBuilder<T extends LayerProvidedObject> extends IBuilder<T> {
+public interface ILayerBuilder<T extends LayerProvidedObject> extends IBuilderProvider<T> {
 
 
     ILayerBuilder with(int width, int height);

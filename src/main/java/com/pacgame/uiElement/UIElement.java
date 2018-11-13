@@ -9,6 +9,9 @@ public abstract class UIElement extends Component implements IUIEventTarget {
         super(width, height);
     }
 
+    public UIElement() {
+    }
+
     @Override
     public IEvent dispatchEvent(IEvent event) {
         return null;
