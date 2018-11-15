@@ -1,20 +1,24 @@
 package com.pacgame.provider;
 
-import com.pacgame.Colorable;
-import com.pacgame.Positionable;
-import com.pacgame.Property;
 import com.pacgame.provider.color.Color;
-import com.pacgame.property.HeightProperty;
-import com.pacgame.property.WidthProperty;
 
-public abstract class ViewProvidedObject extends ProvidedObject implements Positionable, Colorable {
+import com.pacgame.provider.interfaces.ColorableProvider;
+import com.pacgame.provider.interfaces.PositionableProvider;
+import com.pacgame.provider.interfaces.VisibleProvider;
+import com.pacgame.provider.property.HeightProperty;
+import com.pacgame.provider.property.PropertyProvider;
+import com.pacgame.provider.property.WidthProperty;
+
+public abstract class ViewProvidedObject extends ProvidedObject implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider {
 
     protected ViewProxy proxy;
 
-    protected Property<Integer> width;
-    protected Property<Integer> height;
-    protected Property<Integer> x;
-    protected Property<Integer> y;
+    protected PropertyProvider<Integer> width;
+    protected PropertyProvider<Integer> height;
+    protected PropertyProvider<Integer> x;
+    protected PropertyProvider<Integer> y;
+    protected int order;
+
 
     public ViewProvidedObject() {
     }
@@ -24,18 +28,46 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
         this.height = new HeightProperty(height);
     }
 
+
+    @Override
+    public boolean isVisible() {
+        return proxy.isVisible();
+    }
+
+    @Override
+    public void show() {
+        proxy.show();
+    }
+
+    @Override
+    public void hide() {
+        proxy.hide();
+    }
+
+    @Override
+    public int compareTo(ViewProvidedObject o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+        if (order == o.order) {
+            return 0;
+        }
+
+        return order > o.order ? 1 : -1 ;
+    }
+
     @Override
     ViewProxy getProxy() {
         return proxy;
     }
 
     @Override
-    public Property<Integer> getX() {
+    public PropertyProvider<Integer> getX() {
         return x;
     }
 
     @Override
-    public Property<Integer> getY() {
+    public PropertyProvider<Integer> getY() {
         return y;
     }
 

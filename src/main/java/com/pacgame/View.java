@@ -6,7 +6,7 @@ import com.pacgame.provider.color.Color;
 import com.pacgame.property.HeightProperty;
 import com.pacgame.property.WidthProperty;
 
-public abstract class View implements Positionable, Colorable {
+public abstract class View implements Positionable, Colorable, Comparable<View>, Visible  {
 
     protected ViewProvidedObject providedObject;
 
@@ -14,6 +14,8 @@ public abstract class View implements Positionable, Colorable {
     protected Property<Integer> height;
     protected Property<Integer> x;
     protected Property<Integer> y;
+    protected int order;
+
 
     public View() {
     }
@@ -22,6 +24,34 @@ public abstract class View implements Positionable, Colorable {
         this.width = new WidthProperty(width);
         this.height = new HeightProperty(height);
     }
+
+    @Override
+    public boolean isVisible() {
+        return providedObject.isVisible();
+    }
+
+    @Override
+    public void show() {
+        providedObject.show();
+    }
+
+    @Override
+    public void hide() {
+        providedObject.hide();
+    }
+
+    @Override
+    public int compareTo(View o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+        if (order == o.order) {
+            return 0;
+        }
+
+        return order > o.order ? 1 : -1 ;
+    }
+
 
     @Override
     public Property<Integer> getX() {
