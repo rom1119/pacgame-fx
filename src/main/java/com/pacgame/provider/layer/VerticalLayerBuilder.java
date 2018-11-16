@@ -1,14 +1,14 @@
 package com.pacgame.provider.layer;
 
 import com.pacgame.provider.ViewProvidedObject;
-import com.pacgame.provider.color.Color;
+import com.pacgame.provider.color.ColorProvidedObject;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class VerticalLayerBuilder implements ILayerBuilder<VerticalLayer> {
 
     private VerticalLayer buildedEl;
     private String name;
-    private Color color;
+    private ColorProvidedObject color;
 
 
     @Override
@@ -38,7 +38,7 @@ public class VerticalLayerBuilder implements ILayerBuilder<VerticalLayer> {
     }
 
     @Override
-    public VerticalLayerBuilder color(Color color) {
+    public VerticalLayerBuilder color(ColorProvidedObject color) {
         this.color = color;
 
         return this;

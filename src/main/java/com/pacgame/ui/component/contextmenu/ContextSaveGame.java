@@ -106,7 +106,7 @@ public class ContextSaveGame extends SubView {
     {
         backBtn = new Button("Powrót");
         backBtn.setFont(new Font(20));
-//        backBtn.setTextFill(Color.WHITE);
+//        backBtn.setTextFill(ColorProvidedObject.WHITE);
 
         setOnBackButton();
 
@@ -120,7 +120,7 @@ public class ContextSaveGame extends SubView {
 
         setOnSaveButton();
 
-//        backBtn.setTextFill(Color.WHITE);
+//        backBtn.setTextFill(ColorProvidedObject.WHITE);
 
         return readGameBtn;
     }

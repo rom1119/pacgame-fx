@@ -5,7 +5,7 @@ import com.pacgame.provider.ViewProvidedObject;
 
 import java.util.Map;
 
-public abstract class Layer extends View implements Visible, Comparable<Layer>, Parentable<Layer>, IChildren<View> {
+public abstract class Layer extends View implements Visible, Comparable<View>, Parentable<Layer>, IChildren<View> {
 
     protected LayerProvidedObject providedObject;
     protected int order;
@@ -118,7 +118,7 @@ public abstract class Layer extends View implements Visible, Comparable<Layer>, 
      *                              from being compared to this object.
      */
     @Override
-    public int compareTo(Layer o) {
+    public int compareTo(View o) {
         if (o == null) {
             throw new NullPointerException();
         }

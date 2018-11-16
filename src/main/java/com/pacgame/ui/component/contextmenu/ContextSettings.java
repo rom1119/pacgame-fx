@@ -95,7 +95,7 @@ public class ContextSettings extends SubView {
     {
         back = new Button("Powrót");
         back.setFont(new Font(20));
-//        back.setTextFill(Color.WHITE);
+//        back.setTextFill(ColorProvidedObject.WHITE);
 
         setOnBackButton();
 
@@ -109,7 +109,7 @@ public class ContextSettings extends SubView {
 
         setOnSaveButton();
 
-//        back.setTextFill(Color.WHITE);
+//        back.setTextFill(ColorProvidedObject.WHITE);
 
         return save;
     }

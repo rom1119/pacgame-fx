@@ -126,7 +126,7 @@ public class LoginForm extends View {
     {
         loginBtn = new Button("Zaloguj");
         loginBtn.setFont(new Font(20));
-//        backBtn.setTextFill(Color.WHITE);
+//        backBtn.setTextFill(ColorProvidedObject.WHITE);
 
         setOnLoginButton();
 
@@ -140,7 +140,7 @@ public class LoginForm extends View {
 
         setOnRegisterButton();
 
-//        backBtn.setTextFill(Color.WHITE);
+//        backBtn.setTextFill(ColorProvidedObject.WHITE);
 
         return registerBtn;
     }

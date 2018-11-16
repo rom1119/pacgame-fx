@@ -19,7 +19,7 @@ public class ArcProxy extends ShapeProxy {
 //
         this.proxyObject.setRotate(0);
 //
-//        this.icon.setFill(Color.YELLOW);
+//        this.icon.setFill(ColorProvidedObject.YELLOW);
     }
 
 }

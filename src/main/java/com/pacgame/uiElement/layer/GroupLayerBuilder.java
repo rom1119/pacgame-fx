@@ -3,15 +3,14 @@ package com.pacgame.uiElement.layer;
 
 import com.pacgame.View;
 import com.pacgame.provider.ILayerProvider;
-import com.pacgame.provider.ViewProvidedObject;
-import com.pacgame.provider.color.Color;
+import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.uiElement.ILayerBuilder;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class GroupLayerBuilder implements ILayerBuilder<GroupLayer> {
 
     private GroupLayer buildedEl;
-    private Color color;
+    private ColorProvidedObject color;
 
     private ILayerProvider layerProvider;
 
@@ -47,7 +46,7 @@ public class GroupLayerBuilder implements ILayerBuilder<GroupLayer> {
     }
 
     @Override
-    public GroupLayerBuilder color(Color color) {
+    public GroupLayerBuilder color(ColorProvidedObject color) {
         this.color = color;
 
         return this;

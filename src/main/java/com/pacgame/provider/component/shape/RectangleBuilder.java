@@ -1,13 +1,13 @@
 package com.pacgame.provider.component.shape;
 
-import com.pacgame.provider.color.Color;
+import com.pacgame.provider.color.ColorProvidedObject;
 
 public class RectangleBuilder implements ShapeBuilder<Rectangle> {
 
     private int width = 5;
     private int height = 5;
 
-    private Color color;
+    private ColorProvidedObject color;
 
     public RectangleBuilder with(int width, int height)
     {
@@ -18,7 +18,7 @@ public class RectangleBuilder implements ShapeBuilder<Rectangle> {
     }
 
     @Override
-    public RectangleBuilder color(Color color) {
+    public RectangleBuilder color(ColorProvidedObject color) {
         this.color = color;
 
         return this;

@@ -274,7 +274,7 @@ public class UserAccount extends SubView {
     {
         editBtn = new Button("Edytuj profil");
         editBtn.setFont(new Font(20));
-//        backBtn.setTextFill(Color.WHITE);
+//        backBtn.setTextFill(ColorProvidedObject.WHITE);
 
         setOnEditButton();
 
@@ -287,7 +287,7 @@ public class UserAccount extends SubView {
     {
         backBtn = new Button("Powrót do menu");
         backBtn.setFont(new Font(20));
-//        backBtn.setTextFill(Color.WHITE);
+//        backBtn.setTextFill(ColorProvidedObject.WHITE);
 
         setOnBackButton();
 
@@ -316,7 +316,7 @@ public class UserAccount extends SubView {
     {
         selectImageBtn = new Button("Wybierz zdjęcie");
         selectImageBtn.setFont(new Font(20));
-//        backBtn.setTextFill(Color.WHITE);
+//        backBtn.setTextFill(ColorProvidedObject.WHITE);
 
         setOnSelectImageBtn();
 

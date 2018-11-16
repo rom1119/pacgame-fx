@@ -96,7 +96,7 @@ public class MainSettings extends SubView {
     {
         back = new Button("Powrót");
         back.setFont(new Font(20));
-//        back.setTextFill(Color.WHITE);
+//        back.setTextFill(ColorProvidedObject.WHITE);
 
         setOnBackButton();
 
@@ -110,7 +110,7 @@ public class MainSettings extends SubView {
 
         setOnSaveButton();
 
-//        back.setTextFill(Color.WHITE);
+//        back.setTextFill(ColorProvidedObject.WHITE);
 
         return save;
     }

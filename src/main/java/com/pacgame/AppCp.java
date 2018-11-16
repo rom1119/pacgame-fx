@@ -402,7 +402,6 @@ public class AppCp extends Application {
         root.getChildren().add(usersRankingPane);
 
         indexForMaze = root.getChildren().indexOf(entryTimerEl);
-
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.setTitle("PAC-GAME this is new PACMAN :-)");

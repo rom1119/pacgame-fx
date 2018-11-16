@@ -24,8 +24,8 @@ public class Pacman extends Player implements Turnable {
 //        collider = new Rectangle(point.getX(), point.getY(), width, height);
 ////        icon = new Circle();
 //
-////        collider.setFill(new Color(0, 1, 0, 0.7));
-//        collider.setFill(Color.TRANSPARENT);
+////        collider.setFill(new ColorProvidedObject(0, 1, 0, 0.7));
+//        collider.setFill(ColorProvidedObject.TRANSPARENT);
 //
 //        this.icon = new Arc();
 //        this.icon.setCenterX(0);
@@ -38,7 +38,7 @@ public class Pacman extends Player implements Turnable {
 //
 //        this.icon.setRotate(0);
 //
-//        this.icon.setFill(Color.YELLOW);
+//        this.icon.setFill(ColorProvidedObject.YELLOW);
 //
 //        initPosition();
 //

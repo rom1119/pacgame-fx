@@ -1,4 +1,4 @@
 package com.pacgame.provider;
 
-public interface IEventProvider extends IProvider {
+public interface IEventProvider extends Provider {
 }

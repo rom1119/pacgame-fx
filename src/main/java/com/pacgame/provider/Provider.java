@@ -1,5 +1,5 @@
 package com.pacgame.provider;
 
-public interface IProvider {
+public abstract class Provider {
 
 }

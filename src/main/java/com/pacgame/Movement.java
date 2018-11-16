@@ -1,14 +1,13 @@
 package com.pacgame;
 
-import com.pacgame.gameElement.MovedComponent;
-import com.pacgame.provider.IMovementProvider;
+import com.pacgame.provider.MovementProvider;
 
 public abstract class Movement {
 
     protected final int SPEED = 10;
-    private IMovementProvider provider;
+    private MovementProvider provider;
 
-    public Movement(IMovementProvider provider) {
+    public Movement(MovementProvider provider) {
         this.provider = provider;
     }
 

@@ -1,6 +1,6 @@
 package com.pacgame.provider.component.shape;
 
-import com.pacgame.provider.color.Color;
+import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.provider.component.ComponentProxy;
 import javafx.scene.shape.Shape;
 import static javafx.scene.paint.Color.rgb;
@@ -44,7 +44,7 @@ public abstract class ShapeProxy extends ComponentProxy {
     }
 
     @Override
-    public void setColor(Color color) {
+    public void setColor(ColorProvidedObject color) {
         proxyObject.setFill(color.getValue());
     }
 }

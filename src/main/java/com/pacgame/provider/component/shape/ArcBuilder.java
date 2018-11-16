@@ -1,12 +1,12 @@
 package com.pacgame.provider.component.shape;
 
-import com.pacgame.provider.color.Color;
+import com.pacgame.provider.color.ColorProvidedObject;
 
 public class ArcBuilder implements ShapeBuilder<Arc> {
 
     private int radius = 10;
 
-    private Color color;
+    private ColorProvidedObject color;
 
     public ArcBuilder radius(int radius)
     {
@@ -16,7 +16,7 @@ public class ArcBuilder implements ShapeBuilder<Arc> {
     }
 
     @Override
-    public ArcBuilder color(Color color) {
+    public ArcBuilder color(ColorProvidedObject color) {
         this.color = color;
 
         return this;

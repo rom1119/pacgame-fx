@@ -1,5 +1,6 @@
 package com.pacgame.provider.component.ui.button;
 
+import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.provider.component.ui.UIElementProxy;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -77,7 +78,7 @@ public abstract class ButtonProxy extends UIElementProxy {
     }
 
     @Override
-    public void setColor(com.pacgame.provider.color.Color color) {
+    public void setColor(ColorProvidedObject color) {
         proxyObject.setBackground(new Background(new BackgroundFill(color.getValue(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

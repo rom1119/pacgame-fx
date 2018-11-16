@@ -40,7 +40,7 @@ public class EntryTimer extends View {
         pane.setAlignment(Pos.CENTER);
 
         VBox vBox = new VBox();
-//        pane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+//        pane.setBackground(new Background(new BackgroundFill(ColorProvidedObject.RED, CornerRadii.EMPTY, Insets.EMPTY)));
 //        pane.setTranslateX();
 //        vBox.setAlignment(Pos.CENTER);
         pane.setPadding(new Insets(0, 0, 25, 0));

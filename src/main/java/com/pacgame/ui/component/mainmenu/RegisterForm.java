@@ -211,7 +211,7 @@ public class RegisterForm extends View {
     {
         backToLoginBtn = new Button("Wróć do logowania");
         backToLoginBtn.setFont(new Font(20));
-//        backBtn.setTextFill(Color.WHITE);
+//        backBtn.setTextFill(ColorProvidedObject.WHITE);
 
         setOnLoginButton();
 
@@ -225,7 +225,7 @@ public class RegisterForm extends View {
 
         setOnRegisterButton();
 
-//        backBtn.setTextFill(Color.WHITE);
+//        backBtn.setTextFill(ColorProvidedObject.WHITE);
 
         return registerBtn;
     }

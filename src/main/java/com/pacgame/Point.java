@@ -31,12 +31,12 @@ public abstract class Point extends Component {
 
         this.icon.setFill(new ImagePattern(image));
 
-//        this.icon.setStroke(Color.RED);
+//        this.icon.setStroke(ColorProvidedObject.RED);
 
 
 //        this.icon.setRotate(0);
 
-//        this.icon.setFill(Color.YELLOW);
+//        this.icon.setFill(ColorProvidedObject.YELLOW);
 
         initPosition();
 

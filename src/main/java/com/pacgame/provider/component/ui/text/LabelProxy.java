@@ -1,6 +1,6 @@
 package com.pacgame.provider.component.ui.text;
 
-import com.pacgame.provider.color.Color;
+import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.provider.component.ui.UIElementProxy;
 import javafx.scene.control.Label;
 
@@ -39,7 +39,7 @@ class LabelProxy extends UIElementProxy {
     }
 
     @Override
-    public void setColor(Color color) {
+    public void setColor(ColorProvidedObject color) {
 
     }
 

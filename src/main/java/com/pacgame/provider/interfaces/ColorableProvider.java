@@ -1,6 +1,6 @@
 package com.pacgame.provider.interfaces;
 
-import com.pacgame.provider.color.Color;
+import com.pacgame.provider.color.ColorProvidedObject;
 
 public interface ColorableProvider {
 
@@ -10,5 +10,5 @@ public interface ColorableProvider {
     void fillBlue();
     void fillGreen();
     void fillWhite();
-    void setColor(Color color);
+    void setColor(ColorProvidedObject color);
 }

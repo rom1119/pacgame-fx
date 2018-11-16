@@ -3,7 +3,7 @@ package com.pacgame.uiElement;
 import com.pacgame.IBuilder;
 import com.pacgame.Layer;
 import com.pacgame.View;
-import com.pacgame.provider.color.Color;
+import com.pacgame.provider.color.ColorProvidedObject;
 
 public interface ILayerBuilder<T extends Layer> extends IBuilder {
 
@@ -11,5 +11,5 @@ public interface ILayerBuilder<T extends Layer> extends IBuilder {
 
     ILayerBuilder textElement();
     ILayerBuilder addChildren(View el);
-    ILayerBuilder color(Color color);
+    ILayerBuilder color(ColorProvidedObject color);
 }

@@ -2,7 +2,7 @@ package com.pacgame;
 
 
 import com.pacgame.provider.ViewProvidedObject;
-import com.pacgame.provider.color.Color;
+import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.property.HeightProperty;
 import com.pacgame.property.WidthProperty;
 
@@ -94,7 +94,7 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     }
 
     @Override
-    public void setColor(Color color) {
+    public void setColor(ColorProvidedObject color) {
         providedObject.setColor(color);
     }
 }

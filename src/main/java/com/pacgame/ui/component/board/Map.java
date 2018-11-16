@@ -28,7 +28,7 @@ public class Map extends View {
         GraphicsContext g = canvas.getGraphicsContext2D();
 
 
-//        g.setFill(Color.AQUA);
+//        g.setFill(ColorProvidedObject.AQUA);
 
         g.drawImage(img, 0, 0, width, height);
 //        g.setGlobalBlendMode(BlendMode.SCREEN);

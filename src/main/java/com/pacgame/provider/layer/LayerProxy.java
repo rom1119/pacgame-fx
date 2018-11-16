@@ -4,6 +4,7 @@ import com.pacgame.IChildren;
 import com.pacgame.Parentable;
 import com.pacgame.Visible;
 import com.pacgame.provider.ViewProxy;
+import com.pacgame.provider.color.ColorProvidedObject;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -114,7 +115,7 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
     }
 
     @Override
-    public void setColor(com.pacgame.provider.color.Color color) {
+    public void setColor(ColorProvidedObject color) {
         proxyObject.setBackground(new Background(new BackgroundFill(color.getValue(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

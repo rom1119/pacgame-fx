@@ -106,7 +106,7 @@ class IntegerValueAnimationProxy extends AnimationProxy {
         private int cycleCount = 1;
         private Duration delay = Duration.millis(0);
         private boolean autoReverse = false;
-        private T property;
+        private PropertyProvider<Integer> property;
 
         public Builder animateProperty(PropertyProvider<Integer> property){
             properties.add(property);
@@ -161,7 +161,7 @@ class IntegerValueAnimationProxy extends AnimationProxy {
             return new IntegerValueAnimationProxy(this);
         }
 
-        public Builder setProperty(T property) {
+        public Builder setProperty(PropertyProvider<Integer> property) {
             this.property = property;
             return this;
         }

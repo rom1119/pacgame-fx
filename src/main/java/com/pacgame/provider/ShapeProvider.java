@@ -1,16 +1,9 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.component.shape.ArcBuilder;
-import com.pacgame.provider.component.shape.RectangleBuilder;
+import com.pacgame.provider.component.shape.*;
 
-public class ShapeProvider implements IShapeProvider {
-    @Override
-    public ArcBuilder arcBuilder() {
-        return new ArcBuilder();
-    }
+public abstract class ShapeProvider {
 
-    @Override
-    public RectangleBuilder rectangleBuilder() {
-        return new RectangleBuilder();
-    }
+    public abstract ArcBuilder arcBuilder();
+    public abstract RectangleBuilder rectangleBuilder();
 }

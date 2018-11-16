@@ -1,7 +1,6 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.color.Color;
-
+import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.provider.interfaces.ColorableProvider;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
@@ -9,7 +8,7 @@ import com.pacgame.provider.property.HeightProperty;
 import com.pacgame.provider.property.PropertyProvider;
 import com.pacgame.provider.property.WidthProperty;
 
-public abstract class ViewProvidedObject extends ProvidedObject implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider {
+public abstract class ViewProvidedObject extends com.pacgame.provider.ProvidedObject implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider {
 
     protected ViewProxy proxy;
 
@@ -102,7 +101,7 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
     }
 
     @Override
-    public void setColor(Color color) {
+    public void setColor(ColorProvidedObject color) {
         proxy.setColor(color);
     }
 }

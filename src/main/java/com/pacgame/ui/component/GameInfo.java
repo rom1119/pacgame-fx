@@ -27,7 +27,7 @@ public class GameInfo extends View {
         pane.setPadding(new Insets(10));
         pane.setPrefWidth(width);
         pane.setPrefHeight(height);
-//        pane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+//        pane.setBackground(new Background(new BackgroundFill(ColorProvidedObject.RED, CornerRadii.EMPTY, Insets.EMPTY)));
 //        pane.setTranslateX();
 
         pane.getChildren().add(vBox);

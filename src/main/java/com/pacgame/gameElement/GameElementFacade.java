@@ -1,12 +1,12 @@
 package com.pacgame.gameElement;
 
-import com.pacgame.provider.IShapeProvider;
+import com.pacgame.provider.ShapeProvider;
 
 public class GameElementFacade {
 
-    private IShapeProvider shapeProvider;
+    private ShapeProvider shapeProvider;
 
-    public GameElementFacade(IShapeProvider shapeProvider) {
+    public GameElementFacade(ShapeProvider shapeProvider) {
         this.shapeProvider = shapeProvider;
     }
 
