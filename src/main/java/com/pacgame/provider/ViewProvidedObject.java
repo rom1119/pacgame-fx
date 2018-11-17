@@ -56,7 +56,7 @@ public abstract class ViewProvidedObject extends com.pacgame.provider.ProvidedOb
     }
 
     @Override
-    ViewProxy getProxy() {
+    protected ViewProxy getProxy() {
         return proxy;
     }
 

@@ -42,6 +42,11 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     }
 
     @Override
+    public LayerProxy getProxy() {
+        return proxy;
+    }
+
+    @Override
     public boolean hasChildren(ViewProvidedObject el) {
         return children.containsKey(el.hashCode());
     }

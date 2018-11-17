@@ -45,6 +45,12 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
     }
 
     @Override
+    public Pane getProxyObject(){
+        return proxyObject;
+    }
+
+
+    @Override
     public boolean hasChildren(ViewProxy el) {
         return children.containsKey(el.hashCode());
     }
@@ -116,6 +122,6 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
 
     @Override
     public void setColor(ColorProvidedObject color) {
-        proxyObject.setBackground(new Background(new BackgroundFill(color.getValue(), CornerRadii.EMPTY, Insets.EMPTY)));
+        proxyObject.setBackground(new Background(new BackgroundFill(color.getProxy().getProxyObject(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

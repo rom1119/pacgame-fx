@@ -36,11 +36,11 @@ public class App extends Application {
     private static void initApp(Stage primaryStage)
     {
         Scene scene = new Scene(new VBox(), 800, 500);
+        Stage stage = new Stage();
 
 
         Map mapMain = Factory.createMap("./map/map_first.png");
         mapMain.setOrder(0);
-
         allUIComponents = new HashSet<>();
         allUIComponents.add(mapMain);
 
