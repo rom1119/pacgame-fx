@@ -55,13 +55,33 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
 
 
     @Override
-    public Property<Integer> getX() {
+    public int getX() {
+        return x.get();
+    }
+
+    @Override
+    public int getY() {
+        return y.get();
+    }
+
+    @Override
+    public Property<Integer> XProperty() {
         return x;
     }
 
     @Override
-    public Property<Integer> getY() {
+    public Property<Integer> YProperty() {
         return y;
+    }
+
+    @Override
+    public void setX(int x) {
+        this.x.set(x);
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y.set(y);
     }
 
     @Override

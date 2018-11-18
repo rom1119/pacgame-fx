@@ -407,7 +407,6 @@ public class AppCp extends Application {
         primaryStage.setTitle("PAC-GAME this is new PACMAN :-)");
         primaryStage.show();
 
-
         pacmanController = new PacmanController(scene, root);
         pacmanController.scoreProperty().bindBidirectional(scoreUIControll.textProperty());
         pacmanController.getControlledObject().livesProperty().bindBidirectional(livesUIControll.textProperty());

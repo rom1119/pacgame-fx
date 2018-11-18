@@ -1,11 +1,11 @@
 package com.pacgame.provider.animation;
 
-import com.pacgame.Property;
 import com.pacgame.provider.Proxy;
+import com.pacgame.provider.property.PropertyProvider;
 
 class IntegerValueAnimation extends Animation {
 
-    public IntegerValueAnimation(Property<Integer> property, int endVal) {
+    public IntegerValueAnimation(PropertyProvider<Integer> property, int endVal) {
         this.proxy = new IntegerValueAnimationProxy
                         .Builder()
                         .animateProperty(property)

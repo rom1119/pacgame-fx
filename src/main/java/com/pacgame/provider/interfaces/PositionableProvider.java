@@ -4,7 +4,15 @@ import com.pacgame.provider.property.PropertyProvider;
 
 public interface PositionableProvider {
 
-    PropertyProvider<Integer> getX();
+    int getX();
 
-    PropertyProvider<Integer> getY();
+    int getY();
+
+    PropertyProvider<Integer> XProperty();
+
+    PropertyProvider<Integer> YProperty();
+
+    void setX(int x);
+
+    void setY(int y);
 }

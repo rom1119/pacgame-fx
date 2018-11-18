@@ -1,7 +1,7 @@
 package com.pacgame.uiElement.layer;
 
 import com.pacgame.View;
-import com.pacgame.provider.ILayerProvider;
+import com.pacgame.provider.LayerProvider;
 import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.uiElement.ILayerBuilder;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -12,9 +12,9 @@ public class VerticalLayerBuilder implements ILayerBuilder<VerticalLayer> {
     private String name;
     private ColorProvidedObject color;
 
-    private ILayerProvider layerProvider;
+    private LayerProvider layerProvider;
 
-    public VerticalLayerBuilder(ILayerProvider layerProvider) {
+    public VerticalLayerBuilder(LayerProvider layerProvider) {
         this.layerProvider = layerProvider;
     }
 

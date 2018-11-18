@@ -1,8 +1,18 @@
 package com.pacgame;
 
+import com.pacgame.provider.property.PropertyProvider;
+
 public interface Positionable {
 
-    Property<Integer> getX();
+    int getX();
 
-    Property<Integer> getY();
+    int getY();
+
+    Property<Integer> XProperty();
+
+    Property<Integer> YProperty();
+
+    void setX(int x);
+
+    void setY(int y);
 }

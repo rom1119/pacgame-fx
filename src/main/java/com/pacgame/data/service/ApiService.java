@@ -3,7 +3,6 @@ package com.pacgame.data.service;
 import com.pacgame.data.model.Token;
 import com.pacgame.data.model.User;
 import javafx.scene.image.Image;
-import org.springframework.boot.configurationprocessor.json.JSONException;
 
 import java.io.File;
 import java.util.List;

@@ -45,6 +45,6 @@ public abstract class ShapeProxy extends ComponentProxy {
 
     @Override
     public void setColor(ColorProvidedObject color) {
-        proxyObject.setFill(color.getValue());
+        proxyObject.setFill(color.getProxy().getProxyObject());
     }
 }

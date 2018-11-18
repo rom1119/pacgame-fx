@@ -2,7 +2,7 @@ package com.pacgame.provider;
 
 import com.pacgame.provider.animation.AnimationBuilder;
 
-class Movement2D implements MovementProvider2D {
+class Movement2D extends MovementProvider2D {
 
     private AnimationBuilder animationBuilder;
 

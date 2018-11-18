@@ -128,6 +128,13 @@ class IntegerValueAnimationProxy extends AnimationProxy {
             return this;
         }
 
+        public Builder delaySecondss(int seconds)
+        {
+            delay = Duration.seconds(seconds);
+
+            return this;
+        }
+
         public Builder autoReverse()
         {
             autoReverse = true;
@@ -166,8 +173,5 @@ class IntegerValueAnimationProxy extends AnimationProxy {
             return this;
         }
 
-        public PropertyProvider createProperty() {
-            return new Property(property);
-        }
     }
 }

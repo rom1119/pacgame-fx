@@ -1,7 +1,7 @@
 package com.pacgame.uiElement.layer;
 
 import com.pacgame.View;
-import com.pacgame.provider.ILayerProvider;
+import com.pacgame.provider.LayerProvider;
 import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.uiElement.ILayerBuilder;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -11,9 +11,9 @@ public class FlowLayerBuilder implements ILayerBuilder<FlowLayer> {
     private FlowLayer buildedEl;
     private String name;
     private ColorProvidedObject color;
-    private ILayerProvider layerProvider;
+    private LayerProvider layerProvider;
 
-    public FlowLayerBuilder(ILayerProvider layerProvider) {
+    public FlowLayerBuilder(LayerProvider layerProvider) {
         this.layerProvider = layerProvider;
     }
 

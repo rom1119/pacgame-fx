@@ -61,13 +61,33 @@ public abstract class ViewProvidedObject extends com.pacgame.provider.ProvidedOb
     }
 
     @Override
-    public PropertyProvider<Integer> getX() {
+    public int getX() {
+        return x.get();
+    }
+
+    @Override
+    public int getY() {
+        return y.get();
+    }
+
+    @Override
+    public PropertyProvider<Integer> XProperty() {
         return x;
     }
 
     @Override
-    public PropertyProvider<Integer> getY() {
+    public PropertyProvider<Integer> YProperty() {
         return y;
+    }
+
+    @Override
+    public void setX(int x) {
+        this.x.set(x);
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y.set(y);
     }
 
     @Override
