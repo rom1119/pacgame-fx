@@ -13,11 +13,13 @@ public class InMemoryDb implements Db {
     private Map<Integer, LayerEntity> layers;
     private Map<Integer, ShapeEntity> shapes;
     private Map<Integer, UIElementEntity> uiElements;
+    private Map<Integer, PaintEntity> paints;
 
     public InMemoryDb() {
         layers = new HashMap<>();
         shapes = new HashMap<>();
         uiElements = new HashMap<>();
+        paints = new HashMap<>();
     }
 
     @Override
@@ -44,10 +46,10 @@ public class InMemoryDb implements Db {
     }
 
     @Override
-    public Entity findById(Class<? extends Entity> clazz, int id) throws EntityNotFoundException, UnsupportedEntityException {
+    public <T extends Entity> T findById(Class<T> clazz, int id) throws EntityNotFoundException, UnsupportedEntityException {
         Map<Integer, Entity> map = getMapFromClass(clazz);
 
-        return map.get(id);
+        return (T) map.get(id);
     }
 
     private Map<Integer, Entity> getMapFromEntity(Entity entity) throws UnsupportedEntityException {
@@ -58,6 +60,9 @@ public class InMemoryDb implements Db {
 
         } else if (entity instanceof UIElementEntity) {
             return new HashMap<>(uiElements);
+        }
+        else if (entity instanceof PaintEntity) {
+            return new HashMap<>(paints);
         }
 
         throw new UnsupportedEntityException();
@@ -71,8 +76,12 @@ public class InMemoryDb implements Db {
 
         } else if (clazz.equals(UIElementEntity.class)) {
             return new HashMap<>(uiElements);
+        } else if (clazz.equals(PaintEntity.class)) {
+            return new HashMap<>(paints);
         }
 
         throw new  UnsupportedEntityException();
     }
+
+
 }

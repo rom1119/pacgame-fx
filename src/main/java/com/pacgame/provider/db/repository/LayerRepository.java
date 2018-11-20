@@ -41,7 +41,7 @@ public class LayerRepository implements DbRepository<LayerEntity> {
         } catch (EntityNotFoundException e) {
             System.out.println("Entity " + entity.getClass().toString() + " class and id " + entity.getId() + " not found");
         } catch (UnsupportedEntityException e) {
-            System.out.println("Entity " + entity.getClass().toString() + " class can not be delete because this operation is unsupported");
+            System.out.println("Entity " + entity.getClass().toString() + " class can not be delete because this operation is not supported");
         }
     }
 
@@ -54,6 +54,7 @@ public class LayerRepository implements DbRepository<LayerEntity> {
             e.printStackTrace();
         } catch (UnsupportedEntityException e) {
             e.printStackTrace();
+            System.out.println("Entity " + clazz.toString() + " class can not be find because this operation is not supported");
         }
 
         return layerEntity;

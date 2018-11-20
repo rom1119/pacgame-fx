@@ -4,12 +4,16 @@ import com.pacgame.provider.layer.FlowLayerBuilder;
 import com.pacgame.provider.layer.GroupLayerBuilder;
 import com.pacgame.provider.layer.VerticalLayerBuilder;
 
-public abstract class LayerProvider extends Provider {
+public interface LayerProvider {
 
-    public abstract FlowLayerBuilder flowLayerBuilder();
-    public abstract GroupLayerBuilder groupLayerBuilder();
-    public abstract VerticalLayerBuilder verticalLayerBuilder();
+    int createFlowLayer();
+    int createGroupLayer();
+    int createVerticalLayer();
 
+    void addChildren(int id);
+    void removeChildren(int id);
 
-
+    void setBackground(int backgroundId);
+    void setWidth(int backgroundId, int width);
+    void setHeight(int backgroundId, int height);
 }
