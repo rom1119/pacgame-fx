@@ -2,7 +2,7 @@ package com.pacgame.provider.layer;
 
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.color.ColorProvidedObject;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import com.pacgame.provider.exception.NotImplementedException;
 
 public class FlowLayerBuilder implements ILayerBuilder<FlowLayer> {
 

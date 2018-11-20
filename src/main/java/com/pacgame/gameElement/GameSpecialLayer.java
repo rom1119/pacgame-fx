@@ -1,10 +1,10 @@
 package com.pacgame.gameElement;
 
 import com.pacgame.Layer;
-import com.pacgame.provider.ILayerProvider;
+import com.pacgame.provider.LayerProvider;
 
 public abstract class GameSpecialLayer extends Layer {
-    public GameSpecialLayer(ILayerProvider layerProvider) {
+    public GameSpecialLayer(LayerProvider layerProvider) {
         super(layerProvider);
     }
 }

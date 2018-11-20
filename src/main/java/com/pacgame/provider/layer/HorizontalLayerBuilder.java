@@ -4,22 +4,22 @@ import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.provider.exception.NotImplementedException;
 
-public class VerticalLayerBuilder implements ILayerBuilder<VerticalLayer> {
+public class HorizontalLayerBuilder implements ILayerBuilder<HorizontalLayer> {
 
-    private VerticalLayer buildedEl;
+    private HorizontalLayer buildedEl;
     private String name;
     private ColorProvidedObject color;
 
 
     @Override
-    public VerticalLayer build() {
-        this.buildedEl = new VerticalLayer();
+    public HorizontalLayer build() {
+        this.buildedEl = new HorizontalLayer();
 
         return buildedEl;
     }
 
     @Override
-    public VerticalLayerBuilder with(int width, int height) {
+    public HorizontalLayerBuilder with(int width, int height) {
         buildedEl.setWidth(width);
         buildedEl.setHeight(height);
 
@@ -27,18 +27,18 @@ public class VerticalLayerBuilder implements ILayerBuilder<VerticalLayer> {
     }
 
     @Override
-    public FlowLayerBuilder textElement() {
+    public HorizontalLayerBuilder textElement() {
         throw new NotImplementedException();
     }
 
     @Override
-    public VerticalLayerBuilder addChildren(ViewProvidedObject el) {
+    public HorizontalLayerBuilder addChildren(ViewProvidedObject el) {
         buildedEl.addChildren(el);
         return this;
     }
 
     @Override
-    public VerticalLayerBuilder color(ColorProvidedObject color) {
+    public HorizontalLayerBuilder color(ColorProvidedObject color) {
         this.color = color;
 
         return this;
