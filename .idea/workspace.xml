@@ -2,39 +2,85 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77da18e3-268f-4571-9761-d457f08b7b19" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/SceneProviderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/Layer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/Point.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/Scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/controller/PacmanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/board/controller/PacmanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/PointEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/PointEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/point/BigPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/point/BigPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/point/NormalPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/point/NormalPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/service/PointPopulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/board/service/PointPopulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Blue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Blue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Custom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Custom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Green.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Green.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/color/ImageFill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/color/ImageFill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Paint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Paint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Red.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Red.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Yellow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/color/Yellow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/gameElement/standElement/EatableElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/gameElement/standElement/EatableElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/SceneProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/SceneProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/StageProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/StageProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/StageProviderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/StageProviderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/UIProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/UIProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/stage/IScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/stage/IScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/stage/Stage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/stage/Stage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnStartNewGameSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnStartNewGameSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/UIFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/UIFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/btn/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/btn/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/btn/ButtonSuccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/btn/ButtonSuccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/layer/FlowLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/layer/FlowLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/layer/GroupLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/layer/GroupLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/layer/VerticalLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/layer/VerticalLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/controller/MazeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/controller/PacmanController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/MazeEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/PointEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/eventHandler/OnDestroyBigPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/eventHandler/OnDestroyNormalPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/eventHandler/OnEscapeKey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/event/eventHandler/OnPacmanTouchMaze.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/AquaMaze.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/Eatable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/MapPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/Maze.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/Moveable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/Pacman.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/RedMaze.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/SavedGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/SpecialAction/BigSpeedAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/SpecialAction/BlueEnemyAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/SpecialAction/SpecialAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/Turnable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/point/BigPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/model/point/NormalPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/service/AI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/service/AnimationMoveHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/service/MapPathCreator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/service/MovementManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/service/PointFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/board/service/PointPopulator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/ResponseError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/SubError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/Token.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/TokenRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/model/UserDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/Api.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/data/service/ApiServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/GameInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/SubView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/View.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/board/EntryTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/board/Map.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/contextmenu/ContextMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/contextmenu/ContextSaveGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/contextmenu/ContextSettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/LoginForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/MainMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/MainReadGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/MainSettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/RegisterForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UserAccount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/component/mainmenu/UsersRanking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/MenuHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnBackToMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnContextSettingsSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnEditUserAccount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnExitSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnExitToMainMenuSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnLoginFormSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnLoginUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnLogout.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnMainSettingsSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnReadGameSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterFormSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnRegisterUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnResumeGameSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveContextSettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveGameSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSaveMainSettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnSelectImageButton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnStartNewGameSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUserAccountSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/event/eventHandler/OnUsersRankingSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/ui/service/Factory.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -61,7 +107,17 @@
     <favorites_list name="pacman" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -235,6 +291,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pacgame" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pacman" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -531,6 +596,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32917705" />
@@ -616,13 +682,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProvidedObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="61" column="13" lean-forward="true" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/src.zip!/java/util/concurrent/Callable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -1024,6 +1083,13 @@
             <element signature="e#557#558#0" expanded="true" />
             <element signature="e#584#585#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
