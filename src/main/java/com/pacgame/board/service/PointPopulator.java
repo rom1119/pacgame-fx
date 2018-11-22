@@ -4,7 +4,6 @@ import com.pacgame.App;
 import com.pacgame.board.model.MapPoint;
 import com.pacgame.board.model.point.BigPoint;
 import com.pacgame.board.model.point.NormalPoint;
-import com.pacgame.Point;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;

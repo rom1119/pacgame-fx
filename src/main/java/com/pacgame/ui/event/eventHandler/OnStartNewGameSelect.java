@@ -1,7 +1,6 @@
 package com.pacgame.ui.event.eventHandler;
 
 import com.pacgame.App;
-import com.pacgame.Point;
 import com.pacgame.ui.component.View;
 import com.pacgame.board.service.MapPathCreator;
 import com.pacgame.board.service.PointPopulator;

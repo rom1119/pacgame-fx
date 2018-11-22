@@ -5,6 +5,6 @@ import com.pacgame.provider.PaintProvider;
 class Green extends Color {
     public Green(PaintProvider provider) {
         super(provider);
-        this.paint = provider.createGreen();
+        this.providedObject = provider.createGreen();
     }
 }

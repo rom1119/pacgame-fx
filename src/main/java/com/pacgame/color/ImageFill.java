@@ -6,6 +6,6 @@ public class ImageFill extends Paint {
 
     public ImageFill(PaintProvider provider, String imgPath) {
         super(provider);
-        this.paint = provider.createImage(imgPath);
+        this.providedObject = provider.createImage(imgPath);
     }
 }

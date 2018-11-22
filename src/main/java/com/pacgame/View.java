@@ -2,6 +2,7 @@ package com.pacgame;
 
 
 import com.pacgame.color.Paint;
+import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.property.HeightProperty;
 import com.pacgame.property.WidthProperty;
@@ -90,6 +91,10 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
 
     @Override
     public void setBackground(Paint color) {
-        providedObject.setBackground(color);
+        providedObject.setBackground(color.getValue());
+    }
+
+    protected ViewProvidedObject getProvidedObject() {
+        return providedObject;
     }
 }

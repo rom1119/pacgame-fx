@@ -6,6 +6,6 @@ class Red extends Color {
 
     public Red(PaintProvider provider) {
         super(provider);
-        this.paint = provider.createRed();
+        this.providedObject = provider.createRed();
     }
 }

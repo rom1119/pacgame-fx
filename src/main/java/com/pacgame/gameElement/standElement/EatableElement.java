@@ -22,4 +22,14 @@ public abstract class EatableElement extends StandComponent implements Valuable 
     public EatableElement(ComponentProvidedObject providedObject) {
         super(WIDTH, HEIGHT, providedObject);
     }
+
+    protected void initPosition()
+    {
+//        providedObject.setX(point.getX());
+//        collider.setTranslateY(point.getY());
+//
+//        collider.setLayoutX(0);
+//        collider.setLayoutY(0);
+
+    }
 }

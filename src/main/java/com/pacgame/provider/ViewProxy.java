@@ -86,11 +86,13 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     @Override
     public void setX(int x) {
         this.x.set(x);
+        proxyObject.setTranslateX(x);
     }
 
     @Override
     public void setY(int y) {
         this.y.set(y);
+        proxyObject.setTranslateY(y);
     }
 
     @Override

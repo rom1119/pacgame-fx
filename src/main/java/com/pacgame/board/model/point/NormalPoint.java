@@ -1,6 +1,5 @@
 package com.pacgame.board.model.point;
 
-import com.pacgame.Point;
 import com.pacgame.board.event.PointEvent;
 import com.pacgame.board.event.eventHandler.OnDestroyNormalPoint;
 import javafx.geometry.Point2D;

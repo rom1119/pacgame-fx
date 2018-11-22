@@ -1,41 +1,42 @@
 package com.pacgame;
 
+import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.LayerProvider;
+import com.pacgame.provider.ViewProvidedObject;
 
 import java.util.Map;
 
 public abstract class Layer extends View implements Visible, Comparable<View>, Parentable<Layer>, IChildren<View> {
 
-    protected LayerProvider provider;
+    protected LayerProvidedObject providedObject;
     protected int order;
     protected Layer parent;
     protected Map<String, View> children;
 
     public Layer(LayerProvider provider) {
-        this.provider = provider;
+
     }
 
     public Layer(int width, int height, LayerProvider provider) {
         super(width, height);
-        this.provider = provider;
     }
 
     public void setWidth(int width)
     {
         this.width.set(width);
-        provider.setWidth(getId(), width);
+        providedObject.setWidth(width);
     }
 
     public void setHeight(int height)
     {
         this.height.set(height);
-        provider.setSize(getId(), height);
+        providedObject.setHeight(height);
     }
 
     @Override
     public void addChildren(View el) {
         if (!hasChildren(el)) {
-            provider.addChildren(getId(), el.getId());
+            providedObject.addChildren(el.providedObject);
             children.put(String.valueOf(el.hashCode()), el);
         }
     }
@@ -43,7 +44,7 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     @Override
     public void removeChildren(View el) {
         if (hasChildren(el)) {
-            provider.removeChildren(getId(), el.getId());
+            providedObject.removeChildren(el.providedObject);
             children.remove(el.hashCode());
         }
     }
@@ -61,6 +62,11 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     @Override
     public Layer getParent() {
         return parent;
+    }
+
+    @Override
+    protected LayerProvidedObject getProvidedObject() {
+        return providedObject;
     }
 
     /**

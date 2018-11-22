@@ -5,12 +5,12 @@ import com.pacgame.provider.PaintProvider;
 class Custom extends Color {
     public Custom(PaintProvider provider, int red, int green, int blue) {
         super(provider);
-        this.paint = provider.createCustom(red, green, blue);
+        this.providedObject = provider.createCustom(red, green, blue);
     }
 
     public Custom(PaintProvider provider, int red, int green, int blue, double alpha) {
         super(provider);
-        this.paint = provider.createCustom(red, green, blue, alpha);
+        this.providedObject = provider.createCustom(red, green, blue, alpha);
     }
 
 

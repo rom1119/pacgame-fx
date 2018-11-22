@@ -25,6 +25,6 @@ public class Stage implements IStage {
 
     @Override
     public void setScene(IScene scene) {
-
+        providedObject.setScene(scene.getProvidedObject());
     }
 }

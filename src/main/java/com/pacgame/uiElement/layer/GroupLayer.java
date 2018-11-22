@@ -7,13 +7,13 @@ import com.pacgame.provider.LayerProvider;
 public class GroupLayer extends Layer {
     public GroupLayer(int width, int height, LayerProvider provider) {
         super(width, height, provider);
-        this.id = provider.createGroupLayer();
+        this.providedObject = provider.createGroupLayer();
 
     }
 
     public GroupLayer(LayerProvider provider) {
         super(provider);
-        this.id = provider.createGroupLayer();
+        this.providedObject = provider.createGroupLayer();
 
     }
 }

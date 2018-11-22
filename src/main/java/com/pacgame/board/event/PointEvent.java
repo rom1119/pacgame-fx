@@ -1,6 +1,5 @@
 package com.pacgame.board.event;
 
-import com.pacgame.Point;
 import com.pacgame.board.controller.MazeController;
 import com.pacgame.board.controller.PacmanController;
 import javafx.collections.ObservableList;

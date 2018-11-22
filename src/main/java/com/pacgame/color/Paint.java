@@ -4,14 +4,14 @@ import com.pacgame.provider.PaintProvider;
 
 public abstract class Paint {
 
-    protected com.pacgame.provider.Paint paint;
+    protected com.pacgame.provider.Paint providedObject;
 
     public Paint(PaintProvider provider) {
 
     }
 
-    public com.pacgame.provider.Paint getalue()
+    public com.pacgame.provider.Paint getValue()
     {
-        return paint;
+        return providedObject;
     }
 }
