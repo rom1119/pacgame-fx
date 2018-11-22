@@ -1,46 +1,20 @@
 package com.pacgame.provider.component.ui.text;
 
-import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.provider.component.ui.UIElementProxy;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Paint;
 
 class LabelProxy extends UIElementProxy {
 
     protected Label proxyObject;
 
     @Override
-    public void fill(int red, int green, int blue, double alpha) {
-
-    }
-
-    @Override
-    public void fill(int red, int green, int blue) {
-
-    }
-
-    @Override
-    public void fillRed() {
-
-    }
-
-    @Override
-    public void fillBlue() {
-
-    }
-
-    @Override
-    public void fillGreen() {
-
-    }
-
-    @Override
-    public void fillWhite() {
-
-    }
-
-    @Override
-    public void setColor(ColorProvidedObject color) {
-
+    public void setBackground(Paint color) {
+        proxyObject.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public String getText() {

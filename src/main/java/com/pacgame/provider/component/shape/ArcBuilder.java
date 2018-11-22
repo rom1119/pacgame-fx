@@ -25,7 +25,7 @@ public class ArcBuilder implements ShapeBuilder<Arc> {
     @Override
     public Arc build() {
         Arc arc = new Arc(radius);
-        arc.setColor(color);
+        arc.setBackground(color);
         return arc;
     }
 }

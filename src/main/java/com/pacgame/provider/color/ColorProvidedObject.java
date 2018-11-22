@@ -1,13 +1,20 @@
 package com.pacgame.provider.color;
 
-import com.pacgame.provider.ProvidedObject;
+import com.pacgame.provider.Paint;
 
 public abstract class ColorProvidedObject extends Paint {
 
     protected ColorProxy proxy;
 
-    public ColorProxy getProxy()
+    @Override
+    protected ColorProxy getProxy()
     {
         return proxy;
+    }
+
+    @Override
+    protected javafx.scene.paint.Paint getValue()
+    {
+        return proxy.getProxyObject();
     }
 }

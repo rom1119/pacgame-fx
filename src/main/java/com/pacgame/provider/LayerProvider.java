@@ -1,19 +1,11 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.layer.FlowLayerBuilder;
-import com.pacgame.provider.layer.GroupLayerBuilder;
-import com.pacgame.provider.layer.VerticalLayerBuilder;
+import com.pacgame.provider.layer.FlowLayer;
 
-public interface LayerProvider {
+public interface LayerProvider extends ViewProvider {
 
-    int createFlowLayer();
-    int createGroupLayer();
-    int createVerticalLayer();
+    FlowLayer createFlowLayer();
+    FlowLayer createGroupLayer();
+    FlowLayer createVerticalLayer();
 
-    void addChildren(int id);
-    void removeChildren(int id);
-
-    void setBackground(int backgroundId);
-    void setWidth(int backgroundId, int width);
-    void setHeight(int backgroundId, int height);
 }

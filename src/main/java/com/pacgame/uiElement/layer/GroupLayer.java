@@ -2,13 +2,18 @@ package com.pacgame.uiElement.layer;
 
 import com.pacgame.Layer;
 import com.pacgame.provider.LayerProvidedObject;
+import com.pacgame.provider.LayerProvider;
 
 public class GroupLayer extends Layer {
-    public GroupLayer(int width, int height, LayerProvidedObject providedObject) {
-        super(width, height, providedObject);
+    public GroupLayer(int width, int height, LayerProvider provider) {
+        super(width, height, provider);
+        this.id = provider.createGroupLayer();
+
     }
 
-    public GroupLayer(LayerProvidedObject providedObject) {
-        super(providedObject);
+    public GroupLayer(LayerProvider provider) {
+        super(provider);
+        this.id = provider.createGroupLayer();
+
     }
 }

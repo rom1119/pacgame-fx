@@ -184,8 +184,8 @@ public class PacmanTest extends TestCase {
 //    public void testSetHeight() {
 //
 //        try {
-//            pac.setHeight(0);
-//            pac.setHeight(-40);
+//            pac.setSize(0);
+//            pac.setSize(-40);
 //            fail("Exception wasn't thrown!");
 //        }
 //        catch (IllegalArgumentException exception) {

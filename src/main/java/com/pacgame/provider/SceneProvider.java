@@ -1,8 +1,8 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.scene.SceneProvidedObject;
+import com.pacgame.provider.scene.IScene;
 
-public abstract class SceneProvider extends Provider {
+public interface SceneProvider {
 
-    public abstract SceneProvidedObject getScene();
+    IScene createScene();
 }

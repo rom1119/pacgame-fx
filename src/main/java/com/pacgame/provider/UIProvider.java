@@ -2,7 +2,7 @@ package com.pacgame.provider;
 
 import com.pacgame.provider.component.ui.text.Label;
 
-public interface IUIProvider {
+public interface UIProvider {
 
-    Label createTextElement();
+    Label createTextElement(String text);
 }

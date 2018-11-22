@@ -2,13 +2,15 @@ package com.pacgame.uiElement.layer;
 
 import com.pacgame.Layer;
 import com.pacgame.provider.LayerProvidedObject;
+import com.pacgame.provider.LayerProvider;
 
 public class FlowLayer extends Layer {
-    public FlowLayer(int width, int height, LayerProvidedObject providedObject) {
-        super(width, height, providedObject);
-    }
+    public FlowLayer(int width, int height, LayerProvider provider) {
+        super(width, height, provider);
+        this.id = provider.createFlowLayer();    }
 
-    public FlowLayer(LayerProvidedObject providedObject) {
-        super(providedObject);
+    public FlowLayer(LayerProvider provider) {
+        super(provider);
+        this.id = provider.createFlowLayer();
     }
 }

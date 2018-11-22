@@ -1,10 +1,11 @@
 package com.pacgame.color;
 
-import com.pacgame.provider.ColorProvider;
+import com.pacgame.provider.PaintProvider;
 
 class Red extends Color {
 
-    public Red(ColorProvider provider) {
-        this.providedObject = provider.getRed();
+    public Red(PaintProvider provider) {
+        super(provider);
+        this.paint = provider.createRed();
     }
 }

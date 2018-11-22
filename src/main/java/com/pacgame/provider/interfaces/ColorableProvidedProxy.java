@@ -1,8 +1,9 @@
 package com.pacgame.provider.interfaces;
 
-import com.pacgame.provider.Paint;
+import javafx.scene.paint.Paint;
 
-public interface ColorableProvider {
+public interface ColorableProvidedProxy {
 
     void setBackground(Paint color);
+
 }

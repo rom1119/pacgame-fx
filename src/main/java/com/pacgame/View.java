@@ -1,15 +1,15 @@
 package com.pacgame;
 
 
-import com.pacgame.color.Color;
+import com.pacgame.color.Paint;
 import com.pacgame.provider.ViewProvidedObject;
-import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.property.HeightProperty;
 import com.pacgame.property.WidthProperty;
 
 public abstract class View implements Positionable, Colorable, Comparable<View>, Visible  {
 
     protected ViewProvidedObject providedObject;
+    protected int id;
 
     protected Property<Integer> width;
     protected Property<Integer> height;
@@ -24,6 +24,10 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     public View(int width, int height) {
         this.width = new WidthProperty(width);
         this.height = new HeightProperty(height);
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -85,37 +89,7 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     }
 
     @Override
-    public void fill(int red, int green, int blue, double alpha) {
-        providedObject.fill(red, green, blue, alpha);
-    }
-
-    @Override
-    public void fill(int red, int green, int blue) {
-        providedObject.fill(red, green, blue);
-    }
-
-    @Override
-    public void fillRed() {
-        providedObject.fillRed();
-    }
-
-    @Override
-    public void fillBlue() {
-        providedObject.fillBlue();
-    }
-
-    @Override
-    public void fillGreen() {
-        providedObject.fillGreen();
-    }
-
-    @Override
-    public void fillWhite() {
-        providedObject.fillWhite();
-    }
-
-    @Override
-    public void setColor(Color color) {
-        providedObject.setColor(color.getProvidedObject());
+    public void setBackground(Paint color) {
+        providedObject.setBackground(color);
     }
 }

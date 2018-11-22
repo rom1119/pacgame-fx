@@ -1,15 +1,16 @@
 package com.pacgame.color;
 
-import com.pacgame.provider.ColorProvider;
+import com.pacgame.provider.PaintProvider;
 
 class Custom extends Color {
-    public Custom(ColorProvider provider, int red, int green, int blue) {
-        this.providedObject = provider.getCustom(red, green, blue);
+    public Custom(PaintProvider provider, int red, int green, int blue) {
+        super(provider);
+        this.paint = provider.createCustom(red, green, blue);
     }
 
-    public Custom(ColorProvider provider, int red, int green, int blue, double alpha) {
-        this.providedObject = provider.getCustom(red, green, blue, alpha);
-        Boolean aBoolean = new Boolean(true);
+    public Custom(PaintProvider provider, int red, int green, int blue, double alpha) {
+        super(provider);
+        this.paint = provider.createCustom(red, green, blue, alpha);
     }
 
 

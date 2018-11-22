@@ -1,13 +1,11 @@
 package com.pacgame.color;
 
-import com.pacgame.provider.color.ColorProvidedObject;
+import com.pacgame.provider.PaintProvider;
 
-public abstract class Color {
-
-    protected ColorProvidedObject providedObject;
+public abstract class Color extends Paint {
 
 
-    public ColorProvidedObject getProvidedObject() {
-        return providedObject;
+    public Color(PaintProvider provider) {
+        super(provider);
     }
 }

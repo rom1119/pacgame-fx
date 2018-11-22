@@ -40,7 +40,7 @@ public class GroupLayerBuilder implements ILayerBuilder<GroupLayer> {
 
     @Override
     public GroupLayer build() {
-        this.buildedEl = new GroupLayer(layerProvider.groupLayerBuilder().build());
+        this.buildedEl = new GroupLayer(layerProvider);
 
         return buildedEl;
     }

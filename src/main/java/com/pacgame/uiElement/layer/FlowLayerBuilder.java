@@ -19,7 +19,7 @@ public class FlowLayerBuilder implements ILayerBuilder<FlowLayer> {
 
     @Override
     public FlowLayer build() {
-        this.buildedEl = new FlowLayer(layerProvider.flowLayerBuilder().build());
+        this.buildedEl = new FlowLayer(layerProvider);
 
         return buildedEl;
     }

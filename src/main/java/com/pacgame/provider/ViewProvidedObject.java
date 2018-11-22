@@ -1,6 +1,5 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.color.ColorProvidedObject;
 import com.pacgame.provider.interfaces.ColorableProvider;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
@@ -8,7 +7,7 @@ import com.pacgame.provider.property.HeightProperty;
 import com.pacgame.provider.property.PropertyProvider;
 import com.pacgame.provider.property.WidthProperty;
 
-public abstract class ViewProvidedObject extends com.pacgame.provider.ProvidedObject implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider {
+public abstract class ViewProvidedObject extends ProvidedObject implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider {
 
     protected ViewProxy proxy;
 
@@ -91,37 +90,7 @@ public abstract class ViewProvidedObject extends com.pacgame.provider.ProvidedOb
     }
 
     @Override
-    public void fill(int red, int green, int blue, double alpha) {
-        proxy.fill(red, green, blue, alpha);
-    }
-
-    @Override
-    public void fill(int red, int green, int blue) {
-        proxy.fill(red, green, blue);
-    }
-
-    @Override
-    public void fillRed() {
-        proxy.fillRed();
-    }
-
-    @Override
-    public void fillBlue() {
-        proxy.fillBlue();
-    }
-
-    @Override
-    public void fillGreen() {
-        proxy.fillGreen();
-    }
-
-    @Override
-    public void fillWhite() {
-        proxy.fillWhite();
-    }
-
-    @Override
-    public void setColor(ColorProvidedObject color) {
-        proxy.setColor(color);
+    public void setBackground(Paint paint) {
+        proxy.setBackground(paint.getValue());
     }
 }

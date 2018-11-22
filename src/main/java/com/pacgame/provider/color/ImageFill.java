@@ -1,6 +1,6 @@
 package com.pacgame.provider.color;
 
-import com.pacgame.provider.Proxy;
+import com.pacgame.provider.Paint;
 
 public class ImageFill extends Paint {
     protected ImageFillProxy proxy;
@@ -12,5 +12,10 @@ public class ImageFill extends Paint {
     @Override
     protected ImageFillProxy getProxy() {
         return proxy;
+    }
+
+    @Override
+    protected javafx.scene.paint.Paint getValue() {
+        return proxy.proxyObject;
     }
 }

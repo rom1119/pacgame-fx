@@ -8,4 +8,5 @@ public interface ColorFactory {
     Yellow yellow();
     Custom custom(int red, int green, int blue);
     Custom custom(int red, int green, int blue, double alpha);
+    ImageFill image(String imgPath);
 }

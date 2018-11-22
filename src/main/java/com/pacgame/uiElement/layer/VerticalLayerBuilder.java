@@ -22,7 +22,7 @@ public class VerticalLayerBuilder implements ILayerBuilder<VerticalLayer> {
 
     @Override
     public VerticalLayer build() {
-        this.buildedEl = new VerticalLayer(layerProvider.verticalLayerBuilder().build());
+        this.buildedEl = new VerticalLayer(layerProvider);
 
         return buildedEl;
     }

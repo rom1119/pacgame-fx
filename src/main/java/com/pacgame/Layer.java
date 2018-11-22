@@ -1,57 +1,41 @@
 package com.pacgame;
 
-import com.pacgame.provider.LayerProvidedObject;
-import com.pacgame.provider.ViewProvidedObject;
+import com.pacgame.provider.LayerProvider;
 
 import java.util.Map;
 
 public abstract class Layer extends View implements Visible, Comparable<View>, Parentable<Layer>, IChildren<View> {
 
-    protected LayerProvidedObject providedObject;
+    protected LayerProvider provider;
     protected int order;
     protected Layer parent;
     protected Map<String, View> children;
 
-    public Layer(LayerProvidedObject providedObject) {
-        this.providedObject = providedObject;
+    public Layer(LayerProvider provider) {
+        this.provider = provider;
     }
 
-    public Layer(int width, int height, LayerProvidedObject providedObject) {
+    public Layer(int width, int height, LayerProvider provider) {
         super(width, height);
-        this.providedObject = providedObject;
+        this.provider = provider;
     }
 
     public void setWidth(int width)
     {
         this.width.set(width);
-        providedObject.setWidth(width);
+        provider.setWidth(getId(), width);
     }
 
     public void setHeight(int height)
     {
         this.height.set(height);
-        providedObject.setHeight(height);
-    }
-
-    @Override
-    public boolean isVisible() {
-        return providedObject.isVisible();
-    }
-
-    @Override
-    public void show() {
-        providedObject.show();
-    }
-
-    @Override
-    public void hide() {
-        providedObject.hide();
+        provider.setSize(getId(), height);
     }
 
     @Override
     public void addChildren(View el) {
         if (!hasChildren(el)) {
-            providedObject.addChildren(el.providedObject);
+            provider.addChildren(getId(), el.getId());
             children.put(String.valueOf(el.hashCode()), el);
         }
     }
@@ -59,7 +43,7 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     @Override
     public void removeChildren(View el) {
         if (hasChildren(el)) {
-            providedObject.removeChildren(el.providedObject);
+            provider.removeChildren(getId(), el.getId());
             children.remove(el.hashCode());
         }
     }
