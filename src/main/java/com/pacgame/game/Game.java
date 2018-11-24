@@ -1,16 +1,14 @@
 package com.pacgame.game;
 
-import com.pacgame.stage.Stage;
-
 public class Game {
 
     private static final int WIDTH = 400;
     private static final int HEIGHT = 400;
-    private Stage primaryStage;
+    private IStage primaryStage;
     private UILayout uiLayout;
     private GamePlayLayout gamePlayLayout;
+    private StageFactory stageFactory;
 
-    private
 
     public void start()
     {
@@ -20,13 +18,11 @@ public class Game {
     public Game() {
     }
 
-    public void init(IStage Istage)
+    public void init(IStage primaryStage)
     {
-        primaryStage = Istage.initFromExternalStage();
-
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("PAC-GAME this is new PACMAN :-)");
+        this.primaryStage = primaryStage;
+        this.primaryStage.setResizable(false);
+        this.primaryStage.setTitle("PAC-GAME this is new PACMAN :-)");
 
     }
 
@@ -35,13 +31,23 @@ public class Game {
 
     }
 
-    private void buildUILayout()
+    public void showUILayout()
     {
-        uiLayout = new UILayout();
+      primaryStage.setScene(uiLayout.getScene());
     }
 
-    private void buildGamePlayLayout()
+    public void showGameLayout()
     {
-        gamePlayLayout = new GamePlayLayout();
+        primaryStage.setScene(gamePlayLayout.getScene());
+    }
+
+    private void buildUILayout(ILayoutFactory layoutFactory)
+    {
+        uiLayout = new UILayout(layoutFactory.createGroupLayer());
+    }
+
+    private void buildGamePlayLayout(ILayoutFactory layoutFactory)
+    {
+        gamePlayLayout = new GamePlayLayout(layoutFactory.createGroupLayer());
     }
 }

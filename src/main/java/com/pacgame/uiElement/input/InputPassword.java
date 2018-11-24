@@ -1,9 +1,13 @@
 package com.pacgame.uiElement.input;
 
-import com.pacgame.uiElement.UIElement;
+import com.pacgame.provider.UIProvider;
 
 public class InputPassword extends UIInput {
-    public InputPassword(int width, int height) {
-        super(width, height);
+    public InputPassword(UIProvider provider, int width, int height) {
+        super(provider, width, height);
+    }
+
+    public InputPassword(UIProvider provider) {
+        super(provider);
     }
 }

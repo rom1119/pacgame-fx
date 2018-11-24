@@ -1,8 +1,12 @@
 package com.pacgame.game;
 
-import com.pacgame.provider.Stage;
-
 public interface IStage {
 
-    Stage initFromExternalStage();
+    void setResizable(boolean b);
+
+    void setTitle(String s);
+
+    void show();
+
+    void setScene(IScene scene);
 }

@@ -7,20 +7,12 @@ public class Timer extends GameSpecialLayer {
 
     private int INIT_SECOND = 5;
 
-    public Timer(LayerProvider layerProvider) {
-        super(layerProvider);
-    }
-
-    @Override
-    protected void createView() {
-        this.getProvider()
-                .Builder()
-                .name("timer")
-                .with(width(200), height())
-                .and()
-                .textElement(String.valueOf(INIT_SECOND))
-                .alignment()
-                .build();
+    public Timer(int width, int height, LayerProvider provider) {
+        super(width, height, provider);
+        this.providedObject.setHeight(width);
+        this.providedObject.setHeight(height);
 
     }
+
+
 }
