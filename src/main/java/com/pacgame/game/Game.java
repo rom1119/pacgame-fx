@@ -2,8 +2,8 @@ package com.pacgame.game;
 
 public class Game {
 
-    private static final int WIDTH = 400;
-    private static final int HEIGHT = 400;
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 500;
     private IStage primaryStage;
     private UILayout uiLayout;
     private GamePlayLayout gamePlayLayout;
@@ -45,6 +45,7 @@ public class Game {
     public void buildUILayout(ILayoutFactory layoutFactory, ISceneFactory sceneFactory)
     {
         uiLayout = new UILayout(layoutFactory.createGroupLayer(), sceneFactory);
+        uiLayout.initScene(sceneFactory, WIDTH, HEIGHT);
 
     }
 

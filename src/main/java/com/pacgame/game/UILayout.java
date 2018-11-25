@@ -7,8 +7,6 @@ import java.util.Set;
 
 public class UILayout {
 
-    private static final int WIDTH = 400;
-    private static final int HEIGHT = 400;
     private IScene scene;
     private Menu mainMenu;
     private ILayer root;
@@ -16,12 +14,11 @@ public class UILayout {
 
     public UILayout(ILayer root, ISceneFactory sceneFactory) {
         this.root = root;
-        initScene(sceneFactory);
     }
 
-    private void initScene(ISceneFactory sceneFactory)
+    public void initScene(ISceneFactory sceneFactory, int width, int height)
     {
-        this.scene = sceneFactory.createScene(root, WIDTH, HEIGHT);
+        this.scene = sceneFactory.createScene(root, width, height);
     }
 
     public Menu createMenu()

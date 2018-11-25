@@ -10,7 +10,7 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     protected LayerProxy proxy;
 
     private LayerProvidedObject parent;
-    private Map<String, ViewProvidedObject> children;
+    protected Map<String, ViewProvidedObject> children;
 
     public LayerProvidedObject() {
         super();

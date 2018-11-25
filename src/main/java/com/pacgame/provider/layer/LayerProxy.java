@@ -19,7 +19,7 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
     protected Parent proxyObject;
 
     private LayerProxy parent;
-    private Map<String, ViewProxy> children;
+    protected Map<String, ViewProxy> children;
 
     public LayerProxy() {
         super();
