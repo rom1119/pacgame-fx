@@ -19,6 +19,8 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
 
 
     public ViewProvidedObject() {
+        this.width = new WidthProperty(0);
+        this.height = new HeightProperty(0);
     }
 
     public ViewProvidedObject(int width, int height) {

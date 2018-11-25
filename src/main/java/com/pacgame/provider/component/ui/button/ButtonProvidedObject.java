@@ -6,6 +6,9 @@ public abstract class ButtonProvidedObject extends UIElementProvidedObject {
 
     protected ButtonProxy proxy;
 
+    public ButtonProvidedObject(String text) {
+    }
+
     public String getText() {
 
         return proxy.getText();

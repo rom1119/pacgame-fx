@@ -20,6 +20,8 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
 
 
     public View() {
+        this.width = new WidthProperty(0);
+        this.height = new HeightProperty(0);
     }
 
     public View(int width, int height) {

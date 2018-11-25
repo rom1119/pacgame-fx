@@ -34,6 +34,7 @@ public class Game {
     public void showUILayout()
     {
       primaryStage.setScene(uiLayout.getScene());
+      primaryStage.show();
     }
 
     public void showGameLayout()
@@ -41,12 +42,13 @@ public class Game {
         primaryStage.setScene(gamePlayLayout.getScene());
     }
 
-    private void buildUILayout(ILayoutFactory layoutFactory)
+    public void buildUILayout(ILayoutFactory layoutFactory, ISceneFactory sceneFactory)
     {
-        uiLayout = new UILayout(layoutFactory.createGroupLayer());
+        uiLayout = new UILayout(layoutFactory.createGroupLayer(), sceneFactory);
+
     }
 
-    private void buildGamePlayLayout(ILayoutFactory layoutFactory)
+    public void buildGamePlayLayout(ILayoutFactory layoutFactory)
     {
         gamePlayLayout = new GamePlayLayout(layoutFactory.createGroupLayer());
     }

@@ -3,18 +3,19 @@ package com.pacgame.uiElement.menu.element;
 import com.pacgame.Property;
 import com.pacgame.property.TextProperty;
 import com.pacgame.provider.UIProvider;
+import com.pacgame.provider.component.ui.text.Label;
 import com.pacgame.uiElement.UIElement;
 import com.pacgame.uiElement.text.Text;
 
 public abstract class MenuElement extends UIElement {
 
-    protected Text providedObject;
+    protected Label providedObject;
     protected Property<String> text;
 
-    public MenuElement(UIProvider provider) {
+    public MenuElement(UIProvider provider, String textArg) {
         super(provider);
         text = new TextProperty();
-        providedObject = provider.createMenuElement();
+        providedObject = provider.createTextElement(textArg);
     }
 
     public void setText(String text) {

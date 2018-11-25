@@ -1,6 +1,8 @@
 package com.pacgame.uiElement.layer;
 
 import com.pacgame.provider.LayerProvidedObject;
+import com.pacgame.provider.LayerProvider;
+import com.pacgame.provider.LayerProviderImpl;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
@@ -18,7 +20,7 @@ class FlowLayerTest extends TestCase {
 
     @BeforeEach
     public void setUp() {
-        LayerProvidedObject l = Mockito.mock(LayerProvidedObject.class);
+        LayerProviderImpl l = Mockito.mock(LayerProviderImpl.class);
         flowLayer = new FlowLayer(100, 100, l);
 
     }

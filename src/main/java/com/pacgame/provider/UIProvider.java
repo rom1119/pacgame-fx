@@ -8,8 +8,6 @@ public interface UIProvider {
 
     Label createTextElement(String text);
     ButtonProvidedObject createButtonSuccess(String text);
+    ButtonProvidedObject createButtonDanger(String text);
 
-    LayerProvidedObject createMenu(int width, int height);
-
-    Text createMenuElement();
 }

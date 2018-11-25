@@ -1,7 +1,10 @@
 package com.pacgame.uiElement.btn;
 
+import com.pacgame.provider.UIProvider;
+
 public class ButtonDanger extends Button {
-    public ButtonDanger(int width, int height) {
-        super(width, height);
+    public ButtonDanger(UIProvider provider, String text) {
+        super(provider, text);
+        providedObject = provider.createButtonDanger(text);
     }
 }

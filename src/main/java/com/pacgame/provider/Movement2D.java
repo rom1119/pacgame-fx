@@ -12,7 +12,7 @@ class Movement2D extends MovementProvider2D {
 
     @Override
     public void moveLeft(ComponentProvidedObject component, int x) {
-        animationBuilder.createAnimation(component.getX(), x).build();
+        animationBuilder.createAnimation(component.XProperty(), x).build();
     }
 
     @Override

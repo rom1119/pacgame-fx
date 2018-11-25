@@ -1,18 +1,18 @@
 package com.pacgame;
 
+import com.pacgame.game.Game;
+import com.pacgame.game.adapter.LayoutFactoryAdapter;
+import com.pacgame.game.adapter.SceneFactoryAdapter;
+import com.pacgame.game.adapter.StageAdapter;
+import com.pacgame.provider.LayerProviderImpl;
+import com.pacgame.provider.SceneProviderImpl;
+import com.pacgame.provider.UIProviderImpl;
+import com.pacgame.stage.SceneFactory;
+import com.pacgame.uiElement.LayerFactory;
+import com.pacgame.uiElement.UIFactory;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.*;
 
 public class App extends Application {
 
@@ -124,7 +124,20 @@ public class App extends Application {
 
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
 
+        // Providers
+        UIFactory uiFacade = new UIFactory(new UIProviderImpl());
+        LayerFactory layerFactory = new LayerFactory(new LayerProviderImpl());
+        SceneFactory sceneFactory = new SceneFactory(new SceneProviderImpl());
 
+        // Adapters
+        StageAdapter stageAdapter = new StageAdapter(primaryStage);
+        LayoutFactoryAdapter layoutFactoryAdapter = new LayoutFactoryAdapter(uiFacade, layerFactory);
+        SceneFactoryAdapter sceneFactoryAdapter = new SceneFactoryAdapter(sceneFactory);
+
+        Game game = new Game();
+        game.init(stageAdapter);
+        game.buildUILayout(layoutFactoryAdapter, sceneFactoryAdapter);
+        game.showUILayout();
 //        initApp(primaryStage);
 //        play();
     }

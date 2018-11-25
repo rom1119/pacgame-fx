@@ -1,16 +1,17 @@
 package com.pacgame.uiElement;
 
+import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.UIProvider;
 import com.pacgame.uiElement.btn.Button;
 import com.pacgame.uiElement.btn.ButtonSuccess;
 import com.pacgame.uiElement.text.Label;
 import com.pacgame.uiElement.text.Text;
 
-public class UIFacade {
+public class UIFactory {
 
     private UIProvider provider;
 
-    public UIFacade(UIProvider provider) {
+    public UIFactory(UIProvider provider) {
         this.provider = provider;
     }
 
@@ -23,4 +24,5 @@ public class UIFacade {
     {
         return new ButtonSuccess(provider, text);
     }
+
 }

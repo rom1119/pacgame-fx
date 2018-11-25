@@ -8,7 +8,7 @@ public class ButtonSuccessBuilder implements IButtonBuilder<ButtonSuccess> {
 
     @Override
     public ButtonSuccess build() {
-        buildedInstance = new ButtonSuccess();
+        buildedInstance = new ButtonSuccess(text);
         buildedInstance.setText(text);
 
         return buildedInstance;

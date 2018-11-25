@@ -7,12 +7,12 @@ import org.junit.Assert;
 
 public class PacmanTest extends TestCase {
 
-    private Pacman pac;
+//    private Pacman pac;
 
     public void setUp() throws Exception {
         super.setUp();
 
-        pac = new Pacman(new Point2D(0, 0), 25);
+//        pac = new Pacman(new Point2D(0, 0), 25);
 
     }
 

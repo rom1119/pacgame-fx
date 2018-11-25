@@ -12,16 +12,18 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     private LayerProvidedObject parent;
     private Map<String, ViewProvidedObject> children;
 
+    public LayerProvidedObject() {
+        super();
+    }
+
     public void setWidth(int width)
     {
         this.width.set(width);
-        proxy.setWidth(width);
     }
 
     public void setHeight(int height)
     {
         this.height.set(height);
-        proxy.setHeight(height);
     }
 
     @Override

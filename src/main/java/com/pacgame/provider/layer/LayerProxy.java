@@ -5,6 +5,7 @@ import com.pacgame.Parentable;
 import com.pacgame.Visible;
 import com.pacgame.provider.ViewProxy;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -15,24 +16,26 @@ import java.util.Map;
 
 public abstract class LayerProxy extends ViewProxy implements Visible, Parentable<LayerProxy>, IChildren<ViewProxy> {
 
-    protected Pane proxyObject;
+    protected Parent proxyObject;
 
     private LayerProxy parent;
     private Map<String, ViewProxy> children;
 
     public LayerProxy() {
         super();
+        proxyObject = new Pane();
     }
 
     public LayerProxy(int width, int height) {
         super(width, height);
+        proxyObject = new Pane();
     }
 
     @Override
     public void addChildren(ViewProxy el) {
         if (!hasChildren(el)) {
             children.put(String.valueOf(el.hashCode()), el);
-            proxyObject.getChildren().add(el.getProxyObject());
+            ((Pane)proxyObject).getChildren().add(el.getProxyObject());
         }
     }
 
@@ -40,11 +43,13 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
     public void removeChildren(ViewProxy el) {
         if (hasChildren(el)) {
             children.remove(el.hashCode());
+            ((Pane)proxyObject).getChildren().remove(el.getProxyObject());
+
         }
     }
 
     @Override
-    public Pane getProxyObject(){
+    public Parent getProxyObject(){
         return proxyObject;
     }
 
@@ -81,16 +86,16 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
 
     public void setWidth(int width)
     {
-        proxyObject.setPrefWidth(width);
+        ((Pane)proxyObject).setPrefWidth(width);
     }
 
     public void setHeight(int height)
     {
-        proxyObject.setPrefHeight(height);
+        ((Pane)proxyObject).setPrefHeight(height);
     }
 
     @Override
     public void setBackground(Paint color) {
-        proxyObject.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+        ((Pane)proxyObject).setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

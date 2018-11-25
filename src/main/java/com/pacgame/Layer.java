@@ -24,13 +24,11 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     public void setWidth(int width)
     {
         this.width.set(width);
-        providedObject.setWidth(width);
     }
 
     public void setHeight(int height)
     {
         this.height.set(height);
-        providedObject.setHeight(height);
     }
 
     @Override
@@ -67,6 +65,21 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     @Override
     protected LayerProvidedObject getProvidedObject() {
         return providedObject;
+    }
+
+    @Override
+    public boolean isVisible() {
+        return providedObject.isVisible();
+    }
+
+    @Override
+    public void show() {
+        providedObject.show();
+    }
+
+    @Override
+    public void hide() {
+        providedObject.hide();
     }
 
     /**

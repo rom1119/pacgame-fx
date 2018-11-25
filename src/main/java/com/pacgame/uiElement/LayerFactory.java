@@ -6,11 +6,11 @@ import com.pacgame.uiElement.layer.FlowLayerBuilder;
 import com.pacgame.uiElement.layer.GroupLayerBuilder;
 import com.pacgame.uiElement.layer.VerticalLayerBuilder;
 
-public class LayerFacade {
+public class LayerFactory {
 
     private LayerProvider layerProvider;
 
-    public LayerFacade(LayerProvider layerProvider) {
+    public LayerFactory(LayerProvider layerProvider) {
         this.layerProvider = layerProvider;
     }
 
