@@ -1,14 +1,14 @@
 package com.pacgame;
 
+import com.pacgame.color.ColorFactory;
+import com.pacgame.color.ColorFactoryImpl;
 import com.pacgame.game.Game;
 import com.pacgame.game.UILayout;
 import com.pacgame.game.adapter.factory.LayoutFactoryAdapter;
 import com.pacgame.game.adapter.factory.MenuFactoryAdapter;
 import com.pacgame.game.adapter.factory.SceneFactoryAdapter;
 import com.pacgame.game.adapter.StageAdapter;
-import com.pacgame.provider.LayerProviderImpl;
-import com.pacgame.provider.SceneProviderImpl;
-import com.pacgame.provider.UIProviderImpl;
+import com.pacgame.provider.*;
 import com.pacgame.stage.SceneFactory;
 import com.pacgame.uiElement.LayerFactory;
 import com.pacgame.uiElement.MenuFactory;
@@ -131,11 +131,13 @@ public class App extends Application {
         UIProviderImpl uiProvider = new UIProviderImpl();
         LayerProviderImpl layerProvider = new LayerProviderImpl();
         SceneProviderImpl sceneProvider = new SceneProviderImpl();
+        PaintProvider paintProvider = new PaintProviderImpl();
 
         UIFactory uiFacade = new UIFactory(uiProvider);
         LayerFactory layerFactory = new LayerFactory(layerProvider);
         SceneFactory sceneFactory = new SceneFactory(sceneProvider);
         MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider);
+        ColorFactory colorFactory = new ColorFactoryImpl(paintProvider);
 
         // Adapters
         StageAdapter stageAdapter = new StageAdapter(primaryStage);
