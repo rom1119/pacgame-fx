@@ -13,7 +13,7 @@ public abstract class ColorProvidedObject extends Paint {
     }
 
     @Override
-    protected javafx.scene.paint.Paint getValue()
+    public javafx.scene.paint.Paint getValue()
     {
         return proxy.getProxyObject();
     }

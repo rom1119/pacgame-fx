@@ -5,9 +5,9 @@ import com.pacgame.uiElement.layer.GroupLayer;
 
 public class GroupLayerAdapter extends LayerAdapter {
 
-    public GroupLayerAdapter(LayerFactory layerFacade) {
+    public GroupLayerAdapter(LayerFactory layerFacade, int width, int height) {
 
-        layer = layerFacade.groupLayerBuilder().with(200, 200).build();
+        layer = layerFacade.groupLayerBuilder().with(width, height).build();
     }
 
 

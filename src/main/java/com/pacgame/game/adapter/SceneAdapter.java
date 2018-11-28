@@ -17,7 +17,7 @@ public class SceneAdapter implements IScene {
         this.scene.setRoot(((LayerAdapter)layer).getProvidedObject());
     }
 
-    com.pacgame.stage.IScene getProvidedObject()
+    public com.pacgame.stage.IScene getProvidedObject()
     {
         return scene;
     }

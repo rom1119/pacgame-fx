@@ -6,10 +6,7 @@ import com.pacgame.Visible;
 import com.pacgame.provider.ViewProxy;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 
 import java.util.Map;
@@ -29,6 +26,11 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
     public LayerProxy(int width, int height) {
         super(width, height);
         proxyObject = new Pane();
+    }
+
+    public void setBorder(Paint color, int width)
+    {
+        ((Pane)proxyObject).setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, null, new BorderWidths(width))));
     }
 
     @Override

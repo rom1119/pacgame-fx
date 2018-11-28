@@ -1,8 +1,10 @@
-package com.pacgame.game.adapter;
+package com.pacgame.game.adapter.factory;
 
 import com.pacgame.game.ILayer;
 import com.pacgame.game.IScene;
 import com.pacgame.game.ISceneFactory;
+import com.pacgame.game.adapter.LayerAdapter;
+import com.pacgame.game.adapter.SceneAdapter;
 import com.pacgame.stage.SceneFactory;
 
 public class SceneFactoryAdapter implements ISceneFactory {

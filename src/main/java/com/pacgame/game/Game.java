@@ -2,8 +2,9 @@ package com.pacgame.game;
 
 public class Game {
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 500;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 500;
+    private static final String TITLE = "PAC-GAME this is new PACMAN :-)";
     private IStage primaryStage;
     private UILayout uiLayout;
     private GamePlayLayout gamePlayLayout;
@@ -22,7 +23,7 @@ public class Game {
     {
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
-        this.primaryStage.setTitle("PAC-GAME this is new PACMAN :-)");
+        this.primaryStage.setTitle(TITLE);
 
     }
 
@@ -42,15 +43,14 @@ public class Game {
         primaryStage.setScene(gamePlayLayout.getScene());
     }
 
-    public void buildUILayout(ILayoutFactory layoutFactory, ISceneFactory sceneFactory)
-    {
-        uiLayout = new UILayout(layoutFactory.createGroupLayer(), sceneFactory);
-        uiLayout.initScene(sceneFactory, WIDTH, HEIGHT);
-
-    }
-
     public void buildGamePlayLayout(ILayoutFactory layoutFactory)
     {
-        gamePlayLayout = new GamePlayLayout(layoutFactory.createGroupLayer());
+        gamePlayLayout = new GamePlayLayout(layoutFactory.createGroupLayer(WIDTH, HEIGHT));
+    }
+
+    public void setUILayout(UILayout uiLayout) {
+        this.uiLayout = uiLayout;
+        uiLayout.initScene( WIDTH, HEIGHT);
+
     }
 }

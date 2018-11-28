@@ -12,6 +12,10 @@ class LabelProxy extends UIElementProxy {
 
     protected Label proxyObject;
 
+    public LabelProxy() {
+        proxyObject = new Label();
+    }
+
     @Override
     public void setBackground(Paint color) {
         proxyObject.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));

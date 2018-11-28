@@ -1,14 +1,17 @@
 package com.pacgame;
 
 import com.pacgame.game.Game;
-import com.pacgame.game.adapter.LayoutFactoryAdapter;
-import com.pacgame.game.adapter.SceneFactoryAdapter;
+import com.pacgame.game.UILayout;
+import com.pacgame.game.adapter.factory.LayoutFactoryAdapter;
+import com.pacgame.game.adapter.factory.MenuFactoryAdapter;
+import com.pacgame.game.adapter.factory.SceneFactoryAdapter;
 import com.pacgame.game.adapter.StageAdapter;
 import com.pacgame.provider.LayerProviderImpl;
 import com.pacgame.provider.SceneProviderImpl;
 import com.pacgame.provider.UIProviderImpl;
 import com.pacgame.stage.SceneFactory;
 import com.pacgame.uiElement.LayerFactory;
+import com.pacgame.uiElement.MenuFactory;
 import com.pacgame.uiElement.UIFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -125,18 +128,29 @@ public class App extends Application {
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
 
         // Providers
-        UIFactory uiFacade = new UIFactory(new UIProviderImpl());
-        LayerFactory layerFactory = new LayerFactory(new LayerProviderImpl());
-        SceneFactory sceneFactory = new SceneFactory(new SceneProviderImpl());
+        UIProviderImpl uiProvider = new UIProviderImpl();
+        LayerProviderImpl layerProvider = new LayerProviderImpl();
+        SceneProviderImpl sceneProvider = new SceneProviderImpl();
+
+        UIFactory uiFacade = new UIFactory(uiProvider);
+        LayerFactory layerFactory = new LayerFactory(layerProvider);
+        SceneFactory sceneFactory = new SceneFactory(sceneProvider);
+        MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider);
 
         // Adapters
         StageAdapter stageAdapter = new StageAdapter(primaryStage);
         LayoutFactoryAdapter layoutFactoryAdapter = new LayoutFactoryAdapter(uiFacade, layerFactory);
         SceneFactoryAdapter sceneFactoryAdapter = new SceneFactoryAdapter(sceneFactory);
+        MenuFactoryAdapter menuFactoryAdapter = new MenuFactoryAdapter(menuFactory);
 
+        // UILayout
+        UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter);
+        uiLayout.createMenu(menuFactoryAdapter);
+
+        // Game
         Game game = new Game();
         game.init(stageAdapter);
-        game.buildUILayout(layoutFactoryAdapter, sceneFactoryAdapter);
+        game.setUILayout(uiLayout);
         game.showUILayout();
 //        initApp(primaryStage);
 //        play();

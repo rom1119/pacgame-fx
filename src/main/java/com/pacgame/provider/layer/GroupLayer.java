@@ -11,20 +11,4 @@ public class GroupLayer extends LayerProvidedObject {
         this.proxy = new GroupLayerProxy();
     }
 
-//    @Override
-//    public GroupLayerProxy getProxy() {
-//        return proxy;
-//    }
-
-    @Override
-    public void setWidth(int width) {
-        super.setWidth(width);
-        proxy.setWidth(width);
-    }
-
-    @Override
-    public void setHeight(int height) {
-        super.setHeight(height);
-        proxy.setHeight(height);
-    }
 }

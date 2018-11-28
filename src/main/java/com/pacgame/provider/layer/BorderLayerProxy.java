@@ -3,10 +3,7 @@ package com.pacgame.provider.layer;
 import com.pacgame.provider.ViewProxy;
 import com.pacgame.provider.layer.LayerProxy;
 import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 
 public class BorderLayerProxy extends LayerProxy {
@@ -43,6 +40,10 @@ public class BorderLayerProxy extends LayerProxy {
         proxyObject.setRight(el.getProxyObject());
     }
 
+    @Override
+    public void setBorder(Paint color, int width) {
+        proxyObject.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, null, new BorderWidths(width))));
+    }
 
     @Override
     public void addChildren(ViewProxy el) {

@@ -26,6 +26,11 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
         this.height.set(height);
     }
 
+    public void setBorder(Paint paint, int width)
+    {
+        proxy.setBorder(paint.getValue(), width);
+    }
+
     @Override
     public void addChildren(ViewProvidedObject el) {
         if (!hasChildren(el)) {
@@ -65,7 +70,7 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
 
     @Override
     public boolean isVisible() {
-        return parent.isVisible();
+        return proxy.isVisible();
     }
 
     @Override
