@@ -1,5 +1,6 @@
 package com.pacgame.game.adapter.factory;
 
+import com.pacgame.game.IColorFactory;
 import com.pacgame.game.IMenu;
 import com.pacgame.game.IMenuFactory;
 import com.pacgame.game.IMenuItem;

@@ -1,8 +1,10 @@
 package com.pacgame.uiElement.menu.element;
 
 import com.pacgame.Property;
+import com.pacgame.color.Paint;
 import com.pacgame.property.TextProperty;
 import com.pacgame.provider.UIProvider;
+import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.component.ui.text.Label;
 import com.pacgame.uiElement.UIElement;
 import com.pacgame.uiElement.text.Text;
@@ -14,7 +16,7 @@ public abstract class MenuElement extends UIElement {
 
     public MenuElement(UIProvider provider, String textArg) {
         super(provider);
-        text = new TextProperty();
+        text = new TextProperty(textArg);
         providedObject = provider.createTextElement(textArg);
     }
 
@@ -24,6 +26,50 @@ public abstract class MenuElement extends UIElement {
 
     public String getText() {
         return this.text.get();
+    }
+
+    @Override
+    public void setBorder(Paint color, int width) {
+        providedObject.setBorder(color.getValue(), width);
+    }
+
+    @Override
+    public boolean isVisible() {
+        return providedObject.isVisible();
+    }
+
+    @Override
+    public void show() {
+        providedObject.show();
+    }
+
+    @Override
+    public void hide() {
+        providedObject.hide();
+    }
+
+    @Override
+    public void setX(int x) {
+        super.setX(x);
+        providedObject.setX(x);
+    }
+
+    @Override
+    public void setY(int y) {
+        super.setY(y);
+        providedObject.setY(y);
+    }
+
+    @Override
+    public void setBackground(Paint color) {
+        providedObject.setBackground(color.getValue());
+    }
+
+
+
+    @Override
+    protected ViewProvidedObject getProvidedObject() {
+        return providedObject;
     }
 
     /**

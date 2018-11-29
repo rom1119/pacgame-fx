@@ -1,9 +1,13 @@
 package com.pacgame;
 
+import com.pacgame.color.Paint;
+import com.pacgame.property.HeightProperty;
+import com.pacgame.property.WidthProperty;
 import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.LayerProvider;
 import com.pacgame.provider.ViewProvidedObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Layer extends View implements Visible, Comparable<View>, Parentable<Layer>, IChildren<View> {
@@ -12,13 +16,21 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     protected int order;
     protected Layer parent;
     protected Map<String, View> children;
+    protected Property<Integer> width;
+    protected Property<Integer> height;
 
     public Layer(LayerProvider provider) {
-
+        children = new HashMap<>();
+        this.width = new WidthProperty(0);
+        this.height = new HeightProperty(0);
     }
 
     public Layer(int width, int height, LayerProvider provider) {
-        super(width, height);
+        super();
+        this.width = new WidthProperty(width);
+        this.height = new HeightProperty(height);
+        children = new HashMap<>();
+
     }
 
     public void setWidth(int width)
@@ -46,7 +58,7 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     @Override
     public void addChildren(View el) {
         if (!hasChildren(el)) {
-            providedObject.addChildren(el.providedObject);
+            providedObject.addChildren(el.getProvidedObject());
             children.put(String.valueOf(el.hashCode()), el);
         }
     }
@@ -54,7 +66,7 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     @Override
     public void removeChildren(View el) {
         if (hasChildren(el)) {
-            providedObject.removeChildren(el.providedObject);
+            providedObject.removeChildren(el.getProvidedObject());
             children.remove(el.hashCode());
         }
     }
@@ -142,5 +154,10 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
         }
 
         return order > o.order ? 1 : -1 ;
+    }
+
+    @Override
+    public void setBackground(Paint color) {
+        providedObject.setBackground(color.getValue());
     }
 }

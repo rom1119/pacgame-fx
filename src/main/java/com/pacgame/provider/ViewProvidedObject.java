@@ -3,46 +3,29 @@ package com.pacgame.provider;
 import com.pacgame.provider.interfaces.ColorableProvider;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
-import com.pacgame.provider.property.HeightProperty;
-import com.pacgame.provider.property.PropertyProvider;
-import com.pacgame.provider.property.WidthProperty;
+import com.pacgame.provider.property.*;
 
 public abstract class ViewProvidedObject extends ProvidedObject implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider {
 
-    protected ViewProxy proxy;
-
-    protected PropertyProvider<Integer> width;
-    protected PropertyProvider<Integer> height;
     protected PropertyProvider<Integer> x;
     protected PropertyProvider<Integer> y;
     protected int order;
 
 
     public ViewProvidedObject() {
-        this.width = new WidthProperty(0);
-        this.height = new HeightProperty(0);
-    }
-
-    public ViewProvidedObject(int width, int height) {
-        this.width = new WidthProperty(width);
-        this.height = new HeightProperty(height);
+        x = new TranslateXProperty(0);
+        y = new TranslateYProperty(0);
     }
 
 
     @Override
-    public boolean isVisible() {
-        return proxy.isVisible();
-    }
+    public abstract boolean isVisible();
 
     @Override
-    public void show() {
-        proxy.show();
-    }
+    public abstract void show();
 
     @Override
-    public void hide() {
-        proxy.hide();
-    }
+    public abstract void hide();
 
     @Override
     public int compareTo(ViewProvidedObject o) {
@@ -57,9 +40,7 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
     }
 
     @Override
-    protected ViewProxy getProxy() {
-        return proxy;
-    }
+    protected abstract ViewProxy getProxy();
 
     @Override
     public int getX() {
@@ -92,7 +73,5 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
     }
 
     @Override
-    public void setBackground(Paint paint) {
-        proxy.setBackground(paint.getValue());
-    }
+    public abstract void setBackground(Paint paint);
 }

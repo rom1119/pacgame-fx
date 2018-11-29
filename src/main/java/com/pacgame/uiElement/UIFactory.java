@@ -4,6 +4,7 @@ import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.UIProvider;
 import com.pacgame.uiElement.btn.Button;
 import com.pacgame.uiElement.btn.ButtonSuccess;
+import com.pacgame.uiElement.input.InputText;
 import com.pacgame.uiElement.text.Label;
 import com.pacgame.uiElement.text.Text;
 
@@ -23,6 +24,11 @@ public class UIFactory {
     public Button createButtonSuccess(String text)
     {
         return new ButtonSuccess(provider, text);
+    }
+
+    public InputText createTextArea()
+    {
+        return new InputText(provider);
     }
 
 }

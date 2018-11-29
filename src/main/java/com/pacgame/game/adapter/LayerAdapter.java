@@ -21,7 +21,7 @@ public abstract class LayerAdapter implements ILayer {
 
     @Override
     public void addElement(IView view) {
-        layer.addChildren(((View) view));
+        layer.addChildren(((ViewAdapter) view).getProvidedObject());
     }
 
     @Override

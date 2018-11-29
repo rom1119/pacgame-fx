@@ -7,11 +7,9 @@ import com.pacgame.provider.ComponentProvidedObject;
 
 public abstract class GameElement extends Component implements IGameEventTarget {
 
-    protected ComponentProvidedObject providedObject;
 
-    public GameElement(int width, int height, ComponentProvidedObject providedObject) {
-        super(width, height);
-        this.providedObject = providedObject;
+    public GameElement( ComponentProvidedObject providedObject) {
+        super();
     }
 
     @Override

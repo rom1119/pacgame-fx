@@ -9,24 +9,14 @@ import com.pacgame.property.WidthProperty;
 
 public abstract class View implements Positionable, Colorable, Comparable<View>, Visible  {
 
-    protected ViewProvidedObject providedObject;
     protected int id;
 
-    protected Property<Integer> width;
-    protected Property<Integer> height;
     protected Property<Integer> x;
     protected Property<Integer> y;
     protected int order;
 
 
     public View() {
-        this.width = new WidthProperty(0);
-        this.height = new HeightProperty(0);
-    }
-
-    public View(int width, int height) {
-        this.width = new WidthProperty(width);
-        this.height = new HeightProperty(height);
     }
 
     public int getId() {
@@ -34,19 +24,13 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     }
 
     @Override
-    public boolean isVisible() {
-        return providedObject.isVisible();
-    }
+    public abstract boolean isVisible();
 
     @Override
-    public void show() {
-        providedObject.show();
-    }
+    public abstract void show();
 
     @Override
-    public void hide() {
-        providedObject.hide();
-    }
+    public abstract void hide();
 
     @Override
     public int compareTo(View o) {
@@ -92,11 +76,7 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     }
 
     @Override
-    public void setBackground(Paint color) {
-        providedObject.setBackground(color.getValue());
-    }
+    public abstract void setBackground(Paint color);
 
-    protected ViewProvidedObject getProvidedObject() {
-        return providedObject;
-    }
+    protected abstract ViewProvidedObject getProvidedObject();
 }

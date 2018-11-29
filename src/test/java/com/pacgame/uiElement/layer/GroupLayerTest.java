@@ -23,7 +23,6 @@ class GroupLayerTest extends TestCase {
 //        when(l.createGroupLayer()).thenReturn(groupLayer);
         LayerProviderImpl layerProvider = new LayerProviderImpl();
         layer = new GroupLayer(100, 100, layerProvider);
-        layer.setHeight(234);
     }
 
     @AfterEach
@@ -45,7 +44,7 @@ class GroupLayerTest extends TestCase {
 
     @Test
     void getHeight() {
-        Assert.assertEquals(234, layer.getHeight());
+        Assert.assertEquals(100, layer.getHeight());
 
     }
 

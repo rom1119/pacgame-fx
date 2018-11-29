@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class UILayout {
 
+    private IColorFactory colorFactory;
     private IScene scene;
     private Menu mainMenu;
     private ILayer root;
@@ -15,9 +16,11 @@ public class UILayout {
     private ISceneFactory sceneFactory;
     private LoginForm loginForm;
 
-    public UILayout(ILayer root, ISceneFactory sceneFactory) {
+    public UILayout(ILayer root, ISceneFactory sceneFactory, IColorFactory colorFactory) {
         this.root = root;
         this.sceneFactory = sceneFactory;
+        this.colorFactory = colorFactory;
+
     }
 
     public void initScene( int width, int height)
@@ -34,9 +37,9 @@ public class UILayout {
         return mainMenu;
     }
 
-    public void buildHiddenViews(ILayoutFactory layoutFactory, IUIComponentFactory componentFactory)
+    public void buildHiddenViews(ILayoutFactory layoutFactory, IUIComponentFactory uiComponentFactory)
     {
-        loginForm = new LoginForm(layoutFactory, componentFactory, root);
+        loginForm = new LoginForm(layoutFactory, uiComponentFactory, root, colorFactory);
         ILayer iLayer = loginForm.buildView();
         root.addElement(iLayer);
     }
@@ -44,9 +47,9 @@ public class UILayout {
 
     private void addLoginElement(Menu menu, IMenuItem menuItem)
     {
-        mainMenu.addMenuItem(menuItem);
+        menu.addMenuItem(menuItem);
         menuItem.setOnSelect(e -> {
-            mainMenu.hide();
+            menu.hide();
             loginForm.show();
         });
 

@@ -1,14 +1,12 @@
 package com.pacgame.game.ui.model.main;
 
-import com.pacgame.game.ILayer;
-import com.pacgame.game.ILayoutFactory;
-import com.pacgame.game.IUIComponent;
-import com.pacgame.game.IUIComponentFactory;
+import com.pacgame.game.*;
 
 public class LoginForm {
 
     private ILayoutFactory layoutFactory;
     private IUIComponentFactory componentFactory;
+    private IColorFactory colorFactory;
     private ILayer root;
     private ILayer parent;
 
@@ -28,10 +26,11 @@ public class LoginForm {
     private IUIComponent sendBtn;
     private IUIComponent globalError;
 
-    public LoginForm(ILayoutFactory layoutFactory, IUIComponentFactory componentFactory, ILayer parent) {
+    public LoginForm(ILayoutFactory layoutFactory, IUIComponentFactory componentFactory, ILayer parent, IColorFactory colorFactory) {
         this.layoutFactory = layoutFactory;
         this.componentFactory = componentFactory;
         this.parent = parent;
+        this.colorFactory = colorFactory;
     }
 
     public ILayer buildView()
@@ -62,7 +61,7 @@ public class LoginForm {
     {
         passwordLayer = layoutFactory.createVerticalLayer(parent.getWidth() / 2,  parent.getHeight() / 2);
 
-        passwordLabel = componentFactory.createLabelText("Login");
+        passwordLabel = componentFactory.createLabelText("Hasło");
         passwordInput = componentFactory.createInputText(parent.getWidth() / 4, 50);
 
         return loginLayer;
@@ -72,7 +71,7 @@ public class LoginForm {
     {
         sendBtnLayer = layoutFactory.createVerticalLayer(parent.getWidth() / 2,  parent.getHeight() / 2);
 
-//        sendBtn = componentFactory.createButton(, "Zaloguj się");
+        sendBtn = componentFactory.createButtonSuccess("Zaloguj się");
         globalError = componentFactory.createLabelText("");
 
         return loginLayer;

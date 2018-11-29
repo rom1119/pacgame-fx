@@ -6,7 +6,7 @@ import com.pacgame.game.IMenuItem;
 import com.pacgame.uiElement.MenuFactory;
 import com.pacgame.uiElement.menu.Menu;
 
-public class MenuAdapter implements IMenu {
+public class MenuAdapter extends ViewAdapter implements IMenu {
 
     private Menu menu;
 

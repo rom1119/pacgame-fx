@@ -4,7 +4,7 @@ public class Game {
 
     public static final int WIDTH = 800;
     public static final int HEIGHT = 500;
-    private static final String TITLE = "PAC-GAME this is new PACMAN :-)";
+    private static final String TITTLE = "PAC-GAME this is new PACMAN :-)";
     private IStage primaryStage;
     private UILayout uiLayout;
     private GamePlayLayout gamePlayLayout;
@@ -23,7 +23,7 @@ public class Game {
     {
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
-        this.primaryStage.setTitle(TITLE);
+        this.primaryStage.setTitle(TITTLE);
 
     }
 

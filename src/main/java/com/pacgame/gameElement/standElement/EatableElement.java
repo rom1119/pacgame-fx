@@ -9,18 +9,14 @@ public abstract class EatableElement extends StandComponent implements Valuable 
 
     protected int value = 1;
     protected boolean isVisible = true;
-    private static final int WIDTH = 5;
-    private static final int HEIGHT = 5;
-    protected ShapeProvidedObject providedObject;
 
 
     public EatableElement(int width, int height, ShapeProvidedObject providedObject) {
-        super(width, height, providedObject);
-        this.providedObject = providedObject;
+        super(providedObject);
     }
 
     public EatableElement(ComponentProvidedObject providedObject) {
-        super(WIDTH, HEIGHT, providedObject);
+        super( providedObject);
     }
 
     protected void initPosition()

@@ -4,9 +4,7 @@ import com.pacgame.color.ColorFactory;
 import com.pacgame.color.ColorFactoryImpl;
 import com.pacgame.game.Game;
 import com.pacgame.game.UILayout;
-import com.pacgame.game.adapter.factory.LayoutFactoryAdapter;
-import com.pacgame.game.adapter.factory.MenuFactoryAdapter;
-import com.pacgame.game.adapter.factory.SceneFactoryAdapter;
+import com.pacgame.game.adapter.factory.*;
 import com.pacgame.game.adapter.StageAdapter;
 import com.pacgame.provider.*;
 import com.pacgame.stage.SceneFactory;
@@ -144,10 +142,13 @@ public class App extends Application {
         LayoutFactoryAdapter layoutFactoryAdapter = new LayoutFactoryAdapter(uiFacade, layerFactory);
         SceneFactoryAdapter sceneFactoryAdapter = new SceneFactoryAdapter(sceneFactory);
         MenuFactoryAdapter menuFactoryAdapter = new MenuFactoryAdapter(menuFactory);
+        ColorFactoryAdapter colorFactoryAdapter = new ColorFactoryAdapter(colorFactory);
+        UIComponentFactoryAdapter uiComponentFactoryAdapter = new UIComponentFactoryAdapter(uiFacade);
 
         // UILayout
-        UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter);
+        UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter, colorFactoryAdapter);
         uiLayout.createMenu(menuFactoryAdapter);
+        uiLayout.buildHiddenViews(layoutFactoryAdapter, uiComponentFactoryAdapter);
 
         // Game
         Game game = new Game();

@@ -1,19 +1,25 @@
 package com.pacgame.gameElement.standElement;
 
+import com.pacgame.color.Paint;
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.component.ShapeProvidedObject;
+import com.pacgame.provider.component.shape.Arc;
 
 public class BigPoint extends EatableElement {
 
     protected int value = 5;
     protected static final String imageSrc = "./point/big-point.png";
+    protected Arc providedObject;
 
-    public BigPoint(int width, int height, ShapeProvidedObject providedObject) {
-        super(width, height, providedObject);
+    public BigPoint(int radius, Arc providedObject) {
+        super(providedObject);
+        this.providedObject = providedObject;
+        this.providedObject.setRadius(radius);
     }
 
-    public BigPoint(ShapeProvidedObject providedObject) {
+    public BigPoint(Arc providedObject) {
         super(providedObject);
+        this.providedObject = providedObject;
     }
 
     @Override
@@ -22,7 +28,27 @@ public class BigPoint extends EatableElement {
     }
 
     @Override
-    protected ViewProvidedObject getProvidedObject() {
+    public boolean isVisible() {
+        return providedObject.isVisible();
+    }
+
+    @Override
+    public void show() {
+        providedObject.show();
+    }
+
+    @Override
+    public void hide() {
+        providedObject.hide();
+    }
+
+    @Override
+    public void setBackground(Paint color) {
+        providedObject.setBackground(color.getValue());
+    }
+
+    @Override
+    protected Arc getProvidedObject() {
         return providedObject;
     }
 }
