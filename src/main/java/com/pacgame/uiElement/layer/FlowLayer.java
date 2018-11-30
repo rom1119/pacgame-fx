@@ -5,11 +5,16 @@ import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.LayerProvider;
 
 public class FlowLayer extends Layer {
-//    protected com.pacgame.provider.layer.FlowLayer providedObject;
+    protected com.pacgame.provider.layer.FlowLayer providedObject;
 
     public FlowLayer(int width, int height, LayerProvider provider) {
         super(width, height, provider);
         this.providedObject = provider.createFlowLayer();
+    }
+
+    @Override
+    protected LayerProvidedObject getProvidedObject() {
+        return providedObject;
     }
 
     public FlowLayer(LayerProvider provider) {

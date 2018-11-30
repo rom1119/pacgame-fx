@@ -4,56 +4,54 @@ import com.pacgame.IChildren;
 import com.pacgame.Parentable;
 import com.pacgame.Visible;
 import com.pacgame.provider.ViewProxy;
+import com.pacgame.provider.property.HeightProperty;
+import com.pacgame.provider.property.PropertyProvider;
+import com.pacgame.provider.property.WidthProperty;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class LayerProxy extends ViewProxy implements Visible, Parentable<LayerProxy>, IChildren<ViewProxy> {
 
-    protected Parent proxyObject;
 
     private LayerProxy parent;
     protected Map<String, ViewProxy> children;
+    protected PropertyProvider<Integer> width;
+    protected PropertyProvider<Integer> height;
 
     public LayerProxy() {
         super();
-        proxyObject = new Pane();
+        children = new HashMap<>();
+        this.width = new WidthProperty(0);
+        this.height = new HeightProperty(0);
     }
 
     public LayerProxy(int width, int height) {
-        super(width, height);
-        proxyObject = new Pane();
+        super();
+        children = new HashMap<>();
+        this.width = new WidthProperty(width);
+        this.height = new HeightProperty(height);
     }
+
+
 
     public void setBorder(Paint color, int width)
     {
-        ((Pane)proxyObject).setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, null, new BorderWidths(width))));
+        ((Pane)getProxyObject()).setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, null, new BorderWidths(width))));
     }
 
     @Override
-    public void addChildren(ViewProxy el) {
-        if (!hasChildren(el)) {
-            children.put(String.valueOf(el.hashCode()), el);
-            ((Pane)proxyObject).getChildren().add(el.getProxyObject());
-        }
-    }
+    public abstract void addChildren(ViewProxy el);
 
     @Override
-    public void removeChildren(ViewProxy el) {
-        if (hasChildren(el)) {
-            children.remove(el.hashCode());
-            ((Pane)proxyObject).getChildren().remove(el.getProxyObject());
-
-        }
-    }
+    public abstract void removeChildren(ViewProxy el);
 
     @Override
-    public Parent getProxyObject(){
-        return proxyObject;
-    }
+    public abstract Parent getProxyObject();
 
 
     @Override
@@ -73,31 +71,29 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
 
     @Override
     public boolean isVisible() {
-        return proxyObject.isVisible();
+        return getProxyObject().isVisible();
     }
 
     @Override
     public void show() {
-        proxyObject.setVisible(true);
+        getProxyObject().setVisible(true);
     }
 
     @Override
     public void hide() {
-        proxyObject.setVisible(false);
+        getProxyObject().setVisible(false);
     }
 
     public void setWidth(int width)
     {
-        ((Pane)proxyObject).setPrefWidth(width);
+        this.width.set(width);
     }
 
     public void setHeight(int height)
     {
-        ((Pane)proxyObject).setPrefHeight(height);
+        this.height.set(height);
     }
 
-    @Override
-    public void setBackground(Paint color) {
-        ((Pane)proxyObject).setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
-    }
+//    @Override
+//    public abstract void setBackground(Paint color);
 }

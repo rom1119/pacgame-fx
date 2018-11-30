@@ -11,7 +11,6 @@ import java.util.Map;
 
 public abstract class LayerProvidedObject extends ViewProvidedObject implements Visible, Parentable<LayerProvidedObject>, IChildren<ViewProvidedObject> {
 
-    protected LayerProxy proxy;
     protected PropertyProvider<Integer> width;
     protected PropertyProvider<Integer> height;
 
@@ -29,28 +28,32 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
         this();
         this.width.set(width);
         this.height.set(height);
+        getProxy().setWidth(width);
+        getProxy().setHeight(height);
     }
 
     public void setWidth(int width)
     {
         this.width.set(width);
+        getProxy().setWidth(width);
     }
 
     public void setHeight(int height)
     {
         this.height.set(height);
+        getProxy().setHeight(height);
     }
 
     public void setBorder(Paint paint, int width)
     {
-        proxy.setBorder(paint.getValue(), width);
+        getProxy().setBorder(paint.getValue(), width);
     }
 
     @Override
     public void addChildren(ViewProvidedObject el) {
         if (!hasChildren(el)) {
             children.put(String.valueOf(el.hashCode()), el);
-            proxy.addChildren(el.getProxy());
+            getProxy().addChildren(el.getProxy());
 
         }
     }
@@ -59,14 +62,12 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     public void removeChildren(ViewProvidedObject el) {
         if (hasChildren(el)) {
             children.remove(el.hashCode());
-            proxy.removeChildren(el.getProxy());
+            getProxy().removeChildren(el.getProxy());
         }
     }
 
     @Override
-    public LayerProxy getProxy() {
-        return proxy;
-    }
+    public abstract LayerProxy getProxy();
 
     @Override
     public boolean hasChildren(ViewProvidedObject el) {
@@ -85,21 +86,21 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
 
     @Override
     public boolean isVisible() {
-        return proxy.isVisible();
+        return getProxy().isVisible();
     }
 
     @Override
     public void show() {
-        proxy.show();
+        getProxy().show();
     }
 
     @Override
     public void hide() {
-        proxy.hide();
+        getProxy().hide();
     }
 
     @Override
     public void setBackground(Paint paint) {
-        proxy.setBackground(paint.getValue());
+        getProxy().setBackground(paint.getValue());
     }
 }

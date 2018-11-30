@@ -64,7 +64,7 @@ public class LoginForm {
         passwordLabel = componentFactory.createLabelText("Hasło");
         passwordInput = componentFactory.createInputText(parent.getWidth() / 4, 50);
 
-        return loginLayer;
+        return passwordLayer;
     }
 
     private ILayer createSendButton()
@@ -74,7 +74,7 @@ public class LoginForm {
         sendBtn = componentFactory.createButtonSuccess("Zaloguj się");
         globalError = componentFactory.createLabelText("");
 
-        return loginLayer;
+        return sendBtnLayer;
     }
 
     public void show() {

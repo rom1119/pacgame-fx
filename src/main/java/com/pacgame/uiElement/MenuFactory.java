@@ -4,10 +4,8 @@ import com.pacgame.provider.LayerProvider;
 import com.pacgame.provider.UIProvider;
 import com.pacgame.uiElement.menu.MainMenu;
 import com.pacgame.uiElement.menu.Menu;
-import com.pacgame.uiElement.menu.element.MenuElement;
+import com.pacgame.uiElement.menu.MenuElement;
 import com.pacgame.uiElement.menu.element.NormalMenuElement;
-import com.pacgame.uiElement.text.Label;
-import com.pacgame.uiElement.text.Text;
 
 public class MenuFactory {
 

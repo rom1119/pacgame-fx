@@ -3,6 +3,7 @@ package com.pacgame.provider.layer;
 import com.pacgame.provider.ViewProxy;
 import com.pacgame.provider.layer.LayerProxy;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 
@@ -13,6 +14,46 @@ public class BorderLayerProxy extends LayerProxy {
     public BorderLayerProxy() {
         super();
         proxyObject = new BorderPane();
+    }
+
+    @Override
+    public void addChildren(ViewProxy el) {
+        if (!hasChildren(el)) {
+            children.put(String.valueOf(el.hashCode()), el);
+            getProxyObject().getChildren().add(el.getProxyObject());
+        }
+    }
+
+    @Override
+    public void removeChildren(ViewProxy el) {
+        if (hasChildren(el)) {
+            children.remove(el.hashCode());
+            getProxyObject().getChildren().remove(el.getProxyObject());
+
+        }
+    }
+
+    @Override
+    public void setBackground(Paint color) {
+        getProxyObject().setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    @Override
+    public void setWidth(int width) {
+        super.setWidth(width);
+        getProxyObject().setPrefWidth(width);
+    }
+
+    @Override
+    public void setHeight(int height) {
+        super.setHeight(height);
+        getProxyObject().setPrefHeight(height);
+
+    }
+
+    @Override
+    public BorderPane getProxyObject() {
+        return proxyObject;
     }
 
     public void setTop(ViewProxy el)
@@ -40,45 +81,5 @@ public class BorderLayerProxy extends LayerProxy {
         proxyObject.setRight(el.getProxyObject());
     }
 
-    @Override
-    public void setBorder(Paint color, int width) {
-        proxyObject.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, null, new BorderWidths(width))));
-    }
 
-    @Override
-    public void addChildren(ViewProxy el) {
-        if (!hasChildren(el)) {
-            children.put(String.valueOf(el.hashCode()), el);
-            proxyObject.getChildren().add(el.getProxyObject());
-        }
-    }
-
-    @Override
-    public void removeChildren(ViewProxy el) {
-        if (hasChildren(el)) {
-            children.remove(el.hashCode());
-            proxyObject.getChildren().remove(el.getProxyObject());
-
-        }
-    }
-
-    @Override
-    public boolean isVisible() {
-        return super.isVisible();
-    }
-
-    @Override
-    public void show() {
-        super.show();
-    }
-
-    @Override
-    public void hide() {
-        super.hide();
-    }
-
-    @Override
-    public void setBackground(Paint color) {
-        proxyObject.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
-    }
 }

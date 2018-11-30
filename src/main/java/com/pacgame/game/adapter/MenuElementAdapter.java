@@ -2,7 +2,7 @@ package com.pacgame.game.adapter;
 
 import com.pacgame.game.IHandler;
 import com.pacgame.game.IMenuItem;
-import com.pacgame.uiElement.menu.element.MenuElement;
+import com.pacgame.uiElement.menu.MenuElement;
 
 public class MenuElementAdapter implements IMenuItem {
 
@@ -19,7 +19,7 @@ public class MenuElementAdapter implements IMenuItem {
 
     @Override
     public void setText(String text) {
-
+        menuElement.setText(text);
     }
 
     public MenuElement getProvidedObject()

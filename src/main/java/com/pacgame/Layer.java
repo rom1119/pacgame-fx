@@ -12,7 +12,7 @@ import java.util.Map;
 
 public abstract class Layer extends View implements Visible, Comparable<View>, Parentable<Layer>, IChildren<View> {
 
-    protected LayerProvidedObject providedObject;
+//    protected LayerProvidedObject providedObject;
     protected int order;
     protected Layer parent;
     protected Map<String, View> children;
@@ -36,13 +36,13 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     public void setWidth(int width)
     {
         this.width.set(width);
-        providedObject.setWidth(width);
+        getProvidedObject().setWidth(width);
     }
 
     public void setHeight(int height)
     {
         this.height.set(height);
-        providedObject.setHeight(height);
+        getProvidedObject().setHeight(height);
     }
 
     public int getWidth()
@@ -58,7 +58,7 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     @Override
     public void addChildren(View el) {
         if (!hasChildren(el)) {
-            providedObject.addChildren(el.getProvidedObject());
+            getProvidedObject().addChildren(el.getProvidedObject());
             children.put(String.valueOf(el.hashCode()), el);
         }
     }
@@ -66,7 +66,7 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     @Override
     public void removeChildren(View el) {
         if (hasChildren(el)) {
-            providedObject.removeChildren(el.getProvidedObject());
+            getProvidedObject().removeChildren(el.getProvidedObject());
             children.remove(el.hashCode());
         }
     }
@@ -87,23 +87,21 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     }
 
     @Override
-    protected LayerProvidedObject getProvidedObject() {
-        return providedObject;
-    }
+    protected abstract LayerProvidedObject getProvidedObject();
 
     @Override
     public boolean isVisible() {
-        return providedObject.isVisible();
+        return getProvidedObject().isVisible();
     }
 
     @Override
     public void show() {
-        providedObject.show();
+        getProvidedObject().show();
     }
 
     @Override
     public void hide() {
-        providedObject.hide();
+        getProvidedObject().hide();
     }
 
     /**
@@ -158,6 +156,6 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
 
     @Override
     public void setBackground(Paint color) {
-        providedObject.setBackground(color.getValue());
+        getProvidedObject().setBackground(color.getValue());
     }
 }

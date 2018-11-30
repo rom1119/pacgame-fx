@@ -1,6 +1,7 @@
 package com.pacgame.game.ui.model;
 
 
+import com.pacgame.game.IColor;
 import com.pacgame.game.IMenu;
 import com.pacgame.game.IMenuItem;
 import com.pacgame.game.IView;
@@ -23,6 +24,11 @@ public abstract class Menu
     {
 //        this.menuItems.add(menuItem);
         menu.addMenuItem(menuItem);
+    }
+
+    public void setColor(IColor color)
+    {
+        this.menu.setBackground(color);
     }
 
     public void  removeMenuItem(IMenuItem menuItem)

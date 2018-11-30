@@ -1,5 +1,6 @@
 package com.pacgame.game.adapter;
 
+import com.pacgame.game.IColor;
 import com.pacgame.game.IHandler;
 import com.pacgame.game.IMenu;
 import com.pacgame.game.IMenuItem;
@@ -14,10 +15,15 @@ public class MenuAdapter extends ViewAdapter implements IMenu {
         this.menu = menu;
     }
 
+    @Override
+    public void setBackground(IColor color) {
+        menu.setBackground(((ColorAdapter)color).getValue());
+    }
 
 
     @Override
     public void addMenuItem(IMenuItem item) {
+
         this.menu.addMenuItem(((MenuElementAdapter) item).getProvidedObject());
     }
 

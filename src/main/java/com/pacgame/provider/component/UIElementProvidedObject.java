@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 public abstract class UIElementProvidedObject extends ComponentProvidedObject {
 
-    protected UIElementProxy proxy;
     protected PropertyProvider<Integer> width;
     protected PropertyProvider<Integer> height;
 
@@ -29,30 +28,22 @@ public abstract class UIElementProvidedObject extends ComponentProvidedObject {
         this.height.set(height);
     }
 
-    public void setBorder(Paint paint, int width)
-    {
-        proxy.setBorder(paint.getValue(), width);
-    }
+    public abstract void setBorder(Paint paint, int width);
 
 
     @Override
     public boolean isVisible() {
-        return proxy.isVisible();
+        return getProxy().isVisible();
     }
 
     @Override
     public void show() {
-        proxy.show();
+        getProxy().show();
     }
 
     @Override
     public void hide() {
-        proxy.hide();
-    }
-
-    @Override
-    protected ViewProxy getProxy() {
-        return proxy;
+        getProxy().hide();
     }
 
     @Override
@@ -68,17 +59,17 @@ public abstract class UIElementProvidedObject extends ComponentProvidedObject {
     @Override
     public void setX(int x) {
         super.setX(x);
-        proxy.setX(x);
+        getProxy().setX(x);
     }
 
     @Override
     public void setY(int y) {
         super.setY(y);
-        proxy.setY(y);
+        getProxy().setY(y);
     }
 
     @Override
     public void setBackground(Paint paint) {
-        proxy.setBackground(paint.getValue());
+        getProxy().setBackground(paint.getValue());
     }
 }

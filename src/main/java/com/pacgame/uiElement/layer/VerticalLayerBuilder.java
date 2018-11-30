@@ -11,6 +11,8 @@ public class VerticalLayerBuilder implements ILayerBuilder<VerticalLayer> {
     private VerticalLayer buildedEl;
     private String name;
     private ColorProvidedObject color;
+    private int width;
+    private int height;
 
     private LayerProvider layerProvider;
 
@@ -23,14 +25,16 @@ public class VerticalLayerBuilder implements ILayerBuilder<VerticalLayer> {
     @Override
     public VerticalLayer build() {
         this.buildedEl = new VerticalLayer(layerProvider);
+        buildedEl.setWidth(width);
+        buildedEl.setHeight(height);
 
         return buildedEl;
     }
 
     @Override
     public VerticalLayerBuilder with(int width, int height) {
-        buildedEl.setWidth(width);
-        buildedEl.setHeight(height);
+        this.width = width;
+        this.height = height;
 
         return this;
     }

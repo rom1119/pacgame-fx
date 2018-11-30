@@ -2,10 +2,11 @@ package com.pacgame.game.adapter;
 
 import com.pacgame.Layer;
 import com.pacgame.View;
+import com.pacgame.game.IColor;
 import com.pacgame.game.ILayer;
 import com.pacgame.game.IView;
 
-public abstract class LayerAdapter implements ILayer {
+public abstract class LayerAdapter extends ViewAdapter implements ILayer {
     protected Layer layer;
 
     @Override
@@ -16,6 +17,11 @@ public abstract class LayerAdapter implements ILayer {
     @Override
     public void show() {
         layer.show();
+    }
+
+    @Override
+    public void setBackground(IColor color) {
+        layer.setBackground(((ColorAdapter)color).getValue());
     }
 
 

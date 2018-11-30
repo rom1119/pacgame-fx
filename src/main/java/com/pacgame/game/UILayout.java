@@ -18,6 +18,7 @@ public class UILayout {
 
     public UILayout(ILayer root, ISceneFactory sceneFactory, IColorFactory colorFactory) {
         this.root = root;
+        this.root.setBackground(colorFactory.createBlue());
         this.sceneFactory = sceneFactory;
         this.colorFactory = colorFactory;
 
@@ -31,6 +32,7 @@ public class UILayout {
     public Menu createMenu(IMenuFactory menuFactory)
     {
         mainMenu = new MainMenuToLogin(menuFactory.createMenu(MainMenuToLogin.WIDTH, MainMenuToLogin.HEIGHT));
+        ((MainMenuToLogin) mainMenu).setColor(colorFactory.createGreen());
         addLoginElement(mainMenu, menuFactory.createMenuItem("Zaloguj"));
         root.addElement(mainMenu.getMenuElement());
 
@@ -40,8 +42,8 @@ public class UILayout {
     public void buildHiddenViews(ILayoutFactory layoutFactory, IUIComponentFactory uiComponentFactory)
     {
         loginForm = new LoginForm(layoutFactory, uiComponentFactory, root, colorFactory);
-        ILayer iLayer = loginForm.buildView();
-        root.addElement(iLayer);
+//        ILayer iLayer = loginForm.buildView();
+//        root.addElement(iLayer);
     }
 
 

@@ -4,46 +4,37 @@ import com.pacgame.provider.interfaces.ColorableProvidedProxy;
 import com.pacgame.provider.interfaces.ColorableProvider;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
-import com.pacgame.provider.property.HeightProperty;
-import com.pacgame.provider.property.PropertyProvider;
-import com.pacgame.provider.property.WidthProperty;
+import com.pacgame.provider.property.*;
 import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 
 public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy, PositionableProvider, Comparable<ViewProxy>, VisibleProvider {
-    protected Node proxyObject;
     protected Paint paint;
 
-    protected PropertyProvider<Integer> width;
-    protected PropertyProvider<Integer> height;
     protected PropertyProvider<Integer> x;
     protected PropertyProvider<Integer> y;
     protected int order;
 
 
-    public ViewProxy(int width, int height) {
-        this.width = new WidthProperty(width);
-        this.height = new HeightProperty(height);
-    }
-
     public ViewProxy() {
-
+        x = new TranslateXProperty(0);
+        y = new TranslateYProperty(0);
     }
 
 
     @Override
     public boolean isVisible() {
-        return proxyObject.isVisible();
+        return getProxyObject().isVisible();
     }
 
     @Override
     public void show() {
-        proxyObject.setVisible(true);
+        getProxyObject().setVisible(true);
     }
 
     @Override
     public void hide() {
-        proxyObject.setVisible(false);
+        getProxyObject().setVisible(false);
     }
 
     @Override
@@ -59,9 +50,7 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     }
 
 
-    public Node getProxyObject(){
-        return proxyObject;
-    }
+    public abstract Node getProxyObject();
 
     @Override
     public int getX() {
@@ -86,13 +75,13 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     @Override
     public void setX(int x) {
         this.x.set(x);
-        proxyObject.setTranslateX(x);
+        getProxyObject().setTranslateX(x);
     }
 
     @Override
     public void setY(int y) {
         this.y.set(y);
-        proxyObject.setTranslateY(y);
+        getProxyObject().setTranslateY(y);
     }
 
     @Override

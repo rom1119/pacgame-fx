@@ -1,4 +1,4 @@
-package com.pacgame.uiElement.menu.element;
+package com.pacgame.uiElement.menu;
 
 import com.pacgame.Property;
 import com.pacgame.color.Paint;

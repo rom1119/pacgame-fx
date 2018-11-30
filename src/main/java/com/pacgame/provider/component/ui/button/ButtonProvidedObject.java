@@ -1,5 +1,7 @@
 package com.pacgame.provider.component.ui.button;
 
+import com.pacgame.provider.Paint;
+import com.pacgame.provider.ViewProxy;
 import com.pacgame.provider.component.UIElementProvidedObject;
 
 public abstract class ButtonProvidedObject extends UIElementProvidedObject {
@@ -28,5 +30,15 @@ public abstract class ButtonProvidedObject extends UIElementProvidedObject {
     {
         this.height.set(height);
         proxy.setHeight(height);
+    }
+
+    @Override
+    protected ButtonProxy getProxy() {
+        return proxy;
+    }
+
+    @Override
+    public void setBorder(Paint paint, int width) {
+        proxy.setBorder(paint.getValue(), width);
     }
 }

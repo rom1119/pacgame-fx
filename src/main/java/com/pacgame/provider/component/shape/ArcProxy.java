@@ -1,5 +1,6 @@
 package com.pacgame.provider.component.shape;
 
+import javafx.scene.Node;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 
@@ -22,4 +23,8 @@ public class ArcProxy extends ShapeProxy {
 //        this.icon.setFill(ColorProvidedObject.YELLOW);
     }
 
+    @Override
+    public Node getProxyObject() {
+        return proxyObject;
+    }
 }

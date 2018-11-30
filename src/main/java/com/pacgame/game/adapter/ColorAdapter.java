@@ -10,4 +10,9 @@ public class ColorAdapter implements IColor {
     public ColorAdapter(Paint paint) {
         this.paint = paint;
     }
+
+    Paint getValue()
+    {
+        return paint;
+    }
 }

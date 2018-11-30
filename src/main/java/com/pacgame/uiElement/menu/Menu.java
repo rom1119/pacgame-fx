@@ -1,17 +1,11 @@
 package com.pacgame.uiElement.menu;
 
-import com.pacgame.View;
 import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.LayerProvider;
-import com.pacgame.provider.UIProvider;
-import com.pacgame.uiElement.UIElement;
 import com.pacgame.uiElement.ViewElement;
-import com.pacgame.uiElement.menu.element.MenuElement;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public abstract class Menu extends ViewElement {
 
@@ -26,14 +20,23 @@ public abstract class Menu extends ViewElement {
         menuItems = new HashMap<>();
     }
 
+    @Override
+    protected LayerProvidedObject getProvidedObject() {
+        return providedObject;
+    }
+
+
     public void addMenuItem(MenuElement menuElement)
     {
         menuItems.put(menuElement.toString(), menuElement);
+        providedObject.addChildren(menuElement.getProvidedObject());
     }
 
     public void removeMenuItem(MenuElement menuElement)
     {
         menuItems.remove(menuElement.toString());
+        providedObject.removeChildren(menuElement.getProvidedObject());
+
     }
 }
 
