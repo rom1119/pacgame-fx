@@ -27,8 +27,10 @@ public abstract class UIElementProvidedObject extends ComponentProvidedObject {
         this.width.set(width);
         this.height.set(height);
     }
-
-    public abstract void setBorder(Paint paint, int width);
+    public void setBorder(Paint paint, int width)
+    {
+        getProxy().setBorder(paint.getValue(), width);
+    }
 
 
     @Override
@@ -69,7 +71,7 @@ public abstract class UIElementProvidedObject extends ComponentProvidedObject {
     }
 
     @Override
-    public abstract UIElementProxy getProxy();
+    protected abstract UIElementProxy getProxy();
 
     @Override
     public void setBackground(Paint paint) {

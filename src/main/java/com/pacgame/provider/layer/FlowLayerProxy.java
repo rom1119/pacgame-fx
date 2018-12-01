@@ -10,7 +10,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Paint;
 
-public class FlowLayerProxy extends LayerProxy {
+class FlowLayerProxy extends LayerProxy {
 
     protected FlowPane proxyObject;
 

@@ -5,7 +5,7 @@ import com.pacgame.provider.Proxy;
 import com.pacgame.provider.layer.LayerProxy;
 import javafx.scene.Scene;
 
-public class SceneProxy extends Proxy implements IScene {
+public class SceneProxy extends Proxy {
 
     protected Scene proxyObject;
 
@@ -17,9 +17,7 @@ public class SceneProxy extends Proxy implements IScene {
         return proxyObject;
     }
 
-
-    @Override
-    public void setRoot(LayerProvidedObject layer) {
-        proxyObject.setRoot(layer.getProxy().getProxyObject());
+    public void setRoot(LayerProxy layer) {
+        proxyObject.setRoot(layer.getProxyObject());
     }
 }

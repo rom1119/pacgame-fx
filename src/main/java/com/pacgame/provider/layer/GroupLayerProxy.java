@@ -10,7 +10,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
-public class GroupLayerProxy extends LayerProxy {
+class GroupLayerProxy extends LayerProxy {
 
     protected Group proxyObject;
     private Pane pane;

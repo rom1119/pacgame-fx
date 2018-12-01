@@ -1,6 +1,5 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.scene.SceneProvidedObject;
 import com.pacgame.provider.stage.IStage;
 import com.pacgame.provider.stage.StageProxy;
 

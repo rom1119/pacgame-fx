@@ -1,7 +1,5 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.scene.SceneProvidedObject;
-
 public class SceneProviderImpl implements SceneProvider {
 
     @Override

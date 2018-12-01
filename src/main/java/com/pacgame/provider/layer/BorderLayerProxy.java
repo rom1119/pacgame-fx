@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 
-public class BorderLayerProxy extends LayerProxy {
+class BorderLayerProxy extends LayerProxy {
 
     protected BorderPane proxyObject;
 

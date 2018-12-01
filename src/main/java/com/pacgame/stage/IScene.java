@@ -1,7 +1,7 @@
 package com.pacgame.stage;
 
 import com.pacgame.Layer;
-import com.pacgame.provider.scene.SceneProvidedObject;
+import com.pacgame.provider.SceneProvidedObject;
 
 public interface IScene {
 

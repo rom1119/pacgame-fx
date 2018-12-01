@@ -9,7 +9,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 
-public class HorizontalLayerProxy extends LayerProxy {
+class HorizontalLayerProxy extends LayerProxy {
 
     protected HBox proxyObject;
     public HorizontalLayerProxy() {

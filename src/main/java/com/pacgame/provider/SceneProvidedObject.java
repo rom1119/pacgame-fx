@@ -1,7 +1,9 @@
-package com.pacgame.provider.scene;
+package com.pacgame.provider;
 
 import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.ProvidedObject;
+import com.pacgame.provider.scene.IScene;
+import com.pacgame.provider.scene.SceneProxy;
 
 public class SceneProvidedObject extends ProvidedObject implements IScene {
     private SceneProxy proxy;
@@ -17,6 +19,6 @@ public class SceneProvidedObject extends ProvidedObject implements IScene {
 
     @Override
     public void setRoot(LayerProvidedObject layer) {
-        proxy.setRoot(layer);
+        proxy.setRoot(layer.getProxy());
     }
 }

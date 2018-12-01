@@ -67,7 +67,7 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     }
 
     @Override
-    public abstract LayerProxy getProxy();
+    protected abstract LayerProxy getProxy();
 
     @Override
     public boolean hasChildren(ViewProvidedObject el) {
