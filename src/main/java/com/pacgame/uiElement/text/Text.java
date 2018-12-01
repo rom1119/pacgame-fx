@@ -91,7 +91,7 @@ public abstract class Text extends UIElement {
     }
 
     @Override
-    protected ViewProvidedObject getProvidedObject() {
+    protected Label getProvidedObject() {
         return providedObject;
     }
 }

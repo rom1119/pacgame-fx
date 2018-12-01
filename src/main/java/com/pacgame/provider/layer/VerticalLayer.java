@@ -14,4 +14,5 @@ public class VerticalLayer extends LayerProvidedObject {
     public LayerProxy getProxy() {
         return proxy;
     }
+
 }

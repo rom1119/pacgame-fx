@@ -94,6 +94,27 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
         this.height.set(height);
     }
 
+    public void setPadding(int top, int right, int bottom, int left)
+    {
+        ((Pane)getProxyObject()).setPadding(new Insets(top, right, bottom, left));
+    }
+
+    public void setPadding(int x, int y)
+    {
+        ((Pane)getProxyObject()).setPadding(new Insets(y, x, y, x));
+    }
+
+    public void setPadding(int topRightBottomLeft)
+    {
+        ((Pane)getProxyObject()).setPadding(new Insets(topRightBottomLeft));
+    }
+
+    @Override
+    public void setBackground(Paint color) {
+        super.setBackground(color);
+        ((Pane)getProxyObject()).setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
 //    @Override
 //    public abstract void setBackground(Paint color);
 }

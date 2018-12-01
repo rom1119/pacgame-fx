@@ -53,9 +53,4 @@ public class VerticalLayerProxy extends LayerProxy {
         getProxyObject().setPrefHeight(height);
 
     }
-
-    @Override
-    public void setBackground(Paint color) {
-        getProxyObject().setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
-    }
 }

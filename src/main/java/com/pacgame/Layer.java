@@ -154,6 +154,18 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
         return order > o.order ? 1 : -1 ;
     }
 
+    public void setPadding(int top, int bottom, int left, int right) {
+        getProvidedObject().setPadding(top, bottom, left, right);
+    }
+
+    public void setPadding(int x, int y) {
+        getProvidedObject().setPadding(x, y);
+    }
+
+    public void setPadding(int topRightBottomLeft){
+        getProvidedObject().setPadding(topRightBottomLeft);
+    }
+
     @Override
     public void setBackground(Paint color) {
         getProvidedObject().setBackground(color.getValue());

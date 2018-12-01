@@ -103,4 +103,16 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     public void setBackground(Paint paint) {
         getProxy().setBackground(paint.getValue());
     }
+
+    public void setPadding(int top, int bottom, int left, int right) {
+        getProxy().setPadding(top, bottom, left, right);
+    }
+
+    public void setPadding(int x, int y) {
+        getProxy().setPadding(x, y);
+    }
+
+    public void setPadding(int topRightBottomLeft){
+        getProxy().setPadding(topRightBottomLeft);
+    }
 }

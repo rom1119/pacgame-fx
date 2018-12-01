@@ -27,10 +27,16 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     public abstract boolean isVisible();
 
     @Override
-    public abstract void show();
+    public void show(){
+        getProvidedObject().show();
+    }
+
 
     @Override
-    public abstract void hide();
+    public void hide()
+    {
+        getProvidedObject().show();
+    }
 
     @Override
     public int compareTo(View o) {
@@ -76,7 +82,10 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     }
 
     @Override
-    public abstract void setBackground(Paint color);
+    public void setBackground(Paint color)
+    {
+        getProvidedObject().setBackground(color.getValue());
+    }
 
     protected abstract ViewProvidedObject getProvidedObject();
 }

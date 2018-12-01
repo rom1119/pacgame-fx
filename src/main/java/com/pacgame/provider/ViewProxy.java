@@ -88,4 +88,6 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     public void setBackground(Paint color) {
         this.paint = color;
     }
+
+
 }

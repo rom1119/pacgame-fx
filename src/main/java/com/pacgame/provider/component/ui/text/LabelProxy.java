@@ -16,10 +16,6 @@ class LabelProxy extends UIElementProxy {
 
     public LabelProxy() {
         proxyObject = new Label();
-        proxyObject.setPrefHeight(100);
-        proxyObject.setPrefWidth(100);
-        proxyObject.setText("sdf");
-        proxyObject.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     @Override

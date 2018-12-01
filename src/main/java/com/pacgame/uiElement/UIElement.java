@@ -16,8 +16,6 @@ public abstract class UIElement extends Component implements IUIEventTarget {
     protected Property<Integer> width;
     protected Property<Integer> height;
 
-    protected UIElementProvidedObject providedObject;
-
     public UIElement(UIProvider provider, int width, int height) {
         super();
         this.width = new WidthProperty(width);
@@ -27,48 +25,59 @@ public abstract class UIElement extends Component implements IUIEventTarget {
     public UIElement(UIProvider provider) {
         this.width = new WidthProperty(0);
         this.height = new HeightProperty(0);
+
     }
 
     @Override
     public boolean isVisible() {
-        return providedObject.isVisible();
+        return getProvidedObject().isVisible();
     }
 
     @Override
     public void show() {
-        providedObject.show();
+        getProvidedObject().show();
     }
 
     @Override
     public void hide() {
-        providedObject.hide();
+        getProvidedObject().hide();
     }
 
     @Override
     public void setX(int x) {
         super.setX(x);
-        providedObject.setX(x);
+        getProvidedObject().setX(x);
     }
 
     @Override
     public void setY(int y) {
         super.setY(y);
-        providedObject.setY(y);
+        getProvidedObject().setY(y);
     }
 
     @Override
     public void setBackground(Paint color) {
-        providedObject.setBackground(color.getValue());
+        getProvidedObject().setBackground(color.getValue());
     }
 
     @Override
-    protected ViewProvidedObject getProvidedObject() {
-        return providedObject;
-    }
+    protected abstract UIElementProvidedObject getProvidedObject();
 
     public void setBorder(Paint color, int width)
     {
-        providedObject.setBorder(color.getValue(), width);
+        getProvidedObject().setBorder(color.getValue(), width);
+    }
+
+    public void setPadding(int top, int bottom, int left, int right) {
+        getProvidedObject().setPadding(top, bottom, left, right);
+    }
+
+    public void setPadding(int x, int y) {
+        getProvidedObject().setPadding(x, y);
+    }
+
+    public void setPadding(int topRightBottomLeft){
+        getProvidedObject().setPadding(topRightBottomLeft);
     }
 
     @Override

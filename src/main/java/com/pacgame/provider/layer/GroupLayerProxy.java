@@ -64,7 +64,26 @@ public class GroupLayerProxy extends LayerProxy {
 
     @Override
     public void setBackground(Paint color) {
+        this.paint = color;
         pane.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+    @Override
+    public void setPadding(int top, int right, int bottom, int left)
+    {
+        pane.setPadding(new Insets(top, right, bottom, left));
+    }
+
+    @Override
+    public void setPadding(int x, int y)
+    {
+        pane.setPadding(new Insets(y, x, y, x));
+    }
+
+    @Override
+    public void setPadding(int topRightBottomLeft)
+    {
+        pane.setPadding(new Insets(topRightBottomLeft));
     }
 
 }

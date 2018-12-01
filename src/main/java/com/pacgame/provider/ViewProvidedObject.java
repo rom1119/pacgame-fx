@@ -65,13 +65,17 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
     @Override
     public void setX(int x) {
         this.x.set(x);
+        getProxy().setX(x);
     }
 
     @Override
     public void setY(int y) {
         this.y.set(y);
+        getProxy().setY(y);
     }
 
     @Override
     public abstract void setBackground(Paint paint);
+
+
 }

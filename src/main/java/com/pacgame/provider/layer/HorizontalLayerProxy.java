@@ -52,8 +52,4 @@ public class HorizontalLayerProxy extends LayerProxy {
 
     }
 
-    @Override
-    public void setBackground(Paint color) {
-        getProxyObject().setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
-    }
 }

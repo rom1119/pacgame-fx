@@ -5,6 +5,8 @@ import com.pacgame.uiElement.UIElement;
 
 public class InputText extends UIInput {
 
+    protected
+
     public InputText(UIProvider provider, int width, int height) {
         super(provider, width, height);
     }

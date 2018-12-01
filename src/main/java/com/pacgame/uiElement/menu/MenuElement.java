@@ -68,7 +68,7 @@ public abstract class MenuElement extends UIElement {
 
 
     @Override
-    protected ViewProvidedObject getProvidedObject() {
+    protected Label getProvidedObject() {
         return providedObject;
     }
 

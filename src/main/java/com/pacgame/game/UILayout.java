@@ -18,7 +18,6 @@ public class UILayout {
 
     public UILayout(ILayer root, ISceneFactory sceneFactory, IColorFactory colorFactory) {
         this.root = root;
-        this.root.setBackground(colorFactory.createBlue());
         this.sceneFactory = sceneFactory;
         this.colorFactory = colorFactory;
 
@@ -32,7 +31,7 @@ public class UILayout {
     public Menu createMenu(IMenuFactory menuFactory)
     {
         mainMenu = new MainMenuToLogin(menuFactory.createMenu(MainMenuToLogin.WIDTH, MainMenuToLogin.HEIGHT));
-        ((MainMenuToLogin) mainMenu).setColor(colorFactory.createGreen());
+        mainMenu.setColor(colorFactory.createCustom(0, 0, 0, 0.8));
         addLoginElement(mainMenu, menuFactory.createMenuItem("Zaloguj"));
         root.addElement(mainMenu.getMenuElement());
 
