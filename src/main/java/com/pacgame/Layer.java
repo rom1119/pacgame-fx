@@ -67,18 +67,19 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     public void removeChildren(View el) {
         if (hasChildren(el)) {
             getProvidedObject().removeChildren(el.getProvidedObject());
-            children.remove(el.hashCode());
+            children.remove(String.valueOf(el.hashCode()));
         }
     }
 
     @Override
     public boolean hasChildren(View el) {
-        return children.containsKey(el.hashCode());
+        return children.containsKey(String.valueOf(el.hashCode()));
     }
 
     @Override
     public void setParent(Layer el) {
         parent = el;
+        el.addChildren(this);
     }
 
     @Override
@@ -89,10 +90,10 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     @Override
     protected abstract LayerProvidedObject getProvidedObject();
 
-    @Override
-    public boolean isVisible() {
-        return getProvidedObject().isVisible();
-    }
+//    @Override
+//    public boolean isVisible() {
+//        return getProvidedObject().isVisible();
+//    }
 
     @Override
     public void show() {

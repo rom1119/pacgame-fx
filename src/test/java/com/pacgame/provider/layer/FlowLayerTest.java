@@ -1,34 +1,79 @@
-package com.pacgame.uiElement.layer;
+package com.pacgame.provider.layer;
 
-import com.pacgame.provider.LayerProvidedObject;
-import com.pacgame.provider.LayerProvider;
-import com.pacgame.provider.LayerProviderImpl;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class FlowLayerTest extends TestCase {
 
     private FlowLayer flowLayer;
-    private LayerProvider layerProvider;
 
     @BeforeEach
     public void setUp() {
-//        LayerProviderImpl l = Mockito.mock(LayerProviderImpl.class);
-        layerProvider = new LayerProviderImpl();
-        flowLayer = new FlowLayer(100, 100, layerProvider);
-
+        flowLayer = new FlowLayer();
     }
 
     @AfterEach
     public void tearDown() {
+    }
+
+    @Test
+    void getProxy() {
+        Assert.assertTrue(flowLayer.getProxy() != null);
+    }
+
+    @Test
+    void setWidth() {
+        flowLayer.setWidth(200);
+        Assert.assertEquals(200, flowLayer.getWidth());
+    }
+
+    @Test
+    void setHeight() {
+        flowLayer.setHeight(200);
+        Assert.assertEquals(200, flowLayer.getHeight());
+    }
+
+    @Test
+    void setBorder() {
+    }
+
+    @Test
+    void addChildren() {
+        FlowLayer child = new FlowLayer();
+        flowLayer.addChildren(child);
+        Assert.assertTrue(flowLayer.hasChildren(child));
+    }
+
+    @Test
+    void removeChildren() {
+        FlowLayer child = new FlowLayer();
+        flowLayer.addChildren(child);
+        Assert.assertTrue(flowLayer.hasChildren(child));
+        flowLayer.removeChildren(child);
+        Assert.assertFalse(flowLayer.hasChildren(child));
+    }
+
+
+    @Test
+    void hasChildren() {
+    }
+
+    @Test
+    void setParent() {
+        FlowLayer parent = new FlowLayer();
+        flowLayer.setParent(parent);
+        Assert.assertEquals(parent, flowLayer.getParent());
+        Assert.assertTrue(parent.hasChildren(flowLayer));
+    }
+
+    @Test
+    void getParent() {
+        Assert.assertEquals(null, flowLayer.getParent());
     }
 
     @Test
@@ -54,57 +99,6 @@ class FlowLayerTest extends TestCase {
         flowLayer.hide();
         Assert.assertEquals(false, flowLayer.isVisible());
     }
-    @Test
-    void setWidth() {
-        flowLayer.setWidth(200);
-        Assert.assertEquals(200, flowLayer.getWidth());
-    }
-
-    @Test
-    void setHeight() {
-        flowLayer.setHeight(200);
-        Assert.assertEquals(200, flowLayer.getHeight());
-    }
-
-    @Test
-    void setBorder() {
-    }
-
-    @Test
-    void addChildren() {
-        FlowLayer child = new FlowLayer(layerProvider);
-        flowLayer.addChildren(child);
-        Assert.assertTrue(flowLayer.hasChildren(child));
-    }
-
-    @Test
-    void removeChildren() {
-        FlowLayer child = new FlowLayer(layerProvider);
-        flowLayer.addChildren(child);
-        Assert.assertTrue(flowLayer.hasChildren(child));
-        flowLayer.removeChildren(child);
-        Assert.assertFalse(flowLayer.hasChildren(child));
-    }
-
-
-    @Test
-    void hasChildren() {
-    }
-
-    @Test
-    void setParent() {
-        FlowLayer parent = new FlowLayer(layerProvider);
-        flowLayer.setParent(parent);
-        Assert.assertEquals(parent, flowLayer.getParent());
-        Assert.assertTrue(parent.hasChildren(flowLayer));
-    }
-
-    @Test
-    void getParent() {
-        Assert.assertEquals(null, flowLayer.getParent());
-    }
-
-
 
     @Test
     void setBackground() {
@@ -158,4 +152,5 @@ class FlowLayerTest extends TestCase {
         flowLayer.setY(3456);
         Assert.assertEquals(3456, flowLayer.getY());
     }
+
 }

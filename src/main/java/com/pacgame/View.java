@@ -2,6 +2,8 @@ package com.pacgame;
 
 
 import com.pacgame.color.Paint;
+import com.pacgame.property.TranslateXProperty;
+import com.pacgame.property.TranslateYProperty;
 import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.property.HeightProperty;
@@ -17,6 +19,8 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
 
 
     public View() {
+        x = new TranslateXProperty(0);
+        y = new TranslateYProperty(0);
     }
 
     public int getId() {
@@ -24,7 +28,10 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     }
 
     @Override
-    public abstract boolean isVisible();
+    public boolean isVisible()
+    {
+        return getProvidedObject().isVisible();
+    }
 
     @Override
     public void show(){
@@ -74,12 +81,15 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     @Override
     public void setX(int x) {
         this.x.set(x);
+        getProvidedObject().setX(x);
     }
 
     @Override
     public void setY(int y) {
         this.y.set(y);
+        getProvidedObject().setY(y);
     }
+
 
     @Override
     public void setBackground(Paint color)

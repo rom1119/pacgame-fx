@@ -1,6 +1,7 @@
 package com.pacgame.provider.component.ui.text;
 
 import com.pacgame.provider.component.ui.UIElementProxy;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -12,28 +13,28 @@ import javafx.scene.paint.Paint;
 
 class LabelProxy extends UIElementProxy {
 
-    protected Label proxyObject;
+    protected javafx.scene.control.Label proxyObject;
 
     public LabelProxy() {
-        proxyObject = new Label();
+        proxyObject = new javafx.scene.control.Label();
     }
 
     @Override
-    public Label getProxyObject() {
+    public javafx.scene.control.Label getProxyObject() {
         return proxyObject;
     }
 
     @Override
     public void setBackground(Paint color) {
-        proxyObject.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+        getProxyObject().setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public String getText() {
 
-        return proxyObject.getText();
+        return getProxyObject().getText();
     }
 
     public void setText(String text) {
-        this.proxyObject.setText(text);
+        getProxyObject().setText(text);
     }
 }

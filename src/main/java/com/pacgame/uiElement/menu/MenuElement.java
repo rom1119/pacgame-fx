@@ -49,18 +49,6 @@ public abstract class MenuElement extends UIElement {
     }
 
     @Override
-    public void setX(int x) {
-        super.setX(x);
-        providedObject.setX(x);
-    }
-
-    @Override
-    public void setY(int y) {
-        super.setY(y);
-        providedObject.setY(y);
-    }
-
-    @Override
     public void setBackground(Paint color) {
         providedObject.setBackground(color.getValue());
     }

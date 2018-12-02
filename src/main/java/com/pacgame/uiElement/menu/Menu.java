@@ -38,5 +38,7 @@ public abstract class Menu extends ViewElement {
         providedObject.removeChildren(menuElement.getProvidedObject());
 
     }
+
+
 }
 

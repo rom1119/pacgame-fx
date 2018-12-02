@@ -4,7 +4,7 @@ import com.pacgame.provider.LayerProvidedObject;
 
 public class FlowLayer extends LayerProvidedObject {
 
-    protected FlowLayerProxy proxy;
+    private FlowLayerProxy proxy;
 
     public FlowLayer() {
         this.proxy = new FlowLayerProxy();

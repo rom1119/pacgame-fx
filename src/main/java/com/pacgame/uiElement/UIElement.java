@@ -34,28 +34,6 @@ public abstract class UIElement extends Component implements IUIEventTarget {
     }
 
     @Override
-    public void show() {
-        getProvidedObject().show();
-    }
-
-    @Override
-    public void hide() {
-        getProvidedObject().hide();
-    }
-
-    @Override
-    public void setX(int x) {
-        super.setX(x);
-        getProvidedObject().setX(x);
-    }
-
-    @Override
-    public void setY(int y) {
-        super.setY(y);
-        getProvidedObject().setY(y);
-    }
-
-    @Override
     public void setBackground(Paint color) {
         getProvidedObject().setBackground(color.getValue());
     }

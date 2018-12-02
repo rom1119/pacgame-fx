@@ -56,12 +56,13 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
 
     @Override
     public boolean hasChildren(ViewProxy el) {
-        return children.containsKey(el.hashCode());
+        return children.containsKey(String.valueOf(el.hashCode()));
     }
 
     @Override
     public void setParent(LayerProxy el) {
         parent = el;
+        el.addChildren(this);
     }
 
     @Override
@@ -93,6 +94,18 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
     {
         this.height.set(height);
     }
+
+    public int getWidth()
+    {
+        return this.width.get();
+    }
+
+    public int getHeight()
+    {
+        return this.height.get();
+    }
+
+
 
     public void setPadding(int top, int right, int bottom, int left)
     {

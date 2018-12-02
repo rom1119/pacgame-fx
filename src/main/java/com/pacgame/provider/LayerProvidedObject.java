@@ -28,8 +28,6 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
         this();
         this.width.set(width);
         this.height.set(height);
-        getProxy().setWidth(width);
-        getProxy().setHeight(height);
     }
 
     public void setWidth(int width)
@@ -42,6 +40,17 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     {
         this.height.set(height);
         getProxy().setHeight(height);
+    }
+
+
+    public int getWidth()
+    {
+        return this.width.get();
+    }
+
+    public int getHeight()
+    {
+        return this.height.get();
     }
 
     public void setBorder(Paint paint, int width)
@@ -61,7 +70,7 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
     @Override
     public void removeChildren(ViewProvidedObject el) {
         if (hasChildren(el)) {
-            children.remove(el.hashCode());
+            children.remove(String.valueOf(el.hashCode()));
             getProxy().removeChildren(el.getProxy());
         }
     }
@@ -71,12 +80,13 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
 
     @Override
     public boolean hasChildren(ViewProvidedObject el) {
-        return children.containsKey(el.hashCode());
+        return children.containsKey(String.valueOf(el.hashCode()));
     }
 
     @Override
     public void setParent(LayerProvidedObject el) {
         parent = el;
+        el.addChildren(this);
     }
 
     @Override

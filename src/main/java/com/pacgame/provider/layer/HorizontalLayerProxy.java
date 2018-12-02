@@ -33,7 +33,7 @@ class HorizontalLayerProxy extends LayerProxy {
     @Override
     public void removeChildren(ViewProxy el) {
         if (hasChildren(el)) {
-            children.remove(el.hashCode());
+            children.remove(String.valueOf(el.hashCode()));
             getProxyObject().getChildren().remove(el.getProxyObject());
 
         }
