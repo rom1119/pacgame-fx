@@ -3,13 +3,10 @@ package com.pacgame.provider.component;
 
 import com.pacgame.provider.ComponentProvidedObject;
 import com.pacgame.provider.Paint;
-import com.pacgame.provider.ViewProxy;
 import com.pacgame.provider.component.ui.UIElementProxy;
 import com.pacgame.provider.property.HeightProperty;
 import com.pacgame.provider.property.PropertyProvider;
 import com.pacgame.provider.property.WidthProperty;
-
-import java.util.HashMap;
 
 public abstract class UIElementProvidedObject extends ComponentProvidedObject {
 
@@ -29,7 +26,7 @@ public abstract class UIElementProvidedObject extends ComponentProvidedObject {
     }
     public void setBorder(Paint paint, int width)
     {
-        getProxy().setBorder(paint.getValue(), width);
+        getProxy().setBorder(paint.getProxy(), width);
     }
 
 
@@ -75,7 +72,7 @@ public abstract class UIElementProvidedObject extends ComponentProvidedObject {
 
     @Override
     public void setBackground(Paint paint) {
-        getProxy().setBackground(paint.getValue());
+        getProxy().setBackground(paint.getProxy());
     }
 
     public void setPadding(int top, int bottom, int left, int right) {

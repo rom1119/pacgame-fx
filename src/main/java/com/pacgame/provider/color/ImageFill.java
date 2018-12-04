@@ -10,12 +10,8 @@ public class ImageFill extends Paint {
     }
 
     @Override
-    protected ImageFillProxy getProxy() {
+    public ImageFillProxy getProxy() {
         return proxy;
     }
 
-    @Override
-    public javafx.scene.paint.Paint getValue() {
-        return proxy.proxyObject;
-    }
 }

@@ -1,7 +1,6 @@
 package com.pacgame.provider.component.shape;
 
 import com.pacgame.provider.Paint;
-import com.pacgame.provider.ViewProxy;
 import com.pacgame.provider.component.ShapeProvidedObject;
 import com.pacgame.provider.property.HeightProperty;
 import com.pacgame.provider.property.PropertyProvider;
@@ -49,6 +48,6 @@ public class Rectangle extends ShapeProvidedObject {
 
     @Override
     public void setBackground(Paint paint) {
-        proxy.setBackground(paint.getValue());
+        proxy.setBackground(paint.getProxy());
     }
 }

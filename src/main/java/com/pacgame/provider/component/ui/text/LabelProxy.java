@@ -1,15 +1,14 @@
 package com.pacgame.provider.component.ui.text;
 
+import com.pacgame.provider.alignment.PositionAlignmentProxy;
+import com.pacgame.provider.color.PaintProxy;
 import com.pacgame.provider.component.ui.UIElementProxy;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.scene.text.TextAlignment;
 
 class LabelProxy extends UIElementProxy {
 
@@ -17,6 +16,7 @@ class LabelProxy extends UIElementProxy {
 
     public LabelProxy() {
         proxyObject = new javafx.scene.control.Label();
+        proxyObject.setAlignment(Pos.CENTER);
     }
 
     @Override
@@ -25,8 +25,8 @@ class LabelProxy extends UIElementProxy {
     }
 
     @Override
-    public void setBackground(Paint color) {
-        getProxyObject().setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+    public void setBackground(PaintProxy color) {
+        getProxyObject().setBackground(new Background(new BackgroundFill(color.getProxyObject(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public String getText() {
@@ -36,5 +36,10 @@ class LabelProxy extends UIElementProxy {
 
     public void setText(String text) {
         getProxyObject().setText(text);
+    }
+
+    public void setAlignment(PositionAlignmentProxy positionProxy) {
+        proxyObject.setAlignment(positionProxy.getProxyObject());
+
     }
 }

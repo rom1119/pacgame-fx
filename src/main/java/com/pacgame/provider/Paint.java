@@ -1,8 +1,12 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.ProvidedObject;
+import com.pacgame.provider.color.PaintProxy;
 
 public abstract class Paint extends ProvidedObject {
+    protected PaintProxy proxy;
 
-    public abstract javafx.scene.paint.Paint getValue();
+    public PaintProxy getProxy()
+    {
+        return proxy;
+    }
 }

@@ -1,7 +1,6 @@
 package com.pacgame.provider.component.shape;
 
 import com.pacgame.provider.Paint;
-import com.pacgame.provider.ViewProxy;
 import com.pacgame.provider.component.ShapeProvidedObject;
 import com.pacgame.provider.property.PropertyProvider;
 import com.pacgame.provider.property.RadiusProperty;
@@ -44,6 +43,6 @@ public class Arc extends ShapeProvidedObject {
 
     @Override
     public void setBackground(Paint paint) {
-        proxy.setBackground(paint.getValue());
+        proxy.setBackground(paint.getProxy());
     }
 }

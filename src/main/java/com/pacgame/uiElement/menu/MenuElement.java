@@ -3,6 +3,7 @@ package com.pacgame.uiElement.menu;
 import com.pacgame.Property;
 import com.pacgame.color.Paint;
 import com.pacgame.property.TextProperty;
+import com.pacgame.provider.AlignmentProvider;
 import com.pacgame.provider.UIProvider;
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.component.ui.text.Label;
@@ -13,11 +14,13 @@ public abstract class MenuElement extends UIElement {
 
     protected Label providedObject;
     protected Property<String> text;
+    protected AlignmentProvider alignmentProvider;
 
-    public MenuElement(UIProvider provider, String textArg) {
+    public MenuElement(UIProvider provider, AlignmentProvider alignmentProvider, String textArg) {
         super(provider);
         text = new TextProperty(textArg);
         providedObject = provider.createTextElement(textArg);
+        this.alignmentProvider = alignmentProvider;
     }
 
     public void setText(String text) {

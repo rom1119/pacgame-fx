@@ -1,7 +1,7 @@
 package com.pacgame.provider;
 
+import com.pacgame.provider.color.PaintProxy;
 import com.pacgame.provider.interfaces.ColorableProvidedProxy;
-import com.pacgame.provider.interfaces.ColorableProvider;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
 import com.pacgame.provider.property.*;
@@ -9,7 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 
 public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy, PositionableProvider, Comparable<ViewProxy>, VisibleProvider {
-    protected Paint paint;
+    protected PaintProxy paint;
 
     protected PropertyProvider<Integer> x;
     protected PropertyProvider<Integer> y;
@@ -85,7 +85,7 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     }
 
     @Override
-    public void setBackground(Paint color) {
+    public void setBackground(PaintProxy color) {
         this.paint = color;
     }
 

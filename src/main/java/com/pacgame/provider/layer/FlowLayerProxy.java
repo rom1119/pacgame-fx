@@ -1,14 +1,14 @@
 package com.pacgame.provider.layer;
 
 import com.pacgame.provider.ViewProxy;
-import com.pacgame.provider.layer.LayerProxy;
+import com.pacgame.provider.alignment.PositionAlignment;
+import com.pacgame.provider.alignment.PositionAlignmentProxy;
+import com.pacgame.provider.color.PaintProxy;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.paint.Paint;
 
 class FlowLayerProxy extends LayerProxy {
 
@@ -24,6 +24,11 @@ class FlowLayerProxy extends LayerProxy {
         return proxyObject;
     }
 
+    public void setAlignment(PositionAlignmentProxy positionProxy) {
+        proxyObject.setAlignment(positionProxy.getProxyObject());
+
+    }
+
     @Override
     public void addChildren(ViewProxy el) {
         if (!hasChildren(el)) {
@@ -37,7 +42,6 @@ class FlowLayerProxy extends LayerProxy {
         if (hasChildren(el)) {
             children.remove(String.valueOf(el.hashCode()));
             getProxyObject().getChildren().remove(el.getProxyObject());
-
         }
     }
 
@@ -55,7 +59,7 @@ class FlowLayerProxy extends LayerProxy {
     }
 
     @Override
-    public void setBackground(Paint color) {
-        getProxyObject().setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+    public void setBackground(PaintProxy color) {
+        getProxyObject().setBackground(new Background(new BackgroundFill(color.getProxyObject(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

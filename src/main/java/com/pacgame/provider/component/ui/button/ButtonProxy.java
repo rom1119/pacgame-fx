@@ -1,12 +1,13 @@
 package com.pacgame.provider.component.ui.button;
 
+import com.pacgame.provider.alignment.PositionAlignmentProxy;
+import com.pacgame.provider.color.PaintProxy;
 import com.pacgame.provider.component.ui.UIElementProxy;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Paint;
 
 import static javafx.scene.paint.Color.rgb;
 
@@ -18,6 +19,11 @@ public abstract class ButtonProxy extends UIElementProxy {
     public ButtonProxy(String text) {
         this.text = text;
         proxyObject = new Button(this.text);
+    }
+
+    public void setAlignment(PositionAlignmentProxy positionProxy) {
+        proxyObject.setAlignment(positionProxy.getProxyObject());
+
     }
 
     public Button getProxyObject() {
@@ -44,7 +50,7 @@ public abstract class ButtonProxy extends UIElementProxy {
     }
 
     @Override
-    public void setBackground(Paint color) {
-        proxyObject.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+    public void setBackground(PaintProxy color) {
+        proxyObject.setBackground(new Background(new BackgroundFill(color.getProxyObject(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

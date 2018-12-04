@@ -1,14 +1,10 @@
 package com.pacgame.provider.layer;
 
 import com.pacgame.provider.ViewProxy;
-import com.pacgame.provider.color.Red;
-import com.pacgame.provider.layer.LayerProxy;
+import com.pacgame.provider.color.PaintProxy;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 class GroupLayerProxy extends LayerProxy {
 
@@ -20,6 +16,19 @@ class GroupLayerProxy extends LayerProxy {
         proxyObject = new Group();
         pane = new Pane();
         proxyObject.getChildren().add(pane);
+
+    }
+
+    @Override
+    public void setX(int x) {
+        super.setX(x);
+        pane.setTranslateX(x);
+    }
+
+    @Override
+    public void setY(int y) {
+        super.setY(y);
+        pane.setTranslateY(y);
     }
 
     @Override
@@ -46,6 +55,7 @@ class GroupLayerProxy extends LayerProxy {
         if (!hasChildren(el)) {
             children.put(String.valueOf(el.hashCode()), el);
             getProxyObject().getChildren().add(el.getProxyObject());
+
         }
     }
 
@@ -59,9 +69,9 @@ class GroupLayerProxy extends LayerProxy {
     }
 
     @Override
-    public void setBackground(Paint color) {
+    public void setBackground(PaintProxy color) {
         this.paint = color;
-        pane.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+        pane.setBackground(new Background(new BackgroundFill(color.getProxyObject(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.pacgame.provider.layer;
 import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.Paint;
 import com.pacgame.provider.ViewProvidedObject;
+import com.pacgame.provider.ViewProxy;
+import com.pacgame.provider.alignment.PositionAlignment;
 import com.pacgame.provider.property.PropertyProvider;
 
 public class BorderLayer extends LayerProvidedObject {
@@ -17,5 +19,6 @@ public class BorderLayer extends LayerProvidedObject {
     public LayerProxy getProxy() {
         return proxy;
     }
+
 
 }

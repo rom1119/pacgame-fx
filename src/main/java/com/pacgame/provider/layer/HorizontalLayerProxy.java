@@ -1,6 +1,7 @@
 package com.pacgame.provider.layer;
 
 import com.pacgame.provider.ViewProxy;
+import com.pacgame.provider.alignment.PositionAlignmentProxy;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.layout.Background;
@@ -15,6 +16,11 @@ class HorizontalLayerProxy extends LayerProxy {
     public HorizontalLayerProxy() {
         super();
         proxyObject = new HBox();
+    }
+
+    public void setAlignment(PositionAlignmentProxy positionProxy) {
+        proxyObject.setAlignment(positionProxy.getProxyObject());
+
     }
 
     @Override

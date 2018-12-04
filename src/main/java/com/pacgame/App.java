@@ -134,7 +134,7 @@ public class App extends Application {
         UIFactory uiFacade = new UIFactory(uiProvider);
         LayerFactory layerFactory = new LayerFactory(layerProvider);
         SceneFactory sceneFactory = new SceneFactory(sceneProvider);
-        MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider);
+        MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider, );
         ColorFactory colorFactory = new ColorFactoryImpl(paintProvider);
 
         // Adapters

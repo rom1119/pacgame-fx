@@ -4,13 +4,13 @@ import com.pacgame.IChildren;
 import com.pacgame.Parentable;
 import com.pacgame.Visible;
 import com.pacgame.provider.ViewProxy;
+import com.pacgame.provider.color.PaintProxy;
 import com.pacgame.provider.property.HeightProperty;
 import com.pacgame.provider.property.PropertyProvider;
 import com.pacgame.provider.property.WidthProperty;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,9 +39,9 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
 
 
 
-    public void setBorder(Paint color, int width)
+    public void setBorder(PaintProxy color, int width)
     {
-        ((Pane)getProxyObject()).setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, null, new BorderWidths(width))));
+        ((Pane)getProxyObject()).setBorder(new Border(new BorderStroke(color.getProxyObject(), BorderStrokeStyle.SOLID, null, new BorderWidths(width))));
     }
 
     @Override
@@ -123,9 +123,9 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
     }
 
     @Override
-    public void setBackground(Paint color) {
+    public void setBackground(PaintProxy color) {
         super.setBackground(color);
-        ((Pane)getProxyObject()).setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+        ((Pane)getProxyObject()).setBackground(new Background(new BackgroundFill(color.getProxyObject(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
 //    @Override

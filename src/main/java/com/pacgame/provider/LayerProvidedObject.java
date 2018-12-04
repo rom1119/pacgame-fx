@@ -55,7 +55,7 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
 
     public void setBorder(Paint paint, int width)
     {
-        getProxy().setBorder(paint.getValue(), width);
+        getProxy().setBorder(paint.getProxy(), width);
     }
 
     @Override
@@ -111,7 +111,7 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
 
     @Override
     public void setBackground(Paint paint) {
-        getProxy().setBackground(paint.getValue());
+        getProxy().setBackground(paint.getProxy());
     }
 
     public void setPadding(int top, int bottom, int left, int right) {

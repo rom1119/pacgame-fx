@@ -31,8 +31,10 @@ public class UILayout {
     public Menu createMenu(IMenuFactory menuFactory)
     {
         mainMenu = new MainMenuToLogin(menuFactory.createMenu(MainMenuToLogin.WIDTH, MainMenuToLogin.HEIGHT));
-        mainMenu.setColor(colorFactory.createCustom(0, 0, 0, 0.8));
+        mainMenu.setColor(colorFactory.createCustom(0, 0, 0, 0.1));
         addLoginElement(mainMenu, menuFactory.createMenuItem("Zaloguj"));
+        addLoginElement(mainMenu, menuFactory.createMenuItem("Załóż konto"));
+        addLoginElement(mainMenu, menuFactory.createMenuItem("Wyjście"));
         root.addElement(mainMenu.getMenuElement());
 
         return mainMenu;
@@ -52,6 +54,22 @@ public class UILayout {
         menuItem.setOnSelect(e -> {
             menu.hide();
             loginForm.show();
+        });
+
+    }
+
+    private void addRegisterElement(Menu menu, IMenuItem menuItem)
+    {
+        menu.addMenuItem(menuItem);
+        menuItem.setOnSelect(e -> {
+            menu.hide();
+        });
+
+    }private void addExitElement(Menu menu, IMenuItem menuItem)
+    {
+        menu.addMenuItem(menuItem);
+        menuItem.setOnSelect(e -> {
+            menu.hide();
         });
 
     }

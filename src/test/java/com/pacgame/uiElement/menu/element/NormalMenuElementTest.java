@@ -24,7 +24,6 @@ class NormalMenuElementTest extends TestCase {
     @BeforeEach
     public void setUp() {
         UIProvider uiProvider = new UIProviderImpl();
-
         JavaFxThread.run(()-> {
 
             menuElement = new NormalMenuElement(uiProvider, "Example");

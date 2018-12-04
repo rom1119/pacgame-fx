@@ -1,7 +1,7 @@
 package com.pacgame.provider.component.ui.text;
 
 import com.pacgame.provider.Paint;
-import com.pacgame.provider.ViewProxy;
+import com.pacgame.provider.alignment.PositionAlignment;
 import com.pacgame.provider.component.UIElementProvidedObject;
 
 public class Label extends UIElementProvidedObject {
@@ -15,6 +15,11 @@ public class Label extends UIElementProvidedObject {
         proxy.setText(text);
     }
 
+    public void setAlignment(PositionAlignment positionAlignment) {
+        proxy.setAlignment(positionAlignment.getProxy());
+
+    }
+
     public void setText(String text) {
         this.text = text;
         proxy.setText(text);
@@ -26,7 +31,7 @@ public class Label extends UIElementProvidedObject {
 
     @Override
     public void setBorder(Paint paint, int width) {
-        proxy.setBorder(paint.getValue(), width);
+        proxy.setBorder(paint.getProxy(), width);
     }
 
     @Override

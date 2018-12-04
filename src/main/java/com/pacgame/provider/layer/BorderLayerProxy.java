@@ -1,11 +1,10 @@
 package com.pacgame.provider.layer;
 
 import com.pacgame.provider.ViewProxy;
-import com.pacgame.provider.layer.LayerProxy;
+import com.pacgame.provider.alignment.PositionAlignmentProxy;
+import com.pacgame.provider.color.PaintProxy;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
 
 class BorderLayerProxy extends LayerProxy {
 
@@ -15,6 +14,12 @@ class BorderLayerProxy extends LayerProxy {
         super();
         proxyObject = new BorderPane();
     }
+
+    public void setAlignment(ViewProxy el, PositionAlignmentProxy position) {
+        getProxyObject().setAlignment(el.getProxyObject(), position.getProxyObject());
+
+    }
+
 
     @Override
     public void addChildren(ViewProxy el) {
@@ -34,8 +39,8 @@ class BorderLayerProxy extends LayerProxy {
     }
 
     @Override
-    public void setBackground(Paint color) {
-        getProxyObject().setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+    public void setBackground(PaintProxy color) {
+        getProxyObject().setBackground(new Background(new BackgroundFill(color.getProxyObject(), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     @Override
