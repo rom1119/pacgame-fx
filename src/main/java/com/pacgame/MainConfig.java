@@ -1,9 +1,6 @@
 package com.pacgame;
 
-import com.pacgame.data.service.ApiImpl;
-import com.pacgame.ui.component.*;
-import com.pacgame.ui.event.eventHandler.OnBackToMenu;
-import com.pacgame.ui.event.eventHandler.OnLoginUser;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -64,69 +61,69 @@ public class MainConfig
 //        return new OnLoginUser(loginForm, mainMenu);
 //    }
 
-    @Autowired
-    public void setLoggedUserUrl(Environment env)
-    {
-        ApiImpl.GET_LOGGED_USER_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.getLoggedUser");
-    }
-
-    @Autowired
-    public void setGetUserUrl(Environment env)
-    {
-        ApiImpl.GET_USER_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.getUser");
-    }
-
-    @Autowired
-    public void setPutUserUrl(Environment env)
-    {
-        ApiImpl.PUT_USER_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.putUser");
-    }
-
-    @Autowired
-    public void setPutUserImageUrl(Environment env)
-    {
-        ApiImpl.PUT_USER_IMAGE_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.putUserImage");
-    }
-
-    @Autowired
-    public void setGetUsersUrl(Environment env)
-    {
-        ApiImpl.GET_USERS_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.getUsers");
-    }
-
-    @Autowired
-    public void setTokenUrl(Environment env)
-    {
-        ApiImpl.GET_TOKEN_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.getToken");
-    }
-
-    @Autowired
-    public void setClientId(Environment env)
-    {
-        ApiImpl.CLIENT_ID = env.getProperty("oauth.clientId");
-    }
-
-    @Autowired
-    public void setClientSecret(Environment env)
-    {
-        ApiImpl.CLIENT_SECRET = env.getProperty("oauth.clientSecret");
-    }
-
-    @Autowired
-    public void setLogout(Environment env)
-    {
-        ApiImpl.LOGOUT_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.logout");
-    }
-
-    @Autowired
-    public void setRegisterUrl(Environment env)
-    {
-        ApiImpl.REGISTER_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.register");
-    }
-
-    @Autowired
-    public void setResourceUrl(Environment env)
-    {
-        ApiImpl.RESOURCE_URL = env.getProperty("oauth.host") + env.getProperty("url.resource");
-    }
+//    @Autowired
+//    public void setLoggedUserUrl(Environment env)
+//    {
+//        ApiImpl.GET_LOGGED_USER_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.getLoggedUser");
+//    }
+//
+//    @Autowired
+//    public void setGetUserUrl(Environment env)
+//    {
+//        ApiImpl.GET_USER_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.getUser");
+//    }
+//
+//    @Autowired
+//    public void setPutUserUrl(Environment env)
+//    {
+//        ApiImpl.PUT_USER_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.putUser");
+//    }
+//
+//    @Autowired
+//    public void setPutUserImageUrl(Environment env)
+//    {
+//        ApiImpl.PUT_USER_IMAGE_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.putUserImage");
+//    }
+//
+//    @Autowired
+//    public void setGetUsersUrl(Environment env)
+//    {
+//        ApiImpl.GET_USERS_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.getUsers");
+//    }
+//
+//    @Autowired
+//    public void setTokenUrl(Environment env)
+//    {
+//        ApiImpl.GET_TOKEN_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.getToken");
+//    }
+//
+//    @Autowired
+//    public void setClientId(Environment env)
+//    {
+//        ApiImpl.CLIENT_ID = env.getProperty("oauth.clientId");
+//    }
+//
+//    @Autowired
+//    public void setClientSecret(Environment env)
+//    {
+//        ApiImpl.CLIENT_SECRET = env.getProperty("oauth.clientSecret");
+//    }
+//
+//    @Autowired
+//    public void setLogout(Environment env)
+//    {
+//        ApiImpl.LOGOUT_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.logout");
+//    }
+//
+//    @Autowired
+//    public void setRegisterUrl(Environment env)
+//    {
+//        ApiImpl.REGISTER_URL = env.getProperty("oauth.host") + env.getProperty("oauth.url.register");
+//    }
+//
+//    @Autowired
+//    public void setResourceUrl(Environment env)
+//    {
+//        ApiImpl.RESOURCE_URL = env.getProperty("oauth.host") + env.getProperty("url.resource");
+//    }
 }
