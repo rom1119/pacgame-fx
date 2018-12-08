@@ -15,11 +15,6 @@ class BorderLayerProxy extends LayerProxy {
         proxyObject = new BorderPane();
     }
 
-    public void setAlignment(ViewProxy el, PositionAlignmentProxy position) {
-        getProxyObject().setAlignment(el.getProxyObject(), position.getProxyObject());
-
-    }
-
 
     @Override
     public void addChildren(ViewProxy el) {

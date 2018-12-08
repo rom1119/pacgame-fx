@@ -127,14 +127,15 @@ public class App extends Application {
 
         // Providers
         UIProviderImpl uiProvider = new UIProviderImpl();
-        LayerProviderImpl layerProvider = new LayerProviderImpl();
-        SceneProviderImpl sceneProvider = new SceneProviderImpl();
+        LayerProvider layerProvider = new LayerProviderImpl();
+        SceneProvider sceneProvider = new SceneProviderImpl();
         PaintProvider paintProvider = new PaintProviderImpl();
+        PositionAlignmentProvider positionAlignmentProvider = new PositionAlignmentProviderImpl();
 
         UIFactory uiFacade = new UIFactory(uiProvider);
         LayerFactory layerFactory = new LayerFactory(layerProvider);
         SceneFactory sceneFactory = new SceneFactory(sceneProvider);
-        MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider, );
+        MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider, positionAlignmentProvider);
         ColorFactory colorFactory = new ColorFactoryImpl(paintProvider);
 
         // Adapters

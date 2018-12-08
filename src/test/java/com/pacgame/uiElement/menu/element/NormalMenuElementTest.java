@@ -1,7 +1,7 @@
 package com.pacgame.uiElement.menu.element;
 
-import com.pacgame.provider.UIProvider;
-import com.pacgame.provider.UIProviderImpl;
+import com.pacgame.provider.*;
+import com.pacgame.provider.alignment.PositionAlignment;
 import com.pacgame.testEnv.JavaFxThread;
 import junit.framework.TestCase;
 import org.junit.Assert;
@@ -24,9 +24,10 @@ class NormalMenuElementTest extends TestCase {
     @BeforeEach
     public void setUp() {
         UIProvider uiProvider = new UIProviderImpl();
+        PositionAlignmentProvider positionAlignment = new PositionAlignmentProviderImpl();
         JavaFxThread.run(()-> {
 
-            menuElement = new NormalMenuElement(uiProvider, "Example");
+            menuElement = new NormalMenuElement(uiProvider, positionAlignment, "Example");
         });
 
     }

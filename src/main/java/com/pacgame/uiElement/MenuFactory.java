@@ -2,6 +2,7 @@ package com.pacgame.uiElement;
 
 import com.pacgame.provider.AlignmentProvider;
 import com.pacgame.provider.LayerProvider;
+import com.pacgame.provider.PositionAlignmentProvider;
 import com.pacgame.provider.UIProvider;
 import com.pacgame.uiElement.menu.MainMenu;
 import com.pacgame.uiElement.menu.Menu;
@@ -12,20 +13,20 @@ public class MenuFactory {
 
     private UIProvider uiProvider;
     private LayerProvider layerProvider;
-    private AlignmentProvider alignmentProvider;
+    private PositionAlignmentProvider positionAlignmentProvider;
 
-    public MenuFactory(UIProvider uiProvider, LayerProvider layerProvider, AlignmentProvider alignmentProvider) {
+    public MenuFactory(UIProvider uiProvider, LayerProvider layerProvider, PositionAlignmentProvider positionAlignmentProvider) {
         this.uiProvider = uiProvider;
         this.layerProvider = layerProvider;
-        this.alignmentProvider = alignmentProvider;
+        this.positionAlignmentProvider = positionAlignmentProvider;
     }
 
     public Menu createMenu(int width, int height) {
-        return new MainMenu(layerProvider, alignmentProvider, width, height);
+        return new MainMenu(layerProvider, positionAlignmentProvider, width, height);
     }
 
     public MenuElement createMenuElement(String text) {
-        return new NormalMenuElement(uiProvider, alignmentProvider, text) {
+        return new NormalMenuElement(uiProvider, positionAlignmentProvider, text) {
         };
     }
 }
