@@ -11,7 +11,7 @@ public class MainMenu extends Menu {
         super(provider, positionAlignmentProvider, width, height);
         providedObject = provider.createVerticalLayer();
         providedObject.setWidth(width);
-        providedObject.setHeight(width);
+        providedObject.setHeight(height);
         providedObject.setAlignment(positionAlignmentProvider.topCenter());
     }
 

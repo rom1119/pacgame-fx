@@ -1,6 +1,7 @@
 package com.pacgame;
 
-import com.pacgame.provider.event.ChangeListener;
+
+import com.pacgame.event.listener.ChangeListener;
 
 public abstract class Property<T> {
 

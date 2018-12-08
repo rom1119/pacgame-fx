@@ -25,9 +25,10 @@ class NormalMenuElementTest extends TestCase {
     public void setUp() {
         UIProvider uiProvider = new UIProviderImpl();
         PositionAlignmentProvider positionAlignment = new PositionAlignmentProviderImpl();
+        PaintProvider paintProvider = new PaintProviderImpl();
         JavaFxThread.run(()-> {
 
-            menuElement = new NormalMenuElement(uiProvider, positionAlignment, "Example");
+            menuElement = new NormalMenuElement(uiProvider, positionAlignment, paintProvider, "Example");
         });
 
     }
