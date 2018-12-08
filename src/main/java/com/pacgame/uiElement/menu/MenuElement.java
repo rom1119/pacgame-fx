@@ -16,12 +16,21 @@ public abstract class MenuElement extends UIElement {
     protected Label providedObject;
     protected Property<String> text;
     protected PositionAlignmentProvider positionAlignmentProvider;
+    protected Menu menu;
 
     public MenuElement(UIProvider provider, PositionAlignmentProvider positionAlignmentProvider, String textArg) {
         super(provider);
         text = new TextProperty(textArg);
         providedObject = provider.createTextElement(textArg);
         this.positionAlignmentProvider = positionAlignmentProvider;
+    }
+
+
+    private void calculateWidth()
+    {
+        if (menu != null) {
+            setWidth(menu.getWidth() / 2);
+        }
     }
 
     public void setText(String text) {
@@ -88,5 +97,10 @@ public abstract class MenuElement extends UIElement {
     @Override
     public String toString() {
         return text.get().replace(" ", "");
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+        calculateWidth();
     }
 }

@@ -24,6 +24,27 @@ public abstract class UIElementProxy extends ComponentProxy {
         getProxyObject().setPadding(new Insets(top, bottom, left, right));
     }
 
+    public void setWidth(int width)
+    {
+        getProxyObject().setPrefWidth(width);
+    }
+
+    public void setHeight(int height)
+    {
+        getProxyObject().setPrefHeight(height);
+    }
+
+    public int getWidth()
+    {
+        return (int) getProxyObject().getPrefWidth();
+    }
+
+    public int getHeight()
+    {
+        return (int) getProxyObject().getPrefHeight();
+    }
+
+
     public void setPadding(int x, int y) {
         getProxyObject().setPadding(new Insets(y, x, y, x));
     }

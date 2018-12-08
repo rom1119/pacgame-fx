@@ -28,6 +28,30 @@ public abstract class UIElement extends Component implements IUIEventTarget {
 
     }
 
+    public void setWidth(int width)
+    {
+        this.width.set(width);
+        getProvidedObject().setWidth(width);
+    }
+
+    public void setHeight(int height)
+    {
+        this.height.set(height);
+        getProvidedObject().setHeight(height);
+    }
+
+    public int getWidth()
+    {
+        return width.get();
+    }
+
+    public int getHeight()
+    {
+        return height.get();
+    }
+
+
+
     @Override
     public boolean isVisible() {
         return getProvidedObject().isVisible();

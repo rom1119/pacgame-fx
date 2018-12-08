@@ -26,6 +26,7 @@ public abstract class Menu extends ViewElement {
     {
         menuItems.put(menuElement.toString(), menuElement);
         getProvidedObject().addChildren(menuElement.getProvidedObject());
+        menuElement.setMenu(this);
     }
 
     public void removeMenuItem(MenuElement menuElement)

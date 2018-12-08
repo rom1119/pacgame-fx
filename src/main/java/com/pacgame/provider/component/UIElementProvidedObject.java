@@ -29,6 +29,28 @@ public abstract class UIElementProvidedObject extends ComponentProvidedObject {
         getProxy().setBorder(paint.getProxy(), width);
     }
 
+    public void setWidth(int width)
+    {
+        this.width.set(width);
+        getProxy().setWidth(width);
+    }
+
+    public void setHeight(int height)
+    {
+        this.height.set(height);
+        getProxy().setHeight(height);
+    }
+
+    public int getWidth()
+    {
+        return width.get();
+    }
+
+    public int getHeight()
+    {
+        return height.get();
+    }
+
 
     @Override
     public boolean isVisible() {
