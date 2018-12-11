@@ -1,5 +1,6 @@
 package com.pacgame.provider;
 
+import com.pacgame.provider.event.IEventHandler;
 import com.pacgame.provider.interfaces.ColorableProvider;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
@@ -15,6 +16,14 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
     public ViewProvidedObject() {
         x = new TranslateXProperty(0);
         y = new TranslateYProperty(0);
+    }
+
+    public <T extends EventProvidedObject> void addEventHandler(
+            EventType<T> eventType,
+            IEventHandler<T> eventHandler
+            )
+    {
+        getProxy().addEventHandler(eventType.getProxy(), eventHandler);
     }
 
 

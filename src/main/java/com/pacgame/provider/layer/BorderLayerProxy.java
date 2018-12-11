@@ -4,6 +4,7 @@ import com.pacgame.provider.ViewProxy;
 import com.pacgame.provider.alignment.PositionAlignmentProxy;
 import com.pacgame.provider.color.PaintProxy;
 import javafx.geometry.Insets;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 class BorderLayerProxy extends LayerProxy {
@@ -14,6 +15,8 @@ class BorderLayerProxy extends LayerProxy {
         super();
         proxyObject = new BorderPane();
     }
+
+
 
 
     @Override

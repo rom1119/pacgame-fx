@@ -1,4 +1,4 @@
-package com.pacgame.event.handler;
+package com.pacgame.provider.event.handler;
 
 import com.pacgame.event.IEventHandler;
 

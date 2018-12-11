@@ -1,6 +1,6 @@
 package com.pacgame.provider.property;
 
-import com.pacgame.provider.event.ChangeListener;
+import com.pacgame.provider.event.listener.ChangeListener;
 
 public abstract class PropertyProvider<T> {
 

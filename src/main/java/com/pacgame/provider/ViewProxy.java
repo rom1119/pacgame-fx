@@ -1,12 +1,12 @@
 package com.pacgame.provider;
 
 import com.pacgame.provider.color.PaintProxy;
+import com.pacgame.provider.event.IEventHandler;
 import com.pacgame.provider.interfaces.ColorableProvidedProxy;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
 import com.pacgame.provider.property.*;
 import javafx.scene.Node;
-import javafx.scene.paint.Paint;
 
 public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy, PositionableProvider, Comparable<ViewProxy>, VisibleProvider {
     protected PaintProxy paint;
@@ -90,4 +90,8 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     }
 
 
+    public <T extends EventProvidedObject> void addEventHandler(EventTypeProxy eventTypeProxy, IEventHandler<T> eventHandler)
+    {
+        getProxyObject().addEventHandler(eventTypeProxy.getProxyObject(), eventHandler.getProxyObject());
+    }
 }

@@ -1,4 +1,4 @@
-package com.pacgame.provider.event;
+package com.pacgame.provider.event.listener;
 
 public interface ChangeListener<T> {
 
