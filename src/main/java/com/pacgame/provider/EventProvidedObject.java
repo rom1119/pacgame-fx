@@ -2,6 +2,7 @@ package com.pacgame.provider;
 
 import com.pacgame.provider.event.EventProxy;
 import com.pacgame.provider.event.IEventTarget;
+import com.pacgame.provider.event.type.EventType;
 
 public abstract class EventProvidedObject extends ProvidedObject {
 

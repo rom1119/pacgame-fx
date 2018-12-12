@@ -12,6 +12,11 @@ public class KeyEventProxy extends EventProxy {
     }
 
     @Override
+    public Class<? extends EventProxy> getType() {
+        return getClass();
+    }
+
+    @Override
     protected KeyEvent getProxyObject() {
         return proxyObject;
     }

@@ -4,11 +4,16 @@ import com.pacgame.provider.event.EventProxy;
 import javafx.event.Event;
 import javafx.scene.input.MouseEvent;
 
-public class MouseEventProxy extends EventProxy {
+class MouseEventProxy extends EventProxy {
 
     protected MouseEvent proxyObject;
 
     public MouseEventProxy() {
+    }
+
+    @Override
+    public Class<? extends EventProxy> getType() {
+        return getClass();
     }
 
     @Override

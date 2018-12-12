@@ -1,7 +1,6 @@
 package com.pacgame.provider.event.type;
 
 import com.pacgame.provider.EventProvidedObject;
-import com.pacgame.provider.EventType;
 import com.pacgame.provider.event.EventProxy;
 import com.pacgame.provider.event.IEventTarget;
 
@@ -17,7 +16,7 @@ public class KeyEvent extends EventProvidedObject {
         return proxy;
     }
 
-    public KeyEvent(IEventTarget target, Object source, EventType<? extends KeyEvent> eventType) {
+    KeyEvent(IEventTarget target, Object source, EventType<KeyEvent> eventType) {
         super(target, source, eventType);
         proxy = new KeyEventProxy();
     }
