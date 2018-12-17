@@ -7,27 +7,10 @@ import com.pacgame.game.ILayer;
 import com.pacgame.game.IView;
 
 public abstract class LayerAdapter extends ViewAdapter implements ILayer {
-    protected Layer layer;
-
-    @Override
-    public void hide() {
-        layer.hide();
-    }
-
-    @Override
-    public void show() {
-        layer.show();
-    }
-
-    @Override
-    public void setBackground(IColor color) {
-        layer.setBackground(((ColorAdapter)color).getValue());
-    }
-
 
     @Override
     public void addElement(IView view) {
-        layer.addChildren(((ViewAdapter) view).getProvidedObject());
+        getProvidedObject().addChildren(((ViewAdapter) view).getProvidedObject());
     }
 
     @Override
@@ -35,28 +18,25 @@ public abstract class LayerAdapter extends ViewAdapter implements ILayer {
 
     }
 
-    public Layer getProvidedObject()
-    {
-        return layer;
-    }
+    public abstract Layer getProvidedObject();
 
     @Override
     public int getWidth() {
-        return layer.getWidth();
+        return getProvidedObject().getWidth();
     }
 
     @Override
     public int getHeight() {
-        return layer.getHeight();
+        return getProvidedObject().getHeight();
     }
 
     @Override
     public void setWidth(int width) {
-        layer.setWidth(width);
+        getProvidedObject().setWidth(width);
     }
 
     @Override
     public void setHeight(int height) {
-        layer.setHeight(height);
+        getProvidedObject().setHeight(height);
     }
 }

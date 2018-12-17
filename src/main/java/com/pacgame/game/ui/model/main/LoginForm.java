@@ -31,48 +31,61 @@ public class LoginForm {
         this.componentFactory = componentFactory;
         this.parent = parent;
         this.colorFactory = colorFactory;
+
     }
 
-    public ILayer buildView()
+    public ILayer buildView(int width, int height)
     {
-        if (root != null) {
-            return root;
-        }
-        root = layoutFactory.createVerticalLayer(parent.getWidth(), parent.getHeight());
+        if (root == null) {
+            root = layoutFactory.createVerticalLayer(width, height);
 
-        root.addElement(createLogin());
-        root.addElement(createPassword());
-        root.addElement(createSendButton());
+            root.addElement(createLogin(width, height));
+            root.addElement(createPassword(width, height));
+            root.addElement(createSendButton(width, height));
+        }
 
         return root;
     }
 
-    private ILayer createLogin()
+
+
+
+    private ILayer createLogin(int width, int height)
     {
-        loginLayer = layoutFactory.createVerticalLayer(parent.getWidth() / 2,  parent.getHeight() / 2);
+        loginLayer = layoutFactory.createCenteredVerticalLayer(width, height / 4);
 
         loginLabel = componentFactory.createLabelText("Login");
-        loginInput = componentFactory.createInputText(parent.getWidth() / 4, 50);
+        loginInput = componentFactory.createInputText(width / 2, 60);
+//        loginInput.setBackground(colorFactory.createCustom(255, 0, 0, 0.1));
+
+        loginLayer.addElement(loginLabel);
+        loginLayer.addElement(loginInput);
 
         return loginLayer;
     }
 
-    private ILayer createPassword()
+    private ILayer createPassword(int width, int height)
     {
-        passwordLayer = layoutFactory.createVerticalLayer(parent.getWidth() / 2,  parent.getHeight() / 2);
+        passwordLayer = layoutFactory.createCenteredVerticalLayer(width,  height / 4);
 
         passwordLabel = componentFactory.createLabelText("Hasło");
-        passwordInput = componentFactory.createInputText(parent.getWidth() / 4, 50);
+        passwordInput = componentFactory.createInputText(width / 2, 60);
+
+        passwordLayer.addElement(passwordLabel);
+        passwordLayer.addElement(passwordInput);
 
         return passwordLayer;
     }
 
-    private ILayer createSendButton()
+    private ILayer createSendButton(int width, int height)
     {
-        sendBtnLayer = layoutFactory.createVerticalLayer(parent.getWidth() / 2,  parent.getHeight() / 2);
+        sendBtnLayer = layoutFactory.createCenteredVerticalLayer(width,  height / 2);
 
         sendBtn = componentFactory.createButtonSuccess("Zaloguj się");
         globalError = componentFactory.createLabelText("");
+
+        sendBtnLayer.addElement(sendBtn);
+        sendBtnLayer.addElement(globalError);
 
         return sendBtnLayer;
     }

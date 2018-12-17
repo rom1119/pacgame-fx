@@ -23,7 +23,10 @@ public class UIComponentFactoryAdapter implements IUIComponentFactory {
 
     @Override
     public IUIComponent createInputText(int width, int height) {
-        return new InputTextAdapter(uiFactory.createTextArea());
+        InputTextAdapter inputTextAdapter = new InputTextAdapter(uiFactory.createTextArea());
+        inputTextAdapter.setWidth(width);
+        inputTextAdapter.setHeight(height);
+        return inputTextAdapter;
     }
 
     @Override

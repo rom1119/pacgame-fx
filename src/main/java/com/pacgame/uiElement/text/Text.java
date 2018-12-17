@@ -7,6 +7,7 @@ import com.pacgame.provider.UIProvider;
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.component.ui.text.Label;
 import com.pacgame.provider.component.ui.text.LabelBuilder;
+import com.pacgame.provider.event.type.MouseEvent;
 import com.pacgame.uiElement.UIElement;
 
 public abstract class Text extends UIElement {

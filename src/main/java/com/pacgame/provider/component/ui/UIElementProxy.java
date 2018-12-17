@@ -4,10 +4,7 @@ import com.pacgame.provider.color.PaintProxy;
 import com.pacgame.provider.component.ComponentProxy;
 import javafx.geometry.Insets;
 import javafx.scene.control.Control;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.*;
 
 public abstract class UIElementProxy extends ComponentProxy {
 
@@ -20,28 +17,35 @@ public abstract class UIElementProxy extends ComponentProxy {
         getProxyObject().setBorder(new Border(new BorderStroke(color.getProxyObject(), BorderStrokeStyle.SOLID, null, new BorderWidths(width))));
     }
 
+    @Override
+    public void setBackground(PaintProxy color) {
+        super.setBackground(color);
+        getProxyObject().setBackground(new Background(new BackgroundFill(color.getProxyObject(), CornerRadii.EMPTY, Insets.EMPTY)));
+    }
+
+
     public void setPadding(int top, int bottom, int left, int right) {
         getProxyObject().setPadding(new Insets(top, bottom, left, right));
     }
 
     public void setWidth(int width)
     {
-        getProxyObject().setPrefWidth(width);
+        getProxyObject().setMaxWidth(width);
     }
 
     public void setHeight(int height)
     {
-        getProxyObject().setPrefHeight(height);
+        getProxyObject().setMaxHeight(height);
     }
 
     public int getWidth()
     {
-        return (int) getProxyObject().getPrefWidth();
+        return (int) getProxyObject().getMaxWidth();
     }
 
     public int getHeight()
     {
-        return (int) getProxyObject().getPrefHeight();
+        return (int) getProxyObject().getMaxHeight();
     }
 
 

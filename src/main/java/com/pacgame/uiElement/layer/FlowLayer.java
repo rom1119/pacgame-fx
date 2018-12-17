@@ -3,6 +3,7 @@ package com.pacgame.uiElement.layer;
 import com.pacgame.Layer;
 import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.LayerProvider;
+import com.pacgame.uiElement.alignment.Position;
 
 public class FlowLayer extends Layer {
     protected com.pacgame.provider.layer.FlowLayer providedObject;
@@ -20,6 +21,11 @@ public class FlowLayer extends Layer {
     public FlowLayer(LayerProvider provider) {
         super(provider);
         this.providedObject = provider.createFlowLayer();
+    }
+
+    public void setAlignment(Position position)
+    {
+        providedObject.setAlignment(position.getProvidedObject());
     }
 
 

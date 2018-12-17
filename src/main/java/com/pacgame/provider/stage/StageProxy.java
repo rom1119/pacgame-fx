@@ -32,4 +32,9 @@ public class StageProxy extends Proxy implements IStage {
     public void show() {
         proxyObject.show();
     }
+
+    @Override
+    protected Stage getProxyObject() {
+        return proxyObject;
+    }
 }

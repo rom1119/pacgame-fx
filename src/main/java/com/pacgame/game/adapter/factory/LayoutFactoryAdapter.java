@@ -2,20 +2,24 @@ package com.pacgame.game.adapter.factory;
 
 import com.pacgame.game.ILayer;
 import com.pacgame.game.ILayoutFactory;
+import com.pacgame.game.IVerticalLayer;
 import com.pacgame.game.adapter.FlowLayerAdapter;
 import com.pacgame.game.adapter.GroupLayerAdapter;
 import com.pacgame.game.adapter.VerticalLayerAdapter;
 import com.pacgame.uiElement.LayerFactory;
 import com.pacgame.uiElement.UIFactory;
+import com.pacgame.uiElement.alignment.PositionFactory;
 
 public class LayoutFactoryAdapter implements ILayoutFactory {
 
     private UIFactory uiFacade;
     private LayerFactory layerFacade;
+    private PositionFactory positionFactory;
 
-    public LayoutFactoryAdapter(UIFactory uiFacade, LayerFactory layerFacade) {
+    public LayoutFactoryAdapter(UIFactory uiFacade, LayerFactory layerFacade, PositionFactory positionFactory) {
         this.uiFacade = uiFacade;
         this.layerFacade = layerFacade;
+        this.positionFactory = positionFactory;
     }
 
     @Override
@@ -29,7 +33,14 @@ public class LayoutFactoryAdapter implements ILayoutFactory {
     }
 
     @Override
-    public ILayer createVerticalLayer(int width, int height) {
-        return new VerticalLayerAdapter(layerFacade, width, height);
+    public IVerticalLayer createVerticalLayer(int width, int height) {
+        return new VerticalLayerAdapter(layerFacade, positionFactory, width, height);
+    }
+
+    @Override
+    public IVerticalLayer createCenteredVerticalLayer(int width, int height) {
+        IVerticalLayer verticalLayer = createVerticalLayer(width, height);
+        verticalLayer.centerPosition();
+        return verticalLayer;
     }
 }

@@ -6,6 +6,8 @@ import javafx.event.Event;
 
 public interface IEventHandler<T extends EventProvidedObject> {
 
-    IEventHandlerProxy<? super Event> getProxy();
+//    IEventHandlerProxy<? super Event> getProxy();
+
+    void handle(T event);
 
 }

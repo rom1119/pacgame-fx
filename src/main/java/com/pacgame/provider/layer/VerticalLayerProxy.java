@@ -31,7 +31,6 @@ public class VerticalLayerProxy extends LayerProxy {
 
     @Override
     public void addChildren(ViewProxy el) {
-        System.out.println(el);
         if (!hasChildren(el)) {
             children.put(String.valueOf(el.hashCode()), el);
             getProxyObject().getChildren().add(el.getProxyObject());

@@ -1,13 +1,14 @@
 package com.pacgame.provider;
 
 import com.pacgame.provider.event.IEventHandler;
-import com.pacgame.provider.event.type.EventType;
+import com.pacgame.provider.event.IEventTarget;
 import com.pacgame.provider.interfaces.ColorableProvider;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
 import com.pacgame.provider.property.*;
 
-public abstract class ViewProvidedObject extends ProvidedObject implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider {
+public abstract class ViewProvidedObject extends ProvidedObject
+        implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider, IEventTarget {
 
     protected PropertyProvider<Integer> x;
     protected PropertyProvider<Integer> y;
@@ -20,13 +21,21 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
     }
 
     public <T extends EventProvidedObject> void addEventHandler(
-            EventType<T> eventType,
+                EventType<T> eventType,
             IEventHandler<T> eventHandler
             )
     {
-        getProxy().addEventHandler(eventType.getProxy(), eventHandler.getProxy());
+        T event = eventType.getEvent();
+        event.setSource(this);
+        getProxy().addEventHandler(eventType, eventHandler, event);
     }
 
+
+    public SceneProvidedObject getScene()
+    {
+        getProxy().getScene();
+        return null;
+    }
 
     @Override
     public abstract boolean isVisible();
@@ -88,4 +97,39 @@ public abstract class ViewProvidedObject extends ProvidedObject implements Posit
     public abstract void setBackground(Paint paint);
 
 
+    /**
+     * Returns a string representation of the object. In general, the
+     * {@code toString} method returns a string that
+     * "textually represents" this object. The result should
+     * be a concise but informative representation that is easy for a
+     * person to read.
+     * It is recommended that all subclasses override this method.
+     * <p>
+     * The {@code toString} method for class {@code Object}
+     * returns a string consisting of the name of the class of which the
+     * object is an instance, the at-sign character `{@code @}', and
+     * the unsigned hexadecimal representation of the hash code of the
+     * object. In other words, this method returns a string equal to the
+     * value of:
+     * <blockquote>
+     * <pre>
+     * getClass().getName() + '@' + Integer.toHexString(hashCode())
+     * </pre></blockquote>
+     *
+     * @return a string representation of the object.
+     */
+    @Override
+    public String toString() {
+        String klassName = getClass().getName();
+        String simpleName = klassName.substring(klassName.lastIndexOf('.')+1);
+        StringBuilder sbuf = new StringBuilder(simpleName);
+
+        sbuf.append("[");
+        sbuf.append("X=" + getX());
+        sbuf.append(", ");
+        sbuf.append("Y=" + getY());
+        sbuf.append("]");
+
+        return sbuf.toString();
+    }
 }

@@ -6,13 +6,8 @@ import com.pacgame.game.ui.model.Menu;
 
 public class MainMenuToLogin extends Menu {
 
-    public static final int WIDTH = 500;
-    public static final int HEIGHT = 500;
-
     public MainMenuToLogin(IMenu menu) {
         super(menu);
-        menu.setWidth(WIDTH);
-        menu.setHeight(HEIGHT);
     }
 
 

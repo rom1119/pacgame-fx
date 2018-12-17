@@ -8,20 +8,22 @@ import com.pacgame.uiElement.menu.element.NormalMenuElement;
 
 public class MenuFactory {
 
+    private final EventProvider eventProvider;
     private UIProvider uiProvider;
     private LayerProvider layerProvider;
     private PositionAlignmentProvider positionAlignmentProvider;
     private PaintProvider paintProvider;
 
-    public MenuFactory(UIProvider uiProvider, LayerProvider layerProvider, PositionAlignmentProvider positionAlignmentProvider, PaintProvider paintProvider) {
+    public MenuFactory(UIProvider uiProvider, LayerProvider layerProvider, PositionAlignmentProvider positionAlignmentProvider, PaintProvider paintProvider, EventProvider eventProvider) {
         this.uiProvider = uiProvider;
         this.layerProvider = layerProvider;
         this.positionAlignmentProvider = positionAlignmentProvider;
         this.paintProvider = paintProvider;
+        this.eventProvider = eventProvider;
     }
 
     public Menu createMenu(int width, int height) {
-        return new MainMenu(layerProvider, positionAlignmentProvider, width, height);
+        return new MainMenu(layerProvider, positionAlignmentProvider, eventProvider, width, height);
     }
 
     public MenuElement createMenuElement(String text) {

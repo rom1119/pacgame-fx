@@ -1,10 +1,11 @@
 package com.pacgame.game.adapter;
 
+import com.pacgame.View;
 import com.pacgame.game.IColor;
 import com.pacgame.game.IInputText;
 import com.pacgame.uiElement.input.InputText;
 
-public class InputTextAdapter implements IInputText {
+public class InputTextAdapter extends ViewAdapter implements IInputText {
 
     private InputText inputText;
 
@@ -25,5 +26,18 @@ public class InputTextAdapter implements IInputText {
     @Override
     public void setBackground(IColor color) {
         inputText.setBackground(((ColorAdapter)color).getValue());
+    }
+
+    @Override
+    public View getProvidedObject() {
+        return inputText;
+    }
+
+    public void setWidth(int width){
+        inputText.setWidth(width);
+    }
+
+    public void setHeight(int height){
+        inputText.setHeight(height);
     }
 }

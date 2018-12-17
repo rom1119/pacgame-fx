@@ -22,7 +22,7 @@ public class Game {
     public void init(IStage primaryStage)
     {
         this.primaryStage = primaryStage;
-        this.primaryStage.setResizable(false);
+        this.primaryStage.setResizable(true);
         this.primaryStage.setTitle(TITTLE);
 
     }

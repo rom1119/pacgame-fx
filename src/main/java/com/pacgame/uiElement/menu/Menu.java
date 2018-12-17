@@ -1,9 +1,6 @@
 package com.pacgame.uiElement.menu;
 
-import com.pacgame.provider.AlignmentProvider;
-import com.pacgame.provider.LayerProvidedObject;
-import com.pacgame.provider.LayerProvider;
-import com.pacgame.provider.PositionAlignmentProvider;
+import com.pacgame.provider.*;
 import com.pacgame.uiElement.ViewElement;
 
 import java.util.HashMap;
@@ -11,10 +8,12 @@ import java.util.Map;
 
 public abstract class Menu extends ViewElement {
 
+    private final EventProvider eventProvider;
     protected Map<String, MenuElement> menuItems;
 
-    public Menu(LayerProvider provider, PositionAlignmentProvider positionAlignmentProvider, int width, int height) {
+    public Menu(LayerProvider provider, PositionAlignmentProvider positionAlignmentProvider, EventProvider eventProvider, int width, int height) {
         super(width, height, provider, positionAlignmentProvider);
+        this.eventProvider = eventProvider;
         menuItems = new HashMap<>();
     }
 

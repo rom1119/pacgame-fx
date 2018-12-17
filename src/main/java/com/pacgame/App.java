@@ -11,6 +11,7 @@ import com.pacgame.stage.SceneFactory;
 import com.pacgame.uiElement.LayerFactory;
 import com.pacgame.uiElement.MenuFactory;
 import com.pacgame.uiElement.UIFactory;
+import com.pacgame.uiElement.alignment.PositionFactoryImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -131,16 +132,18 @@ public class App extends Application {
         SceneProvider sceneProvider = new SceneProviderImpl();
         PaintProvider paintProvider = new PaintProviderImpl();
         PositionAlignmentProvider positionAlignmentProvider = new PositionAlignmentProviderImpl();
+        EventProvider eventProvider = new EventProviderImpl();
 
-        UIFactory uiFacade = new UIFactory(uiProvider);
+        UIFactory uiFacade = new UIFactory(uiProvider, eventProvider);
         LayerFactory layerFactory = new LayerFactory(layerProvider);
         SceneFactory sceneFactory = new SceneFactory(sceneProvider);
-        MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider, positionAlignmentProvider, paintProvider);
+        MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider, positionAlignmentProvider, paintProvider, eventProvider);
         ColorFactory colorFactory = new ColorFactoryImpl(paintProvider);
+        PositionFactoryImpl positionFactory = new PositionFactoryImpl(positionAlignmentProvider);
 
         // Adapters
         StageAdapter stageAdapter = new StageAdapter(primaryStage);
-        LayoutFactoryAdapter layoutFactoryAdapter = new LayoutFactoryAdapter(uiFacade, layerFactory);
+        LayoutFactoryAdapter layoutFactoryAdapter = new LayoutFactoryAdapter(uiFacade, layerFactory, positionFactory);
         SceneFactoryAdapter sceneFactoryAdapter = new SceneFactoryAdapter(sceneFactory);
         MenuFactoryAdapter menuFactoryAdapter = new MenuFactoryAdapter(menuFactory);
         ColorFactoryAdapter colorFactoryAdapter = new ColorFactoryAdapter(colorFactory);

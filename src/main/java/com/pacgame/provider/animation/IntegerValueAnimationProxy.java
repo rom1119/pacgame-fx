@@ -99,6 +99,11 @@ class IntegerValueAnimationProxy extends AnimationProxy {
         proxyObject.stop();
     }
 
+    @Override
+    protected Timeline getProxyObject() {
+        return proxyObject;
+    }
+
     public static class Builder {
 
         private List<PropertyProvider<Integer>> properties;

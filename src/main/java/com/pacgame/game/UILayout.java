@@ -8,6 +8,9 @@ import java.util.Set;
 
 public class UILayout {
 
+    public static final int LEFT_SIDE_WIDTH = 500;
+    public static final int LEFT_SIDE_HEIGHT = 500;
+
     private IColorFactory colorFactory;
     private IScene scene;
     private Menu mainMenu;
@@ -30,12 +33,14 @@ public class UILayout {
 
     public Menu createMenu(IMenuFactory menuFactory)
     {
-        mainMenu = new MainMenuToLogin(menuFactory.createMenu(MainMenuToLogin.WIDTH, MainMenuToLogin.HEIGHT));
+        mainMenu = new MainMenuToLogin(menuFactory.createMenu(LEFT_SIDE_WIDTH, LEFT_SIDE_HEIGHT));
         mainMenu.setColor(colorFactory.createCustom(0, 0, 0, 0.1));
         addLoginElement(mainMenu, menuFactory.createMenuItem("Zaloguj"));
         addLoginElement(mainMenu, menuFactory.createMenuItem("Załóż konto"));
         addLoginElement(mainMenu, menuFactory.createMenuItem("Wyjście"));
         root.addElement(mainMenu.getMenuElement());
+//        mainMenu.getMenuElement().setX(200);
+//        mainMenu.hide();
 
         return mainMenu;
     }
@@ -43,7 +48,9 @@ public class UILayout {
     public void buildHiddenViews(ILayoutFactory layoutFactory, IUIComponentFactory uiComponentFactory)
     {
         loginForm = new LoginForm(layoutFactory, uiComponentFactory, root, colorFactory);
-//        ILayer iLayer = loginForm.buildView();
+        ILayer iLayer = loginForm.buildView(LEFT_SIDE_WIDTH, LEFT_SIDE_HEIGHT);
+//        root.setBackground(colorFactory.createGreen());
+//        iLayer.setBackground(colorFactory.createRed());
 //        root.addElement(iLayer);
     }
 

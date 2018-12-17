@@ -1,10 +1,10 @@
 package com.pacgame.provider.layer;
 
-import com.pacgame.IChildren;
-import com.pacgame.Parentable;
-import com.pacgame.Visible;
 import com.pacgame.provider.ViewProxy;
 import com.pacgame.provider.color.PaintProxy;
+import com.pacgame.provider.interfaces.IChildrenProvider;
+import com.pacgame.provider.interfaces.IParentableProvider;
+import com.pacgame.provider.interfaces.VisibleProvider;
 import com.pacgame.provider.property.HeightProperty;
 import com.pacgame.provider.property.PropertyProvider;
 import com.pacgame.provider.property.WidthProperty;
@@ -15,7 +15,7 @@ import javafx.scene.layout.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class LayerProxy extends ViewProxy implements Visible, Parentable<LayerProxy>, IChildren<ViewProxy> {
+public abstract class LayerProxy extends ViewProxy implements VisibleProvider, IParentableProvider<LayerProxy>, IChildrenProvider<ViewProxy> {
 
 
     private LayerProxy parent;
@@ -51,12 +51,22 @@ public abstract class LayerProxy extends ViewProxy implements Visible, Parentabl
     public abstract void removeChildren(ViewProxy el);
 
     @Override
+    public Map<String, ViewProxy> getChildren() {
+        return children;
+    }
+
+    @Override
     public abstract Parent getProxyObject();
 
 
     @Override
     public boolean hasChildren(ViewProxy el) {
         return children.containsKey(String.valueOf(el.hashCode()));
+    }
+
+    public void setFocusTraversable(boolean val)
+    {
+        getProxyObject().setFocusTraversable(val);
     }
 
     @Override

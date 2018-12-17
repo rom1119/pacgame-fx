@@ -10,8 +10,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.openqa.selenium.InvalidArgumentException;
 
-public class EventTypeProxy extends Proxy {
+public class EventTypeProxy<T extends EventProxy> extends Proxy {
 
+
+    /**
+     * This event occurs when a key has been pressed.
+     */
+    private static final EventType<javafx.scene.input.KeyEvent> KEY_ANY = KeyEvent.ANY;
 
     /**
      * This event occurs when a key has been pressed.
@@ -138,11 +143,11 @@ public class EventTypeProxy extends Proxy {
 
     private Class<? extends EventProxy> clazz;
 
-     EventTypeProxy(String name, Class<? extends EventProvidedObject> eventClass) {
+     public EventTypeProxy(String name, Class<? extends EventProvidedObject> eventClass) {
         this.proxyObject = createProxy(name, eventClass);
     }
 
-     EventTypeProxy(final String name,
+     public EventTypeProxy(final String name,
             final EventTypeProxy superType,
              Class<? extends EventProvidedObject> eventClass)
     {
@@ -158,7 +163,7 @@ public class EventTypeProxy extends Proxy {
         if (eventClass.equals(com.pacgame.provider.event.type.KeyEvent.class)) {
             return createKeyEventType(name);
 
-        } else if (eventClass.equals(com.pacgame.provider.event.type.KeyEvent.class)) {
+        } else if (eventClass.equals(com.pacgame.provider.event.type.MouseEvent.class)) {
             return createMouseEventType(name);
         }
 
@@ -175,6 +180,8 @@ public class EventTypeProxy extends Proxy {
                 return KEY_RELEASED;
             case "KEY_TYPED":
                 return KEY_TYPED;
+            case "KEY":
+                return KEY_ANY;
             default:
                 throw new InvalidArgumentException("KeyEvent type " + name + " is not supported." );
 
@@ -204,6 +211,8 @@ public class EventTypeProxy extends Proxy {
                 return MOUSE_PRESSED;
             case "MOUSE_RELEASED":
                 return MOUSE_RELEASED;
+            case "MOUSE":
+                return MOUSE_ANY;
             default:
                 throw new InvalidArgumentException("MouseEvent type " + name + " is not supported." );
 

@@ -1,15 +1,15 @@
 package com.pacgame.provider;
 
 import com.pacgame.provider.color.PaintProxy;
-import com.pacgame.provider.event.EventProxy;
-import com.pacgame.provider.event.IEventHandlerProxy;
-import com.pacgame.provider.event.type.EventTypeProxy;
+import com.pacgame.provider.event.IEventHandler;
+import com.pacgame.provider.event.handler.ViewEventDispatcher;
 import com.pacgame.provider.interfaces.ColorableProvidedProxy;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
 import com.pacgame.provider.property.*;
-import javafx.event.Event;
+import com.pacgame.provider.scene.SceneProxy;
 import javafx.scene.Node;
+import javafx.scene.text.Text;
 
 public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy, PositionableProvider, Comparable<ViewProxy>, VisibleProvider {
     protected PaintProxy paint;
@@ -17,6 +17,7 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     protected PropertyProvider<Integer> x;
     protected PropertyProvider<Integer> y;
     protected int order;
+    private ViewEventDispatcher eventDispatcher;
 
 
     public ViewProxy() {
@@ -53,6 +54,7 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     }
 
 
+    @Override
     public abstract Node getProxyObject();
 
     @Override
@@ -93,8 +95,44 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     }
 
 
-    public <T extends EventProxy> void addEventHandler(EventTypeProxy eventTypeProxy, IEventHandlerProxy<? extends Event> eventHandler)
+    public <T extends EventProvidedObject> void addEventHandler(EventType<T> eventType, IEventHandler<? super T> eventHandler, T event)
     {
-        getProxyObject().addEventHandler(eventTypeProxy.getProxyObject(), eventHandler);
+        getProxyObject().addEventHandler(eventType.getProxy().getProxyObject(), e -> {
+            System.out.println(e.getSource());
+            System.out.println(e.getTarget());
+            event.getProxy().setProxyObject(e);
+            if (e.getTarget() instanceof Text) {
+                event.initTarget(((Text) e.getTarget()).getParent().hashCode());
+
+            } else {
+                event.initTarget(e.getTarget().hashCode());
+
+            }
+            eventHandler.handle(event);
+        });
+
     }
+
+    public SceneProxy getScene() {
+        System.out.println(getProxyObject().getScene());
+        return null;
+    }
+
+//    public <T extends EventProxy> void addEventHandler(EventTypeProxy<T> eventTypeProxy, IEventHandlerProxy<? super T> eventHandler)
+//    {
+//        getEventDispatcher()
+//                .getEventHandlerManager()
+//                .addEventhandler(eventTypeProxy, eventHandler);
+//    }
+//
+//    private ViewEventDispatcher getEventDispatcher() {
+//        return eventDispatcher;
+//    }
+//
+//    public void fireEvent(EventProxy eventProxy)
+//    {
+//        getProxyObject().addEventHandler(, );
+//        getProxyObject().fireEvent(eventProxy.getProxyObject());
+//        getProxyObject().getEventDispatcher().
+//    }
 }

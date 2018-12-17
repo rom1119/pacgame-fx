@@ -1,10 +1,11 @@
 package com.pacgame.game.adapter;
 
+import com.pacgame.View;
 import com.pacgame.game.IButton;
 import com.pacgame.game.IColor;
 import com.pacgame.uiElement.btn.Button;
 
-public class ButtonAdapter implements IButton {
+public class ButtonAdapter extends ViewAdapter implements IButton {
 
     private Button button;
 
@@ -25,5 +26,10 @@ public class ButtonAdapter implements IButton {
     @Override
     public void setBackground(IColor color) {
         button.setBackground(((ColorAdapter)color).getValue());
+    }
+
+    @Override
+    public View getProvidedObject() {
+        return button;
     }
 }

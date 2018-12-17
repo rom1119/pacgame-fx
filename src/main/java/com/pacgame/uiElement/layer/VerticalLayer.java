@@ -4,6 +4,7 @@ import com.pacgame.Layer;
 import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.LayerProvider;
 import com.pacgame.provider.ViewProvidedObject;
+import com.pacgame.uiElement.alignment.Position;
 
 public class VerticalLayer extends Layer {
 
@@ -24,6 +25,11 @@ public class VerticalLayer extends Layer {
         super(provider);
         this.providedObject = provider.createVerticalLayer();
 
+    }
+
+    public void setAlignment(Position position)
+    {
+        providedObject.setAlignment(position.getProvidedObject());
     }
 
 //    @Override
