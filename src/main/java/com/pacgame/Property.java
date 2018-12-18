@@ -20,17 +20,19 @@ public abstract class Property<T> {
     }
 
     public void set(T val) {
+        T oldVal = property;
         property = val;
+        onChange(oldVal, property);
     }
 
     public void setOnChangeProperty(ChangeListener val) {
         changeListener = val;
     }
 
-    private void onChange(T val)
+    private void onChange(T oldVal, T newVal)
     {
         if (changeListener != null) {
-            changeListener.onChange(property, val);
+            changeListener.onChange(oldVal, newVal);
 
         }
     }

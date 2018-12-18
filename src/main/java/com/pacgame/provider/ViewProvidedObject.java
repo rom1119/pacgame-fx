@@ -30,6 +30,15 @@ public abstract class ViewProvidedObject extends ProvidedObject
         getProxy().addEventHandler(eventType, eventHandler, event);
     }
 
+    public void setFocusTraversable(boolean val)
+    {
+        getProxy().setFocusTraversable(val);
+    }
+    public void requestFocus()
+    {
+        getProxy().requestFocus();
+    }
+
 
     public SceneProvidedObject getScene()
     {

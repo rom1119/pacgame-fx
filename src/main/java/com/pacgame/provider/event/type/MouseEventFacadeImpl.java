@@ -18,4 +18,19 @@ public class MouseEventFacadeImpl implements MouseEventFacade {
     public EventType<MouseEvent> click() {
         return MouseEvent.MOUSE_CLICKED;
     }
+
+    @Override
+    public EventType<MouseEvent> enter() {
+        return MouseEvent.MOUSE_ENTERED;
+    }
+
+    @Override
+    public EventType<MouseEvent> enterTarget() {
+        return MouseEvent.MOUSE_ENTERED_TARGET;
+    }
+
+    @Override
+    public EventType<MouseEvent> exitTarget() {
+        return MouseEvent.MOUSE_EXITED_TARGET;
+    }
 }

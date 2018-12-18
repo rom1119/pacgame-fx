@@ -118,6 +118,14 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
         return null;
     }
 
+    public void setFocusTraversable(boolean val) {
+        getProxyObject().setFocusTraversable(val);
+    }
+
+    public void requestFocus() {
+        getProxyObject().requestFocus();
+    }
+
 //    public <T extends EventProxy> void addEventHandler(EventTypeProxy<T> eventTypeProxy, IEventHandlerProxy<? super T> eventHandler)
 //    {
 //        getEventDispatcher()

@@ -27,6 +27,15 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
         return id;
     }
 
+    public void setFocusTraversable(boolean val)
+    {
+        getProvidedObject().setFocusTraversable(val);
+    }
+    public void requestFocus()
+    {
+        getProvidedObject().requestFocus();
+    }
+
     @Override
     public boolean isVisible()
     {

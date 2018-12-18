@@ -8,13 +8,15 @@ import java.util.Map;
 
 public abstract class Menu extends ViewElement {
 
-    private final EventProvider eventProvider;
+    protected final EventProvider eventProvider;
+    protected PaintProvider paintProvider;
     protected Map<String, MenuElement> menuItems;
 
-    public Menu(LayerProvider provider, PositionAlignmentProvider positionAlignmentProvider, EventProvider eventProvider, int width, int height) {
+    public Menu(LayerProvider provider, PositionAlignmentProvider positionAlignmentProvider, EventProvider eventProvider, PaintProvider paintProvider, int width, int height) {
         super(width, height, provider, positionAlignmentProvider);
         this.eventProvider = eventProvider;
         menuItems = new HashMap<>();
+        this.paintProvider = paintProvider;
     }
 
     @Override

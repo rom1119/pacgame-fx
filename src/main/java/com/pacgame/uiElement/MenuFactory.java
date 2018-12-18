@@ -23,7 +23,7 @@ public class MenuFactory {
     }
 
     public Menu createMenu(int width, int height) {
-        return new MainMenu(layerProvider, positionAlignmentProvider, eventProvider, width, height);
+        return new MainMenu(layerProvider, positionAlignmentProvider, eventProvider, paintProvider, width, height);
     }
 
     public MenuElement createMenuElement(String text) {

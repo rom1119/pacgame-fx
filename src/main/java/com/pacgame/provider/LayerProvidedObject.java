@@ -69,10 +69,6 @@ public abstract class LayerProvidedObject extends ViewProvidedObject implements 
         }
     }
 
-    public void setFocusTraversable(boolean val)
-    {
-        getProxy().setFocusTraversable(val);
-    }
 
     @Override
     public void removeChildren(ViewProvidedObject el) {

@@ -11,4 +11,10 @@ public interface MouseEventFacade {
 
     EventType<MouseEvent> click();
 
+    EventType<MouseEvent> enter();
+
+    EventType<MouseEvent> enterTarget();
+
+    EventType<MouseEvent> exitTarget();
+
 }

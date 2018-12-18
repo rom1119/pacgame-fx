@@ -25,6 +25,9 @@ public abstract class MenuElement extends UIElement {
         this.positionAlignmentProvider = positionAlignmentProvider;
     }
 
+    public abstract void check();
+    public abstract void unCheck();
+
 
     private void calculateWidth()
     {

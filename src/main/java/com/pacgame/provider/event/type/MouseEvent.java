@@ -10,6 +10,9 @@ public class MouseEvent extends EventProvidedObject {
     protected static final EventType<MouseEvent> ANY = new EventType<>(null , "MOUSE", MouseEvent.class);
     protected static final EventType<MouseEvent> MOUSE_MOVED = new EventType<>(MouseEvent.ANY , "MOUSE_MOVED", MouseEvent.class);
     protected static final EventType<MouseEvent> MOUSE_CLICKED = new EventType<>(MouseEvent.ANY , "MOUSE_CLICKED", MouseEvent.class);
+    protected static final EventType<MouseEvent> MOUSE_ENTERED = new EventType<>(MouseEvent.ANY , "MOUSE_ENTERED", MouseEvent.class);
+    protected static final EventType<MouseEvent> MOUSE_ENTERED_TARGET = new EventType<>(MouseEvent.ANY , "MOUSE_ENTERED_TARGET", MouseEvent.class);
+    protected static final EventType<MouseEvent> MOUSE_EXITED_TARGET = new EventType<>(MouseEvent.ANY , "MOUSE_EXITED_TARGET", MouseEvent.class);
 
     @Override
     protected MouseEventProxy getProxy() {

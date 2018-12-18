@@ -3,7 +3,6 @@ package com.pacgame.provider;
 import com.pacgame.provider.event.EventProxy;
 import com.pacgame.provider.event.IEventTarget;
 import com.pacgame.provider.interfaces.IChildrenProvider;
-import javafx.event.EventTarget;
 
 import java.util.Map;
 
@@ -41,7 +40,7 @@ public abstract class EventProvidedObject extends ProvidedObject {
         this.target = target;
     }
 
-    private void recursiveTarget(Map<String, ProvidedObject> children,int hashCodeProxyObject) {
+    private void recursiveFindTarget(Map<String, ProvidedObject> children, int hashCodeProxyObject) {
         for (Map.Entry<String, ProvidedObject> el : children.entrySet() ) {
 
             if (providedObjectHasSameHashCode(el.getValue(), hashCodeProxyObject)) {
@@ -49,7 +48,7 @@ public abstract class EventProvidedObject extends ProvidedObject {
                 return;
             }
             if (el.getValue() instanceof IChildrenProvider) {
-                recursiveTarget(((IChildrenProvider) el.getValue()).getChildren(), hashCodeProxyObject);
+                recursiveFindTarget(((IChildrenProvider) el.getValue()).getChildren(), hashCodeProxyObject);
 
             }
         }
@@ -60,16 +59,13 @@ public abstract class EventProvidedObject extends ProvidedObject {
     {
         return providedObject.getProxy().getProxyObject().hashCode() == hashCodeAnotherProvidedObject;
     }
-//        setTarget();
 
     public void initTarget(int hashCodeProxyObject) {
 
         if (providedObjectHasSameHashCode((ProvidedObject)getSource(), hashCodeProxyObject)) {
             setTarget((IEventTarget) getSource());
-            System.out.println("NOTrecurc");
         } else {
-            System.out.println("recurc");
-            recursiveTarget(((IChildrenProvider) getSource()).getChildren(), hashCodeProxyObject);
+            recursiveFindTarget(((IChildrenProvider) getSource()).getChildren(), hashCodeProxyObject);
         }
 //        if (source instanceof IChildrenProvider) {
 //        }
