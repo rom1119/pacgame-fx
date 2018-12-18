@@ -37,6 +37,8 @@ public abstract class Menu extends ViewElement {
 
     }
 
+    protected abstract void setOnCheckedMenuItem();
+
 
 }
 

@@ -13,7 +13,7 @@ public class KeyEvent extends EventProvidedObject {
     public static final EventType KEY_PRESSED = new EventType(KeyEvent.ANY , "KEY_PRESSED", KeyEvent.class);
 
     @Override
-    protected EventProxy getProxy() {
+    protected KeyEventProxy getProxy() {
         return proxy;
     }
 
@@ -25,5 +25,25 @@ public class KeyEvent extends EventProvidedObject {
     public KeyEvent() {
         this(null, null, null);
 
+    }
+
+    public boolean isArrowUp()
+    {
+        return getProxy().isArrowUp();
+    }
+
+    public boolean isArrowBottom()
+    {
+        return getProxy().isArrowBottom();
+    }
+
+    public boolean isArrowLeft()
+    {
+        return getProxy().isArrowLeft();
+    }
+
+    public boolean isArrowRight()
+    {
+        return getProxy().isArrowRight();
     }
 }

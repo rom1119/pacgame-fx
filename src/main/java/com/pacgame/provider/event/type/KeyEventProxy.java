@@ -2,6 +2,7 @@ package com.pacgame.provider.event.type;
 
 import com.pacgame.provider.event.EventProxy;
 import javafx.event.Event;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class KeyEventProxy extends EventProxy {
@@ -31,5 +32,25 @@ public class KeyEventProxy extends EventProxy {
             throw new IllegalArgumentException("Event Argument must be type KeyEvent but passed on " + event.getClass().toString() + " type.");
         }
         proxyObject = event;
+    }
+
+    public boolean isArrowUp()
+    {
+        return getProxyObject().getCode().equals(KeyCode.UP);
+    }
+
+    public boolean isArrowBottom()
+    {
+        return getProxyObject().getCode().equals(KeyCode.DOWN);
+    }
+
+    public boolean isArrowLeft()
+    {
+        return getProxyObject().getCode().equals(KeyCode.LEFT);
+    }
+
+    public boolean isArrowRight()
+    {
+        return getProxyObject().getCode().equals(KeyCode.RIGHT);
     }
 }

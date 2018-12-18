@@ -5,11 +5,7 @@ import com.pacgame.property.ListViewProperty;
 import com.pacgame.property.ObjectProperty;
 import com.pacgame.provider.*;
 import com.pacgame.provider.component.ui.text.Label;
-import com.pacgame.provider.event.IEventHandler;
-import com.pacgame.provider.event.type.MouseEvent;
 import com.pacgame.provider.layer.VerticalLayer;
-import com.pacgame.uiElement.menu.element.NormalMenuElement;
-import javafx.beans.value.ObservableValue;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -32,13 +28,12 @@ public class MainMenu extends Menu {
         menuOptions = new ListViewProperty<>(new ArrayList<MenuElement>(menuItems.values()));
         checkedMenuOption = new ObjectProperty<>();
 
-        setOnChecked();
+        setOnCheckedMenuItem();
         setCheckedMenuOptionOnFirst();
 
         removeBorderColorMenuOptions();
         setOnChangeCheckedOption();
         setIterator(0);
-//        checkFirstMenuOption();
 
 //        getProvidedObject().addEventHandler(eventProvider.mouseEventFacade().click(), new IEventHandler<MouseEvent>() {
 //            @Override
@@ -55,11 +50,19 @@ public class MainMenu extends Menu {
 
     }
 
+    @Override
+    public void addMenuItem(MenuElement menuElement) {
+        super.addMenuItem(menuElement);
+        menuOptions.add(menuElement);
+        checkFirstMenuOption();
+    }
+
     private void checkFirstMenuOption() {
         checkMenuOption(menuOptions.get(0));
     }
 
-    private void setOnChecked()
+    @Override
+    protected void setOnCheckedMenuItem()
     {
         getProvidedObject().addEventHandler(eventProvider.mouseEventFacade().enterTarget(), e -> {
             if (e.getTarget() instanceof Label) {
@@ -72,6 +75,16 @@ public class MainMenu extends Menu {
 
         getProvidedObject().addEventHandler(eventProvider.mouseEventFacade().exitTarget(), e -> {
             removeBorderColorMenuOptions();
+            setIterator(0);
+
+        });
+
+        getProvidedObject().addEventHandler(eventProvider.keyEventFacade().keyPressed(), e -> {
+            if (e.isArrowUp()) {
+                checkMenuOption(getPrevMenuOption());
+            } else if (e.isArrowBottom()) {
+                checkMenuOption(getNextMenuOption());
+            }
         });
     }
 
@@ -109,6 +122,8 @@ public class MainMenu extends Menu {
             @Override
             public void onChange(MenuElement oldValue, MenuElement newValue) {
                 MenuElement menuOption = newValue;
+                removeBorderColorMenuOptions();
+
                 menuOption.check();
             }
         });

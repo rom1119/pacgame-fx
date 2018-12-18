@@ -4,6 +4,8 @@ import com.pacgame.provider.event.EventProxy;
 import javafx.event.Event;
 import javafx.scene.input.MouseEvent;
 
+import static java.awt.Event.UP;
+
 class MouseEventProxy extends EventProxy {
 
 
@@ -37,6 +39,7 @@ class MouseEventProxy extends EventProxy {
     {
         return getProxyObject().isPrimaryButtonDown();
     }
+
 
     public double getX()
     {

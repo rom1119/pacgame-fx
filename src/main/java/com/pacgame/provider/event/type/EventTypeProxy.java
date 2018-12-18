@@ -8,7 +8,6 @@ import javafx.event.EventType;
 import javafx.scene.input.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import org.openqa.selenium.InvalidArgumentException;
 
 public class EventTypeProxy<T extends EventProxy> extends Proxy {
 
@@ -183,7 +182,7 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
             case "KEY":
                 return KEY_ANY;
             default:
-                throw new InvalidArgumentException("KeyEvent type " + name + " is not supported." );
+                throw new IllegalArgumentException("KeyEvent type " + name + " is not supported." );
 
         }
     }
@@ -214,7 +213,7 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
             case "MOUSE":
                 return MOUSE_ANY;
             default:
-                throw new InvalidArgumentException("MouseEvent type " + name + " is not supported." );
+                throw new IllegalArgumentException("MouseEvent type " + name + " is not supported." );
 
         }
     }
