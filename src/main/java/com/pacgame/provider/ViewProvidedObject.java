@@ -1,14 +1,13 @@
 package com.pacgame.provider;
 
 import com.pacgame.provider.event.IEventHandler;
-import com.pacgame.provider.event.IEventTarget;
 import com.pacgame.provider.interfaces.ColorableProvider;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
 import com.pacgame.provider.property.*;
 
-public abstract class ViewProvidedObject extends ProvidedObject
-        implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider, IEventTarget {
+public abstract class ViewProvidedObject extends EventTargetProvidedObject
+        implements PositionableProvider, ColorableProvider, Comparable<ViewProvidedObject>, VisibleProvider {
 
     protected PropertyProvider<Integer> x;
     protected PropertyProvider<Integer> y;
@@ -20,8 +19,8 @@ public abstract class ViewProvidedObject extends ProvidedObject
         y = new TranslateYProperty(0);
     }
 
-    public <T extends EventProvidedObject> void addEventHandler(
-                EventType<T> eventType,
+    public final  <T extends EventProvidedObject> void addEventHandler(
+                EventTypeProvidedObject<T> eventType,
             IEventHandler<T> eventHandler
             )
     {

@@ -2,14 +2,15 @@ package com.pacgame;
 
 
 import com.pacgame.color.Paint;
+import com.pacgame.event.IEventHandler;
+import com.pacgame.event.type.EventTarget;
 import com.pacgame.property.TranslateXProperty;
 import com.pacgame.property.TranslateYProperty;
-import com.pacgame.provider.LayerProvidedObject;
 import com.pacgame.provider.ViewProvidedObject;
-import com.pacgame.property.HeightProperty;
-import com.pacgame.property.WidthProperty;
+import com.pacgame.event.type.EventSource;
+import com.pacgame.event.type.Event;
 
-public abstract class View implements Positionable, Colorable, Comparable<View>, Visible  {
+public abstract class View extends EventTarget implements Positionable, Colorable, Comparable<View>, Visible {
 
     protected int id;
 
@@ -34,6 +35,19 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
     public void requestFocus()
     {
         getProvidedObject().requestFocus();
+    }
+
+    public final <T extends Event> void addEventHandler(EventType<T> eventType, IEventHandler<? super T> eventHandler)
+    {
+        T event = eventType.getEvent();
+        event.setSource(this);
+        getProvidedObject().addEventHandler(eventType.getProvidedObject(), e -> {
+            event.setProvidedObject(e);
+            event.initTarget(e.getTarget().hashCode());
+
+//            event.setTarget();
+            eventHandler.handle(event);
+        });
     }
 
     @Override
@@ -106,5 +120,6 @@ public abstract class View implements Positionable, Colorable, Comparable<View>,
         getProvidedObject().setBackground(color.getValue());
     }
 
+    @Override
     protected abstract ViewProvidedObject getProvidedObject();
 }

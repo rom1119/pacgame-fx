@@ -11,7 +11,7 @@ import com.pacgame.provider.UIProvider;
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.component.UIElementProvidedObject;
 
-public abstract class UIElement extends Component implements IUIEventTarget {
+public abstract class UIElement extends Component {
 
     protected Property<Integer> width;
     protected Property<Integer> height;
@@ -82,8 +82,8 @@ public abstract class UIElement extends Component implements IUIEventTarget {
         getProvidedObject().setPadding(topRightBottomLeft);
     }
 
-    @Override
-    public IEvent dispatchEvent(IEvent event) {
-        return null;
-    }
+//    @Override
+//    public IEvent dispatchEvent(IEvent event) {
+//        return null;
+//    }
 }

@@ -72,6 +72,11 @@ public abstract class Layer extends View implements Visible, Comparable<View>, P
     }
 
     @Override
+    public Map<String, View> getChildren() {
+        return children;
+    }
+
+    @Override
     public boolean hasChildren(View el) {
         return children.containsKey(String.valueOf(el.hashCode()));
     }

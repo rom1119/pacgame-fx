@@ -1,20 +1,22 @@
 package com.pacgame.provider.event.type;
 
-import com.pacgame.provider.EventType;
-import com.pacgame.provider.event.IEventTarget;
+import com.pacgame.provider.EventTypeProvidedObject;
+import com.pacgame.provider.EventTargetProvidedObject;
 
 public interface MouseEventFacade {
 
-    MouseEvent createEvent(IEventTarget target, Object source, EventType eventType);
+    MouseEvent createEvent(EventTargetProvidedObject target, Object source, EventTypeProvidedObject eventType);
 
-    EventType<MouseEvent> move();
+    EventTypeProvidedObject<MouseEvent> any();
 
-    EventType<MouseEvent> click();
+    EventTypeProvidedObject<MouseEvent> move();
 
-    EventType<MouseEvent> enter();
+    EventTypeProvidedObject<MouseEvent> click();
 
-    EventType<MouseEvent> enterTarget();
+    EventTypeProvidedObject<MouseEvent> enter();
 
-    EventType<MouseEvent> exitTarget();
+    EventTypeProvidedObject<MouseEvent> enterTarget();
+
+    EventTypeProvidedObject<MouseEvent> exitTarget();
 
 }

@@ -1,12 +1,13 @@
 package com.pacgame.provider.event.type;
 
-import com.pacgame.provider.EventType;
-import com.pacgame.provider.event.IEventTarget;
+import com.pacgame.provider.EventTypeProvidedObject;
+import com.pacgame.provider.EventTargetProvidedObject;
 
 public interface KeyEventFacade {
 
-    KeyEvent createEvent(IEventTarget target, Object source, EventType eventType);
+    KeyEvent createEvent(EventTargetProvidedObject target, Object source, EventTypeProvidedObject eventType);
 
-    EventType<KeyEvent> keyPressed();
+    EventTypeProvidedObject<KeyEvent> keyPressed();
+    EventTypeProvidedObject<KeyEvent> any();
 
 }

@@ -1,7 +1,6 @@
 package com.pacgame.provider;
 
 import com.pacgame.provider.event.EventProxy;
-import com.pacgame.provider.event.IEventTarget;
 import com.pacgame.provider.interfaces.IChildrenProvider;
 
 import java.util.Map;
@@ -11,13 +10,13 @@ public abstract class EventProvidedObject extends ProvidedObject {
     @Override
     protected abstract EventProxy getProxy();
 
-    protected IEventTarget target;
+    protected EventTargetProvidedObject target;
 
     protected Object source;
 
-    protected EventType eventType;
+    protected EventTypeProvidedObject eventType;
 
-    public EventProvidedObject(IEventTarget target, Object source, EventType eventType) {
+    public EventProvidedObject(EventTargetProvidedObject target, Object source, EventTypeProvidedObject eventType) {
         this.target = target;
         this.source = source;
         this.eventType = eventType;
@@ -32,11 +31,11 @@ public abstract class EventProvidedObject extends ProvidedObject {
         return source;
     }
 
-    public IEventTarget getTarget() {
+    public EventTargetProvidedObject getTarget() {
         return target;
     }
 
-    public void setTarget(IEventTarget target) {
+    public void setTarget(EventTargetProvidedObject target) {
         this.target = target;
     }
 
@@ -44,7 +43,7 @@ public abstract class EventProvidedObject extends ProvidedObject {
         for (Map.Entry<String, ProvidedObject> el : children.entrySet() ) {
 
             if (providedObjectHasSameHashCode(el.getValue(), hashCodeProxyObject)) {
-                setTarget((IEventTarget) el.getValue());
+                setTarget((EventTargetProvidedObject) el.getValue());
                 return;
             }
             if (el.getValue() instanceof IChildrenProvider) {
@@ -63,7 +62,7 @@ public abstract class EventProvidedObject extends ProvidedObject {
     public void initTarget(int hashCodeProxyObject) {
 
         if (providedObjectHasSameHashCode((ProvidedObject)getSource(), hashCodeProxyObject)) {
-            setTarget((IEventTarget) getSource());
+            setTarget((EventTargetProvidedObject) getSource());
         } else {
             recursiveFindTarget(((IChildrenProvider) getSource()).getChildren(), hashCodeProxyObject);
         }

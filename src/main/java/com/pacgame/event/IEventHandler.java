@@ -1,4 +1,6 @@
 package com.pacgame.event;
 
-public interface IEventHandler {
+public interface IEventHandler<T> {
+
+    void handle(T event);
 }

@@ -95,11 +95,11 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     }
 
 
-    public <T extends EventProvidedObject> void addEventHandler(EventType<T> eventType, IEventHandler<? super T> eventHandler, T event)
+    public final  <T extends EventProvidedObject> void addEventHandler(EventTypeProvidedObject<T> eventType, IEventHandler<? super T> eventHandler, T event)
     {
         getProxyObject().addEventHandler(eventType.getProxy().getProxyObject(), e -> {
-            System.out.println(e.getSource());
-            System.out.println(e.getTarget());
+//            System.out.println(e.getSource());
+//            System.out.println(e.getTarget());
             event.getProxy().setProxyObject(e);
             if (e.getTarget() instanceof Text) {
                 event.initTarget(((Text) e.getTarget()).getParent().hashCode());

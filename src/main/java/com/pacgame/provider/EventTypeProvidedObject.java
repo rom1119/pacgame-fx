@@ -2,18 +2,18 @@ package com.pacgame.provider;
 
 import com.pacgame.provider.event.type.EventTypeProxy;
 
-public class EventType<T extends EventProvidedObject> extends ProvidedObject {
+public class EventTypeProvidedObject<T extends EventProvidedObject> extends ProvidedObject {
 
-    public static final EventType ROOT = new EventType( null, "ROOT", EventProvidedObject.class);
+    public static final EventTypeProvidedObject ROOT = new EventTypeProvidedObject( null, "ROOT", EventProvidedObject.class);
 
     private EventTypeProxy proxy;
 
     private final String name;
-    private final EventType superType;
+    private final EventTypeProvidedObject superType;
 
     private Class<? extends EventProvidedObject> eventClass;
 
-    public EventType(EventType superType, String name, Class<? extends EventProvidedObject> eventClass) {
+    public EventTypeProvidedObject(EventTypeProvidedObject superType, String name, Class<T> eventClass) {
         this.name = name;
         this.superType = superType;
 

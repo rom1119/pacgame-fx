@@ -1,23 +1,22 @@
 package com.pacgame.provider.event.type;
 
 import com.pacgame.provider.EventProvidedObject;
-import com.pacgame.provider.EventType;
-import com.pacgame.provider.event.EventProxy;
-import com.pacgame.provider.event.IEventTarget;
+import com.pacgame.provider.EventTypeProvidedObject;
+import com.pacgame.provider.EventTargetProvidedObject;
 
 public class KeyEvent extends EventProvidedObject {
 
     protected KeyEventProxy proxy;
 
-    public static final EventType ANY = new EventType(null , "KEY", KeyEvent.class );
-    public static final EventType KEY_PRESSED = new EventType(KeyEvent.ANY , "KEY_PRESSED", KeyEvent.class);
+    public static final EventTypeProvidedObject ANY = new EventTypeProvidedObject(null , "KEY", KeyEvent.class );
+    public static final EventTypeProvidedObject KEY_PRESSED = new EventTypeProvidedObject(KeyEvent.ANY , "KEY_PRESSED", KeyEvent.class);
 
     @Override
     protected KeyEventProxy getProxy() {
         return proxy;
     }
 
-    KeyEvent(IEventTarget target, Object source, EventType eventType) {
+    KeyEvent(EventTargetProvidedObject target, Object source, EventTypeProvidedObject eventType) {
         super(target, source, eventType);
         proxy = new KeyEventProxy();
     }

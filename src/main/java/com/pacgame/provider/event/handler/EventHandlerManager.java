@@ -2,13 +2,13 @@ package com.pacgame.provider.event.handler;
 
 import com.pacgame.provider.EventProvidedObject;
 import com.pacgame.provider.event.IEventHandler;
-import com.pacgame.provider.EventType;
+import com.pacgame.provider.EventTypeProvidedObject;
 
 import java.util.*;
 
 public class EventHandlerManager {
 
-    private final Map<EventType<? extends EventProvidedObject>, EventHandlerProperty> eventHandlers;
+    private final Map<EventTypeProvidedObject<? extends EventProvidedObject>, EventHandlerProperty> eventHandlers;
 
     public EventHandlerManager() {
         eventHandlers = new HashMap<>();

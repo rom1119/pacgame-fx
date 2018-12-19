@@ -2,9 +2,7 @@ package com.pacgame.provider.layer;
 
 import com.pacgame.provider.ViewProxy;
 import com.pacgame.provider.color.PaintProxy;
-import com.pacgame.provider.interfaces.IChildrenProvider;
-import com.pacgame.provider.interfaces.IParentableProvider;
-import com.pacgame.provider.interfaces.VisibleProvider;
+import com.pacgame.provider.interfaces.*;
 import com.pacgame.provider.property.HeightProperty;
 import com.pacgame.provider.property.PropertyProvider;
 import com.pacgame.provider.property.WidthProperty;
@@ -15,7 +13,7 @@ import javafx.scene.layout.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class LayerProxy extends ViewProxy implements VisibleProvider, IParentableProvider<LayerProxy>, IChildrenProvider<ViewProxy> {
+public abstract class LayerProxy extends ViewProxy implements VisibleProvider, IParentableProviderProxy<LayerProxy>, IChildrenProviderProxy<ViewProxy> {
 
 
     private LayerProxy parent;

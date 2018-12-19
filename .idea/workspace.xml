@@ -2,12 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77da18e3-268f-4571-9761-d457f08b7b19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/EventTypeProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/EventTypeProxy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/EventType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/EventFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/EventFacadeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/EventSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEventFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEventFacadeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEventFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEventFacadeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventTargetProvidedObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventTypeProvidedObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IChildrenProviderProxy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IParentableProviderProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/IChildren.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/IChildren.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/Layer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/event/IEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/IEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/event/IEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/IEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/event/IEventTarget.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/event/handler/IGameHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/gameElement/GameElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/gameElement/GameElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventProvidedObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventProvidedObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProvidedObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProvidedObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/IEventTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/EventTarget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/handler/EventHandlerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/handler/EventHandlerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventFacadeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventFacadeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacadeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacadeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/layer/LayerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/layer/LayerProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/UIElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/UIElement.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -35,51 +67,116 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/MainMenu.java">
+      <file leaf-file-name="EventTargetProvidedObject.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventTargetProvidedObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="78" column="11" lean-forward="true" selection-start-line="78" selection-start-column="11" selection-end-line="78" selection-end-column="11" />
+            <state relative-caret-position="100">
+              <caret line="5" column="47" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/View.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2223#2224#0" expanded="true" />
-                <element signature="e#2274#2275#0" expanded="true" />
-                <element signature="e#3548#3549#0" expanded="true" />
-                <element signature="e#3609#3610#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewProxy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProxy.java">
+      <file leaf-file-name="Layer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/Layer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="110" selection-start-line="110" selection-end-line="110" />
+            <state relative-caret-position="536">
+              <caret line="75" column="23" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
               <folding>
-                <element signature="e#3028#3029#0" expanded="true" />
-                <element signature="e#3085#3086#0" expanded="true" />
-                <element signature="e#3119#3120#0" expanded="true" />
-                <element signature="e#3166#3167#0" expanded="true" />
+                <element signature="e#1990#1991#0" expanded="true" />
+                <element signature="e#2017#2018#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Property.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/Property.java">
+      <file leaf-file-name="Event.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/Event.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="222">
+              <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+              <folding>
+                <element signature="e#642#643#0" expanded="true" />
+                <element signature="e#675#676#0" expanded="true" />
+                <element signature="e#794#795#0" expanded="true" />
+                <element signature="e#823#824#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/Menu.java">
+      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/MainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="39" column="51" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
+            <state relative-caret-position="240">
+              <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventSource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/EventSource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventTarget.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/EventTarget.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="2" column="33" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KeyEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#655#656#0" expanded="true" />
+                <element signature="e#707#708#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MouseEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KeyEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="58">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -97,8 +194,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>selectNextPoint</find>
-      <find>diffX</find>
       <find>pacman</find>
       <find>getChil</find>
       <find>getChildren()</find>
@@ -127,6 +222,8 @@
       <find>toStr</find>
       <find>setId</find>
       <find>checkedMenuOption</find>
+      <find>consum</find>
+      <find>EventTypeProvidedObject</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,57 +232,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/layer/VerticalLayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/layer/FlowLayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/FlowLayerAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/GroupLayerAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/IVerticalLayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/VerticalLayerAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/factory/LayoutFactoryAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/ILayoutFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/LayerAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/IView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/ViewAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/UIElementProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/App.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/text/Text.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/UIFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/ui/model/main/LoginForm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/text/Label.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/input/InputText.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/Parentable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IParentableProvider.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/layer/LayerProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/Proxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IChildrenProvider.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimationProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/stage/StageProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/UILayout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/input/UIInput.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/button/ButtonProvidedObject.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/UIElementProvidedObject.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/text/Label.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/MenuFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/MenuElement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/element/NormalMenuElement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/property/ObjectProperty.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/Property.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/LayerProvidedObject.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/View.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProvidedObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/property/ListViewProperty.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/ListProperty.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventProvidedObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacade.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacadeImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/EventTypeProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEvent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/Menu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IParentableProviderProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IChildrenProviderProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/layer/LayerProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/IEventHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/EventFacade.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/Event.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventFacade.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventFacadeImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/IEventTarget.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/EventSource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/EventSource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/IEventTargetProvidedObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/EventTarget.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/EventTarget.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/EventTargetProvidedObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventTargetProvidedObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEventFacadeImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEventFacade.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacade.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacadeImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEventFacade.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEventFacadeImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/EventFacadeImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/target/IGameEventTarget.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/target/IUIEventTarget.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/UIElement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/gameElement/GameElement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProvidedObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventTypeProvidedObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/EventType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/IChildren.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/Event.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/Event.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEvent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEvent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/MainMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/Layer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/View.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/event/type/Event.java" />
       </list>
     </option>
   </component>
@@ -210,7 +307,8 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="-1920" />
     <option name="width" value="1920" />
     <option name="height" value="1080" />
   </component>
@@ -260,7 +358,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="event" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
@@ -269,8 +367,8 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="event" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
@@ -279,18 +377,8 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="adapter" type="462c0819:PsiDirectoryNode" />
-              <item name="factory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="property" type="462c0819:PsiDirectoryNode" />
+              <item name="event" type="462c0819:PsiDirectoryNode" />
+              <item name="type" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
@@ -300,16 +388,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pacgame" type="462c0819:PsiDirectoryNode" />
               <item name="provider" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="provider" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
@@ -329,6 +407,17 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pacgame" type="462c0819:PsiDirectoryNode" />
               <item name="provider" type="462c0819:PsiDirectoryNode" />
+              <item name="event" type="462c0819:PsiDirectoryNode" />
+              <item name="type" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pacman" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
+              <item name="provider" type="462c0819:PsiDirectoryNode" />
               <item name="interfaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -338,47 +427,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="provider" type="462c0819:PsiDirectoryNode" />
-              <item name="layer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="provider" type="462c0819:PsiDirectoryNode" />
-              <item name="stage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
               <item name="uiElement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="uiElement" type="462c0819:PsiDirectoryNode" />
-              <item name="input" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="uiElement" type="462c0819:PsiDirectoryNode" />
-              <item name="layer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
@@ -389,40 +438,6 @@
               <item name="pacgame" type="462c0819:PsiDirectoryNode" />
               <item name="uiElement" type="462c0819:PsiDirectoryNode" />
               <item name="menu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="uiElement" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
-              <item name="element" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
-              <item name="uiElement" type="462c0819:PsiDirectoryNode" />
-              <item name="text" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pacman" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -448,11 +463,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.pacgame.event" />
+      <recent name="com.pacgame.event.type" />
       <recent name="com.pacgame.provider.event.handler" />
       <recent name="com.pacgame.provider" />
       <recent name="com.pacgame.provider.event.type" />
-      <recent name="com.pacgame.provider.event" />
-      <recent name="com.pacgame.ui.event.eventHandler" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.pacgame.controller" />
@@ -462,10 +477,10 @@
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.pacgame" />
       <recent name="com.pacgame.provider" />
       <recent name="com.pacgame.board" />
       <recent name="com.pacgame.board.controller" />
-      <recent name="com.pacgame" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces" />
@@ -474,6 +489,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.pacgame.provider.interfaces" />
       <recent name="com.pacgame.provider.event" />
       <recent name="com.pacgame.model" />
     </key>
@@ -667,24 +683,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="-1920" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32917705" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.2729124" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.2729124" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5007153" side_tool="true" weight="0.33291772" />
       <window_info anchor="right" id="Maven Projects" order="7" sideWeight="0.49628252" weight="0.10944206" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49928468" visible="true" weight="0.200611" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.200611" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32892057" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.26476577" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62292993" visible="true" weight="0.19861555" />
-      <window_info id="Structure" order="1" sideWeight="0.37707007" side_tool="true" visible="true" weight="0.19861555" />
+      <window_info id="Structure" order="1" sideWeight="0.37707007" side_tool="true" weight="0.19861555" />
       <window_info anchor="right" id="Ant Build" order="3" sideWeight="0.49628252" weight="0.24920128" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -744,448 +760,111 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/SceneProvidedObject.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/scene/input/KeyEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="399" column="47" selection-start-line="399" selection-start-column="47" selection-end-line="399" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/property/WidthProperty.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IParentableProviderProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="57" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/ColorableProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IChildrenProviderProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IParentableProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/layer/LayerProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventProviderImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/Proxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/layer/VerticalLayerProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-524">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimationProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="102" column="22" selection-start-line="102" selection-start-column="22" selection-end-line="102" selection-end-column="22" />
-          <folding>
-            <element signature="e#3084#3085#0" expanded="true" />
-            <element signature="e#3111#3112#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/ProvidedObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IChildrenProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/scene/control/Label.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/scene/control/Labeled.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="793" column="39" lean-forward="true" selection-start-line="793" selection-start-column="39" selection-end-line="793" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/text/LabelProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/input/InputText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/input/UIInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="53" selection-end-column="5" />
-          <folding>
-            <element signature="e#238#239#0" expanded="true" />
-            <element signature="e#266#267#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/button/ButtonDanger.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/IEventTarget.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/button/ButtonProvidedObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="89" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/scene/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="963" column="27" selection-start-line="963" selection-start-column="27" selection-end-line="963" selection-end-column="27" />
-          <folding>
-            <element signature="e#42855#42856#0" expanded="true" />
-            <element signature="e#42906#42907#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/scene/text/Text.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="1852" column="41" lean-forward="true" selection-start-line="1852" selection-start-column="41" selection-end-line="1852" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/stage/StageProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/UIElementProvidedObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="138" column="25" lean-forward="true" selection-start-line="138" selection-start-column="25" selection-end-line="138" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/UIElementProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/property/ViewObjectProperty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/beans/Observable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/beans/value/ObservableValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="82" column="50" lean-forward="true" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/property/HeightProperty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/property/ObjectProperty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="57" lean-forward="true" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
-          <folding>
-            <element signature="e#214#215#0" expanded="true" />
-            <element signature="e#245#246#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/listener/ChangeListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/layer/LayerProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="17" column="46" lean-forward="true" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/LayerProvidedObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2370#2371#0" expanded="true" />
-            <element signature="e#2401#2402#0" expanded="true" />
-            <element signature="e#2533#2534#0" expanded="true" />
-            <element signature="e#2607#2608#0" expanded="true" />
-            <element signature="e#2791#2792#0" expanded="true" />
-            <element signature="e#2820#2821#0" expanded="true" />
-            <element signature="e#2868#2869#0" expanded="true" />
-            <element signature="e#2913#2914#0" expanded="true" />
-            <element signature="e#2953#2954#0" expanded="true" />
-            <element signature="e#2986#2987#0" expanded="true" />
-            <element signature="e#3026#3027#0" expanded="true" />
-            <element signature="e#3059#3060#0" expanded="true" />
-            <element signature="e#3119#3120#0" expanded="true" />
-            <element signature="e#3177#3178#0" expanded="true" />
-            <element signature="e#3356#3357#0" expanded="true" />
-            <element signature="e#3399#3400#0" expanded="true" />
-            <element signature="e#3452#3453#0" expanded="true" />
-            <element signature="e#3509#3510#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-          <folding>
-            <element signature="e#850#851#0" expanded="true" />
-            <element signature="e#891#892#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/factory/MenuFactoryAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#669#670#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/MenuFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/UILayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="11" column="51" lean-forward="true" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/property/ListViewProperty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#349#350#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/ui/text/Label.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-765">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProvidedObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding>
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1264#1265#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/MenuElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/element/NormalMenuElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="26" column="92" selection-start-line="26" selection-start-column="92" selection-end-line="26" selection-end-column="92" />
-          <folding>
-            <element signature="e#956#957#0" expanded="true" />
-            <element signature="e#1055#1056#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventProvidedObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacadeImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
-          <folding>
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#739#740#0" expanded="true" />
-            <element signature="e#793#794#0" expanded="true" />
-            <element signature="e#856#857#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/3.14.0/selenium-api-3.14.0.jar!/org/openqa/selenium/InvalidArgumentException.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/EventTypeProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="669">
-          <caret line="211" column="38" lean-forward="true" selection-start-line="211" selection-start-column="38" selection-end-line="211" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/scene/input/MouseEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="599" column="21" selection-start-line="599" selection-start-column="21" selection-end-line="599" selection-end-column="21" />
-          <folding>
-            <element signature="e#25379#25380#0" expanded="true" />
-            <element signature="e#25408#25409#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/scene/input/MouseButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding>
-            <element signature="e#963#964#0" expanded="true" />
-            <element signature="e#1025#1026#0" expanded="true" />
-            <element signature="e#1104#1105#0" expanded="true" />
-            <element signature="e#1174#1175#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1290#1291#0" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1386#1387#0" expanded="true" />
-          </folding>
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="14" column="68" selection-start-line="14" selection-start-column="68" selection-end-line="14" selection-end-column="68" />
+        <state relative-caret-position="20">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEvent.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/IEventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-          <folding>
-            <element signature="e#560#561#0" expanded="true" />
-            <element signature="e#588#589#0" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#1032#1033#0" expanded="true" />
-            <element signature="e#1072#1073#0" expanded="true" />
-            <element signature="e#1142#1143#0" expanded="true" />
-            <element signature="e#1183#1184#0" expanded="true" />
-            <element signature="e#1254#1255#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="80">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/Menu.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/handler/IGameHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="39" column="51" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
+        <state relative-caret-position="80">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProxy.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/AlignmentProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
-          <folding>
-            <element signature="e#3028#3029#0" expanded="true" />
-            <element signature="e#3085#3086#0" expanded="true" />
-            <element signature="e#3119#3120#0" expanded="true" />
-            <element signature="e#3166#3167#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="80">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/Property.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/javafx-src.zip!/javafx/scene/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="248">
+          <caret line="8224" column="40" selection-start-line="8224" selection-start-column="40" selection-end-line="8224" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1200,16 +879,302 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/MainMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/IEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="78" column="11" lean-forward="true" selection-start-line="78" selection-start-column="11" selection-end-line="78" selection-end-column="11" />
+        <state relative-caret-position="120">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1872">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/EventTypeProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1696">
+          <caret line="211" column="38" lean-forward="true" selection-start-line="211" selection-start-column="38" selection-end-line="211" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2223#2224#0" expanded="true" />
-            <element signature="e#2274#2275#0" expanded="true" />
-            <element signature="e#3548#3549#0" expanded="true" />
-            <element signature="e#3609#3610#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventFacadeImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#597#598#0" expanded="true" />
+            <element signature="e#624#625#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacadeImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+          <folding>
+            <element signature="e#481#482#0" expanded="true" />
+            <element signature="e#508#509#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEventFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/MouseEventFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEventFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="53" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEventFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEventFacadeImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="46" column="45" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
+          <folding>
+            <element signature="e#235#236#0" expanded="true" />
+            <element signature="e#262#263#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/EventFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/EventFacadeImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#234#235#0" expanded="true" />
+            <element signature="e#261#262#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/target/IUIEventTarget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/UIElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/gameElement/GameElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/target/IGameEventTarget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventTypeProvidedObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="33" column="4" lean-forward="true" selection-start-line="33" selection-start-column="4" selection-end-line="45" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProvidedObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/EventType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16">
+          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEventFacadeImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/interfaces/IChildrenProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="17" selection-start-line="10" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/IChildren.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/ViewProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="107" column="19" lean-forward="true" selection-start-line="107" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventProvidedObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="41" column="58" lean-forward="true" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/ProvidedObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/EventTargetProvidedObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="47" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/KeyEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#655#656#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/MouseEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/event/type/KeyEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/uiElement/menu/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/Layer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="75" column="23" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+          <folding>
+            <element signature="e#1990#1991#0" expanded="true" />
+            <element signature="e#2017#2018#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/EventSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/EventTarget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/event/type/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+          <folding>
+            <element signature="e#642#643#0" expanded="true" />
+            <element signature="e#675#676#0" expanded="true" />
+            <element signature="e#794#795#0" expanded="true" />
+            <element signature="e#823#824#0" expanded="true" />
           </folding>
         </state>
       </provider>
