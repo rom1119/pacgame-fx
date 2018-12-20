@@ -1,6 +1,8 @@
 package com.pacgame.game;
 
-public interface IView {
+import com.pacgame.game.event.Target;
+
+public interface IView extends Target {
     void hide();
     void show();
     boolean isVisible();
