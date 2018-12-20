@@ -1,7 +1,9 @@
 package com.pacgame.game;
 
+import com.pacgame.game.event.ui.UIEventHandler;
+
 public interface IMenuItem {
 
-    void setOnSelect(IHandler handler);
+    void setOnSelect(UIEventHandler handler);
     void setText(String text);
 }

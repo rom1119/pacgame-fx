@@ -4,10 +4,9 @@ package com.pacgame;
 import com.pacgame.color.Paint;
 import com.pacgame.event.IEventHandler;
 import com.pacgame.event.type.EventTarget;
-import com.pacgame.property.TranslateXProperty;
-import com.pacgame.property.TranslateYProperty;
+import com.pacgame.property.XProperty;
+import com.pacgame.property.YProperty;
 import com.pacgame.provider.ViewProvidedObject;
-import com.pacgame.event.type.EventSource;
 import com.pacgame.event.type.Event;
 
 public abstract class View extends EventTarget implements Positionable, Colorable, Comparable<View>, Visible {
@@ -20,8 +19,8 @@ public abstract class View extends EventTarget implements Positionable, Colorabl
 
 
     public View() {
-        x = new TranslateXProperty(0);
-        y = new TranslateYProperty(0);
+        x = new XProperty(0);
+        y = new YProperty(0);
     }
 
     public int getId() {
