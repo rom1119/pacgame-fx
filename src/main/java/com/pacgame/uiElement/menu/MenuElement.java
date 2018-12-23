@@ -2,6 +2,7 @@ package com.pacgame.uiElement.menu;
 
 import com.pacgame.Property;
 import com.pacgame.color.Paint;
+import com.pacgame.event.IEventHandler;
 import com.pacgame.property.TextProperty;
 import com.pacgame.provider.AlignmentProvider;
 import com.pacgame.provider.PositionAlignmentProvider;
@@ -17,6 +18,7 @@ public abstract class MenuElement extends UIElement {
     protected Property<String> text;
     protected PositionAlignmentProvider positionAlignmentProvider;
     protected Menu menu;
+    protected IEventHandler<MenuElement> selectHandler;
 
     public MenuElement(UIProvider provider, PositionAlignmentProvider positionAlignmentProvider, String textArg) {
         super(provider);
@@ -27,6 +29,13 @@ public abstract class MenuElement extends UIElement {
 
     public abstract void check();
     public abstract void unCheck();
+
+    public void setOnSelect(IEventHandler<MenuElement> selectHandlerArg)
+    {
+//        if () {
+//
+//        }
+    }
 
 
     private void calculateWidth()
@@ -99,7 +108,7 @@ public abstract class MenuElement extends UIElement {
      */
     @Override
     public String toString() {
-        return text.get().replace(" ", "");
+        return text.get().toLowerCase().replace(" ", "-");
     }
 
     public void setMenu(Menu menu) {

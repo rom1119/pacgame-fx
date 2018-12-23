@@ -1,13 +1,20 @@
 package com.pacgame.provider.event.type;
 
+import com.google.common.cache.RemovalListener;
 import com.pacgame.provider.EventProvidedObject;
 import com.pacgame.provider.Proxy;
 import com.pacgame.provider.event.EventProxy;
+import com.pacgame.provider.event.IEventHandler;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class EventTypeProxy<T extends EventProxy> extends Proxy {
 
@@ -142,8 +149,11 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
 
     private Class<? extends EventProxy> clazz;
 
+    private Map<Integer, EventHandler> eventHandlersProxy;
+
      public EventTypeProxy(String name, Class<? extends EventProvidedObject> eventClass) {
         this.proxyObject = createProxy(name, eventClass);
+         eventHandlersProxy = new HashMap<>();
     }
 
      public EventTypeProxy(final String name,
@@ -151,10 +161,79 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
              Class<? extends EventProvidedObject> eventClass)
     {
         proxyObject = createProxy(name, eventClass);
+        eventHandlersProxy = new HashMap<>();
+
+    }
+
+    public <T extends EventProxy, S extends EventProvidedObject> int addEventHandlerProxy(T eventProxy, S event, IEventHandler<? super S> eventHandler)
+    {
+//        if (eventHandler == null) {
+//            throw new NullPointerException("Event handler can not be empty for EventType " + proxyObject.getName());
+//        }
+//
+//        if (hasEventHandlerProxy(eventHandler)) {
+//            throw new IllegalArgumentException("Can not add second same eventHandler to EventType " + proxyObject.getName() + " .");
+//        }
+
+        EventHandler eventHandlerProxyObject = e -> {
+//            System.out.println(e.getSource());
+//            System.out.println(e.getTarget());
+            eventProxy.setProxyObject(e);
+            if (e.getTarget() instanceof Text) {
+                event.initTarget(((Text) e.getTarget()).getParent().hashCode());
+
+            } else {
+                event.initTarget(e.getTarget().hashCode());
+
+            }
+            eventHandler.handle(event);
+        };
+
+        eventHandlersProxy.put(eventHandlerProxyObject.hashCode(), eventHandlerProxyObject);
+
+        return eventHandlerProxyObject.hashCode();
+    }
+
+    public <T extends Event> EventHandler<? super T> getEventHandlerProxy(int eventHandlerProxyId)
+    {
+            return eventHandlersProxy.get(eventHandlerProxyId);
+
+    }
+
+
+
+    private boolean hasEventHandlerProxy(EventHandler eventHandler)
+    {
+        for (Map.Entry<Integer, EventHandler> el: eventHandlersProxy.entrySet()) {
+            if (el.getValue().hashCode() == eventHandler.hashCode()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public <T extends Event> EventHandler<? super T> removeEventHandlerProxy(int eventHandlerProxyId)
+    {
+        if (eventHandlerProxyId < 1) {
+            throw new NullPointerException("Event handler ID can not be empty for EventType " + proxyObject.getName());
+        }
+        EventHandler<? super Event> eventHandlerProxy = getEventHandlerProxy(eventHandlerProxyId);
+
+        if (eventHandlerProxy == null) {
+            throw new IllegalArgumentException("Can not remove eventHandler to EventTypeProxy " + proxyObject.getName() + " because not exist .");
+        }
+
+        return eventHandlersProxy.remove(eventHandlerProxyId);
     }
 
     public EventType<? extends Event> getProxyObject() {
         return proxyObject;
+    }
+
+    public String getName()
+    {
+        return proxyObject.getName();
     }
 
     private EventType createProxy(String name, Class<? extends EventProvidedObject> eventClass) {

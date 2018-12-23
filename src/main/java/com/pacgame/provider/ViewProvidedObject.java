@@ -29,6 +29,14 @@ public abstract class ViewProvidedObject extends EventTargetProvidedObject
         getProxy().addEventHandler(eventType, eventHandler, event);
     }
 
+    public final <T extends EventProvidedObject> void removeEventHandler(
+            EventTypeProvidedObject<T> eventType,
+            IEventHandler<T> eventHandler
+    )
+    {
+        getProxy().removeEventHandler(eventType, eventHandler);
+    }
+
     public void setFocusTraversable(boolean val)
     {
         getProxy().setFocusTraversable(val);

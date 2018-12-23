@@ -2,6 +2,7 @@ package com.pacgame.game.adapter;
 
 import com.pacgame.game.IHandler;
 import com.pacgame.game.IMenuItem;
+import com.pacgame.game.event.ui.UIEventHandler;
 import com.pacgame.uiElement.menu.MenuElement;
 
 public class MenuElementAdapter implements IMenuItem {
@@ -12,8 +13,10 @@ public class MenuElementAdapter implements IMenuItem {
         this.menuElement = menuElement;
     }
 
+
+
     @Override
-    public void setOnSelect(IHandler handler) {
+    public void setOnSelect(UIEventHandler handler) {
 
     }
 

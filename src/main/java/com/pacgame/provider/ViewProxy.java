@@ -1,5 +1,6 @@
 package com.pacgame.provider;
 
+
 import com.pacgame.provider.color.PaintProxy;
 import com.pacgame.provider.event.IEventHandler;
 import com.pacgame.provider.event.handler.ViewEventDispatcher;
@@ -8,8 +9,13 @@ import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
 import com.pacgame.provider.property.*;
 import com.pacgame.provider.scene.SceneProxy;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.text.Text;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy, PositionableProvider, Comparable<ViewProxy>, VisibleProvider {
     protected PaintProxy paint;
@@ -95,22 +101,20 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     }
 
 
-    public final  <T extends EventProvidedObject> void addEventHandler(EventTypeProvidedObject<T> eventType, IEventHandler<? super T> eventHandler, T event)
+    public final <T extends EventProvidedObject> void addEventHandler(EventTypeProvidedObject<T> eventType, IEventHandler<? super T> eventHandler, T event)
     {
-        getProxyObject().addEventHandler(eventType.getProxy().getProxyObject(), e -> {
-//            System.out.println(e.getSource());
-//            System.out.println(e.getTarget());
-            event.getProxy().setProxyObject(e);
-            if (e.getTarget() instanceof Text) {
-                event.initTarget(((Text) e.getTarget()).getParent().hashCode());
 
-            } else {
-                event.initTarget(e.getTarget().hashCode());
+        int eventHandlerProxyId = eventType.addEventHandler(eventHandler, event);
+        EventHandler eventHandlerProxy = eventType.getProxy().getEventHandlerProxy(eventHandlerProxyId);
+        getProxyObject().addEventHandler(eventType.getProxy().getProxyObject(), eventHandlerProxy);
 
-            }
-            eventHandler.handle(event);
-        });
+    }
 
+    public final <T extends EventProvidedObject> void removeEventHandler(EventTypeProvidedObject<T> eventType, IEventHandler<? super T> eventHandler)
+    {
+        int handlerId = eventType.removeEventHandler(eventHandler);
+        EventHandler eventHandlerProxy = eventType.getProxy().removeEventHandlerProxy(handlerId);
+        getProxyObject().removeEventHandler(eventType.getProxy().getProxyObject(), eventHandlerProxy);
     }
 
     public SceneProxy getScene() {

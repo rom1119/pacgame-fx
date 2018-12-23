@@ -5,6 +5,8 @@ import com.pacgame.property.ListViewProperty;
 import com.pacgame.property.ObjectProperty;
 import com.pacgame.provider.*;
 import com.pacgame.provider.component.ui.text.Label;
+import com.pacgame.provider.event.IEventHandler;
+import com.pacgame.provider.event.type.MouseEvent;
 import com.pacgame.provider.layer.VerticalLayer;
 
 import java.util.ArrayList;
@@ -35,14 +37,18 @@ public class MainMenu extends Menu {
         setOnChangeCheckedOption();
         setIterator(0);
 
-//        getProvidedObject().addEventHandler(eventProvider.mouseEventFacade().click(), new IEventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent e) {
-//
-//                System.out.println(e.getTarget());
+        IEventHandler<MouseEvent> first_handler = new IEventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+
+                System.out.println("first handler");
 //                System.out.println(e.getSource());
-//            }
-//        });
+            }
+        };
+
+        getProvidedObject().addEventHandler(eventProvider.mouseEventFacade().click(), first_handler);
+        getProvidedObject().removeEventHandler(eventProvider.mouseEventFacade().click(), first_handler);
+        getProvidedObject().addEventHandler(eventProvider.mouseEventFacade().click(), first_handler);
 //
 //        getProvidedObject().addEventHandler(eventProvider.keyEventFacade().keyPressed(), e -> {
 //            System.out.println("{key");
