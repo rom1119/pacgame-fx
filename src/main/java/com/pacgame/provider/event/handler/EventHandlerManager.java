@@ -1,7 +1,7 @@
 package com.pacgame.provider.event.handler;
 
 import com.pacgame.provider.EventProvidedObject;
-import com.pacgame.provider.event.IEventHandler;
+import com.pacgame.provider.event.IEventHandlerProvider;
 import com.pacgame.provider.EventTypeProvidedObject;
 
 import java.util.*;
@@ -19,7 +19,7 @@ public class EventHandlerManager {
 //    }
 
     public static class EventHandlerProperty<T extends EventProvidedObject> {
-        private IEventHandler<T> value;
+        private IEventHandlerProvider<T> value;
         private String name;
 
 

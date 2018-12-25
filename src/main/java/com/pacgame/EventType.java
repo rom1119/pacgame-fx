@@ -1,9 +1,14 @@
 package com.pacgame;
 
+import com.pacgame.event.IEventHandler;
 import com.pacgame.provider.EventProvidedObject;
 import com.pacgame.provider.EventProvider;
 import com.pacgame.provider.EventTypeProvidedObject;
 import com.pacgame.event.type.Event;
+import com.pacgame.provider.event.IEventHandlerProvider;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class EventType<T extends Event> {
 
@@ -12,10 +17,13 @@ public class EventType<T extends Event> {
     private EventTypeProvidedObject<? extends EventProvidedObject> providedObject;
     private EventProvider eventProvider;
 
+
+
     private final String name;
     private final EventType superType;
 
     private Class<? extends Event> eventClass;
+    private Map<IEventHandler<? super T>, IEventHandlerProvider> eventHandlers;
 
     public EventType(EventType superType, String name, Class<T> eventClass, EventTypeProvidedObject<? extends EventProvidedObject> providedObject) {
         this.name = name;
@@ -23,6 +31,7 @@ public class EventType<T extends Event> {
         this.providedObject = providedObject;
 
         this.eventClass = eventClass;
+        this.eventHandlers = new HashMap<>();
         initializeRootEventType();
 //        this.proxy = createProxy(name);
     }
@@ -37,16 +46,57 @@ public class EventType<T extends Event> {
         return providedObject;
     }
 
-//    private EventTypeProxy createProxy(String name) {
-//        return new EventTypeProxy(name, eventClass);
-//
-//    }
-//
-//    @Override
-//    protected EventTypeProxy getProxy() {
-//        return proxy;
-//    }
-//
+    public <M extends EventProvidedObject> IEventHandlerProvider<? super M> addEventHandler(IEventHandler<? super T> eventHandler, T event )
+    {
+
+        if (eventHandler == null) {
+            throw new NullPointerException("Event handler can not be empty for EventType " + getName());
+        }
+
+        if (event == null) {
+            throw new NullPointerException("Event " + event.toString() + " can not be empty ");
+        }
+
+        if (hasEventHandler(eventHandler)) {
+            throw new IllegalArgumentException("Can not add second same eventHandler to EventType " + getName() + " .");
+        }
+        event.setSource(this);
+        IEventHandlerProvider eventHandlerProvider = e -> {
+            event.setProvidedObject(e);
+            event.initTarget(e.getTarget().hashCode());
+
+//            event.setTarget();
+            eventHandler.handle(event);
+        };
+
+        IEventHandlerProvider handlerProvider = eventHandlers.put(eventHandler, eventHandlerProvider);
+
+        return handlerProvider;
+    }
+
+    private boolean hasEventHandler(IEventHandler eventHandler)
+    {
+        for (Map.Entry<IEventHandler<? super T>, IEventHandlerProvider> el: eventHandlers.entrySet()) {
+            if (el.getKey() == eventHandler) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public <M extends EventProvidedObject> IEventHandlerProvider<? super M> removeEventHandler(IEventHandler<? super T> eventHandler)
+    {
+        if (eventHandler == null) {
+            throw new NullPointerException("Event handler can not be empty for EventType " + getName());
+        }
+
+        if (!hasEventHandler(eventHandler)) {
+            throw new IllegalArgumentException("Can not add remove eventHandler to EventType " + getName() + " . Because not exist.");
+        }
+
+        return eventHandlers.remove(eventHandler);
+    }
     public T getEvent() {
 
         T event = null;
@@ -59,5 +109,9 @@ public class EventType<T extends Event> {
         }
 
         return event;
+    }
+
+    public String getName() {
+        return name;
     }
 }

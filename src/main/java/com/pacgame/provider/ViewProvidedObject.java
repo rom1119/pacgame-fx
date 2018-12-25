@@ -1,6 +1,6 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.event.IEventHandler;
+import com.pacgame.provider.event.IEventHandlerProvider;
 import com.pacgame.provider.interfaces.ColorableProvider;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
@@ -21,7 +21,7 @@ public abstract class ViewProvidedObject extends EventTargetProvidedObject
 
     public final  <T extends EventProvidedObject> void addEventHandler(
                 EventTypeProvidedObject<T> eventType,
-            IEventHandler<T> eventHandler
+            IEventHandlerProvider<T> eventHandler
             )
     {
         T event = eventType.getEvent();
@@ -31,7 +31,7 @@ public abstract class ViewProvidedObject extends EventTargetProvidedObject
 
     public final <T extends EventProvidedObject> void removeEventHandler(
             EventTypeProvidedObject<T> eventType,
-            IEventHandler<T> eventHandler
+            IEventHandlerProvider<T> eventHandler
     )
     {
         getProxy().removeEventHandler(eventType, eventHandler);

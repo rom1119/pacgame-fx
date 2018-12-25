@@ -2,20 +2,15 @@ package com.pacgame.provider;
 
 
 import com.pacgame.provider.color.PaintProxy;
-import com.pacgame.provider.event.IEventHandler;
+import com.pacgame.provider.event.IEventHandlerProvider;
 import com.pacgame.provider.event.handler.ViewEventDispatcher;
 import com.pacgame.provider.interfaces.ColorableProvidedProxy;
 import com.pacgame.provider.interfaces.PositionableProvider;
 import com.pacgame.provider.interfaces.VisibleProvider;
 import com.pacgame.provider.property.*;
 import com.pacgame.provider.scene.SceneProxy;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy, PositionableProvider, Comparable<ViewProxy>, VisibleProvider {
     protected PaintProxy paint;
@@ -101,7 +96,7 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
     }
 
 
-    public final <T extends EventProvidedObject> void addEventHandler(EventTypeProvidedObject<T> eventType, IEventHandler<? super T> eventHandler, T event)
+    public final <T extends EventProvidedObject> void addEventHandler(EventTypeProvidedObject<T> eventType, IEventHandlerProvider<? super T> eventHandler, T event)
     {
 
         int eventHandlerProxyId = eventType.addEventHandler(eventHandler, event);
@@ -110,7 +105,7 @@ public abstract class ViewProxy extends Proxy implements ColorableProvidedProxy,
 
     }
 
-    public final <T extends EventProvidedObject> void removeEventHandler(EventTypeProvidedObject<T> eventType, IEventHandler<? super T> eventHandler)
+    public final <T extends EventProvidedObject> void removeEventHandler(EventTypeProvidedObject<T> eventType, IEventHandlerProvider<? super T> eventHandler)
     {
         int handlerId = eventType.removeEventHandler(eventHandler);
         EventHandler eventHandlerProxy = eventType.getProxy().removeEventHandlerProxy(handlerId);

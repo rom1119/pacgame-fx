@@ -5,8 +5,6 @@ import com.pacgame.property.ListViewProperty;
 import com.pacgame.property.ObjectProperty;
 import com.pacgame.provider.*;
 import com.pacgame.provider.component.ui.text.Label;
-import com.pacgame.provider.event.IEventHandler;
-import com.pacgame.provider.event.type.MouseEvent;
 import com.pacgame.provider.layer.VerticalLayer;
 
 import java.util.ArrayList;

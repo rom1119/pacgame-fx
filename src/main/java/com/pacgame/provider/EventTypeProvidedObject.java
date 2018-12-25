@@ -1,6 +1,6 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.event.IEventHandler;
+import com.pacgame.provider.event.IEventHandlerProvider;
 import com.pacgame.provider.event.type.EventTypeProxy;
 
 import java.util.HashMap;
@@ -15,7 +15,7 @@ public class EventTypeProvidedObject<T extends EventProvidedObject> extends Prov
     private final String name;
     private final EventTypeProvidedObject superType;
 
-    private Map<IEventHandler, Integer> eventHandlers;
+    private Map<IEventHandlerProvider, Integer> eventHandlers;
 
     private Class<? extends EventProvidedObject> eventClass;
 
@@ -38,7 +38,7 @@ public class EventTypeProvidedObject<T extends EventProvidedObject> extends Prov
         return proxy;
     }
 
-    public <T extends EventProvidedObject> int addEventHandler( IEventHandler<? super T> eventHandler, T event)
+    public <T extends EventProvidedObject> int addEventHandler(IEventHandlerProvider<? super T> eventHandler, T event)
     {
 
         if (eventHandler == null) {
@@ -72,9 +72,9 @@ public class EventTypeProvidedObject<T extends EventProvidedObject> extends Prov
         return addEventHandlerProxyId;
     }
 
-    private boolean hasEventHandler(IEventHandler eventHandler)
+    private boolean hasEventHandler(IEventHandlerProvider eventHandler)
     {
-        for (Map.Entry<IEventHandler, Integer> el: eventHandlers.entrySet()) {
+        for (Map.Entry<IEventHandlerProvider, Integer> el: eventHandlers.entrySet()) {
             if (el.getKey() == eventHandler) {
                 return true;
             }
@@ -83,7 +83,7 @@ public class EventTypeProvidedObject<T extends EventProvidedObject> extends Prov
         return false;
     }
 
-    public <T extends EventProvidedObject> int removeEventHandler(IEventHandler<? super T> eventHandler)
+    public <T extends EventProvidedObject> int removeEventHandler(IEventHandlerProvider<? super T> eventHandler)
     {
         if (eventHandler == null) {
             throw new NullPointerException("Event handler can not be empty for EventType " + getProxy().getName());

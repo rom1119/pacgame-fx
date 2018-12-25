@@ -1,11 +1,9 @@
 package com.pacgame.provider.event.type;
 
-import com.google.common.cache.RemovalListener;
 import com.pacgame.provider.EventProvidedObject;
 import com.pacgame.provider.Proxy;
 import com.pacgame.provider.event.EventProxy;
-import com.pacgame.provider.event.IEventHandler;
-import javafx.event.ActionEvent;
+import com.pacgame.provider.event.IEventHandlerProvider;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -172,7 +170,7 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
 
     }
 
-    public <T extends EventProxy, S extends EventProvidedObject> int addEventHandlerProxy(T eventProxy, S event, IEventHandler<? super S> eventHandler)
+    public <T extends EventProxy, S extends EventProvidedObject> int addEventHandlerProxy(T eventProxy, S event, IEventHandlerProvider<? super S> eventHandler)
     {
 //        if (eventHandler == null) {
 //            throw new NullPointerException("Event handler can not be empty for EventType " + proxyObject.getName());

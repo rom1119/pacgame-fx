@@ -6,8 +6,10 @@ import com.pacgame.event.IEventHandler;
 import com.pacgame.event.type.EventTarget;
 import com.pacgame.property.XProperty;
 import com.pacgame.property.YProperty;
+import com.pacgame.provider.EventProvidedObject;
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.event.type.Event;
+import com.pacgame.provider.event.IEventHandlerProvider;
 
 public abstract class View extends EventTarget implements Positionable, Colorable, Comparable<View>, Visible {
 
@@ -38,15 +40,14 @@ public abstract class View extends EventTarget implements Positionable, Colorabl
 
     public final <T extends Event> void addEventHandler(EventType<T> eventType, IEventHandler<? super T> eventHandler)
     {
-        T event = eventType.getEvent();
-        event.setSource(this);
-        getProvidedObject().addEventHandler(eventType.getProvidedObject(), e -> {
-            event.setProvidedObject(e);
-            event.initTarget(e.getTarget().hashCode());
 
-//            event.setTarget();
-            eventHandler.handle(event);
-        });
+        T event = eventType.getEvent();
+        getProvidedObject().addEventHandler(eventType.getProvidedObject(), eventType.addEventHandler(eventHandler, event));
+    }
+
+    public final <T extends Event> void removeEventHandler(EventType<T> eventType, IEventHandler<? super T> eventHandler)
+    {
+        getProvidedObject().removeEventHandler(eventType.getProvidedObject(), eventType.removeEventHandler(eventHandler));
     }
 
     @Override

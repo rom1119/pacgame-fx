@@ -4,7 +4,7 @@ import com.pacgame.provider.EventProvidedObject;
 import com.pacgame.provider.ViewProvidedObject;
 import javafx.event.Event;
 
-public interface IEventHandler<T extends EventProvidedObject> {
+public interface IEventHandlerProvider<T extends EventProvidedObject> {
 
 //    IEventHandlerProxy<? super Event> getProxy();
 
