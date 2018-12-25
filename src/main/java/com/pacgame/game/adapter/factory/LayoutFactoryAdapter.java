@@ -38,9 +38,23 @@ public class LayoutFactoryAdapter implements ILayoutFactory {
     }
 
     @Override
+    public IVerticalLayer createLeftedVerticalLayer(int width, int height) {
+        IVerticalLayer verticalLayer = createVerticalLayer(width, height);
+        verticalLayer.leftPosition();
+        return verticalLayer;
+    }
+
+    @Override
     public IVerticalLayer createCenteredVerticalLayer(int width, int height) {
         IVerticalLayer verticalLayer = createVerticalLayer(width, height);
         verticalLayer.centerPosition();
+        return verticalLayer;
+    }
+
+    @Override
+    public IVerticalLayer createRightedVerticalLayer(int width, int height) {
+        IVerticalLayer verticalLayer = createVerticalLayer(width, height);
+        verticalLayer.rightPosition();
         return verticalLayer;
     }
 }

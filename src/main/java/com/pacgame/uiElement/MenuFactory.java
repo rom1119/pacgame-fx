@@ -27,7 +27,7 @@ public class MenuFactory {
     }
 
     public MenuElement createMenuElement(String text) {
-        NormalMenuElement normalMenuElement = new NormalMenuElement(uiProvider, positionAlignmentProvider, paintProvider, text);
+        NormalMenuElement normalMenuElement = new NormalMenuElement(uiProvider, positionAlignmentProvider, paintProvider, eventProvider, text);
 
         return normalMenuElement;
     }

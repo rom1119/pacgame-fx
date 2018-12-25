@@ -21,7 +21,7 @@ public class MouseEvent extends Event {
 
     @Override
     public void setProvidedObject(EventProvidedObject eventProvidedObject) {
-
+        this.providedObject = eventProvidedObject;
     }
 
     MouseEvent(EventTarget target, Object source, EventType eventType) {

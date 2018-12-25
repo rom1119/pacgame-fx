@@ -1,9 +1,6 @@
 package com.pacgame.provider;
 
-import com.pacgame.provider.event.type.KeyEventFacade;
-import com.pacgame.provider.event.type.KeyEventFacadeImpl;
-import com.pacgame.provider.event.type.MouseEventFacade;
-import com.pacgame.provider.event.type.MouseEventFacadeImpl;
+import com.pacgame.provider.event.type.*;
 
 public class EventProviderImpl implements EventProvider {
     @Override
@@ -14,5 +11,10 @@ public class EventProviderImpl implements EventProvider {
     @Override
     public MouseEventFacade mouseEventFacade() {
         return new MouseEventFacadeImpl();
+    }
+
+    @Override
+    public ActionEventFacade actionEventFacade() {
+        return new ActionEventFacadeImpl();
     }
 }

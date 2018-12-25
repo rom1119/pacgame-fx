@@ -12,6 +12,8 @@ public class FlowLayerBuilder implements ILayerBuilder<FlowLayer> {
     private String name;
     private ColorProvidedObject color;
     private LayerProvider layerProvider;
+    private int width;
+    private int height;
 
     public FlowLayerBuilder(LayerProvider layerProvider) {
         this.layerProvider = layerProvider;
@@ -19,15 +21,17 @@ public class FlowLayerBuilder implements ILayerBuilder<FlowLayer> {
 
     @Override
     public FlowLayer build() {
-        this.buildedEl = new FlowLayer(layerProvider);
+        buildedEl = new FlowLayer(layerProvider);
+        buildedEl.setWidth(width);
+        buildedEl.setHeight(height);
 
         return buildedEl;
     }
 
     @Override
     public FlowLayerBuilder with(int width, int height) {
-        buildedEl.setWidth(width);
-        buildedEl.setHeight(height);
+        this.width = width;
+        this.height = height;
 
         return this;
     }

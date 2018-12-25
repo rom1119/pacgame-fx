@@ -1,8 +1,8 @@
 package com.pacgame.game;
 
-import com.pacgame.game.ui.model.Menu;
-import com.pacgame.game.ui.model.main.LoginForm;
-import com.pacgame.game.ui.model.main.MainMenuToLogin;
+import com.pacgame.game.ui.views.Menu;
+import com.pacgame.game.ui.views.main.LoginForm;
+import com.pacgame.game.ui.views.MainMenuToLogin;
 
 import java.util.Set;
 
@@ -49,9 +49,10 @@ public class UILayout {
     {
         loginForm = new LoginForm(layoutFactory, uiComponentFactory, root, colorFactory);
         ILayer iLayer = loginForm.buildView(LEFT_SIDE_WIDTH, LEFT_SIDE_HEIGHT);
+        iLayer.hide();
 //        root.setBackground(colorFactory.createGreen());
 //        iLayer.setBackground(colorFactory.createRed());
-//        root.addElement(iLayer);
+        root.addElement(iLayer);
     }
 
 

@@ -2,7 +2,7 @@ package com.pacgame.game;
 
 public interface IUIComponentFactory {
 
-    IUIComponent createButtonSuccess( String text);
+    IUIComponent createButton(String text);
     IUIComponent createInputText(int width, int height);
     IUIComponent createLabelText(String text);
 

@@ -17,9 +17,19 @@ public class VerticalLayerAdapter extends LayerAdapter implements IVerticalLayer
     }
 
     @Override
+    public void leftPosition() {
+        layer.setAlignment(positionFactory.centerLeft());
+    }
+
+    @Override
     public void centerPosition()
     {
         layer.setAlignment(positionFactory.center());
+    }
+
+    @Override
+    public void rightPosition() {
+        layer.setAlignment(positionFactory.centerRight());
     }
 
     @Override

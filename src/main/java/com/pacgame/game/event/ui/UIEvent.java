@@ -1,4 +1,6 @@
 package com.pacgame.game.event.ui;
 
-public interface UIEvent {
+import com.pacgame.game.event.Event;
+
+public interface UIEvent extends Event {
 }

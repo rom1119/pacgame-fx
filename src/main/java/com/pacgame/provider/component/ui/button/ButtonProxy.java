@@ -3,6 +3,8 @@ package com.pacgame.provider.component.ui.button;
 import com.pacgame.provider.alignment.PositionAlignmentProxy;
 import com.pacgame.provider.color.PaintProxy;
 import com.pacgame.provider.component.ui.UIElementProxy;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;

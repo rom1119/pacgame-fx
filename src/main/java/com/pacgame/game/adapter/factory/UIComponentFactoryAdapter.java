@@ -17,7 +17,7 @@ public class UIComponentFactoryAdapter implements IUIComponentFactory {
     }
 
     @Override
-    public IUIComponent createButtonSuccess(String text) {
+    public IUIComponent createButton(String text) {
         return new ButtonAdapter(uiFactory.createButtonSuccess(text));
     }
 

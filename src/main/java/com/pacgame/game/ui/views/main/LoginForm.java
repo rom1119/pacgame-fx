@@ -1,4 +1,4 @@
-package com.pacgame.game.ui.model.main;
+package com.pacgame.game.ui.views.main;
 
 import com.pacgame.game.*;
 
@@ -41,7 +41,11 @@ public class LoginForm {
 
             root.addElement(createLogin(width, height));
             root.addElement(createPassword(width, height));
-            root.addElement(createSendButton(width, height));
+//            layoutFactory.createCenteredVerticalLayer(, )
+            ILayer flowLayer = layoutFactory.createFlowLayer(width, height);
+            root.addElement(flowLayer);
+            flowLayer.addElement(createBackToMenuButton(width / 2, height));
+            flowLayer.addElement(createSendButton(width / 2, height));
         }
 
         return root;
@@ -79,13 +83,24 @@ public class LoginForm {
 
     private ILayer createSendButton(int width, int height)
     {
-        sendBtnLayer = layoutFactory.createCenteredVerticalLayer(width,  height / 2);
+        sendBtnLayer = layoutFactory.createRightedVerticalLayer(width,  height / 2);
 
-        sendBtn = componentFactory.createButtonSuccess("Zaloguj się");
+        sendBtn = componentFactory.createButton("Zaloguj się");
         globalError = componentFactory.createLabelText("");
 
         sendBtnLayer.addElement(sendBtn);
         sendBtnLayer.addElement(globalError);
+
+        return sendBtnLayer;
+    }
+
+    private ILayer createBackToMenuButton(int width, int height)
+    {
+        sendBtnLayer = layoutFactory.createLeftedVerticalLayer(width,  height / 2);
+        sendBtn = componentFactory.createButton("Powrót do menu");
+        globalError = componentFactory.createLabelText("");
+
+        sendBtnLayer.addElement(sendBtn);
 
         return sendBtnLayer;
     }

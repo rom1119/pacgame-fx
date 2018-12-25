@@ -40,6 +40,16 @@ class MouseEventProxy extends EventProxy {
         return getProxyObject().isPrimaryButtonDown();
     }
 
+    public boolean isMiddleButtonDown()
+    {
+        return getProxyObject().isMiddleButtonDown();
+    }
+
+    public boolean isSecondaryButtonDown()
+    {
+        return getProxyObject().isSecondaryButtonDown();
+    }
+
 
     public double getX()
     {

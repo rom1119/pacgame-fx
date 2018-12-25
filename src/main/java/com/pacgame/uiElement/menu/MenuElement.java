@@ -4,13 +4,10 @@ import com.pacgame.Property;
 import com.pacgame.color.Paint;
 import com.pacgame.event.IEventHandler;
 import com.pacgame.property.TextProperty;
-import com.pacgame.provider.AlignmentProvider;
-import com.pacgame.provider.PositionAlignmentProvider;
-import com.pacgame.provider.UIProvider;
-import com.pacgame.provider.ViewProvidedObject;
+import com.pacgame.provider.*;
 import com.pacgame.provider.component.ui.text.Label;
+import com.pacgame.provider.event.type.KeyEvent;
 import com.pacgame.uiElement.UIElement;
-import com.pacgame.uiElement.text.Text;
 
 public abstract class MenuElement extends UIElement {
 
@@ -19,10 +16,13 @@ public abstract class MenuElement extends UIElement {
     protected PositionAlignmentProvider positionAlignmentProvider;
     protected Menu menu;
     protected IEventHandler<MenuElement> selectHandler;
+    protected final EventProvider eventProvider;
 
-    public MenuElement(UIProvider provider, PositionAlignmentProvider positionAlignmentProvider, String textArg) {
+
+    public MenuElement(UIProvider provider, PositionAlignmentProvider positionAlignmentProvider, EventProvider eventProvider, String textArg) {
         super(provider);
         text = new TextProperty(textArg);
+        this.eventProvider = eventProvider;
         providedObject = provider.createTextElement(textArg);
         this.positionAlignmentProvider = positionAlignmentProvider;
     }
@@ -32,9 +32,19 @@ public abstract class MenuElement extends UIElement {
 
     public void setOnSelect(IEventHandler<MenuElement> selectHandlerArg)
     {
-//        if () {
-//
-//        }
+        getProvidedObject().addEventHandler(eventProvider.keyEventFacade().keyPressed(), e -> {
+            if (e.isEnter()) {
+                selectHandlerArg.handle(this);
+
+            }
+        });
+
+        getProvidedObject().addEventHandler(eventProvider.mouseEventFacade().click(), e -> {
+            if (true) {
+                selectHandlerArg.handle(this);
+
+            }
+        });
     }
 
 

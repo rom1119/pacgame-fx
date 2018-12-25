@@ -45,4 +45,9 @@ public class KeyEvent extends EventProvidedObject {
     {
         return getProxy().isArrowRight();
     }
+
+    public boolean isEnter()
+    {
+        return getProxy().isEnter();
+    }
 }

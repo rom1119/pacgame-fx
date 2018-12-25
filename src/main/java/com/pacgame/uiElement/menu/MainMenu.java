@@ -37,22 +37,6 @@ public class MainMenu extends Menu {
         setOnChangeCheckedOption();
         setIterator(0);
 
-        IEventHandler<MouseEvent> first_handler = new IEventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-
-                System.out.println("first handler");
-//                System.out.println(e.getSource());
-            }
-        };
-
-        getProvidedObject().addEventHandler(eventProvider.mouseEventFacade().click(), first_handler);
-        getProvidedObject().removeEventHandler(eventProvider.mouseEventFacade().click(), first_handler);
-        getProvidedObject().addEventHandler(eventProvider.mouseEventFacade().click(), first_handler);
-//
-//        getProvidedObject().addEventHandler(eventProvider.keyEventFacade().keyPressed(), e -> {
-//            System.out.println("{key");
-//        });
 
     }
 
@@ -60,6 +44,9 @@ public class MainMenu extends Menu {
     public void addMenuItem(MenuElement menuElement) {
         super.addMenuItem(menuElement);
         menuOptions.add(menuElement);
+        menuElement.setOnSelect(e -> {
+            System.out.println(e.getText());
+        });
         checkFirstMenuOption();
     }
 
@@ -96,7 +83,7 @@ public class MainMenu extends Menu {
 
     private MenuElement getMenuItemByProvidedObject(Label label)
     {
-        for(Map.Entry<String, MenuElement> el : menuItems.entrySet()) {
+        for(Map.Entry<Integer, MenuElement> el : menuItems.entrySet()) {
             if (el.getValue().getProvidedObject().equals(label)) {
                 return el.getValue();
             }

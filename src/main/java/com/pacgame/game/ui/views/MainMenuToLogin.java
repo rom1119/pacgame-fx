@@ -1,8 +1,7 @@
-package com.pacgame.game.ui.model.main;
+package com.pacgame.game.ui.views;
 
-import com.pacgame.game.IColor;
 import com.pacgame.game.IMenu;
-import com.pacgame.game.ui.model.Menu;
+import com.pacgame.game.ui.views.Menu;
 
 public class MainMenuToLogin extends Menu {
 

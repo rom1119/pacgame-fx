@@ -5,6 +5,7 @@ import com.pacgame.provider.EventProvidedObject;
 import com.pacgame.provider.Proxy;
 import com.pacgame.provider.event.EventProxy;
 import com.pacgame.provider.event.IEventHandler;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -144,6 +145,12 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
      */
     private static final EventType<javafx.scene.input.MouseEvent> MOUSE_DRAG_DETECTED = javafx.scene.input.MouseEvent.DRAG_DETECTED;
 
+    /**
+     * The only valid EventType for the ActionEvent.
+     */
+    private static final EventType<javafx.event.ActionEvent> ANY_ACTION =
+            new EventType<javafx.event.ActionEvent>(Event.ANY, "ACTION");
+
 
     private EventType<? extends Event> proxyObject;
 
@@ -243,10 +250,22 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
 
         } else if (eventClass.equals(com.pacgame.provider.event.type.MouseEvent.class)) {
             return createMouseEventType(name);
+        } else if (eventClass.equals(com.pacgame.provider.event.type.ActionEvent.class)) {
+            return createActionEventType(name);
         }
 
 
         return null;
+    }
+
+    private EventType createActionEventType(String name) {
+        switch(name) {
+            case "ANY_ACTION":
+                return ANY_ACTION;
+            default:
+                throw new IllegalArgumentException("KeyEvent type " + name + " is not supported for Action Event." );
+
+        }
     }
 
     private EventType<KeyEvent> createKeyEventType(String name) {
@@ -261,7 +280,7 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
             case "KEY":
                 return KEY_ANY;
             default:
-                throw new IllegalArgumentException("KeyEvent type " + name + " is not supported." );
+                throw new IllegalArgumentException("KeyEvent type " + name + " is not supported Key Event." );
 
         }
     }
@@ -292,7 +311,7 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
             case "MOUSE":
                 return MOUSE_ANY;
             default:
-                throw new IllegalArgumentException("MouseEvent type " + name + " is not supported." );
+                throw new IllegalArgumentException("MouseEvent type " + name + " is not supported for Mouse Event." );
 
         }
     }

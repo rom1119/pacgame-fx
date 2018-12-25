@@ -53,4 +53,8 @@ public class KeyEventProxy extends EventProxy {
     {
         return getProxyObject().getCode().equals(KeyCode.RIGHT);
     }
+
+    public boolean isEnter() {
+        return getProxyObject().getCode().equals(KeyCode.ENTER);
+    }
 }

@@ -10,7 +10,7 @@ public abstract class Menu extends ViewElement {
 
     protected final EventProvider eventProvider;
     protected PaintProvider paintProvider;
-    protected Map<String, MenuElement> menuItems;
+    protected Map<Integer, MenuElement> menuItems;
 
     public Menu(LayerProvider provider, PositionAlignmentProvider positionAlignmentProvider, EventProvider eventProvider, PaintProvider paintProvider, int width, int height) {
         super(width, height, provider, positionAlignmentProvider);
@@ -25,14 +25,14 @@ public abstract class Menu extends ViewElement {
 
     public void addMenuItem(MenuElement menuElement)
     {
-        menuItems.put(menuElement.toString(), menuElement);
+        menuItems.put(menuElement.hashCode(), menuElement);
         getProvidedObject().addChildren(menuElement.getProvidedObject());
         menuElement.setMenu(this);
     }
 
     public void removeMenuItem(MenuElement menuElement)
     {
-        menuItems.remove(menuElement.toString());
+        menuItems.remove(menuElement.hashCode());
         getProvidedObject().removeChildren(menuElement.getProvidedObject());
 
     }

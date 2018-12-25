@@ -1,4 +1,4 @@
 package com.pacgame.game.event;
 
-public interface EventType {
+public interface EventType<T extends Event> {
 }

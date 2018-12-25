@@ -30,7 +30,17 @@ public class MouseEvent extends EventProvidedObject {
 
     public boolean isPrimaryButtonDown()
     {
-        return proxy.isPrimaryButtonDown();
+        return getProxy().isPrimaryButtonDown();
+    }
+
+    public boolean isMiddleButtonDown()
+    {
+        return getProxy().isMiddleButtonDown();
+    }
+
+    public boolean isSecondaryButtonDown()
+    {
+        return getProxy().isSecondaryButtonDown();
     }
 
     public double getX()

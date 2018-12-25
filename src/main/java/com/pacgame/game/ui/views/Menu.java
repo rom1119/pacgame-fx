@@ -1,4 +1,4 @@
-package com.pacgame.game.ui.model;
+package com.pacgame.game.ui.views;
 
 
 import com.pacgame.game.IColor;
@@ -6,14 +6,17 @@ import com.pacgame.game.IMenu;
 import com.pacgame.game.IMenuItem;
 import com.pacgame.game.IView;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class Menu
 {
     protected IMenu menu;
-//    protected Set<IMenuItem> menuItems;
+    protected Set<IMenuItem> menuItems;
 
     public Menu(IMenu menu) {
         this.menu = menu;
-//        menuItems = new HashSet<>();
+        menuItems = new HashSet<>();
     }
 
     public IView getMenuElement() {
@@ -22,7 +25,7 @@ public abstract class Menu
 
     public void addMenuItem(IMenuItem menuItem)
     {
-//        this.menuItems.add(menuItem);
+        this.menuItems.add(menuItem);
         menu.addMenuItem(menuItem);
     }
 
@@ -33,6 +36,7 @@ public abstract class Menu
 
     public void  removeMenuItem(IMenuItem menuItem)
     {
+        menuItems.remove(menuItem);
         menu.removeMenuItem(menuItem);
     }
 

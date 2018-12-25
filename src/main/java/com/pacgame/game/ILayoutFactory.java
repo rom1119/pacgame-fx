@@ -5,5 +5,7 @@ public interface ILayoutFactory {
     ILayer createFlowLayer(int width, int height);
     IVerticalLayer createVerticalLayer(int width, int height);
 
+    IVerticalLayer createLeftedVerticalLayer(int width, int height);
     IVerticalLayer createCenteredVerticalLayer(int width, int height);
+    IVerticalLayer createRightedVerticalLayer(int width, int height);
 }
