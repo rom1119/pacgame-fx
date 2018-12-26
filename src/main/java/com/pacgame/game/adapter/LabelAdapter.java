@@ -1,12 +1,10 @@
 package com.pacgame.game.adapter;
 
-import com.pacgame.View;
 import com.pacgame.game.IColor;
-import com.pacgame.game.Ilabel;
-import com.pacgame.uiElement.text.Label;
+import com.pacgame.game.ILabel;
 import com.pacgame.uiElement.text.Text;
 
-public class LabelAdapter extends ViewAdapter implements Ilabel {
+public class LabelAdapter extends ViewAdapter implements ILabel {
 
     private Text label;
 
@@ -30,7 +28,7 @@ public class LabelAdapter extends ViewAdapter implements Ilabel {
     }
 
     @Override
-    public View getProvidedObject() {
+    public Text getProvidedObject() {
         return label;
     }
 }

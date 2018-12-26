@@ -3,6 +3,8 @@ package com.pacgame.provider.component.ui.button;
 import com.pacgame.provider.Paint;
 import com.pacgame.provider.alignment.PositionAlignment;
 import com.pacgame.provider.component.UIElementProvidedObject;
+import com.pacgame.provider.event.IEventHandlerProvider;
+import com.pacgame.provider.event.type.ActionEvent;
 
 public abstract class ButtonProvidedObject extends UIElementProvidedObject {
 
@@ -14,6 +16,13 @@ public abstract class ButtonProvidedObject extends UIElementProvidedObject {
     public void setAlignment(PositionAlignment positionAlignment) {
         proxy.setAlignment(positionAlignment.getProxy());
 
+    }
+
+    public void setOnAction(IEventHandlerProvider<ActionEvent> eventHandler)
+    {
+        ActionEvent actionEvent = new ActionEvent();
+        actionEvent.setSource(this);
+        getProxy().setOnAction(eventHandler, actionEvent);
     }
 
     public String getText() {

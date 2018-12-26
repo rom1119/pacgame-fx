@@ -44,4 +44,8 @@ public abstract class Menu
     {
         menu.hide();
     }
+    public void show()
+    {
+        menu.show();
+    }
 }

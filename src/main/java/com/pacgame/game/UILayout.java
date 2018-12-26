@@ -1,5 +1,6 @@
 package com.pacgame.game;
 
+import com.pacgame.game.ui.views.MainMenu;
 import com.pacgame.game.ui.views.Menu;
 import com.pacgame.game.ui.views.main.LoginForm;
 import com.pacgame.game.ui.views.MainMenuToLogin;
@@ -13,7 +14,7 @@ public class UILayout {
 
     private IColorFactory colorFactory;
     private IScene scene;
-    private Menu mainMenu;
+    private MainMenu mainMenu;
     private ILayer root;
     private Set<IView> elements;
     private ISceneFactory sceneFactory;
@@ -48,6 +49,7 @@ public class UILayout {
     public void buildHiddenViews(ILayoutFactory layoutFactory, IUIComponentFactory uiComponentFactory)
     {
         loginForm = new LoginForm(layoutFactory, uiComponentFactory, root, colorFactory);
+        loginForm.setMenu(mainMenu);
         ILayer iLayer = loginForm.buildView(LEFT_SIDE_WIDTH, LEFT_SIDE_HEIGHT);
         iLayer.hide();
 //        root.setBackground(colorFactory.createGreen());

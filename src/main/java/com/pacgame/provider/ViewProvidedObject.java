@@ -21,7 +21,7 @@ public abstract class ViewProvidedObject extends EventTargetProvidedObject
 
     public final  <T extends EventProvidedObject> void addEventHandler(
                 EventTypeProvidedObject<T> eventType,
-            IEventHandlerProvider<T> eventHandler
+            IEventHandlerProvider<? super T> eventHandler
             )
     {
         T event = eventType.getEvent();
@@ -31,7 +31,7 @@ public abstract class ViewProvidedObject extends EventTargetProvidedObject
 
     public final <T extends EventProvidedObject> void removeEventHandler(
             EventTypeProvidedObject<T> eventType,
-            IEventHandlerProvider<T> eventHandler
+            IEventHandlerProvider<? super T> eventHandler
     )
     {
         getProxy().removeEventHandler(eventType, eventHandler);

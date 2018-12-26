@@ -36,20 +36,17 @@ public class ButtonAdapter extends ViewAdapter implements IButton {
     }
 
     @Override
-    public View getProvidedObject() {
+    public Button getProvidedObject() {
         return button;
     }
 
     @Override
     public void setOnAction(UIEventHandler<ButtonAction> handler) {
         ButtonActionAdapter buttonActionAdapter = new ButtonActionAdapter(this, this);
-        if (actionHandler == null) {
-            getProvidedObject().addEventHandler(eventFacade.actionEventFacade().any(), e -> {
-                handler.handle(buttonActionAdapter);
-            });
-            actionHandler = handler;
-        }
-        getProvidedObject().addEventHandler(eventFacade.actionEventFacade().any(),
+        getProvidedObject().setOnAction(e -> {
+            buttonActionAdapter.setProvidedObject(e);
+            handler.handle(buttonActionAdapter);
+        });
 
     }
 }

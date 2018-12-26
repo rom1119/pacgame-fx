@@ -146,8 +146,9 @@ public class EventTypeProxy<T extends EventProxy> extends Proxy {
     /**
      * The only valid EventType for the ActionEvent.
      */
-    private static final EventType<javafx.event.ActionEvent> ANY_ACTION =
-            new EventType<javafx.event.ActionEvent>(Event.ANY, "ACTION");
+    private static final EventType<javafx.event.ActionEvent> ANY_ACTION = javafx.event.ActionEvent.ANY;
+
+
 
 
     private EventType<? extends Event> proxyObject;

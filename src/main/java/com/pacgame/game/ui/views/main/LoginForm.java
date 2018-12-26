@@ -1,8 +1,12 @@
 package com.pacgame.game.ui.views.main;
 
 import com.pacgame.game.*;
+import com.pacgame.game.ui.views.MainMenu;
+import com.pacgame.game.ui.views.Menu;
+import com.pacgame.game.ui.views.Screen;
+import com.pacgame.game.ui.views.btn.BackToMainMenuBtn;
 
-public class LoginForm {
+public class LoginForm implements Screen {
 
     private ILayoutFactory layoutFactory;
     private IUIComponentFactory componentFactory;
@@ -25,6 +29,7 @@ public class LoginForm {
     // sendButton
     private IUIComponent sendBtn;
     private IUIComponent globalError;
+    private MainMenu menu;
 
     public LoginForm(ILayoutFactory layoutFactory, IUIComponentFactory componentFactory, ILayer parent, IColorFactory colorFactory) {
         this.layoutFactory = layoutFactory;
@@ -42,10 +47,10 @@ public class LoginForm {
             root.addElement(createLogin(width, height));
             root.addElement(createPassword(width, height));
 //            layoutFactory.createCenteredVerticalLayer(, )
-            ILayer flowLayer = layoutFactory.createFlowLayer(width, height);
-            root.addElement(flowLayer);
-            flowLayer.addElement(createBackToMenuButton(width / 2, height));
-            flowLayer.addElement(createSendButton(width / 2, height));
+            ILayer buttonsLayer = layoutFactory.createFlowLayer(width, height);
+            root.addElement(buttonsLayer);
+            buttonsLayer.addElement(createBackToMenuButton(width / 2, height));
+            buttonsLayer.addElement(createSendButton(width / 2, height));
         }
 
         return root;
@@ -97,15 +102,27 @@ public class LoginForm {
     private ILayer createBackToMenuButton(int width, int height)
     {
         sendBtnLayer = layoutFactory.createLeftedVerticalLayer(width,  height / 2);
-        sendBtn = componentFactory.createButton("Powrót do menu");
-        globalError = componentFactory.createLabelText("");
 
-        sendBtnLayer.addElement(sendBtn);
+        BackToMainMenuBtn backToMainMenuBtn = new BackToMainMenuBtn(menu, this, componentFactory);
+
+        sendBtnLayer.addElement(backToMainMenuBtn.getView());
+
 
         return sendBtnLayer;
     }
 
+    @Override
     public void show() {
         root.show();
+    }
+
+    @Override
+    public void hide() {
+        root.hide();
+    }
+
+    @Override
+    public void setMenu(MainMenu mainMenu) {
+        this.menu = mainMenu;
     }
 }

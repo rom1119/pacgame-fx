@@ -2,6 +2,8 @@ package com.pacgame;
 
 import com.pacgame.color.ColorFactory;
 import com.pacgame.color.ColorFactoryImpl;
+import com.pacgame.event.EventFacade;
+import com.pacgame.event.EventFacadeImpl;
 import com.pacgame.game.Game;
 import com.pacgame.game.UILayout;
 import com.pacgame.game.adapter.factory.*;
@@ -140,6 +142,7 @@ public class App extends Application {
         MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider, positionAlignmentProvider, paintProvider, eventProvider);
         ColorFactory colorFactory = new ColorFactoryImpl(paintProvider);
         PositionFactoryImpl positionFactory = new PositionFactoryImpl(positionAlignmentProvider);
+        EventFacade eventFacade = new EventFacadeImpl(eventProvider);
 
         // Adapters
         StageAdapter stageAdapter = new StageAdapter(primaryStage);
@@ -147,7 +150,7 @@ public class App extends Application {
         SceneFactoryAdapter sceneFactoryAdapter = new SceneFactoryAdapter(sceneFactory);
         MenuFactoryAdapter menuFactoryAdapter = new MenuFactoryAdapter(menuFactory);
         ColorFactoryAdapter colorFactoryAdapter = new ColorFactoryAdapter(colorFactory);
-        UIComponentFactoryAdapter uiComponentFactoryAdapter = new UIComponentFactoryAdapter(uiFacade);
+        UIComponentFactoryAdapter uiComponentFactoryAdapter = new UIComponentFactoryAdapter(uiFacade, eventFacade);
 
         // UILayout
         UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter, colorFactoryAdapter);

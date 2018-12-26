@@ -18,8 +18,12 @@ public class ActionEvent extends EventProvidedObject {
         proxy = new ActionEventProxy();
     }
 
+    public ActionEvent() {
+        this(null, null);
+    }
+
     @Override
-    protected ActionEventProxy getProxy() {
+    public ActionEventProxy getProxy() {
         return proxy;
     }
 }
