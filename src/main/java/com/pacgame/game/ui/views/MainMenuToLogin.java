@@ -1,20 +1,22 @@
 package com.pacgame.game.ui.views;
 
+import com.pacgame.event.EventFacade;
 import com.pacgame.game.*;
 import com.pacgame.game.ui.views.Menu;
 import com.pacgame.game.ui.views.main.LoginForm;
 import com.pacgame.game.ui.views.main.RegisterForm;
+import javafx.application.Platform;
 
 public class MainMenuToLogin extends MainMenu {
 
     private LoginForm loginForm;
     private RegisterForm registerForm;
 
-    public MainMenuToLogin(IMenuFactory menuFactory) {
-        super(menuFactory);
+    public MainMenuToLogin(IMenuFactory menuFactory, IEventFacade eventFacade) {
+        super(menuFactory, eventFacade);
         addLoginElement("Zaloguj");
         addRegisterElement("Załóż konto");
-        addLoginElement("Wyjście");
+        addExitElement("Wyjście");
     }
 
     @Override
@@ -59,7 +61,7 @@ public class MainMenuToLogin extends MainMenu {
     {
         IMenuItem menuItem = addMenuItem(text);
         menuItem.setOnSelect(e -> {
-            this.hide();
+            eventFacade.appEventFacade().emitEvent(eventFacade.appEventFacade().exitGame());
         });
 
     }

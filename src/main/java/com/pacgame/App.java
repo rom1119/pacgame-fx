@@ -5,7 +5,9 @@ import com.pacgame.color.ColorFactoryImpl;
 import com.pacgame.event.EventFacade;
 import com.pacgame.event.EventFacadeImpl;
 import com.pacgame.game.Game;
+import com.pacgame.game.PlatformTools;
 import com.pacgame.game.UILayout;
+import com.pacgame.game.adapter.PlatformToolsAdapter;
 import com.pacgame.game.adapter.factory.*;
 import com.pacgame.game.adapter.StageAdapter;
 import com.pacgame.provider.*;
@@ -15,7 +17,9 @@ import com.pacgame.uiElement.MenuFactory;
 import com.pacgame.uiElement.UIFactory;
 import com.pacgame.uiElement.alignment.PositionFactoryImpl;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App extends Application {
@@ -151,17 +155,20 @@ public class App extends Application {
         MenuFactoryAdapter menuFactoryAdapter = new MenuFactoryAdapter(menuFactory);
         ColorFactoryAdapter colorFactoryAdapter = new ColorFactoryAdapter(colorFactory);
         UIComponentFactoryAdapter uiComponentFactoryAdapter = new UIComponentFactoryAdapter(uiFacade, eventFacade);
+        PlatformTools platformToolsAdapter = new PlatformToolsAdapter();
 
         // UILayout
         UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter, colorFactoryAdapter);
-        uiLayout.createMenu(menuFactoryAdapter);
-        uiLayout.buildHiddenViews(layoutFactoryAdapter, uiComponentFactoryAdapter);
+
 
         // Game
-        Game game = new Game();
+        Game game = new Game(platformToolsAdapter);
         game.init(stageAdapter);
         game.setUILayout(uiLayout);
         game.showUILayout();
+
+        uiLayout.createMenu(menuFactoryAdapter, game.getEventFacade());
+        uiLayout.buildHiddenViews(layoutFactoryAdapter, uiComponentFactoryAdapter);
 //        initApp(primaryStage);
 //        play();
     }

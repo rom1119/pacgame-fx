@@ -1,5 +1,9 @@
 package com.pacgame.game;
 
+import com.pacgame.game.IEventFacade;
+import com.pacgame.game.event.EventHandler;
+import com.pacgame.game.event.ExitGame;
+
 public class Game {
 
     public static final int WIDTH = 800;
@@ -9,6 +13,8 @@ public class Game {
     private UILayout uiLayout;
     private GamePlayLayout gamePlayLayout;
     private StageFactory stageFactory;
+    private IEventFacade eventFacade;
+    private PlatformTools platformTools;
 
 
     public void start()
@@ -16,7 +22,10 @@ public class Game {
         primaryStage.show();
     }
 
-    public Game() {
+    public Game(PlatformTools platformTools) {
+
+        eventFacade = new EventFacadeImpl();
+        this.platformTools = platformTools;
     }
 
     public void init(IStage primaryStage)
@@ -25,6 +34,14 @@ public class Game {
         this.primaryStage.setResizable(true);
         this.primaryStage.setTitle(TITTLE);
 
+    }
+
+    private void setOnExitGame()
+    {
+        eventFacade.appEventFacade().addEventHandler(eventFacade.appEventFacade().exitGame(), e -> {
+            e.setPlatformTools(platformTools);
+            e.exit();
+        });
     }
 
     public void pause()
@@ -50,7 +67,12 @@ public class Game {
 
     public void setUILayout(UILayout uiLayout) {
         this.uiLayout = uiLayout;
+
         uiLayout.initScene( WIDTH, HEIGHT);
 
+    }
+
+    public IEventFacade getEventFacade() {
+        return eventFacade;
     }
 }

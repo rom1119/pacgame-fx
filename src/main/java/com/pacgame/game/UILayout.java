@@ -19,6 +19,7 @@ public class UILayout {
     private Set<IView> elements;
     private ISceneFactory sceneFactory;
     private LoginForm loginForm;
+    private IEventFacade eventFacade;
 
     public UILayout(ILayer root, ISceneFactory sceneFactory, IColorFactory colorFactory) {
         this.root = root;
@@ -32,9 +33,9 @@ public class UILayout {
         this.scene = sceneFactory.createScene(root, width, height);
     }
 
-    public Menu createMenu(IMenuFactory menuFactory)
+    public Menu createMenu(IMenuFactory menuFactory, IEventFacade eventFacade)
     {
-        mainMenu = new MainMenuToLogin(menuFactory);
+        mainMenu = new MainMenuToLogin(menuFactory, eventFacade);
         mainMenu.setWidth(LEFT_SIDE_WIDTH);
         mainMenu.setHeight(LEFT_SIDE_HEIGHT);
         mainMenu.setColor(colorFactory.createCustom(0, 0, 0, 0.1));
