@@ -10,9 +10,7 @@ public class LoginForm implements Screen {
 
     private ILayoutFactory layoutFactory;
     private IUIComponentFactory componentFactory;
-    private IColorFactory colorFactory;
     private ILayer root;
-    private ILayer parent;
 
     private ILayer loginLayer;
     private ILayer passwordLayer;
@@ -31,11 +29,9 @@ public class LoginForm implements Screen {
     private IUIComponent globalError;
     private MainMenu menu;
 
-    public LoginForm(ILayoutFactory layoutFactory, IUIComponentFactory componentFactory, ILayer parent, IColorFactory colorFactory) {
+    public LoginForm(ILayoutFactory layoutFactory, IUIComponentFactory componentFactory) {
         this.layoutFactory = layoutFactory;
         this.componentFactory = componentFactory;
-        this.parent = parent;
-        this.colorFactory = colorFactory;
 
     }
 

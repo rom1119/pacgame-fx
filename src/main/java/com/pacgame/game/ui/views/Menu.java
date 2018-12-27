@@ -1,21 +1,23 @@
 package com.pacgame.game.ui.views;
 
 
-import com.pacgame.game.IColor;
-import com.pacgame.game.IMenu;
-import com.pacgame.game.IMenuItem;
-import com.pacgame.game.IView;
+import com.pacgame.game.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Menu
 {
+    private int width = 100;
+    private int height = 100;
     protected IMenu menu;
     protected Set<IMenuItem> menuItems;
+    protected IMenuFactory menuFactory;
 
-    public Menu(IMenu menu) {
-        this.menu = menu;
+
+    public Menu(IMenuFactory menuFactory) {
+        this.menuFactory = menuFactory;
+        this.menu = menuFactory.createMenu(width, height);
         menuItems = new HashSet<>();
     }
 
@@ -23,10 +25,13 @@ public abstract class Menu
         return menu;
     }
 
-    public void addMenuItem(IMenuItem menuItem)
+    public IMenuItem addMenuItem(String text)
     {
+        IMenuItem menuItem = menuFactory.createMenuItem(text);
         this.menuItems.add(menuItem);
         menu.addMenuItem(menuItem);
+
+        return menuItem;
     }
 
     public void setColor(IColor color)
@@ -34,7 +39,7 @@ public abstract class Menu
         this.menu.setBackground(color);
     }
 
-    public void  removeMenuItem(IMenuItem menuItem)
+    public void removeMenuItem(IMenuItem menuItem)
     {
         menuItems.remove(menuItem);
         menu.removeMenuItem(menuItem);
@@ -47,5 +52,31 @@ public abstract class Menu
     public void show()
     {
         menu.show();
+    }
+
+    public void setWidth(int width)
+    {
+        this.width = width;
+        menu.setWidth(width);
+        menuItems.forEach(e -> {
+            e.setWidth(width);
+        });
+    }
+
+    public void setHeight(int height)
+    {
+        this.height = height;
+        menu.setHeight(height);
+        menuItems.forEach(e -> {
+            e.setHeight(height);
+        });
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

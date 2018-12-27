@@ -34,11 +34,11 @@ public class UILayout {
 
     public Menu createMenu(IMenuFactory menuFactory)
     {
-        mainMenu = new MainMenuToLogin(menuFactory.createMenu(LEFT_SIDE_WIDTH, LEFT_SIDE_HEIGHT));
+        mainMenu = new MainMenuToLogin(menuFactory);
+        mainMenu.setWidth(LEFT_SIDE_WIDTH);
+        mainMenu.setHeight(LEFT_SIDE_HEIGHT);
         mainMenu.setColor(colorFactory.createCustom(0, 0, 0, 0.1));
-        addLoginElement(mainMenu, menuFactory.createMenuItem("Zaloguj"));
-        addLoginElement(mainMenu, menuFactory.createMenuItem("Załóż konto"));
-        addLoginElement(mainMenu, menuFactory.createMenuItem("Wyjście"));
+
         root.addElement(mainMenu.getMenuElement());
 //        mainMenu.getMenuElement().setX(200);
 //        mainMenu.hide();
@@ -46,43 +46,15 @@ public class UILayout {
         return mainMenu;
     }
 
-    public void buildHiddenViews(ILayoutFactory layoutFactory, IUIComponentFactory uiComponentFactory)
-    {
-        loginForm = new LoginForm(layoutFactory, uiComponentFactory, root, colorFactory);
-        loginForm.setMenu(mainMenu);
-        ILayer iLayer = loginForm.buildView(LEFT_SIDE_WIDTH, LEFT_SIDE_HEIGHT);
-        iLayer.hide();
-//        root.setBackground(colorFactory.createGreen());
-//        iLayer.setBackground(colorFactory.createRed());
-        root.addElement(iLayer);
-    }
-
-
-    private void addLoginElement(Menu menu, IMenuItem menuItem)
-    {
-        menu.addMenuItem(menuItem);
-        menuItem.setOnSelect(e -> {
-            menu.hide();
-            loginForm.show();
-        });
+    public void buildHiddenViews(ILayoutFactory layoutFactory, IUIComponentFactory uiComponentFactory) {
+        mainMenu.buildHiddenViews(layoutFactory, uiComponentFactory, root );
 
     }
 
-    private void addRegisterElement(Menu menu, IMenuItem menuItem)
-    {
-        menu.addMenuItem(menuItem);
-        menuItem.setOnSelect(e -> {
-            menu.hide();
-        });
 
-    }private void addExitElement(Menu menu, IMenuItem menuItem)
-    {
-        menu.addMenuItem(menuItem);
-        menuItem.setOnSelect(e -> {
-            menu.hide();
-        });
 
-    }
+
+
 //    @Override
 //    public void addElement(IView view) {
 //        elements.add(view);

@@ -29,6 +29,16 @@ public class MenuElementAdapter implements IMenuItem {
         menuElement.setText(text);
     }
 
+    @Override
+    public void setWidth(int width) {
+        menuElement.setWidth(width);
+    }
+
+    @Override
+    public void setHeight(int height) {
+        menuElement.setHeight(height);
+    }
+
     public MenuElement getProvidedObject()
     {
         return menuElement;

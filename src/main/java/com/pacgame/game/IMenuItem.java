@@ -8,4 +8,7 @@ public interface IMenuItem extends Target {
 
     void setOnSelect(UIEventHandler<SelectMenuItem> handler);
     void setText(String text);
+
+    void setWidth(int width);
+    void setHeight(int height);
 }
