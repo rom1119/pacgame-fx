@@ -26,6 +26,7 @@ public class Game {
 
         eventFacade = new EventFacadeImpl();
         this.platformTools = platformTools;
+        setOnExitGame();
     }
 
     public void init(IStage primaryStage)

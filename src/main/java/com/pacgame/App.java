@@ -147,6 +147,7 @@ public class App extends Application {
         ColorFactory colorFactory = new ColorFactoryImpl(paintProvider);
         PositionFactoryImpl positionFactory = new PositionFactoryImpl(positionAlignmentProvider);
         EventFacade eventFacade = new EventFacadeImpl(eventProvider);
+        PlatformToolsProvider platformToolsProvider = new PlatformToolsProviderImpl();
 
         // Adapters
         StageAdapter stageAdapter = new StageAdapter(primaryStage);
@@ -155,7 +156,7 @@ public class App extends Application {
         MenuFactoryAdapter menuFactoryAdapter = new MenuFactoryAdapter(menuFactory);
         ColorFactoryAdapter colorFactoryAdapter = new ColorFactoryAdapter(colorFactory);
         UIComponentFactoryAdapter uiComponentFactoryAdapter = new UIComponentFactoryAdapter(uiFacade, eventFacade);
-        PlatformTools platformToolsAdapter = new PlatformToolsAdapter();
+        PlatformTools platformToolsAdapter = new PlatformToolsAdapter(platformToolsProvider.platformTools());
 
         // UILayout
         UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter, colorFactoryAdapter);
