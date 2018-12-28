@@ -1,11 +1,9 @@
 package com.pacgame.game.ui.views;
 
-import com.pacgame.event.EventFacade;
 import com.pacgame.game.*;
-import com.pacgame.game.ui.views.Menu;
+import com.pacgame.game.event.ExitGame;
 import com.pacgame.game.ui.views.main.LoginForm;
 import com.pacgame.game.ui.views.main.RegisterForm;
-import javafx.application.Platform;
 
 public class MainMenuToLogin extends MainMenu {
 
@@ -61,7 +59,7 @@ public class MainMenuToLogin extends MainMenu {
     {
         IMenuItem menuItem = addMenuItem(text);
         menuItem.setOnSelect(e -> {
-            eventFacade.appEventFacade().emitEvent(eventFacade.appEventFacade().exitGame());
+            eventFacade.appEventFacade().emitEvent(eventFacade.appEventFacade().createExitGameEvent(this, menuItem, ExitGame.APP_EXIT_EVENT));
         });
 
     }

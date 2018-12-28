@@ -6,7 +6,7 @@ import com.pacgame.game.PlatformTools;
 
 public class AppEventFacadeImpl implements AppEventFacade {
     private EventDispatcher<AppEvent> eventDispatcher;
-    private static final ExitGame exitGame = new ExitGameImpl();
+    private static final EventType<ExitGame> exitGame = ExitGame.APP_EXIT_EVENT;
     private PlatformTools platformTools;
 
     public AppEventFacadeImpl() {
@@ -14,12 +14,12 @@ public class AppEventFacadeImpl implements AppEventFacade {
     }
 
     @Override
-    public <T extends AppEvent> void addEventHandler(T event, EventHandler<? super T> eventHandler) {
-        eventDispatcher.addHandler(event, eventHandler);
+    public <T extends AppEvent> void addEventHandler(EventType<T> eventType, EventHandler<? super T> eventHandler) {
+        eventDispatcher.addHandler(eventType, eventHandler);
     }
 
     @Override
-    public <T extends AppEvent> void removeEventHandler(T eventHandler) {
+    public <T extends AppEvent> void removeEventHandler(EventType<T> eventType, EventHandler<? super T> eventHandler) {
 
     }
 
@@ -29,8 +29,13 @@ public class AppEventFacadeImpl implements AppEventFacade {
     }
 
     @Override
-    public ExitGame exitGame() {
-        return exitGame;
+    public ExitGame createExitGameEvent(Source source, Target target, EventType<ExitGame> eventType) {
+        return new ExitGame(source, target, eventType);
+    }
+
+    @Override
+    public EventType<ExitGame> onExitGame() {
+        return ExitGame.APP_EXIT_EVENT;
     }
 
 

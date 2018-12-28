@@ -4,10 +4,12 @@ import com.pacgame.game.PlatformTools;
 
 public interface AppEventFacade {
 
-    ExitGame exitGame();
+    ExitGame createExitGameEvent(Source source, Target target, EventType<ExitGame> eventType);
 
-    <T extends AppEvent> void addEventHandler(T event, EventHandler<? super T> eventHandler);
-    <T extends AppEvent> void removeEventHandler(T eventHandler);
+    EventType<ExitGame> onExitGame();
+
+    <T extends AppEvent> void addEventHandler(EventType<T> eventType, EventHandler<? super T> eventHandler);
+    <T extends AppEvent> void removeEventHandler(EventType<T> eventType, EventHandler<? super T> eventHandler);
 
     <T extends AppEvent> void emitEvent(T event);
 }

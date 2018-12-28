@@ -1,9 +1,5 @@
 package com.pacgame.game;
 
-import com.pacgame.game.IEventFacade;
-import com.pacgame.game.event.EventHandler;
-import com.pacgame.game.event.ExitGame;
-
 public class Game {
 
     public static final int WIDTH = 800;
@@ -39,7 +35,7 @@ public class Game {
 
     private void setOnExitGame()
     {
-        eventFacade.appEventFacade().addEventHandler(eventFacade.appEventFacade().exitGame(), e -> {
+        eventFacade.appEventFacade().addEventHandler(eventFacade.appEventFacade().onExitGame(), e -> {
             e.setPlatformTools(platformTools);
             e.exit();
         });

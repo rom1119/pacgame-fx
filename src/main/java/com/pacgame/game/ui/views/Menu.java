@@ -2,11 +2,12 @@ package com.pacgame.game.ui.views;
 
 
 import com.pacgame.game.*;
+import com.pacgame.game.event.Source;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Menu
+public abstract class Menu implements Source
 {
     private int width = 100;
     private int height = 100;

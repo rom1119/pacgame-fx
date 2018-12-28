@@ -2,10 +2,28 @@ package com.pacgame.game.event.board;
 
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.board.model.pacman.IPacman;
+import com.pacgame.game.event.Event;
+import com.pacgame.game.event.EventType;
+import com.pacgame.game.event.Source;
+import com.pacgame.game.event.Target;
 
-public interface MazeTouchPacman extends GameBoardEvent {
+public class MazeTouchPacman extends GameBoardEvent {
 
-    IMaze getMaze();
+    public MazeTouchPacman(Source source, Target target, EventType<? extends Event> eventType) {
+        super(source, target, eventType);
+    }
 
-    IPacman getPacman();
+    public MazeTouchPacman(Source source, Target target) {
+        super(source, target);
+    }
+
+    public IMaze getMaze()
+    {
+        return null;
+    }
+
+    public IPacman getPacman()
+    {
+        return null;
+    }
 }
