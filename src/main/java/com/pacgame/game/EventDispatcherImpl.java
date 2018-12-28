@@ -35,7 +35,11 @@ public class EventDispatcherImpl<T extends Event> implements EventDispatcher<T> 
     public <S extends T> void addHandler(EventType<S> eventType, EventHandler<? super S> eventHandler)
     {
         if (eventHandlers.containsKey(eventType)) {
-            eventHandlers.get(eventType).add((EventHandler<T>) eventHandler);
+            List<EventHandler<T>> eventHandlerList = this.eventHandlers.get(eventType);
+            ArrayList<EventHandler<T>> newEventHandlers = new ArrayList<>(eventHandlerList);
+            newEventHandlers.add((EventHandler<T>) eventHandler);
+
+            this.eventHandlers.replace((EventType<T>) eventType, newEventHandlers);
         } else {
             eventHandlers.put((EventType<T>) eventType, Arrays.asList((EventHandler<T>) eventHandler));
 

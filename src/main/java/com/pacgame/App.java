@@ -168,7 +168,7 @@ public class App extends Application {
         game.setUILayout(uiLayout);
         game.showUILayout();
 
-        uiLayout.createMenu(menuFactoryAdapter, game.getEventFacade());
+        uiLayout.createMenus(menuFactoryAdapter, game.getEventFacade());
         uiLayout.buildHiddenViews(layoutFactoryAdapter, uiComponentFactoryAdapter);
 //        initApp(primaryStage);
 //        play();

@@ -1,6 +1,6 @@
 package com.pacgame.game;
 
-import com.pacgame.game.ui.views.MainMenu;
+import com.pacgame.game.ui.views.MainMenuFull;
 import com.pacgame.game.ui.views.Menu;
 import com.pacgame.game.ui.views.main.LoginForm;
 import com.pacgame.game.ui.views.MainMenuToLogin;
@@ -14,7 +14,8 @@ public class UILayout {
 
     private IColorFactory colorFactory;
     private IScene scene;
-    private MainMenu mainMenu;
+    private MainMenuToLogin mainMenuBeforeLogin;
+    private MainMenuFull mainMenuFull;
     private ILayer root;
     private Set<IView> elements;
     private ISceneFactory sceneFactory;
@@ -33,22 +34,29 @@ public class UILayout {
         this.scene = sceneFactory.createScene(root, width, height);
     }
 
-    public Menu createMenu(IMenuFactory menuFactory, IEventFacade eventFacade)
+    public void createMenus(IMenuFactory menuFactory, IEventFacade eventFacade)
     {
-        mainMenu = new MainMenuToLogin(menuFactory, eventFacade);
-        mainMenu.setWidth(LEFT_SIDE_WIDTH);
-        mainMenu.setHeight(LEFT_SIDE_HEIGHT);
-        mainMenu.setColor(colorFactory.createCustom(0, 0, 0, 0.1));
+        mainMenuBeforeLogin = new MainMenuToLogin(menuFactory, eventFacade);
+        mainMenuBeforeLogin.setWidth(LEFT_SIDE_WIDTH);
+        mainMenuBeforeLogin.setHeight(LEFT_SIDE_HEIGHT);
+        mainMenuBeforeLogin.setColor(colorFactory.createCustom(0, 0, 0, 0.1));
 
-        root.addElement(mainMenu.getMenuElement());
-//        mainMenu.getMenuElement().setX(200);
-//        mainMenu.hide();
+        mainMenuBeforeLogin.hide();
 
-        return mainMenu;
+        mainMenuFull = new MainMenuFull(menuFactory, eventFacade);
+        mainMenuFull.setWidth(LEFT_SIDE_WIDTH);
+        mainMenuFull.setHeight(LEFT_SIDE_HEIGHT);
+        mainMenuFull.setColor(colorFactory.createCustom(0, 0, 0, 0.1));
+
+        root.addElement(mainMenuBeforeLogin.getMenuElement());
+        root.addElement(mainMenuFull.getMenuElement());
+//        mainMenuBeforeLogin.getMenuElement().setX(200);
+//        mainMenuBeforeLogin.hide();
+
     }
 
     public void buildHiddenViews(ILayoutFactory layoutFactory, IUIComponentFactory uiComponentFactory) {
-        mainMenu.buildHiddenViews(layoutFactory, uiComponentFactory, root );
+        mainMenuBeforeLogin.buildHiddenViews(layoutFactory, uiComponentFactory, root );
 
     }
 
