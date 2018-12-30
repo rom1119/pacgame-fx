@@ -20,6 +20,11 @@ public class BigPoint extends GamePoint {
         this.providedObject = providedObject;
     }
 
+    public String getInitialBackgroundUrl()
+    {
+        return imageSrc;
+    }
+
     @Override
     public int getValue() {
         return value;
@@ -52,7 +57,7 @@ public class BigPoint extends GamePoint {
 
     @Override
     public void setX(int x) {
-        super.setX(x );
+        super.setX(x + (getProvidedObject().getRadius() / 3));
     }
 
     @Override

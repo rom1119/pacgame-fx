@@ -19,6 +19,12 @@ public class Arc extends ShapeProvidedObject {
 
     public void setRadius(int radius) {
         this.radius.set(radius);
+        getProxy().setRadius(radius);
+    }
+
+    public int getRadius()
+    {
+        return radius.get();
     }
 
     @Override

@@ -63,10 +63,10 @@ class FirstLevelPopulator extends PointPopulator {
                     key.charAt(0) == 'c' ||
                     key.charAt(0) == 'e'
                     ) {
-                normalPoint = createNormalPoint((mapPoint.getX() / 2), (mapPoint.getY() / 2) - 3);
+                normalPoint = createNormalPoint((mapPoint.getX() ), (mapPoint.getY() ) - 3);
 
             } else {
-                normalPoint = createNormalPoint((mapPoint.getX() / 2), (mapPoint.getY() / 2));
+                normalPoint = createNormalPoint((mapPoint.getX() ), (mapPoint.getY() ));
 
             }
 
@@ -200,7 +200,7 @@ class FirstLevelPopulator extends PointPopulator {
                 ) {
 
             while (i <= amountPoints) {
-                gamePoint = createNormalPoint(((mapPoint.getX() + (25 * i)) / 2), (mapPoint.getY() / 2) - 3);
+                gamePoint = createNormalPoint(((mapPoint.getX() + (25 * i)) ), (mapPoint.getY() ) - 3);
                 root.addChildren(gamePoint);
                 i++;
             }
@@ -209,7 +209,7 @@ class FirstLevelPopulator extends PointPopulator {
         } else {
 
             while (i <= amountPoints) {
-                gamePoint = createNormalPoint(((mapPoint.getX() + (25 * i)) / 2), (mapPoint.getY() / 2));
+                gamePoint = createNormalPoint(((mapPoint.getX() + (25 * i)) ), (mapPoint.getY() ));
                 root.addChildren(gamePoint);
 
                 i++;
@@ -240,10 +240,10 @@ class FirstLevelPopulator extends PointPopulator {
             while (i <= amountPoints) {
 
                 if (canAddBigPoint(i, key)) {
-                    morePoint = createBigPoint(((mapPoint.getX()) / 2), ((mapPoint.getY()+ (22 * i)) / 2) - 3);
+                    morePoint = createBigPoint(((mapPoint.getX()) ), ((mapPoint.getY()+ (22 * i)) ) - 4);
 
                 } else {
-                    morePoint = createNormalPoint(((mapPoint.getX()) / 2), ((mapPoint.getY()+ (22 * i)) / 2) - 3);
+                    morePoint = createNormalPoint(((mapPoint.getX()) ), ((mapPoint.getY()+ (22 * i)) ) - 3);
                 }
 
                 root.addChildren(morePoint);
@@ -255,9 +255,9 @@ class FirstLevelPopulator extends PointPopulator {
 
             while (i <= amountPoints) {
                 if (canAddBigPoint(i, key)) {
-                    morePoint = createBigPoint(((mapPoint.getX()) / 2), ((mapPoint.getY() + (22 * i)) / 2));
+                    morePoint = createBigPoint(((mapPoint.getX()) ), ((mapPoint.getY() + (22 * i)) ));
                 } else {
-                    morePoint = createNormalPoint(((mapPoint.getX()) / 2), ((mapPoint.getY() + (22 * i)) / 2));
+                    morePoint = createNormalPoint(((mapPoint.getX()) ), ((mapPoint.getY() + (22 * i)) ));
                 }
                 root.addChildren(morePoint);
                 i++;

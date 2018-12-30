@@ -154,7 +154,7 @@ public class App extends Application {
         PositionFactory positionFactory = new PositionFactoryImpl(positionAlignmentProvider);
         EventFacade eventFacade = new EventFacadeImpl(eventProvider);
         PlatformToolsProvider platformToolsProvider = new PlatformToolsProviderImpl();
-        GameElementFacade gameElementFacade = new GameElementFacade(shapeProvider);
+        GameElementFacade gameElementFacade = new GameElementFacade(shapeProvider, colorFactory);
         LevelsFacade levelsFacade = new LevelsFacade(colorFactory);
 
         // Adapters

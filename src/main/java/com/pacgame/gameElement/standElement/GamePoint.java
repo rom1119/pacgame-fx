@@ -12,35 +12,12 @@ public abstract class GamePoint extends StandComponent implements Valuable {
 
     protected int value = 1;
     protected boolean isVisible = true;
-    protected Property<Integer> width;
-    protected Property<Integer> height;
 
 
-    public GamePoint(int width, int height, ShapeProvidedObject providedObject) {
-        this( providedObject);
-
-    }
 
     public GamePoint(ShapeProvidedObject providedObject) {
-        super(providedObject);
-        this.width = new WidthProperty(0);
-        this.height = new HeightProperty(0);
-    }
+        super( providedObject);
 
-    public int getWidth() {
-        return (int) this.width.get();
-    }
-
-    public void setWidth(int width) {
-        this.width.set(width);
-    }
-
-    public int getHeight() {
-        return (int) this.height.get();
-    }
-
-    public void setHeight(int height) {
-        this.height.set(height);
     }
 
 

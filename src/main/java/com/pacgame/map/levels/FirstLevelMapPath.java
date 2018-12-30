@@ -10,9 +10,9 @@ class FirstLevelMapPath extends LevelMapPath {
 
     private static Map<String, MapPoint> points;
     private static int firstX = 35;
-    private static int xStep = 200;
+    private static int xStep = 95;
     private static int firstY = 30;
-    private static int yStep = 185;
+    private static int yStep = 88;
 
     private static int changeXA = 0;
     private static int changeBA = 0;

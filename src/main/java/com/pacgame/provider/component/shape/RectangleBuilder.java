@@ -26,8 +26,11 @@ public class RectangleBuilder implements ShapeBuilder<Rectangle> {
 
     @Override
     public Rectangle build() {
-        Rectangle arc = new Rectangle(width, height);
-        arc.setBackground(color);
-        return arc;
+        Rectangle rectangle = new Rectangle(width, height);
+        if (color != null) {
+            rectangle.setBackground(color);
+
+        }
+        return rectangle;
     }
 }

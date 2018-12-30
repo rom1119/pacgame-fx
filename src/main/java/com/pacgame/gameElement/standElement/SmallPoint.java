@@ -1,6 +1,9 @@
 package com.pacgame.gameElement.standElement;
 
+import com.pacgame.Property;
 import com.pacgame.color.Paint;
+import com.pacgame.property.HeightProperty;
+import com.pacgame.property.WidthProperty;
 import com.pacgame.provider.component.shape.Rectangle;
 
 public class SmallPoint extends GamePoint {
@@ -8,19 +11,42 @@ public class SmallPoint extends GamePoint {
     private static final int WIDTH = 5;
     private static final int HEIGHT = 5;
     protected Rectangle providedObject;
+    protected Property<Integer> width;
+    protected Property<Integer> height;
 
     public SmallPoint(int width, int height, Rectangle providedObject) {
-        super(width, height, providedObject);
-        this.providedObject = providedObject;
-        this.providedObject.setWidth(width);
-        this.providedObject.setHeight(height);
+        this( providedObject);
+        setWidth(width);
+        setHeight(height);
     }
 
     public SmallPoint(Rectangle providedObject) {
         super(providedObject);
         this.providedObject = providedObject;
+        this.width = new WidthProperty(0);
+        this.height = new HeightProperty(0);
 
     }
+
+    public int getWidth() {
+        return (int) this.width.get();
+    }
+
+    public void setWidth(int width) {
+        this.width.set(width);
+        getProvidedObject().setWidth(width);
+    }
+
+    public int getHeight() {
+        return (int) this.height.get();
+    }
+
+    public void setHeight(int height) {
+        this.height.set(height);
+        getProvidedObject().setHeight(height);
+    }
+
+
 
     @Override
     public int getValue() {
