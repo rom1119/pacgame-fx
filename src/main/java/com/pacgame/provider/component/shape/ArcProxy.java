@@ -25,6 +25,29 @@ public class ArcProxy extends ShapeProxy {
 //
         proxyObject.setFill(Color.BLACK);
 
+        proxyObject.setStartAngle(45.0f);
+        proxyObject.setLength(270.0f);
+
+    }
+
+    public void setStartAngle(int val)
+    {
+        getProxyObject().setStartAngle(val);
+    }
+
+    public int getStartAngle()
+    {
+        return (int) getProxyObject().getStartAngle();
+    }
+
+    public void setLength(int val)
+    {
+        getProxyObject().setLength(val);
+    }
+
+    public int getLength()
+    {
+        return (int) getProxyObject().getLength();
     }
 
     @Override

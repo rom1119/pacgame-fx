@@ -18,6 +18,8 @@ public class Pacman extends MovedComponent {
         this.providedObject = providedObject;
         this.radius = new RadiusProperty(radius);
         this.providedObject.setRadius(radius);
+        this.providedObject.setStartAngle(45);
+        this.providedObject.setLength(270);
     }
 
     @Override

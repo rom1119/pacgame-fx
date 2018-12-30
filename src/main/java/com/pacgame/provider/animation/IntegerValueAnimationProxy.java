@@ -133,7 +133,7 @@ class IntegerValueAnimationProxy extends AnimationProxy {
             return this;
         }
 
-        public Builder delaySecondss(int seconds)
+        public Builder delaySeconds(int seconds)
         {
             delay = Duration.seconds(seconds);
 

@@ -17,4 +17,9 @@ public class GameElementFacade {
     {
         return new PointFactoryImpl(shapeProvider, colorFactory);
     }
+
+    public MovingElementFactory movingElementFactory()
+    {
+        return new MovingElementFactoryImpl(shapeProvider, colorFactory);
+    }
 }
