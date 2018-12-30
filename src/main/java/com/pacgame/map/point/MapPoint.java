@@ -9,6 +9,8 @@ public class MapPoint extends Point2D {
     private MapPoint rightPoint ;
     private boolean door = false;
 
+
+
     public MapPoint(Position2D position1) {
         super(position1);
     }
@@ -35,6 +37,22 @@ public class MapPoint extends Point2D {
 
     public void setRightPoint(MapPoint rightPoint) {
         this.rightPoint = rightPoint;
+    }
+
+    public MapPoint getUpPoint() {
+        return upPoint;
+    }
+
+    public MapPoint getDownPoint() {
+        return DownPoint;
+    }
+
+    public MapPoint getLeftPoint() {
+        return leftPoint;
+    }
+
+    public MapPoint getRightPoint() {
+        return rightPoint;
     }
 
     public void setDoor(boolean isDoor) {

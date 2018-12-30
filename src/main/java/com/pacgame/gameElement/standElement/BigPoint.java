@@ -1,11 +1,9 @@
 package com.pacgame.gameElement.standElement;
 
 import com.pacgame.color.Paint;
-import com.pacgame.provider.ViewProvidedObject;
-import com.pacgame.provider.component.ShapeProvidedObject;
 import com.pacgame.provider.component.shape.Arc;
 
-public class BigPoint extends EatableElement {
+public class BigPoint extends GamePoint {
 
     protected int value = 5;
     protected static final String imageSrc = "./point/big-point.png";
@@ -50,5 +48,15 @@ public class BigPoint extends EatableElement {
     @Override
     protected Arc getProvidedObject() {
         return providedObject;
+    }
+
+    @Override
+    public void setX(int x) {
+        super.setX(x );
+    }
+
+    @Override
+    public void setY(int y) {
+        super.setY(y );
     }
 }

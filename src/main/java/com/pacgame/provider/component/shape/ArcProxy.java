@@ -24,7 +24,7 @@ public class ArcProxy extends ShapeProxy {
     }
 
     @Override
-    public Node getProxyObject() {
+    public Arc getProxyObject() {
         return proxyObject;
     }
 }

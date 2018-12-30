@@ -1,10 +1,9 @@
 package com.pacgame.gameElement.standElement;
 
 import com.pacgame.color.Paint;
-import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.component.shape.Rectangle;
 
-public class SmallPoint extends EatableElement {
+public class SmallPoint extends GamePoint {
 
     private static final int WIDTH = 5;
     private static final int HEIGHT = 5;
@@ -51,6 +50,28 @@ public class SmallPoint extends EatableElement {
     @Override
     protected Rectangle getProvidedObject() {
         return providedObject;
+    }
+
+    @Override
+    public int getX() {
+        return super.getX();
+    }
+
+    @Override
+    public int getY() {
+        return super.getY();
+    }
+
+    @Override
+    public void setX(int x) {
+        super.setX(x);
+        getProvidedObject().setX(x);
+    }
+
+    @Override
+    public void setY(int y) {
+        super.setY(y);
+        getProvidedObject().setY(y);
     }
 
 }

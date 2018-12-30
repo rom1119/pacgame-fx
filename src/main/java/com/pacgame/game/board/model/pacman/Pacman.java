@@ -1,6 +1,7 @@
 package com.pacgame.game.board.model.pacman;
 
 
+import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.exception.EatYourSelfException;
 import com.pacgame.game.property.BaseProperty;
 import com.pacgame.game.Eatable;
@@ -46,6 +47,11 @@ public class Pacman implements IPacman {
 
     @Override
     public void changeToEaten() {
+
+    }
+
+    @Override
+    public void setPosition(IMapPoint pacmanInitPosition) {
 
     }
 }

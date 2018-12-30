@@ -1,32 +1,37 @@
 package com.pacgame.map;
 
 import com.pacgame.Layer;
-import com.pacgame.map.levels.LevelMapPath;
-import org.apache.commons.collections.BidiMap;
+import com.pacgame.map.point.MapPoint;
 
 public abstract class Level {
 
     protected ILevelType levelType;
     protected Map mapInstance;
-    protected Layer rootLayer;
-
-
+    protected PointPopulator populator;
     protected LevelMapPath levelMapPath;
 
     protected Level() {
     }
 
 
-    public BidiMap getAllPoints() {
+    public java.util.Map<String, MapPoint> getAllMapPoints() {
         return levelMapPath.getAllPoints();
     }
 
-
-    void setRootLayer(Layer layer) {
-        this.rootLayer = layer;
+    void populatePoints()
+    {
+        populator.populate(this.getAllMapPoints());
     }
 
-    Layer getRootLayer() {
-        return rootLayer;
+    public void setPopulator(PointPopulator populator) {
+        this.populator = populator;
+    }
+
+    public void setRootLayer(Layer layer) {
+        this.mapInstance.setRootLayer(layer);
+    }
+
+    public Layer getRootLayer() {
+        return mapInstance.getRootLayer();
     }
 }

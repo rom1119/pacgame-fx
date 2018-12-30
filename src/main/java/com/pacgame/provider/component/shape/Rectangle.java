@@ -20,10 +20,12 @@ public class Rectangle extends ShapeProvidedObject {
 
     public void setWidth(int width) {
         this.width.set(width);
+        getProxy().setWidth(width);
     }
 
     public void setHeight(int height) {
         this.height.set(height);
+        getProxy().setHeight(height);
     }
 
     @Override

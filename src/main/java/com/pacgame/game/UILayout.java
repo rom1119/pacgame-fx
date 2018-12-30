@@ -29,7 +29,7 @@ public class UILayout {
 
     }
 
-    public void initScene( int width, int height)
+    public void createScene(int width, int height)
     {
         this.scene = sceneFactory.createScene(root, width, height);
     }

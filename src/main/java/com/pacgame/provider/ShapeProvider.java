@@ -2,7 +2,7 @@ package com.pacgame.provider;
 
 import com.pacgame.provider.component.shape.*;
 
-public interface ShapeProvider extends ViewProvider{
+public interface ShapeProvider{
 
     Arc createArc(int radius);
     Rectangle createRectangle(int width, int height);

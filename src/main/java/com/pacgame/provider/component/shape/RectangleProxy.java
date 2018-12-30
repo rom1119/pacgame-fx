@@ -12,8 +12,24 @@ public class RectangleProxy extends ShapeProxy {
     }
 
     @Override
-    public Node getProxyObject() {
+    public Rectangle getProxyObject() {
         return proxyObject;
+    }
+
+    public int getWidth() {
+        return (int) getProxyObject().getWidth();
+    }
+
+    public void setWidth(int width) {
+        getProxyObject().setWidth(width);
+    }
+
+    public int getHeight() {
+        return (int) getProxyObject().getHeight();
+    }
+
+    public void setHeight(int height) {
+        getProxyObject().setHeight(height);
     }
 
 }

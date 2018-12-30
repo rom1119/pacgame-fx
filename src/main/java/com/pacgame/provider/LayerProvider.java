@@ -4,7 +4,7 @@ import com.pacgame.provider.layer.FlowLayer;
 import com.pacgame.provider.layer.GroupLayer;
 import com.pacgame.provider.layer.VerticalLayer;
 
-public interface LayerProvider extends ViewProvider {
+public interface LayerProvider {
 
     FlowLayer createFlowLayer();
     GroupLayer createGroupLayer();

@@ -1,10 +1,9 @@
 package com.pacgame.game;
 
+import com.pacgame.game.board.BoardMap;
 import com.pacgame.game.event.Event;
 import com.pacgame.game.event.EventHandler;
 import com.pacgame.game.event.EventType;
-import com.pacgame.game.event.board.GameBoardEvent;
-import com.pacgame.game.event.board.GameBoardEventHandler;
 
 import java.util.*;
 

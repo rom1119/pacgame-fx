@@ -1,6 +1,7 @@
 package com.pacgame.gameElement;
 
 import com.pacgame.gameElement.standElement.BigPoint;
+import com.pacgame.gameElement.standElement.GamePoint;
 import com.pacgame.gameElement.standElement.SmallPoint;
 import com.pacgame.provider.ShapeProvider;
 import com.pacgame.provider.color.Yellow;
@@ -19,14 +20,14 @@ class PointFactoryImpl implements PointFactory {
     }
 
     @Override
-    public StandComponent createNormalPoint() {
+    public GamePoint createNormalPoint() {
         Rectangle rectangle = shapeProvider.rectangleBuilder().with(WIDTH, HEIGHT).color(new Yellow()).build();
 
         return new SmallPoint(rectangle);
     }
 
     @Override
-    public StandComponent createBigPoint() {
+    public GamePoint createBigPoint() {
         Arc arc = shapeProvider.arcBuilder().radius(RADIUS).color(new Yellow()).build();
         return new BigPoint(arc);
     }

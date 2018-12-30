@@ -1,17 +1,18 @@
 package com.pacgame.map.levels;
 
+import com.pacgame.map.LevelMapPath;
 import com.pacgame.map.point.MapPoint;
-import org.apache.commons.collections.BidiMap;
-import org.apache.commons.collections.bidimap.DualHashBidiMap;
 
-public class FirstLevelMapPath extends LevelMapPath {
+import java.util.HashMap;
+import java.util.Map;
 
-    private static DualHashBidiMap points;
-    private static DualHashBidiMap newPoints;
+class FirstLevelMapPath extends LevelMapPath {
+
+    private static Map<String, MapPoint> points;
     private static int firstX = 35;
-    private static int xStep = 95;
+    private static int xStep = 200;
     private static int firstY = 30;
-    private static int yStep = 88;
+    private static int yStep = 185;
 
     private static int changeXA = 0;
     private static int changeBA = 0;
@@ -23,7 +24,7 @@ public class FirstLevelMapPath extends LevelMapPath {
 
     private void createMapPoints() {
 
-        points = new DualHashBidiMap();
+        points = new HashMap<>();
 
 //        1 row
         MapPoint a1 = new MapPoint(firstX- 4, firstY);
@@ -835,7 +836,7 @@ public class FirstLevelMapPath extends LevelMapPath {
     }
 
     @Override
-    public BidiMap getAllPoints()
+    public Map<String, MapPoint> getAllPoints()
     {
         return points;
     }

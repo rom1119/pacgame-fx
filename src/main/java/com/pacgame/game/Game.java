@@ -55,17 +55,20 @@ public class Game {
     public void showGameLayout()
     {
         primaryStage.setScene(gamePlayLayout.getScene());
-    }
-
-    public void buildGamePlayLayout(ILayoutFactory layoutFactory)
-    {
-        gamePlayLayout = new GamePlayLayout(layoutFactory.createGroupLayer(WIDTH, HEIGHT));
+        primaryStage.show();
     }
 
     public void setUILayout(UILayout uiLayout) {
         this.uiLayout = uiLayout;
 
-        uiLayout.initScene( WIDTH, HEIGHT);
+        uiLayout.createScene( WIDTH, HEIGHT);
+
+    }
+
+    public void setGamePlayLayout(GamePlayLayout gamePlayLayout) {
+        this.gamePlayLayout = gamePlayLayout;
+
+        gamePlayLayout.createScene( WIDTH, HEIGHT);
 
     }
 

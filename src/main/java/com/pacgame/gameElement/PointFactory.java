@@ -1,8 +1,10 @@
 package com.pacgame.gameElement;
 
+import com.pacgame.gameElement.standElement.GamePoint;
+
 public interface PointFactory {
 
-    StandComponent createNormalPoint();
-    StandComponent createBigPoint();
+    GamePoint createNormalPoint();
+    GamePoint createBigPoint();
 
 }

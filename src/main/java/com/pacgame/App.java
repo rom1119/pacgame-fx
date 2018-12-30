@@ -5,16 +5,21 @@ import com.pacgame.color.ColorFactoryImpl;
 import com.pacgame.event.EventFacade;
 import com.pacgame.event.EventFacadeImpl;
 import com.pacgame.game.Game;
+import com.pacgame.game.GamePlayLayout;
 import com.pacgame.game.PlatformTools;
 import com.pacgame.game.UILayout;
 import com.pacgame.game.adapter.PlatformToolsAdapter;
+import com.pacgame.game.adapter.board.BoardMapCreatorAdapter;
 import com.pacgame.game.adapter.factory.*;
 import com.pacgame.game.adapter.StageAdapter;
+import com.pacgame.gameElement.GameElementFacade;
+import com.pacgame.map.LevelsFacade;
 import com.pacgame.provider.*;
 import com.pacgame.stage.SceneFactory;
 import com.pacgame.uiElement.LayerFactory;
 import com.pacgame.uiElement.MenuFactory;
 import com.pacgame.uiElement.UIFactory;
+import com.pacgame.uiElement.alignment.PositionFactory;
 import com.pacgame.uiElement.alignment.PositionFactoryImpl;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -133,21 +138,24 @@ public class App extends Application {
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
 
         // Providers
-        UIProviderImpl uiProvider = new UIProviderImpl();
+        UIProvider uiProvider = new UIProviderImpl();
         LayerProvider layerProvider = new LayerProviderImpl();
         SceneProvider sceneProvider = new SceneProviderImpl();
         PaintProvider paintProvider = new PaintProviderImpl();
         PositionAlignmentProvider positionAlignmentProvider = new PositionAlignmentProviderImpl();
         EventProvider eventProvider = new EventProviderImpl();
+        ShapeProvider shapeProvider = new ShapeProviderImpl();
 
         UIFactory uiFacade = new UIFactory(uiProvider, eventProvider);
         LayerFactory layerFactory = new LayerFactory(layerProvider);
         SceneFactory sceneFactory = new SceneFactory(sceneProvider);
         MenuFactory menuFactory = new MenuFactory(uiProvider, layerProvider, positionAlignmentProvider, paintProvider, eventProvider);
         ColorFactory colorFactory = new ColorFactoryImpl(paintProvider);
-        PositionFactoryImpl positionFactory = new PositionFactoryImpl(positionAlignmentProvider);
+        PositionFactory positionFactory = new PositionFactoryImpl(positionAlignmentProvider);
         EventFacade eventFacade = new EventFacadeImpl(eventProvider);
         PlatformToolsProvider platformToolsProvider = new PlatformToolsProviderImpl();
+        GameElementFacade gameElementFacade = new GameElementFacade(shapeProvider);
+        LevelsFacade levelsFacade = new LevelsFacade(colorFactory);
 
         // Adapters
         StageAdapter stageAdapter = new StageAdapter(primaryStage);
@@ -157,16 +165,22 @@ public class App extends Application {
         ColorFactoryAdapter colorFactoryAdapter = new ColorFactoryAdapter(colorFactory);
         UIComponentFactoryAdapter uiComponentFactoryAdapter = new UIComponentFactoryAdapter(uiFacade, eventFacade);
         PlatformTools platformToolsAdapter = new PlatformToolsAdapter(platformToolsProvider.platformTools());
+        BoardMapCreatorAdapter boardMapCreatorAdapter = new BoardMapCreatorAdapter(levelsFacade, gameElementFacade.pointFactory(), layerFactory);
 
         // UILayout
         UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter, colorFactoryAdapter);
 
+        // GamePlayLayout
+        GamePlayLayout gamePlayLayout = new GamePlayLayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter);
+        gamePlayLayout.createMap(boardMapCreatorAdapter);
 
         // Game
         Game game = new Game(platformToolsAdapter);
         game.init(stageAdapter);
         game.setUILayout(uiLayout);
         game.showUILayout();
+        game.setGamePlayLayout(gamePlayLayout);
+        game.showGameLayout();
 
         uiLayout.createMenus(menuFactoryAdapter, game.getEventFacade());
         uiLayout.buildHiddenViews(layoutFactoryAdapter, uiComponentFactoryAdapter);

@@ -1,6 +1,7 @@
 package com.pacgame.provider;
 
-public abstract class ComponentProvidedObject extends ViewProvidedObject {
+import com.pacgame.provider.property.*;
 
+public abstract class ComponentProvidedObject extends ViewProvidedObject {
 
 }

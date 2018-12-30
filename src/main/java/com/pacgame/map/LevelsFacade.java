@@ -1,22 +1,32 @@
 package com.pacgame.map;
 
 import com.pacgame.Layer;
+import com.pacgame.color.ColorFactory;
 import com.pacgame.gameElement.PointFactory;
 import com.pacgame.map.levels.FirstLevel;
 import com.pacgame.map.maps.MapFirst;
 
 public class LevelsFacade {
 
-    private Populator populator;
+    private PointPopulator populator;
+    protected ColorFactory colorFactory;
 
-    public void changeToFirstlevel(Layer box, PointFactory pointFactory)
+    public LevelsFacade(ColorFactory colorFactory) {
+        this.colorFactory = colorFactory;
+    }
+
+    public Level changeToFirstLevel(Layer box, PointFactory pointFactory)
     {
         depopulatePreviousLevel();
         FirstLevel.Builder builder = new FirstLevel.Builder();
         Level level = builder
+                .withMap(new MapFirst(colorFactory))
+                .withRootLayer(box)
+                .withPointPopulator(pointFactory)
                 .build();
-        populator = new PointPopulator(level, box, pointFactory);
-        populator.populate(level.getAllPoints());
+        level.populatePoints();
+
+        return level;
     }
 
     private void depopulatePreviousLevel() {
