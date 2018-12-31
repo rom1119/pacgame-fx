@@ -50,7 +50,7 @@ class FirstLevelPopulator extends PointPopulator {
                 continue;
             }
 
-            if (key.equals("e5") || key.equals("e6") || key.equals("e5A") ) {
+            if (key.equals("e5") || key.equals("e6") || key.equals("e5A") || key.equals("h5A") ) {
                 continue;
             }
 

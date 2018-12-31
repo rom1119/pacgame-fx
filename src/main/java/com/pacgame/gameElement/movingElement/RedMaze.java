@@ -35,6 +35,6 @@ public class RedMaze extends Maze {
 
     @Override
     public String getCenterBackgroundUrl() {
-        return PREFIX_IMAGE_URL + "main.png";
+        return PREFIX_IMAGE_URL + "down.png";
     }
 }

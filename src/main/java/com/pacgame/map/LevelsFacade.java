@@ -24,7 +24,6 @@ public class LevelsFacade {
                 .withRootLayer(box)
                 .withPointPopulator(pointFactory)
                 .build();
-        level.populatePoints();
 
         return level;
     }

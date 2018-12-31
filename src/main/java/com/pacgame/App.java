@@ -10,6 +10,7 @@ import com.pacgame.game.PlatformTools;
 import com.pacgame.game.UILayout;
 import com.pacgame.game.adapter.PlatformToolsAdapter;
 import com.pacgame.game.adapter.board.BoardMapCreatorAdapter;
+import com.pacgame.game.adapter.board.GameObjectFactoryAdapter;
 import com.pacgame.game.adapter.factory.*;
 import com.pacgame.game.adapter.StageAdapter;
 import com.pacgame.gameElement.GameElementFacade;
@@ -165,7 +166,8 @@ public class App extends Application {
         ColorFactoryAdapter colorFactoryAdapter = new ColorFactoryAdapter(colorFactory);
         UIComponentFactoryAdapter uiComponentFactoryAdapter = new UIComponentFactoryAdapter(uiFacade, eventFacade);
         PlatformTools platformToolsAdapter = new PlatformToolsAdapter(platformToolsProvider.platformTools());
-        BoardMapCreatorAdapter boardMapCreatorAdapter = new BoardMapCreatorAdapter(levelsFacade, gameElementFacade.pointFactory(), layerFactory);
+        GameObjectFactoryAdapter gameObjectFactoryAdapter = new GameObjectFactoryAdapter(gameElementFacade.movingElementFactory());
+        BoardMapCreatorAdapter boardMapCreatorAdapter = new BoardMapCreatorAdapter(levelsFacade, gameElementFacade, layerFactory);
 
         // UILayout
         UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter, colorFactoryAdapter);
@@ -173,6 +175,7 @@ public class App extends Application {
         // GamePlayLayout
         GamePlayLayout gamePlayLayout = new GamePlayLayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter);
         gamePlayLayout.createMap(boardMapCreatorAdapter);
+        gamePlayLayout.initGameObjects(gameObjectFactoryAdapter);
 
         // Game
         Game game = new Game(platformToolsAdapter);

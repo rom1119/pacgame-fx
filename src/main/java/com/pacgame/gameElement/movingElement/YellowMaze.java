@@ -4,12 +4,12 @@ import com.pacgame.color.ColorFactory;
 import com.pacgame.provider.ComponentProvidedObject;
 import com.pacgame.provider.component.shape.Rectangle;
 
-public class GreenMaze extends Maze {
+public class YellowMaze extends Maze {
 
-    public static final String PREFIX_IMAGE_URL = "./enemy/green/";
+    public static final String PREFIX_IMAGE_URL = "./enemy/yellow/";
 
 
-    public GreenMaze(Rectangle providedObject, ColorFactory colorFactory) {
+    public YellowMaze(Rectangle providedObject, ColorFactory colorFactory) {
         super(providedObject, colorFactory);
     }
 
@@ -35,6 +35,6 @@ public class GreenMaze extends Maze {
 
     @Override
     public String getCenterBackgroundUrl() {
-        return PREFIX_IMAGE_URL + "main.png";
+        return PREFIX_IMAGE_URL + "down.png";
     }
 }

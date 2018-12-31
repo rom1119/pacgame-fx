@@ -32,4 +32,11 @@ public class RectangleProxy extends ShapeProxy {
         getProxyObject().setHeight(height);
     }
 
+    public void setLayoutX(int i) {
+        getProxyObject().setLayoutX(i);
+    }
+
+    public void setLayoutY(int i) {
+        getProxyObject().setLayoutY(i);
+    }
 }

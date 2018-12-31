@@ -13,6 +13,17 @@ public abstract class ShapeProxy extends ComponentProxy {
 
     @Override
     public void setBackground(PaintProxy color) {
+
         getProxyObject().setFill(color.getProxyObject());
+    }
+
+    public void setRotate(int val)
+    {
+        getProxyObject().setRotate(val);
+    }
+
+    public int getRotate()
+    {
+        return (int) getProxyObject().getRotate();
     }
 }

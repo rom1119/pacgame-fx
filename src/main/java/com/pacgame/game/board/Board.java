@@ -21,19 +21,28 @@ public class Board {
         this.pointList = new ObservableList<>();
     }
 
-    public void initMapPoints()
+    public void initBoard(GameObjectFactory gameObjectFactory)
+    {
+        initMapPoints();
+        initPacman(gameObjectFactory.createPacman());
+
+        initMaze(gameObjectFactory.createRandomMaze());
+
+    }
+
+    void initMapPoints()
     {
         map.createPoints();
     }
 
-    public void initPacman(IPacman pacman)
+    void initPacman(IPacman pacman)
     {
         map.addPacman(pacman);
         pacmanList.add(pacman);
         pacman.setPosition(map.getPacmanInitPosition());
     }
 
-    public void initMaze(IMaze maze)
+    void initMaze(IMaze maze)
     {
         map.addMaze(maze);
         mazeList.add(maze);

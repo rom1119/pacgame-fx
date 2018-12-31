@@ -72,6 +72,7 @@ public class Arc extends ShapeProvidedObject {
     public void setLength(int val)
     {
         length.set(val);
+        getProxy().setLength(val);
     }
 
     public int getLength()

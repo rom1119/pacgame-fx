@@ -1,6 +1,7 @@
 package com.pacgame.provider.component.shape;
 
 import com.pacgame.provider.color.Red;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -25,14 +26,15 @@ public class ArcProxy extends ShapeProxy {
 //
         proxyObject.setFill(Color.BLACK);
 
-        proxyObject.setStartAngle(45.0f);
-        proxyObject.setLength(270.0f);
+//        proxyObject.setStartAngle(45.0f);
+//        proxyObject.setLength(270.0f);
 
     }
 
     public void setStartAngle(int val)
     {
         getProxyObject().setStartAngle(val);
+
     }
 
     public int getStartAngle()
@@ -42,6 +44,7 @@ public class ArcProxy extends ShapeProxy {
 
     public void setLength(int val)
     {
+
         getProxyObject().setLength(val);
     }
 

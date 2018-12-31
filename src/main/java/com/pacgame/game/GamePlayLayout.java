@@ -1,5 +1,6 @@
 package com.pacgame.game;
 
+import com.pacgame.game.adapter.board.GameObjectFactoryAdapter;
 import com.pacgame.game.board.Board;
 import com.pacgame.game.board.BoardMapCreator;
 
@@ -32,5 +33,9 @@ public class GamePlayLayout {
     {
         board = new Board(mapCreator.createMap(root, LEFT_SIDE_WIDTH, LEFT_SIDE_HEIGHT));
 //        root.addElement(board.getView());
+    }
+
+    public void initGameObjects(GameObjectFactoryAdapter gameObjectFactoryAdapter) {
+        board.initBoard(gameObjectFactoryAdapter);
     }
 }

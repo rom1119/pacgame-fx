@@ -52,4 +52,12 @@ public class Rectangle extends ShapeProvidedObject {
     public void setBackground(Paint paint) {
         proxy.setBackground(paint.getProxy());
     }
+
+    public void setLayoutX(int i) {
+        getProxy().setLayoutX(i);
+    }
+
+    public void setLayoutY(int i) {
+        getProxy().setLayoutY(i);
+    }
 }

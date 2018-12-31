@@ -18,7 +18,7 @@ public abstract class Level {
         return levelMapPath.getAllPoints();
     }
 
-    void populatePoints()
+    public void populatePoints()
     {
         populator.populate(this.getAllMapPoints());
     }

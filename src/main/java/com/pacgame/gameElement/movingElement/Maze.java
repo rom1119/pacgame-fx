@@ -2,13 +2,13 @@ package com.pacgame.gameElement.movingElement;
 
 import com.pacgame.color.ColorFactory;
 import com.pacgame.color.Paint;
+import com.pacgame.gameElement.Eatable;
 import com.pacgame.gameElement.MovedComponent;
-import com.pacgame.gameElement.Valuable;
 import com.pacgame.provider.ComponentProvidedObject;
 import com.pacgame.provider.PaintProvider;
 import com.pacgame.provider.component.shape.Rectangle;
 
-public abstract class Maze extends MovedComponent implements Valuable {
+public abstract class Maze extends MovedComponent implements Eatable {
 
     protected int value = 10;
     protected Rectangle providedObject;
@@ -18,6 +18,8 @@ public abstract class Maze extends MovedComponent implements Valuable {
         super(providedObject);
         this.providedObject = providedObject;
         this.colorFactory = colorFactory;
+        this.providedObject.setLayoutX(-10);
+        this.providedObject.setLayoutY(-15);
 
         setBackground(colorFactory.image(getCenterBackgroundUrl()));
     }
@@ -76,5 +78,10 @@ public abstract class Maze extends MovedComponent implements Valuable {
     @Override
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public void changeToEaten() {
+
     }
 }

@@ -2,24 +2,35 @@ package com.pacgame.gameElement.movingElement;
 
 import com.pacgame.Property;
 import com.pacgame.color.Paint;
+import com.pacgame.gameElement.Eatable;
 import com.pacgame.gameElement.MovedComponent;
+import com.pacgame.gameElement.exception.EatYourSelfException;
 import com.pacgame.property.RadiusProperty;
+import com.pacgame.property.ScoreProperty;
+import com.pacgame.property.ValueProperty;
 import com.pacgame.provider.ComponentProvidedObject;
 import com.pacgame.provider.ViewProvidedObject;
 import com.pacgame.provider.component.shape.Arc;
+import javafx.application.Platform;
 
-public class Pacman extends MovedComponent {
+public class Pacman extends MovedComponent implements Eatable {
 
+    private static int INITIAL_VALUE = 10;
     protected Arc providedObject;
     protected Property<Integer> radius;
+    private Property<Integer> score;
+    private Property<Integer> value;
 
     public Pacman(int radius, Arc providedObject) {
         super(providedObject);
         this.providedObject = providedObject;
         this.radius = new RadiusProperty(radius);
+        score = new ScoreProperty(0);
+        value = new ValueProperty(INITIAL_VALUE);
         this.providedObject.setRadius(radius);
         this.providedObject.setStartAngle(45);
         this.providedObject.setLength(270);
+
     }
 
     @Override
@@ -45,5 +56,47 @@ public class Pacman extends MovedComponent {
     @Override
     protected Arc getProvidedObject() {
         return providedObject;
+    }
+
+    public void addScore(int scoreArg) {
+        score.set(score.get() + scoreArg);
+    }
+
+    public void eat(Eatable eatableEl) throws EatYourSelfException {
+        if (eatableEl.equals(this)) {
+            throw new EatYourSelfException();
+        }
+
+        addScore(eatableEl.getValue());
+        eatableEl.changeToEaten();
+    }
+
+
+    public void turnLeft() {
+        getProvidedObject().setRotate(180);
+    }
+
+    public void turnRight() {
+        getProvidedObject().setRotate(0);
+    }
+
+    public void turnUp() {
+        getProvidedObject().setRotate(270);
+    }
+
+    public void turnDown() {
+        getProvidedObject().setRotate(90);
+    }
+
+
+
+    @Override
+    public int getValue() {
+        return value.get();
+    }
+
+    @Override
+    public void changeToEaten() {
+
     }
 }
