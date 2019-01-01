@@ -8,9 +8,14 @@ import com.pacgame.gameElement.exception.EatYourSelfException;
 import com.pacgame.property.RadiusProperty;
 import com.pacgame.property.ScoreProperty;
 import com.pacgame.property.ValueProperty;
+import com.pacgame.provider.AnimationProvider;
 import com.pacgame.provider.ComponentProvidedObject;
 import com.pacgame.provider.ViewProvidedObject;
+import com.pacgame.provider.animation.Animation;
+import com.pacgame.provider.animation.AnimationBuilder;
 import com.pacgame.provider.component.shape.Arc;
+import com.pacgame.provider.event.listener.ChangeListener;
+import com.pacgame.provider.property.PropertyProvider;
 import javafx.application.Platform;
 
 public class Pacman extends MovedComponent implements Eatable {
@@ -20,16 +25,41 @@ public class Pacman extends MovedComponent implements Eatable {
     protected Property<Integer> radius;
     private Property<Integer> score;
     private Property<Integer> value;
+    private Animation eatAnimation;
 
-    public Pacman(int radius, Arc providedObject) {
+    private AnimationBuilder animationBuilder;
+
+    public Pacman(int radius, Arc providedObject, AnimationBuilder animationBuilder) {
         super(providedObject);
         this.providedObject = providedObject;
+        this.animationBuilder = animationBuilder;
         this.radius = new RadiusProperty(radius);
         score = new ScoreProperty(0);
         value = new ValueProperty(INITIAL_VALUE);
         this.providedObject.setRadius(radius);
         this.providedObject.setStartAngle(45);
         this.providedObject.setLength(270);
+
+        createEatAnimation();
+
+    }
+
+    private void createEatAnimation()
+    {
+        eatAnimation = animationBuilder
+                .addAnimateProperty(providedObject.startAngleProperty(), 0)
+                .addAnimateProperty(providedObject.lengthProperty(), 360)
+                .infiniteAnimation()
+                .autoReverse()
+                .durationMilis(300)
+                .build();
+    }
+
+    public void playEatAnimation()
+    {
+
+        eatAnimation.play();
+
 
     }
 

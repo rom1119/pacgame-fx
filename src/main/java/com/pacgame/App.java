@@ -146,6 +146,7 @@ public class App extends Application {
         PositionAlignmentProvider positionAlignmentProvider = new PositionAlignmentProviderImpl();
         EventProvider eventProvider = new EventProviderImpl();
         ShapeProvider shapeProvider = new ShapeProviderImpl();
+        AnimationProvider animationProvider = new AnimationProviderImpl();
 
         UIFactory uiFacade = new UIFactory(uiProvider, eventProvider);
         LayerFactory layerFactory = new LayerFactory(layerProvider);
@@ -155,7 +156,7 @@ public class App extends Application {
         PositionFactory positionFactory = new PositionFactoryImpl(positionAlignmentProvider);
         EventFacade eventFacade = new EventFacadeImpl(eventProvider);
         PlatformToolsProvider platformToolsProvider = new PlatformToolsProviderImpl();
-        GameElementFacade gameElementFacade = new GameElementFacade(shapeProvider, colorFactory);
+        GameElementFacade gameElementFacade = new GameElementFacade(shapeProvider, colorFactory, animationProvider);
         LevelsFacade levelsFacade = new LevelsFacade(colorFactory);
 
         // Adapters

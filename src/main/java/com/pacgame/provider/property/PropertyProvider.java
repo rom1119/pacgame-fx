@@ -2,7 +2,7 @@ package com.pacgame.provider.property;
 
 import com.pacgame.provider.event.listener.ChangeListener;
 
-public abstract class PropertyProvider<T> {
+public abstract class PropertyProvider<T> implements WritableValueProvider<T> {
 
     protected T property;
     protected ChangeListener<T> changeListener;
@@ -19,17 +19,19 @@ public abstract class PropertyProvider<T> {
     }
 
     public void set(T val) {
+        T oldVal = property;
         property = val;
+        onChange(oldVal, property);
     }
 
-    public void setOnChangeProperty(ChangeListener val) {
+    public void setOnChangeProperty(ChangeListener<T> val) {
         changeListener = val;
     }
 
-    private void onChange(T val)
+    private void onChange(T oldVal, T newVal)
     {
         if (changeListener != null) {
-            changeListener.onChange(property, val);
+            changeListener.onChange(oldVal, newVal);
 
         }
     }

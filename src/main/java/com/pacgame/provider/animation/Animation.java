@@ -2,7 +2,7 @@ package com.pacgame.provider.animation;
 
 import com.pacgame.provider.ProvidedObject;
 
-abstract class Animation extends ProvidedObject {
+public abstract class Animation extends ProvidedObject {
 
     protected AnimationProxy proxy;
 

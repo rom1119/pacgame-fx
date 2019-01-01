@@ -1,6 +1,7 @@
 package com.pacgame.provider.animation;
 
 import com.pacgame.provider.property.PropertyProvider;
+import com.pacgame.provider.property.WritableValueProvider;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -8,9 +9,7 @@ import javafx.animation.Timeline;
 import javafx.beans.value.WritableValue;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 class IntegerValueAnimationProxy extends AnimationProxy {
 
@@ -18,18 +17,18 @@ class IntegerValueAnimationProxy extends AnimationProxy {
     private IntegerValueAnimationProxy(Builder builder) {
         super();
         Collection<KeyValue> keyValues = new ArrayList<>();
-        builder.properties.stream().forEach((el) -> {
-             keyValues.add(newIntegerKeyValue(el, builder.endValue, defaultInterpolator));
+        builder.properties.forEach(( key , el) -> {
+             keyValues.add(newIntegerKeyValue(el, key, defaultInterpolator));
         });
 
-        addAnimationFrame(Duration.millis(DEFAULT_SPEED_MILIS), keyValues);
+        addAnimationFrame(builder.duration, keyValues);
         proxyObject.setDelay(builder.delay);
         proxyObject.setAutoReverse(builder.autoReverse);
         proxyObject.setCycleCount(builder.cycleCount);
 
     }
 
-    private KeyValue newIntegerKeyValue(PropertyProvider<Integer> property, int endValue, Interpolator interpolator)
+    private KeyValue newIntegerKeyValue(WritableValueProvider<Integer> property, int endValue, Interpolator interpolator)
     {
         KeyValue val = new KeyValue(new WritableValue<Integer>() {
             @Override
@@ -72,13 +71,14 @@ class IntegerValueAnimationProxy extends AnimationProxy {
         return keyFrame;
     }
 
-    private KeyFrame addAnimationFrame(Duration duration, Collection<KeyValue> values)
+    private void addAnimationFrame(Duration duration, Collection<? extends KeyValue> values)
     {
-        KeyFrame keyFrame = new KeyFrame(duration);
-        keyFrame.getValues().addAll(values);
-        this.keyFrames.add(keyFrame);
+        values.forEach(el -> {
+            KeyFrame keyFrame = new KeyFrame(duration, el);
+            this.keyFrames.add(keyFrame);
 
-        return keyFrame;
+        });
+
     }
 
     @Override
@@ -106,22 +106,16 @@ class IntegerValueAnimationProxy extends AnimationProxy {
 
     public static class Builder {
 
-        private List<PropertyProvider<Integer>> properties;
+        public Duration duration = Duration.millis(1000);
+        private Map<Integer, PropertyProvider<Integer>> properties = new HashMap<>();
         private int endValue;
         private int cycleCount = 1;
         private Duration delay = Duration.millis(0);
         private boolean autoReverse = false;
         private PropertyProvider<Integer> property;
 
-        public Builder animateProperty(PropertyProvider<Integer> property){
-            properties.add(property);
-
-            return this;
-        }
-
-        public Builder to(int val)
-        {
-            endValue = val;
+        public Builder addAnimateProperty(PropertyProvider<Integer> property, int endVal){
+            properties.put(endVal, property);
 
             return this;
         }
@@ -136,6 +130,13 @@ class IntegerValueAnimationProxy extends AnimationProxy {
         public Builder delaySeconds(int seconds)
         {
             delay = Duration.seconds(seconds);
+
+            return this;
+        }
+
+        public Builder durationMilis(int miliseconds)
+        {
+            duration = Duration.millis(miliseconds);
 
             return this;
         }

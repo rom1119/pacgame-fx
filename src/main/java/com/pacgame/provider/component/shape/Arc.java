@@ -21,6 +21,13 @@ public class Arc extends ShapeProvidedObject {
         this.radius = new RadiusProperty(radius);
         this.length = new ArcLengthProperty(0);
         this.startAngle = new StartAngleProperty(0);
+        this.length.setOnChangeProperty((old , newVal) -> {
+            getProxy().setLength(newVal);
+        });
+
+        this.startAngle.setOnChangeProperty((old , newVal) -> {
+            getProxy().setStartAngle(newVal);
+        });
     }
 
     public void setRadius(int radius) {
