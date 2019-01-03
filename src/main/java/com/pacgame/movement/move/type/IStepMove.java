@@ -1,14 +1,10 @@
 package com.pacgame.movement.move.type;
 
-import com.pacgame.movement.move.direction.IMoveDown;
-import com.pacgame.movement.move.direction.IMoveLeft;
-import com.pacgame.movement.move.direction.IMoveRight;
-import com.pacgame.movement.move.direction.IMoveUp;
+import com.pacgame.movement.ObjectMoving2D;
+import com.pacgame.movement.move.IMove2D;
 
-public interface IStepMove extends
-        IMoveDown ,
-        IMoveUp,
-        IMoveLeft,
-        IMoveRight
+public interface IStepMove extends IMove2D
 {
+    @Override
+    void move(ObjectMoving2D objectMoving);
 }

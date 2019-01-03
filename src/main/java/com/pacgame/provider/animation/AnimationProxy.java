@@ -1,6 +1,8 @@
 package com.pacgame.provider.animation;
 
 import com.pacgame.provider.Proxy;
+import com.pacgame.provider.event.IEventHandlerProvider;
+import com.pacgame.provider.event.type.ActionEvent;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,6 +19,22 @@ abstract class AnimationProxy extends Proxy {
     AnimationProxy() {
         this.proxyObject = new Timeline();
         this.keyFrames = new ArrayList<>();
+    }
+
+    public void setOnFinished(IEventHandlerProvider<ActionEvent> eventHandler, ActionEvent event)
+    {
+
+        getProxyObject().setOnFinished(e -> {
+
+            event.initTarget(e.getTarget().hashCode());
+            event.getProxy().setProxyObject(e);
+            eventHandler.handle(event);
+        });
+    }
+
+    @Override
+    protected Timeline getProxyObject() {
+        return proxyObject;
     }
 
     public abstract void play();

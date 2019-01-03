@@ -31,7 +31,7 @@ class IntegerValueAnimation extends Animation {
     }
 
     @Override
-    public Proxy getProxy() {
+    public AnimationProxy getProxy() {
         return proxy;
     }
 

@@ -1,8 +1,7 @@
 package com.pacgame.movement.move.direction;
 
-import com.pacgame.movement.move.IMove;
+import com.pacgame.movement.move.IMove2D;
 
-public interface IMoveUp extends IMove {
-    void moveUp();
+public interface IMoveUp extends IMove2D {
 
 }
