@@ -29,6 +29,11 @@ public class Pacman extends MovedComponent implements Eatable {
 
     private AnimationBuilder animationBuilder;
 
+    @Override
+    public void setY(int y) {
+        super.setY(y);
+    }
+
     public Pacman(int radius, Arc providedObject, AnimationBuilder animationBuilder) {
         super(providedObject);
         this.providedObject = providedObject;

@@ -11,6 +11,8 @@ import com.pacgame.game.UILayout;
 import com.pacgame.game.adapter.PlatformToolsAdapter;
 import com.pacgame.game.adapter.board.BoardMapCreatorAdapter;
 import com.pacgame.game.adapter.board.GameObjectFactoryAdapter;
+import com.pacgame.game.adapter.board.movement.MovePointsCreatorAdapter;
+import com.pacgame.game.adapter.board.movement.MovementFactory;
 import com.pacgame.game.adapter.factory.*;
 import com.pacgame.game.adapter.StageAdapter;
 import com.pacgame.gameElement.GameElementFacade;
@@ -23,9 +25,7 @@ import com.pacgame.uiElement.UIFactory;
 import com.pacgame.uiElement.alignment.PositionFactory;
 import com.pacgame.uiElement.alignment.PositionFactoryImpl;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App extends Application {
@@ -169,6 +169,10 @@ public class App extends Application {
         PlatformTools platformToolsAdapter = new PlatformToolsAdapter(platformToolsProvider.platformTools());
         GameObjectFactoryAdapter gameObjectFactoryAdapter = new GameObjectFactoryAdapter(gameElementFacade.movingElementFactory());
         BoardMapCreatorAdapter boardMapCreatorAdapter = new BoardMapCreatorAdapter(levelsFacade, gameElementFacade, layerFactory);
+        MovePointsCreatorAdapter movePointsCreator = new MovePointsCreatorAdapter();
+        MovementFactory movementFactory = new MovementFactory(animationProvider.animationBuilder(), movePointsCreator);
+        boardMapCreatorAdapter.setMovementFactory(movementFactory);
+
 
         // UILayout
         UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter, colorFactoryAdapter);

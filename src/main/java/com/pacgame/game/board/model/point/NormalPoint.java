@@ -26,7 +26,7 @@ public class NormalPoint implements IPoint {
     }
 
     @Override
-    public void setPosition(IMapPoint pacmanInitPosition) {
+    public void setPosition(IMapPoint position) {
 
     }
 }

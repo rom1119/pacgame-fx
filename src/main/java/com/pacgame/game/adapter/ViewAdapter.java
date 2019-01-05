@@ -32,6 +32,15 @@ public abstract class ViewAdapter implements IView {
         getProvidedObject().setY(y);
     }
 
+    public int getX()
+    {
+        return getProvidedObject().getX();
+    }
+    public int getY()
+    {
+        return getProvidedObject().getY();
+    }
+
     @Override
     public boolean isVisible() {
         return getProvidedObject().isVisible();

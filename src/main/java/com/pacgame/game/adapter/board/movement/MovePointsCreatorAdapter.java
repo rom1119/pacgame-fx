@@ -1,12 +1,13 @@
 package com.pacgame.game.adapter.board.movement;
 
 import com.pacgame.game.adapter.board.MapPointAdapter;
+import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.movement.MovePoint2D;
 import com.pacgame.movement.MovePointsCreator2D;
 
 import java.util.*;
 
-public class MapPointsCreator implements MovePointsCreator2D {
+public class MovePointsCreatorAdapter implements MovePointsCreator2D {
     
     private List<MovePoint2DAdapter> movePoints = new ArrayList<>();
     
@@ -17,12 +18,14 @@ public class MapPointsCreator implements MovePointsCreator2D {
 
     @Override
     public void createListMovePoints(Collection<?> collection) {
-        Map<String, MapPointAdapter> castCollection = ((Map<String, MapPointAdapter>) collection);
+        List<MapPointAdapter> castCollection = ((List<MapPointAdapter>) collection);
 
-        castCollection.forEach((key, val) -> {
+        castCollection.forEach((val) -> {
             MovePoint2DAdapter newEl = null;
             if (!existPointWithCoordinates(val.getX(), val.getY())) {
                 newEl = createMovePoint((MapPointAdapter) val);
+            }  else {
+                newEl = (MovePoint2DAdapter) getMovePointByCoordinates(val.getX(), val.getY());
             }
 
             // left
@@ -73,9 +76,6 @@ public class MapPointsCreator implements MovePointsCreator2D {
 
                 newEl.setDown(newElDown);
             }
-
-
-
 
 
         });

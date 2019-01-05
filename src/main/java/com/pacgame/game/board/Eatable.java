@@ -9,7 +9,7 @@ public interface Eatable extends Target {
 
     void changeToEaten();
 
-    void setPosition(IMapPoint pacmanInitPosition);
+    void setPosition(IMapPoint initPosition);
 
 
 }

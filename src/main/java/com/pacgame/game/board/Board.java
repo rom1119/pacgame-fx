@@ -2,6 +2,7 @@ package com.pacgame.game.board;
 
 import com.pacgame.game.ILayer;
 import com.pacgame.game.IView;
+import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.board.model.pacman.IPacman;
 import com.pacgame.game.board.model.point.IPoint;
@@ -40,6 +41,7 @@ public class Board {
         map.addPacman(pacman);
         pacmanList.add(pacman);
         pacman.setPosition(map.getPacmanInitPosition());
+        pacman.startMove();
     }
 
     void initMaze(IMaze maze)
@@ -47,6 +49,7 @@ public class Board {
         map.addMaze(maze);
         mazeList.add(maze);
         maze.setPosition(map.getMazeInitPosition());
+
     }
 
 

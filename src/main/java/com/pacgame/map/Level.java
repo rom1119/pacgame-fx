@@ -1,7 +1,10 @@
 package com.pacgame.map;
 
 import com.pacgame.Layer;
+import com.pacgame.gameElement.standElement.GamePoint;
 import com.pacgame.map.point.MapPoint;
+
+import java.util.List;
 
 public abstract class Level {
 
@@ -18,9 +21,9 @@ public abstract class Level {
         return levelMapPath.getAllPoints();
     }
 
-    public void populatePoints()
+    public List<GamePoint> populatePoints()
     {
-        populator.populate(this.getAllMapPoints());
+        return populator.populate(this.getAllMapPoints());
     }
 
     public void setPopulator(PointPopulator populator) {

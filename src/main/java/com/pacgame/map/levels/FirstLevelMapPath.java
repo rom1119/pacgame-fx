@@ -829,8 +829,11 @@ class FirstLevelMapPath extends LevelMapPath {
         points.put("j9", j9);
         points.put("j10",j10);
 
+
         int xToChange = 0;
         int yToChange = 40;
+
+
 //
 
     }

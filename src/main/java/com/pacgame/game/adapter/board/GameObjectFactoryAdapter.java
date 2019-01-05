@@ -1,5 +1,6 @@
 package com.pacgame.game.adapter.board;
 
+import com.pacgame.game.adapter.board.movement.MovementFactory;
 import com.pacgame.game.board.GameObjectFactory;
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.board.model.pacman.IPacman;

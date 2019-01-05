@@ -39,6 +39,12 @@ class StepToPointBuilder implements IMoveBuilder<Move> {
             buildedInstance = new MoveDown(point.getRightPoint(), animationBuilder);
         }
 
+        setPoint(buildedInstance.getPoint());
+
         return this;
+    }
+
+    public void setPoint(MovePoint2D point) {
+        this.point = point;
     }
 }

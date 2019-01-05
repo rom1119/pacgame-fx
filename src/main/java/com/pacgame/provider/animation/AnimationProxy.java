@@ -26,7 +26,7 @@ abstract class AnimationProxy extends Proxy {
 
         getProxyObject().setOnFinished(e -> {
 
-            event.initTarget(e.getTarget().hashCode());
+//            event.initTarget(e.getTarget().hashCode());
             event.getProxy().setProxyObject(e);
             eventHandler.handle(event);
         });

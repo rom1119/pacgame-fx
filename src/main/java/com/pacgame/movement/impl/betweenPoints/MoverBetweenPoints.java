@@ -24,11 +24,11 @@ public class MoverBetweenPoints implements Movement2D {
             throw new NullPointerException("Animation Builder can not be null.");
         }
 
-        if (animationBuilder == null) {
+        if (objectMoving == null) {
             throw new NullPointerException("Object Moving can not be null.");
         }
 
-        if (animationBuilder == null) {
+        if (initPoint == null) {
             throw new NullPointerException("Point initial can not be null.");
         }
         this.animationBuilder = animationBuilder;
@@ -44,6 +44,23 @@ public class MoverBetweenPoints implements Movement2D {
         this.direction = direction;
     }
 
+     @Override
+     public void moveTo(MovePoint2D point)
+     {
+         stop();
+         moveBuilder.setPoint(point);
+         start();
+     }
+
+    @Override
+    public void skipTo(MovePoint2D point) {
+        stop();
+        moveBuilder.setPoint(point);
+        skip();
+    }
+
+
+
     public boolean isStarted() {
         return started;
     }
@@ -54,12 +71,12 @@ public class MoverBetweenPoints implements Movement2D {
             return;
         }
         direction = Direction2D.UP;
-        goIfIsSameStoped();
 
         if (currentDirectionMove instanceof MoveDown) {
             turnAround();
         }
 
+        goIfIsSameStoped();
     }
 
 
@@ -70,12 +87,12 @@ public class MoverBetweenPoints implements Movement2D {
             return;
         }
         direction = Direction2D.DOWN;
-        goIfIsSameStoped();
 
         if (currentDirectionMove instanceof MoveUp) {
             turnAround();
         }
 
+        goIfIsSameStoped();
     }
 
     @Override
@@ -85,11 +102,12 @@ public class MoverBetweenPoints implements Movement2D {
             return;
         }
         direction = Direction2D.LEFT;
-        goIfIsSameStoped();
 
         if (currentDirectionMove instanceof MoveRight) {
             turnAround();
         }
+
+        goIfIsSameStoped();
     }
 
     @Override
@@ -99,11 +117,12 @@ public class MoverBetweenPoints implements Movement2D {
         }
 
         direction = Direction2D.RIGHT;
-        goIfIsSameStoped();
 
         if (currentDirectionMove instanceof MoveLeft) {
             turnAround();
         }
+
+        goIfIsSameStoped();
     }
 
     private void turnAround()
@@ -111,7 +130,6 @@ public class MoverBetweenPoints implements Movement2D {
         stop();
         go();
     }
-
 
     private void goIfIsSameStoped() {
         if (currentDirectionMove == null) {
@@ -122,13 +140,22 @@ public class MoverBetweenPoints implements Movement2D {
     private void go() {
         currentDirectionMove = moveBuilder.createMove(direction).build();
         if (currentDirectionMove.canMove()) {
+            currentDirectionMove.move(objectMoving);
             currentDirectionMove.setOnMoveEnd(() -> {
                 onEndMove();
             });
-            currentDirectionMove.move(objectMoving);
         }
+    }
 
-
+    private void skip() {
+        currentDirectionMove = moveBuilder.createMove(direction).build();
+        if (currentDirectionMove.canMove()) {
+            currentDirectionMove.setAsSkippedDuration();
+            currentDirectionMove.move(objectMoving);
+            currentDirectionMove.setOnMoveEnd(() -> {
+                onEndMove();
+            });
+        }
     }
 
     private void onEndMove()
@@ -149,7 +176,10 @@ public class MoverBetweenPoints implements Movement2D {
     @Override
     public void stop() {
         started = false;
-        currentDirectionMove.stop();
+        if (currentDirectionMove != null) {
+            currentDirectionMove.stop();
+
+        }
         currentDirectionMove = null;
     }
 

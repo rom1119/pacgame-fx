@@ -8,7 +8,8 @@ import com.pacgame.provider.animation.AnimationBuilder;
 
 public abstract class Move implements IStepMove {
 
-    protected static final int DURATION = 600;
+    public static final int DEFAULT_DURATION = 600;
+    protected static int DURATION;
 
     protected MovePoint2D point;
     protected Animation animation;
@@ -17,11 +18,26 @@ public abstract class Move implements IStepMove {
     public Move(MovePoint2D point, AnimationBuilder animationBuilder) {
         this.point = point;
         this.animationBuilder = animationBuilder;
+        setDefaultDuration();
+    }
+
+    public void setAsSkippedDuration()
+    {
+        DURATION = 0;
+    }
+
+    public void setDefaultDuration()
+    {
+        DURATION = DEFAULT_DURATION;
     }
 
     @Override
     public boolean canMove() {
         return point != null;
+    }
+
+    public MovePoint2D getPoint() {
+        return point;
     }
 
     public void start()
