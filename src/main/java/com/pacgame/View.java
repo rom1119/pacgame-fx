@@ -42,6 +42,7 @@ public abstract class View extends EventTarget implements Positionable, Colorabl
     {
 
         T event = eventType.getEvent();
+        event.setSource(this);
         getProvidedObject().addEventHandler(eventType.getProvidedObject(), eventType.addEventHandler(eventHandler, event));
     }
 

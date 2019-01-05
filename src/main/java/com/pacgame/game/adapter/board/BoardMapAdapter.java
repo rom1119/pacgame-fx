@@ -1,6 +1,8 @@
 package com.pacgame.game.adapter.board;
 
 import com.pacgame.Layer;
+import com.pacgame.event.EventFacade;
+import com.pacgame.event.type.KeyEvent;
 import com.pacgame.game.ILayer;
 import com.pacgame.game.adapter.LayerAdapter;
 import com.pacgame.game.adapter.board.movement.MovementFactory;
@@ -26,11 +28,14 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
     private MovementFactory movementFactory;
 
 
-    public BoardMapAdapter(Level levelProvidedObject, MovingElementFactory movingElementFactory) {
+    public BoardMapAdapter(Level levelProvidedObject, MovingElementFactory movingElementFactory, EventFacade eventFacade) {
         this.levelProvidedObject = levelProvidedObject;
         this.movingElementFactory = movingElementFactory;
         this.mapPointsCreator = new MapPointsCreator();
         this.mapPointsCreator.createListMovePoints((Map<String, MapPoint>) levelProvidedObject.getAllMapPoints());
+        this.levelProvidedObject.getRootLayer().addEventHandler(eventFacade.keyEventFacade().onKeyPressed(), e -> {
+
+        });
 
     }
 

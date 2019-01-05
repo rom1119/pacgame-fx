@@ -1,5 +1,6 @@
 package com.pacgame.game.adapter.board;
 
+import com.pacgame.event.EventFacade;
 import com.pacgame.game.ILayer;
 import com.pacgame.game.adapter.LayerAdapter;
 import com.pacgame.game.adapter.board.movement.MovementFactory;
@@ -19,12 +20,14 @@ public class BoardMapCreatorAdapter implements BoardMapCreator {
     private GameElementFacade gameElementFacade;
     private LayerFactory layerFactory;
     private MovementFactory movementFactory;
+    private EventFacade eventFacade;
 
 
-    public BoardMapCreatorAdapter(LevelsFacade levelsFacade, GameElementFacade gameElementFacade, LayerFactory layerFactory) {
+    public BoardMapCreatorAdapter(LevelsFacade levelsFacade, GameElementFacade gameElementFacade, LayerFactory layerFactory, EventFacade eventFacade) {
         this.levelsFacade = levelsFacade;
         this.gameElementFacade = gameElementFacade;
         this.layerFactory = layerFactory;
+        this.eventFacade = eventFacade;
     }
 
     public void setMovementFactory(MovementFactory movementFactory) {
@@ -39,7 +42,7 @@ public class BoardMapCreatorAdapter implements BoardMapCreator {
         Level level = levelsFacade.changeToFirstLevel(groupLayer, gameElementFacade.pointFactory());
         ((LayerAdapter) layer).getProvidedObject().addChildren(groupLayer);
 
-        BoardMapAdapter boardMapAdapter = new BoardMapAdapter(level, gameElementFacade.movingElementFactory());
+        BoardMapAdapter boardMapAdapter = new BoardMapAdapter(level, gameElementFacade.movingElementFactory(), eventFacade);
         if (movementFactory != null) {
             boardMapAdapter.setMovementFactory(movementFactory);
         }

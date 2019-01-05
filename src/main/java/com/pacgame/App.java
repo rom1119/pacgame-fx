@@ -168,11 +168,14 @@ public class App extends Application {
         UIComponentFactoryAdapter uiComponentFactoryAdapter = new UIComponentFactoryAdapter(uiFacade, eventFacade);
         PlatformTools platformToolsAdapter = new PlatformToolsAdapter(platformToolsProvider.platformTools());
         GameObjectFactoryAdapter gameObjectFactoryAdapter = new GameObjectFactoryAdapter(gameElementFacade.movingElementFactory());
-        BoardMapCreatorAdapter boardMapCreatorAdapter = new BoardMapCreatorAdapter(levelsFacade, gameElementFacade, layerFactory);
+        BoardMapCreatorAdapter boardMapCreatorAdapter = new BoardMapCreatorAdapter(levelsFacade, gameElementFacade, layerFactory, eventFacade);
         MovePointsCreatorAdapter movePointsCreator = new MovePointsCreatorAdapter();
         MovementFactory movementFactory = new MovementFactory(animationProvider.animationBuilder(), movePointsCreator);
         boardMapCreatorAdapter.setMovementFactory(movementFactory);
 
+        // Game
+        Game game = new Game(platformToolsAdapter);
+        game.init(stageAdapter);
 
         // UILayout
         UILayout uiLayout = new UILayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter, colorFactoryAdapter);
@@ -182,9 +185,7 @@ public class App extends Application {
         gamePlayLayout.createMap(boardMapCreatorAdapter);
         gamePlayLayout.initGameObjects(gameObjectFactoryAdapter);
 
-        // Game
-        Game game = new Game(platformToolsAdapter);
-        game.init(stageAdapter);
+
         game.setUILayout(uiLayout);
         game.showUILayout();
         game.setGamePlayLayout(gamePlayLayout);

@@ -60,7 +60,6 @@ public class EventType<T extends Event> {
         if (hasEventHandler(eventHandler)) {
             throw new IllegalArgumentException("Can not add second same eventHandler to EventType " + getName() + " .");
         }
-        event.setSource(this);
         IEventHandlerProvider eventHandlerProvider = e -> {
             event.setProvidedObject(e);
             event.initTarget(e.getTarget().hashCode());
@@ -71,7 +70,7 @@ public class EventType<T extends Event> {
 
         IEventHandlerProvider handlerProvider = eventHandlers.put(eventHandler, eventHandlerProvider);
 
-        return handlerProvider;
+        return eventHandlerProvider;
     }
 
     private boolean hasEventHandler(IEventHandler eventHandler)

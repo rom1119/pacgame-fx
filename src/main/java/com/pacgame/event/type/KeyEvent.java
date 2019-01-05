@@ -29,7 +29,7 @@ public class KeyEvent extends Event {
 //        proxy = new KeyEventProxy();
     }
 
-    KeyEvent() {
+    public KeyEvent() {
         this(null, null, null);
 //        this.providedObject = providerFacade.
     }

@@ -22,6 +22,8 @@ public abstract class Map {
     public void setRootLayer(Layer rootLayer) {
         this.rootLayer = rootLayer;
         setImgUrl(getInitialBackgroundUrl());
+        rootLayer.setFocusTraversable(true);
+
     }
 
     public void setImgUrl(String imgUrl) {
