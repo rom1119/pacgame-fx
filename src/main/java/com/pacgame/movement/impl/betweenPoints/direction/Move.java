@@ -47,7 +47,7 @@ public abstract class Move implements IStepMove {
 
     public void stop()
     {
-        animation.stop();
+        animation.pause();
     }
 
     public void setOnMoveEnd(MoveEndHandler handler) {

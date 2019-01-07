@@ -137,7 +137,7 @@ public class MoverBetweenPoints implements Movement2D {
     private void turnAround()
     {
         stop();
-        go();
+        start();
     }
 
     private void goIfIsSameStoped() {
@@ -153,7 +153,6 @@ public class MoverBetweenPoints implements Movement2D {
     }
 
     private void go() {
-        System.out.println("go");
 
         tryTurn();
         currentDirectionMove = moveBuilder.createMove(currentDirection).build();
@@ -168,7 +167,6 @@ public class MoverBetweenPoints implements Movement2D {
     }
 
     private void skip() {
-        System.out.println("skip");
         currentDirectionMove = moveBuilder.createMove(currentDirection).build();
         if (currentDirectionMove.canMove()) {
             currentDirectionMove.setAsSkippedDuration();

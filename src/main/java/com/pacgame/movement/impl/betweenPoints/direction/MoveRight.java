@@ -13,7 +13,6 @@ public class MoveRight extends Move implements IMoveRight {
 
     @Override
     public void move(ObjectMoving2D objectMoving) {
-        System.out.println("move right");
         animation = animationBuilder
                 .addAnimateProperty(new PropertyProvider<Integer>() {
                     @Override

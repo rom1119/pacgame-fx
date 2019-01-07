@@ -44,8 +44,6 @@ class StepToPointBuilder implements IMoveBuilder<Move> {
 
     public void setPointIfNotNull(MovePoint2D point) {
         if (point != null) {
-            System.out.println(point.getX());
-
             this.point = point;
 
         }
