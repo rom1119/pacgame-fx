@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77da18e3-268f-4571-9761-d457f08b7b19" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/EventType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/EventType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/BoardMapAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/BoardMapAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/MazeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/MazeAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/PacmanAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/PacmanAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/movement/Movement2DAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/movement/Movement2DAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/board/model/Moveable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/board/model/Moveable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/gameElement/movingElement/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/gameElement/movingElement/Pacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/MoverBetweenPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/MoverBetweenPoints.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/StepToPointBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/StepToPointBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/direction/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/direction/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/direction/MoveRight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/direction/MoveRight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/AnimationProviderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/AnimationProviderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/AnimationBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/AnimationBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimationProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimationProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/shape/Arc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/shape/Arc.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,23 +32,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MoverBetweenPoints.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MoverBetweenPoints.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/MoverBetweenPoints.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="992">
-              <caret line="73" column="17" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
+            <state relative-caret-position="237">
+              <caret line="149" column="35" selection-start-line="149" selection-start-column="35" selection-end-line="149" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4509#4510#0" expanded="true" />
+                <element signature="e#4552#4553#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StepToPointBuilder.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StepToPointBuilder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/StepToPointBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+            <state relative-caret-position="492">
+              <caret line="63" column="8" lean-forward="true" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
               <folding>
                 <element signature="e#681#682#0" expanded="true" />
                 <element signature="e#719#720#0" expanded="true" />
@@ -97,8 +84,8 @@
       <file leaf-file-name="IntegerValueAnimationProxy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimationProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="122" selection-start-line="122" selection-end-line="122" />
+            <state relative-caret-position="437">
+              <caret line="129" lean-forward="true" selection-start-line="129" selection-end-line="129" />
               <folding>
                 <element signature="e#3436#3437#0" expanded="true" />
                 <element signature="e#3473#3474#0" expanded="true" />
@@ -221,16 +208,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/component/shape/Arc.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/movement/Movement2DAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/gameElement/movingElement/Pacman.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/StepToPointBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/BoardMapAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/direction/MoveRight.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/direction/Move.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/AnimationProviderImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/EventType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimationProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/AnimationBuilder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimationProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/MoverBetweenPoints.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/StepToPointBuilder.java" />
       </list>
     </option>
   </component>
@@ -851,14 +838,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/MoverBetweenPoints.java</url>
-          <line>182</line>
-          <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="44" />
     </breakpoint-manager>
   </component>
@@ -867,13 +846,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/App.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3400">
@@ -1283,17 +1255,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimationProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
-          <folding>
-            <element signature="e#3436#3437#0" expanded="true" />
-            <element signature="e#3473#3474#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/AnimationBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -1301,23 +1262,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/StepToPointBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/provider/animation/IntegerValueAnimationProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+        <state relative-caret-position="437">
+          <caret line="129" lean-forward="true" selection-start-line="129" selection-end-line="129" />
           <folding>
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#719#720#0" expanded="true" />
+            <element signature="e#3436#3437#0" expanded="true" />
+            <element signature="e#3473#3474#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/direction/Direction2D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/MoverBetweenPoints.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="992">
-          <caret line="73" column="17" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
+        <state relative-caret-position="237">
+          <caret line="149" column="35" selection-start-line="149" selection-start-column="35" selection-end-line="149" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4509#4510#0" expanded="true" />
+            <element signature="e#4552#4553#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/betweenPoints/StepToPointBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="63" column="8" lean-forward="true" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+          <folding>
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#719#720#0" expanded="true" />
           </folding>
         </state>
       </provider>

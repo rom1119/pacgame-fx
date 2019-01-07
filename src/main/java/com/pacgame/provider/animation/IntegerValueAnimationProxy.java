@@ -127,7 +127,6 @@ class IntegerValueAnimationProxy extends AnimationProxy {
 
         public Builder addAnimateProperty(PropertyProvider<Integer> property, int endVal){
             properties.put(endVal, property);
-            System.out.println(properties.size());
 
             return this;
         }

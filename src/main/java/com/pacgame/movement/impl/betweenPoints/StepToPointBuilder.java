@@ -50,4 +50,18 @@ class StepToPointBuilder implements IMoveBuilder<Move> {
 
         }
     }
+
+    public boolean canCreateMove(Direction2D direction) {
+        if (direction.equals(Direction2D.UP)) {
+            return point.getUpPoint() != null;
+        } else if (direction.equals(Direction2D.DOWN)) {
+            return point.getDownPoint() != null;
+        } else if (direction.equals(Direction2D.LEFT)) {
+            return point.getLeftPoint() != null;
+        } else if (direction.equals(Direction2D.RIGHT)) {
+            return point.getRightPoint() != null;
+        }
+
+        return false;
+    }
 }
