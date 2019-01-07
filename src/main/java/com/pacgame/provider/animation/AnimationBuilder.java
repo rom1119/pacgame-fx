@@ -19,6 +19,15 @@ public class AnimationBuilder implements IBuilderProvider<Animation> {
     public int durationMilis = 1000;
     public boolean autoReverse = false;
 
+    void resetValues()
+    {
+        properties = new HashMap<>();
+        durationMilis = 1000;
+        cycleCount = 1;
+        delayMilis = 0;
+        autoReverse = false;
+    }
+
     public AnimationBuilder addAnimateProperty(PropertyProvider<Integer> property, int endVal){
         properties.put(endVal, property);
 
@@ -70,6 +79,7 @@ public class AnimationBuilder implements IBuilderProvider<Animation> {
     @Override
     public Animation build() {
         buildedInstance = new IntegerValueAnimation(this);
+        resetValues();
 
         return buildedInstance;
     }

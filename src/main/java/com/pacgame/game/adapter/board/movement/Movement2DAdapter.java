@@ -41,7 +41,7 @@ public class Movement2DAdapter implements IMovement {
 
                     @Override
                     public void set(int val) {
-                        System.out.println("X");
+//                        System.out.println("X: " + val);
                         view.setX(val);
                     }
                 };
@@ -59,7 +59,7 @@ public class Movement2DAdapter implements IMovement {
 
                     @Override
                     public void set(int val) {
-                        System.out.println("Y");
+//                        System.out.println("Y: " + val);
 
                         view.setY(val);
                     }

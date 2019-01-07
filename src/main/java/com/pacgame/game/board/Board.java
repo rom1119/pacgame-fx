@@ -39,8 +39,8 @@ public class Board {
     void initPacman(IPacman pacman)
     {
         map.addPacman(pacman);
-        pacmanList.add(pacman);
         pacman.setPosition(map.getPacmanInitPosition());
+        pacmanList.add(pacman);
         pacman.startMove();
     }
 

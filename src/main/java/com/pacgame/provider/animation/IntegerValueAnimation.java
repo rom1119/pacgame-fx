@@ -1,8 +1,5 @@
 package com.pacgame.provider.animation;
 
-import com.pacgame.provider.Proxy;
-import com.pacgame.provider.property.PropertyProvider;
-
 class IntegerValueAnimation extends Animation {
 
     public IntegerValueAnimation(AnimationBuilder animationBuilder) {
@@ -47,6 +44,6 @@ class IntegerValueAnimation extends Animation {
 
     @Override
     public void stop() {
-
+        proxy.stop();
     }
 }

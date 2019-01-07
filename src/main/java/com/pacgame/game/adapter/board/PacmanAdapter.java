@@ -59,7 +59,6 @@ public class PacmanAdapter extends ViewAdapter implements IPacman {
             movement.start();
 
         }
-        movement.moveRight();
     }
 
     @Override
@@ -68,6 +67,31 @@ public class PacmanAdapter extends ViewAdapter implements IPacman {
             movement.stop();
 
         }
+    }
+
+    @Override
+    public void turnUp() {
+        providedObject.turnUp();
+        movement.moveUp();
+    }
+
+    @Override
+    public void turnDown() {
+        providedObject.turnDown();
+        movement.moveDown();
+    }
+
+    @Override
+    public void turnLeft() {
+        providedObject.turnLeft();
+        movement.moveLeft();
+    }
+
+    @Override
+    public void turnRight() {
+        providedObject.turnRight();
+        movement.moveRight();
+
     }
 
     @Override

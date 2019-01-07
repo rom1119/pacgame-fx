@@ -107,15 +107,27 @@ class IntegerValueAnimationProxy extends AnimationProxy {
     public static class Builder {
 
         public Duration duration = Duration.millis(1000);
-        private Map<Integer, PropertyProvider<Integer>> properties = new HashMap<>();
-        private int endValue;
+        private Map<Integer, PropertyProvider<Integer>> properties;
         private int cycleCount = 1;
         private Duration delay = Duration.millis(0);
         private boolean autoReverse = false;
-        private PropertyProvider<Integer> property;
+
+        public Builder() {
+            resetValues();
+        }
+
+        void resetValues()
+        {
+            properties = new HashMap<>();
+            duration = Duration.millis(1000);
+            cycleCount = 1;
+            delay = Duration.millis(0);
+            autoReverse = false;
+        }
 
         public Builder addAnimateProperty(PropertyProvider<Integer> property, int endVal){
             properties.put(endVal, property);
+            System.out.println(properties.size());
 
             return this;
         }
@@ -172,11 +184,6 @@ class IntegerValueAnimationProxy extends AnimationProxy {
         public IntegerValueAnimationProxy build()
         {
             return new IntegerValueAnimationProxy(this);
-        }
-
-        public Builder setProperty(PropertyProvider<Integer> property) {
-            this.property = property;
-            return this;
         }
 
     }

@@ -8,7 +8,7 @@ import com.pacgame.provider.animation.AnimationBuilder;
 
 public abstract class Move implements IStepMove {
 
-    public static final int DEFAULT_DURATION = 600;
+    public static final int DEFAULT_DURATION = 1000;
     protected static int DURATION;
 
     protected MovePoint2D point;
@@ -47,7 +47,7 @@ public abstract class Move implements IStepMove {
 
     public void stop()
     {
-        animation.pause();
+        animation.stop();
     }
 
     public void setOnMoveEnd(MoveEndHandler handler) {

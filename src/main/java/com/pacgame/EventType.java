@@ -1,6 +1,7 @@
 package com.pacgame;
 
 import com.pacgame.event.IEventHandler;
+import com.pacgame.event.type.EventTarget;
 import com.pacgame.provider.EventProvidedObject;
 import com.pacgame.provider.EventProvider;
 import com.pacgame.provider.EventTypeProvidedObject;
@@ -62,7 +63,13 @@ public class EventType<T extends Event> {
         }
         IEventHandlerProvider eventHandlerProvider = e -> {
             event.setProvidedObject(e);
-            event.initTarget(e.getTarget().hashCode());
+//            System.out.println(e.getTarget());
+            if (e.getTarget() != null) {
+                event.initTarget(e.getTarget().hashCode());
+
+            } else {
+                event.setTarget((EventTarget) event.getSource());
+            }
 
 //            event.setTarget();
             eventHandler.handle(event);
