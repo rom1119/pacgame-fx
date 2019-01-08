@@ -3,7 +3,9 @@ package com.pacgame.movement.impl.betweenPoints;
 import com.pacgame.movement.Movement2D;
 import com.pacgame.movement.ObjectMoving2D;
 import com.pacgame.movement.MovePoint2D;
+import com.pacgame.movement.event.MovementEventFacade;
 import com.pacgame.movement.impl.betweenPoints.direction.*;
+import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
 import com.pacgame.provider.animation.AnimationBuilder;
 
 public class MoverBetweenPoints implements Movement2D {
@@ -12,6 +14,8 @@ public class MoverBetweenPoints implements Movement2D {
 
     private StepToPointBuilder moveBuilder;
     private AnimationBuilder animationBuilder;
+
+    private MoverBetweenPointsEventFacade movementEventFacade;
 
     private Move currentDirectionMove;
     private ObjectMoving2D objectMoving;
@@ -35,8 +39,9 @@ public class MoverBetweenPoints implements Movement2D {
         this.animationBuilder = animationBuilder;
         this.objectMoving = objectMoving;
         this.initPoint = initPoint;
+        this.movementEventFacade = new MoverBetweenPointsEventFacade();
 
-        moveBuilder = new StepToPointBuilder(initPoint, animationBuilder);
+        moveBuilder = new StepToPointBuilder(initPoint, animationBuilder, this.movementEventFacade);
         currentDirection = INITIAL_DIRECTION;
         checkedDirection = INITIAL_DIRECTION;
     }
@@ -217,5 +222,9 @@ public class MoverBetweenPoints implements Movement2D {
         started = false;
         currentDirectionMove.stop();
 
+    }
+
+    public MoverBetweenPointsEventFacade getEventFacade() {
+        return movementEventFacade;
     }
 }

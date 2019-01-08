@@ -8,6 +8,7 @@ import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.pacman.IPacman;
 import com.pacgame.game.exception.EatYourSelfException;
 import com.pacgame.gameElement.movingElement.Pacman;
+import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
 
 public class PacmanAdapter extends ViewAdapter implements IPacman {
 
@@ -70,26 +71,22 @@ public class PacmanAdapter extends ViewAdapter implements IPacman {
     }
 
     @Override
-    public void turnUp() {
-        providedObject.turnUp();
+    public void moveUp() {
         movement.moveUp();
     }
 
     @Override
-    public void turnDown() {
-        providedObject.turnDown();
+    public void moveDown() {
         movement.moveDown();
     }
 
     @Override
-    public void turnLeft() {
-        providedObject.turnLeft();
+    public void moveLeft() {
         movement.moveLeft();
     }
 
     @Override
-    public void turnRight() {
-        providedObject.turnRight();
+    public void moveRight() {
         movement.moveRight();
 
     }
@@ -97,5 +94,28 @@ public class PacmanAdapter extends ViewAdapter implements IPacman {
     @Override
     public void initMovementSystem(IMovement movement) {
         this.movement = movement;
+    }
+
+    public void onMoveDirectionChange(MoverBetweenPointsEventFacade movementEventFacade) {
+
+        movementEventFacade.addEventHandler(movementEventFacade.onMoveUpEvent(), event -> {
+            providedObject.turnUp();
+
+        });
+
+        movementEventFacade.addEventHandler(movementEventFacade.onMoveLeftEvent(), event -> {
+            providedObject.turnLeft();
+
+        });
+
+        movementEventFacade.addEventHandler(movementEventFacade.onMoveDownEvent(), event -> {
+            providedObject.turnDown();
+
+        });
+
+        movementEventFacade.addEventHandler(movementEventFacade.onMoveRightEvent(), event -> {
+            providedObject.turnRight();
+
+        });
     }
 }

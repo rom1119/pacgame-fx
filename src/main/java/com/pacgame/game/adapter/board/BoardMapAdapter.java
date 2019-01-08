@@ -4,8 +4,10 @@ import com.pacgame.Layer;
 import com.pacgame.event.EventFacade;
 import com.pacgame.game.ILayer;
 import com.pacgame.game.adapter.LayerAdapter;
+import com.pacgame.game.adapter.board.movement.Movement2DAdapter;
 import com.pacgame.game.adapter.board.movement.MovementFactory;
 import com.pacgame.game.board.BoardMap;
+import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.board.model.pacman.IPacman;
@@ -45,19 +47,16 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
     {
         this.levelProvidedObject.getRootLayer().addEventHandler(eventFacade.keyEventFacade().onKeyPressed(), e -> {
             if (e.isArrowUp()) {
-                controlledPacman.turnUp();
+                controlledPacman.moveUp();
             } else if (e.isArrowBottom()) {
-                controlledPacman.turnDown();
+                controlledPacman.moveDown();
             } else if (e.isArrowLeft()) {
-                controlledPacman.turnLeft();
+                controlledPacman.moveLeft();
             } else if (e.isArrowRight()) {
-                controlledPacman.turnRight();
+                controlledPacman.moveRight();
             }
         });
 
-        this.levelProvidedObject.getRootLayer().addEventHandler(eventFacade.mouseEventFacade().onMove(), e -> {
-//            System.out.println(e.getX());
-        });
     }
 
     public void setMovementFactory(MovementFactory movementFactory) {
@@ -76,7 +75,9 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
     @Override
     public void addPacman(IPacman pacman) {
         levelProvidedObject.getRootLayer().addChildren(((PacmanAdapter) pacman).getProvidedObject());
-        pacman.initMovementSystem(movementFactory.createMovementSystem(getPacmanInitPosition(), (PacmanAdapter) pacman));
+        Movement2DAdapter movementSystem = movementFactory.createMovementSystem(getPacmanInitPosition(), (PacmanAdapter) pacman);
+        pacman.initMovementSystem(movementSystem);
+        ((PacmanAdapter) pacman).onMoveDirectionChange(movementSystem.getEventFacade());
         controlledPacman = (PacmanAdapter) pacman;
     }
 

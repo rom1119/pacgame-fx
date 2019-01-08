@@ -7,10 +7,10 @@ public interface Moveable {
     void startMove();
     void stopMove();
 
-    void turnUp();
-    void turnDown();
-    void turnLeft();
-    void turnRight();
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
 
     void initMovementSystem(IMovement movement);
 }

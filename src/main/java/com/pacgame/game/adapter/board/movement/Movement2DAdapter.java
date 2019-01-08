@@ -6,11 +6,12 @@ import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.movement.*;
 import com.pacgame.movement.impl.betweenPoints.MoverBetweenPoints;
+import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
 import com.pacgame.provider.animation.AnimationBuilder;
 
 public class Movement2DAdapter implements IMovement {
 
-    private Movement2D providedObject;
+    private MoverBetweenPoints providedObject;
     private AnimationBuilder animationBuilder;
     private MovePointsCreator2D movePointsCreator2D;
 
@@ -23,6 +24,12 @@ public class Movement2DAdapter implements IMovement {
     {
         return movePointsCreator2D.getFromPosition(x, y);
     }
+
+    public MoverBetweenPointsEventFacade getEventFacade()
+    {
+        return this.providedObject.getEventFacade();
+    }
+
 
     public void init(IMapPoint initPoint, IView view)
     {

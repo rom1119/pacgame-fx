@@ -1,6 +1,7 @@
 package com.pacgame.movement.impl.betweenPoints.direction;
 
 import com.pacgame.movement.MovePoint2D;
+import com.pacgame.movement.ObjectMoving2D;
 import com.pacgame.movement.impl.betweenPoints.MoveEndHandler;
 import com.pacgame.movement.move.type.IStepMove;
 import com.pacgame.provider.animation.Animation;
@@ -49,6 +50,8 @@ public abstract class Move implements IStepMove {
     {
         animation.pause();
     }
+
+    public abstract void move(ObjectMoving2D objectMoving);
 
     public void setOnMoveEnd(MoveEndHandler handler) {
         animation.setOnFinished(e -> {

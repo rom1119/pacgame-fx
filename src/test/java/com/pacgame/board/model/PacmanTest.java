@@ -22,9 +22,9 @@ public class PacmanTest extends TestCase {
 //    public void testTurnLeft() {
 //
 //        Assert.assertEquals(270, pac.getIcon().getRotate(), 0);
-//        pac.turnLeft();
+//        pac.moveLeft();
 //        Assert.assertEquals(180, pac.getIcon().getRotate(), 0);
-//        pac.turnLeft();
+//        pac.moveLeft();
 //        Assert.assertEquals(180, pac.getIcon().getRotate(), 0);
 //
 //    }
@@ -32,27 +32,27 @@ public class PacmanTest extends TestCase {
 //    public void testTurnRight() {
 //
 //        Assert.assertEquals(270, pac.getIcon().getRotate(), 0);
-//        pac.turnRight();
+//        pac.moveRight();
 //        Assert.assertEquals(0, pac.getIcon().getRotate(), 0);
-//        pac.turnRight();
+//        pac.moveRight();
 //        Assert.assertEquals(0, pac.getIcon().getRotate(), 0);
 //    }
 //
 //    public void testTurnUp() {
 //
 //        Assert.assertEquals(270, pac.getIcon().getRotate(), 0);
-//        pac.turnUp();
+//        pac.moveUp();
 //        Assert.assertEquals(270, pac.getIcon().getRotate(), 0);
-//        pac.turnUp();
+//        pac.moveUp();
 //        Assert.assertEquals(270, pac.getIcon().getRotate(), 0);
 //    }
 //
 //    public void testTurnDown() {
 //
 //        Assert.assertEquals(270, pac.getIcon().getRotate(), 0);
-//        pac.turnDown();
+//        pac.moveDown();
 //        Assert.assertEquals(90, pac.getIcon().getRotate(), 0);
-//        pac.turnDown();
+//        pac.moveDown();
 //        Assert.assertEquals(90, pac.getIcon().getRotate(), 0);
 //
 //    }

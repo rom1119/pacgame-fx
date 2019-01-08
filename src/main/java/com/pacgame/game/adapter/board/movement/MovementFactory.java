@@ -6,6 +6,7 @@ import com.pacgame.game.adapter.board.MapPointAdapter;
 import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.movement.MovePoint2D;
+import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
 import com.pacgame.provider.animation.AnimationBuilder;
 
 import java.util.List;
@@ -27,10 +28,12 @@ public class MovementFactory {
     }
 
 
-    public IMovement createMovementSystem(IMapPoint initPoint, IView viewAdapter){
+    public Movement2DAdapter createMovementSystem(IMapPoint initPoint, IView viewAdapter){
         Movement2DAdapter movement2DAdapter = new Movement2DAdapter(animationBuilder, movePointsCreator);
         movement2DAdapter.init(initPoint, viewAdapter);
 
         return movement2DAdapter;
     }
+
+
 }

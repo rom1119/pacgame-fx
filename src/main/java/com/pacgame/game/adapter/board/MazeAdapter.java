@@ -63,25 +63,25 @@ public class MazeAdapter extends ViewAdapter implements IMaze {
     }
 
     @Override
-    public void turnUp() {
+    public void moveUp() {
         providedObject.turnUp();
         movement.moveUp();
     }
 
     @Override
-    public void turnDown() {
+    public void moveDown() {
         providedObject.turnDown();
         movement.moveDown();
     }
 
     @Override
-    public void turnLeft() {
+    public void moveLeft() {
         providedObject.turnLeft();
         movement.moveLeft();
     }
 
     @Override
-    public void turnRight() {
+    public void moveRight() {
         providedObject.turnRight();
         movement.moveRight();
 

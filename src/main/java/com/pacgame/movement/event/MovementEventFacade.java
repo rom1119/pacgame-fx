@@ -1,8 +1,8 @@
 package com.pacgame.movement.event;
 
-public interface MovementEventFacade {
-    <T extends MoveEvent> void addEventHandler(MoveEvent event, MoveEventHandler<? super T> eventHandler);
-    <T extends MoveEvent> void removeEventHandler(MoveEvent event, MoveEventHandler<? super T> eventHandler);
+public interface MovementEventFacade<T extends MoveEvent> {
+    <S extends T> void addEventHandler(S event, MoveEventHandler<? super S> eventHandler);
+    <S extends T> void removeEventHandler(S event, MoveEventHandler<? super S> eventHandler);
 
-    <T extends MoveEvent> void emitEvent(T event);
+    <S extends T> void emitEvent(S event);
 }

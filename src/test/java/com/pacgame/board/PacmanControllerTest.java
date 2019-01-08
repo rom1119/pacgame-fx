@@ -58,10 +58,10 @@ public class PacmanControllerTest extends TestCase {
 //        assertEquals(0, (int)pacman.getPoint().getX());
 //        assertEquals(-19, (int)pacman.getPoint().getY());
 //
-//        pacman.turnRight();
+//        pacman.moveRight();
 //        pacman.setCheckedDirection(Direction.RIGHT);
 //        pacmanController.run(19);
-//        pacman.turnRight();
+//        pacman.moveRight();
 //        pacman.setCheckedDirection(Direction.RIGHT);
 //        pacmanController.run(19);
 //
@@ -70,7 +70,7 @@ public class PacmanControllerTest extends TestCase {
 //        assertEquals(38, (int)pacman.getPoint().getX());
 //        assertEquals(-19, (int)pacman.getPoint().getY());
 //
-//        pacman.turnDown();
+//        pacman.moveDown();
 //        pacman.setCheckedDirection(Direction.DOWN);
 //        pacmanController.run(19);
 //        pacmanController.run(19);
