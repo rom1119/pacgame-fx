@@ -3,7 +3,6 @@ package com.pacgame.movement.impl.betweenPoints;
 import com.pacgame.movement.Movement2D;
 import com.pacgame.movement.ObjectMoving2D;
 import com.pacgame.movement.MovePoint2D;
-import com.pacgame.movement.event.MovementEventFacade;
 import com.pacgame.movement.impl.betweenPoints.direction.*;
 import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
 import com.pacgame.provider.animation.AnimationBuilder;
@@ -17,7 +16,7 @@ public class MoverBetweenPoints implements Movement2D {
 
     private MoverBetweenPointsEventFacade movementEventFacade;
 
-    private Move currentDirectionMove;
+    private Move currentMove;
     private ObjectMoving2D objectMoving;
     private Direction2D currentDirection;
     private Direction2D checkedDirection;
@@ -42,12 +41,20 @@ public class MoverBetweenPoints implements Movement2D {
         this.movementEventFacade = new MoverBetweenPointsEventFacade();
 
         moveBuilder = new StepToPointBuilder(initPoint, animationBuilder, this.movementEventFacade);
-        currentDirection = INITIAL_DIRECTION;
-        checkedDirection = INITIAL_DIRECTION;
+        initDirections(INITIAL_DIRECTION);
+
     }
 
     public MoverBetweenPoints(AnimationBuilder animationBuilder, MovePoint2D initPoint, ObjectMoving2D objectMoving, Direction2D currentDirection) {
         this(animationBuilder, initPoint, objectMoving);
+        initDirections(currentDirection);
+    }
+
+    private void initDirections(Direction2D currentDirection)
+    {
+        if (currentDirection == null) {
+            return;
+        }
         this.currentDirection = currentDirection;
         this.checkedDirection = currentDirection;
     }
@@ -75,13 +82,11 @@ public class MoverBetweenPoints implements Movement2D {
 
     @Override
     public void moveUp() {
-        if (!isStarted()) {
-            return;
-        }
-        checkDirection(Direction2D.UP);
-        goIfIsSameStoped();
 
-        if (currentDirectionMove instanceof MoveDown) {
+        checkDirection(Direction2D.UP);
+        goIfIsSameStopped();
+
+        if (currentMove instanceof MoveDown) {
             turnAround();
             return;
         }
@@ -92,14 +97,12 @@ public class MoverBetweenPoints implements Movement2D {
 
     @Override
     public void moveDown() {
-        if (!isStarted()) {
-            return;
-        }
+
 
         checkDirection(Direction2D.DOWN);
-        goIfIsSameStoped();
+        goIfIsSameStopped();
 
-        if (currentDirectionMove instanceof MoveUp) {
+        if (currentMove instanceof MoveUp) {
             turnAround();
             return;
         }
@@ -109,14 +112,12 @@ public class MoverBetweenPoints implements Movement2D {
     @Override
     public void moveLeft()
     {
-        if (!isStarted()) {
-            return;
-        }
+
 
         checkDirection(Direction2D.LEFT);
-        goIfIsSameStoped();
+        goIfIsSameStopped();
 
-        if (currentDirectionMove instanceof MoveRight) {
+        if (currentMove instanceof MoveRight) {
             turnAround();
             return;
         }
@@ -125,14 +126,12 @@ public class MoverBetweenPoints implements Movement2D {
 
     @Override
     public void moveRight() {
-        if (!isStarted()) {
-            return;
-        }
+
 
         checkDirection(Direction2D.RIGHT);
-        goIfIsSameStoped();
+        goIfIsSameStopped();
 
-        if (currentDirectionMove instanceof MoveLeft) {
+        if (currentMove instanceof MoveLeft) {
             turnAround();
             return;
         }
@@ -145,14 +144,19 @@ public class MoverBetweenPoints implements Movement2D {
         start();
     }
 
-    private void goIfIsSameStoped() {
-        if (currentDirectionMove == null) {
+    private void goIfIsSameStopped() {
+        if (!isStarted()) {
+            started = true;
             go();
         }
     }
 
     private void tryTurn(){
-        if (moveBuilder.canCreateMove(checkedDirection)) {
+        if (currentDirection == checkedDirection) {
+            return;
+        }
+
+        if (currentMove.canTurn(checkedDirection)) {
             currentDirection = checkedDirection;
         }
     }
@@ -160,23 +164,25 @@ public class MoverBetweenPoints implements Movement2D {
     private void go() {
 
         tryTurn();
-        currentDirectionMove = moveBuilder.createMove(currentDirection).build();
-        if (currentDirectionMove.canMove()) {
-            currentDirectionMove.move(objectMoving);
-            currentDirectionMove.setOnMoveEnd(() -> {
-                onEndMove();
-            });
+        if (currentMove.canTurn(currentDirection)) {
+            currentMove = moveBuilder.createMove(currentDirection).build();
+            if (currentMove.canMove()) {
+                currentMove.move(objectMoving);
+                currentMove.setOnMoveEnd(() -> {
+                    onEndMove();
+                });
+            }
         } else {
-            currentDirectionMove = null;
+            started = false;
         }
     }
 
     private void skip() {
-        currentDirectionMove = moveBuilder.createMove(currentDirection).build();
-        if (currentDirectionMove.canMove()) {
-            currentDirectionMove.setAsSkippedDuration();
-            currentDirectionMove.move(objectMoving);
-            currentDirectionMove.setOnMoveEnd(() -> {
+        currentMove = moveBuilder.createMove(currentDirection).build();
+        if (currentMove.canMove()) {
+            currentMove.setAsSkippedDuration();
+            currentMove.move(objectMoving);
+            currentMove.setOnMoveEnd(() -> {
                 onEndMove();
             });
         }
@@ -205,11 +211,11 @@ public class MoverBetweenPoints implements Movement2D {
     @Override
     public void stop() {
         started = false;
-        if (currentDirectionMove != null) {
-            currentDirectionMove.stop();
+        if (currentMove != null) {
+            currentMove.stop();
 
         }
-        currentDirectionMove = null;
+//        currentMove = null;
     }
 
     @Override
@@ -220,7 +226,7 @@ public class MoverBetweenPoints implements Movement2D {
     @Override
     public void pause() {
         started = false;
-        currentDirectionMove.stop();
+        currentMove.stop();
 
     }
 

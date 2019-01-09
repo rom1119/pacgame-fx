@@ -58,4 +58,8 @@ public class MapPoint extends Point2D {
     public void setDoor(boolean isDoor) {
         door = isDoor;
     }
+
+    public boolean isDoor() {
+        return door;
+    }
 }

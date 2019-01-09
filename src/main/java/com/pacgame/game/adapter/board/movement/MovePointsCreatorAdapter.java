@@ -28,6 +28,10 @@ public class MovePointsCreatorAdapter implements MovePointsCreator2D {
                 newEl = (MovePoint2DAdapter) getMovePointByCoordinates(val.getX(), val.getY());
             }
 
+            if (val.isDoor()) {
+                newEl.setDoor(true);
+            }
+
             // left
             if (val.getLeft() != null) {
                 MovePoint2D newElLeft = null;

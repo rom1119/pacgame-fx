@@ -11,6 +11,8 @@ public class MovePoint2DAdapter implements MovePoint2D {
     private MovePoint2D right;
     private MovePoint2D up;
     private MovePoint2D down;
+    private boolean door = false;
+
 
     public MovePoint2DAdapter(int x, int y) {
         this.x = x;
@@ -61,5 +63,13 @@ public class MovePoint2DAdapter implements MovePoint2D {
     @Override
     public int getY() {
         return y;
+    }
+
+    public boolean isDoor() {
+        return door;
+    }
+
+    public void setDoor(boolean door) {
+        this.door = door;
     }
 }

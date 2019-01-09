@@ -34,6 +34,10 @@ public class MapPointsCreator {
                 newEl = (MapPointAdapter) getMovePointByCoordinates(val.getX(), val.getY());
             }
 
+            if (val.isDoor()) {
+                newEl.setDoor(true);
+            }
+
             // left
             if (val.getLeftPoint() != null) {
                 IMapPoint newElLeft = null;

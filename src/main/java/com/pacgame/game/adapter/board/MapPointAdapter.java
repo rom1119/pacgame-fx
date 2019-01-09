@@ -10,6 +10,7 @@ public class MapPointAdapter implements IMapPoint {
     private IMapPoint right;
     private IMapPoint up;
     private IMapPoint down;
+    private boolean door = false;
 
     public MapPointAdapter(int x, int y) {
         this.x = x;
@@ -56,5 +57,13 @@ public class MapPointAdapter implements IMapPoint {
     @Override
     public int getY() {
         return y;
+    }
+
+    public boolean isDoor() {
+        return door;
+    }
+
+    public void setDoor(boolean door) {
+        this.door = door;
     }
 }
