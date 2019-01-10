@@ -1,11 +1,15 @@
 package com.pacgame.movement.impl.betweenPoints;
 
+import com.pacgame.movement.MoveRule;
 import com.pacgame.movement.Movement2D;
 import com.pacgame.movement.ObjectMoving2D;
 import com.pacgame.movement.MovePoint2D;
 import com.pacgame.movement.impl.betweenPoints.direction.*;
 import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
 import com.pacgame.provider.animation.AnimationBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MoverBetweenPoints implements Movement2D {
 
@@ -22,6 +26,7 @@ public class MoverBetweenPoints implements Movement2D {
     private Direction2D checkedDirection;
     private MovePoint2D initPoint;
     private boolean started;
+    private List<MoveRule> rules;
 
     public MoverBetweenPoints(AnimationBuilder animationBuilder, MovePoint2D initPoint, ObjectMoving2D objectMoving) {
         if (animationBuilder == null) {
@@ -39,9 +44,12 @@ public class MoverBetweenPoints implements Movement2D {
         this.objectMoving = objectMoving;
         this.initPoint = initPoint;
         this.movementEventFacade = new MoverBetweenPointsEventFacade();
+        this.rules = new ArrayList<>();
 
         moveBuilder = new StepToPointBuilder(initPoint, animationBuilder, this.movementEventFacade);
         initDirections(INITIAL_DIRECTION);
+        currentMove = moveBuilder.createMove(currentDirection).build();
+
 
     }
 
@@ -166,6 +174,7 @@ public class MoverBetweenPoints implements Movement2D {
         tryTurn();
         if (currentMove.canTurn(currentDirection)) {
             currentMove = moveBuilder.createMove(currentDirection).build();
+            currentMove.setRules(rules);
             if (currentMove.canMove()) {
                 currentMove.move(objectMoving);
                 currentMove.setOnMoveEnd(() -> {
@@ -228,6 +237,16 @@ public class MoverBetweenPoints implements Movement2D {
         started = false;
         currentMove.stop();
 
+    }
+
+    public void addRule(MoveRule rule)
+    {
+        this.rules.add(rule);
+    }
+
+    public void removeRule(MoveRule rule)
+    {
+        this.rules.remove(rule);
     }
 
     public MoverBetweenPointsEventFacade getEventFacade() {

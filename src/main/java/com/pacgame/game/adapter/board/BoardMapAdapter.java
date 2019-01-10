@@ -6,8 +6,8 @@ import com.pacgame.game.ILayer;
 import com.pacgame.game.adapter.LayerAdapter;
 import com.pacgame.game.adapter.board.movement.Movement2DAdapter;
 import com.pacgame.game.adapter.board.movement.MovementFactory;
+import com.pacgame.game.adapter.board.movement.rules.DoorCloseRule;
 import com.pacgame.game.board.BoardMap;
-import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.board.model.pacman.IPacman;
@@ -39,11 +39,11 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
         this.mapPointsCreator.createListMovePoints((Map<String, MapPoint>) levelProvidedObject.getAllMapPoints());
 
 
-        onControllPacmanForUser();
+        onControllPacmanByUser();
 
     }
 
-    private void onControllPacmanForUser()
+    private void onControllPacmanByUser()
     {
         this.levelProvidedObject.getRootLayer().addEventHandler(eventFacade.keyEventFacade().onKeyPressed(), e -> {
             if (e.isArrowUp()) {
@@ -77,13 +77,22 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
         levelProvidedObject.getRootLayer().addChildren(((PacmanAdapter) pacman).getProvidedObject());
         Movement2DAdapter movementSystem = movementFactory.createMovementSystem(getPacmanInitPosition(), (PacmanAdapter) pacman);
         pacman.initMovementSystem(movementSystem);
+        movementSystem.addRule(new DoorCloseRule());
         ((PacmanAdapter) pacman).onMoveDirectionChange(movementSystem.getEventFacade());
         controlledPacman = (PacmanAdapter) pacman;
     }
 
+
+
+    @Override
+    public void addMaze(IMaze maze) {
+        levelProvidedObject.getRootLayer().addChildren(((MazeAdapter) maze).getProvidedObject());
+        maze.initMovementSystem(movementFactory.createMovementSystem(getMazeInitPosition(), (MazeAdapter) maze));
+    }
+
     @Override
     public IMapPoint getPacmanInitPosition() {
-        MapPoint point = levelProvidedObject.getAllMapPoints().get("h5A");
+        MapPoint point = levelProvidedObject.getAllMapPoints().get("d5");
         return mapPointsCreator.getFromPosition(point.getX(), point.getY());
     }
 
@@ -93,11 +102,6 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
         return mapPointsCreator.getFromPosition(point.getX(), point.getY());
     }
 
-    @Override
-    public void addMaze(IMaze maze) {
-        levelProvidedObject.getRootLayer().addChildren(((MazeAdapter) maze).getProvidedObject());
-        maze.initMovementSystem(movementFactory.createMovementSystem(getMazeInitPosition(), (MazeAdapter) maze));
-    }
 
     @Override
     public ILayer getView() {

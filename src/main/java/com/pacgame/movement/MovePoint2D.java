@@ -1,6 +1,6 @@
 package com.pacgame.movement;
 
-public interface MovePoint2D {
+public interface MovePoint2D extends MovePoint {
 
     MovePoint2D getLeftPoint();
     MovePoint2D getRightPoint();

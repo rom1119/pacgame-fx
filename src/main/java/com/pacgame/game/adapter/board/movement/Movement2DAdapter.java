@@ -2,6 +2,7 @@ package com.pacgame.game.adapter.board.movement;
 
 import com.pacgame.game.IView;
 import com.pacgame.game.adapter.ViewAdapter;
+import com.pacgame.game.adapter.board.movement.rules.DoorCloseRule;
 import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.movement.*;
@@ -117,5 +118,13 @@ public class Movement2DAdapter implements IMovement {
     @Override
     public void moveRight() {
         providedObject.moveRight();
+    }
+
+    public void addRule(MoveRule rule) {
+        providedObject.addRule(rule);
+    }
+
+    public void removeRule(MoveRule rule) {
+        providedObject.removeRule(rule);
     }
 }
