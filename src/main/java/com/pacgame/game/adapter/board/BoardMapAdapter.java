@@ -92,7 +92,7 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
 
     @Override
     public IMapPoint getPacmanInitPosition() {
-        MapPoint point = levelProvidedObject.getAllMapPoints().get("d5");
+        MapPoint point = levelProvidedObject.getAllMapPoints().get("h5");
         return mapPointsCreator.getFromPosition(point.getX(), point.getY());
     }
 

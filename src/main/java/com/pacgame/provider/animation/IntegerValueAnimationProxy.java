@@ -43,7 +43,7 @@ class IntegerValueAnimationProxy extends AnimationProxy {
         }, endValue, interpolator);
 
 
-//        KeyFrame labelText = new KeyFrame(Duration.millis(calculateAnimationDuration()), new EventHandler<ActionEvent>() {
+//        KeyFrame labelText = new KeyFrame(Duration.millis(calculateMoveDuration()), new EventHandler<ActionEvent>() {
 //            @Override
 //            public void handle(ActionEvent event) {
 //                if (score != null) {

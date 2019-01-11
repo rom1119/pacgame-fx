@@ -92,4 +92,8 @@ public abstract class Move implements IStepMove {
     public void setRules(List<MoveRule> rules) {
         this.rules = rules;
     }
+
+    public void setDurationMoveInMilliseconds(int speed) {
+        DURATION = speed;
+    }
 }

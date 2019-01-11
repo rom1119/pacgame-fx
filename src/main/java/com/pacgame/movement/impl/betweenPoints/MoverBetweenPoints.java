@@ -169,12 +169,34 @@ public class MoverBetweenPoints implements Movement2D {
         }
     }
 
+    public int calculateMoveDuration()
+    {
+
+        if (currentDirection == Direction2D.UP  || currentDirection == Direction2D.DOWN) {
+            int translateYObject = objectMoving.YAxisProperty().get();
+            int pointY = currentMove.getPoint().getY();
+
+//            System.out.println(pointY - translateYObject);
+
+            return getSpeedMove() * Math.abs( translateYObject - pointY) ;
+        } else {
+            int translateXObject = objectMoving.XAxisProperty().get();
+            int pointX = currentMove.getPoint().getX();
+            return getSpeedMove() * Math.abs( translateXObject - pointX) ;
+        }
+    }
+
+    private int getSpeedMove() {
+        return 8;
+    }
+
     private void go() {
 
         tryTurn();
         if (currentMove.canTurn(currentDirection)) {
             currentMove = moveBuilder.createMove(currentDirection).build();
             currentMove.setRules(rules);
+            currentMove.setDurationMoveInMilliseconds(getSpeed());
             if (currentMove.canMove()) {
                 currentMove.move(objectMoving);
                 currentMove.setOnMoveEnd(() -> {
@@ -184,6 +206,11 @@ public class MoverBetweenPoints implements Movement2D {
         } else {
             started = false;
         }
+    }
+
+    private int getSpeed() {
+        System.out.println(calculateMoveDuration());
+        return calculateMoveDuration();
     }
 
     private void skip() {
