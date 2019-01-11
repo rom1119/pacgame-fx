@@ -1,6 +1,6 @@
-package com.pacgame.movement.impl.betweenPoints.event;
+package com.pacgame.movement.impl.pointToPoint.event;
 
-import com.pacgame.movement.impl.betweenPoints.direction.Move;
+import com.pacgame.movement.impl.pointToPoint.direction.Move;
 
 public class MoveUpEvent extends BaseMoveEventBetweenPoints {
     private static final String name = "MOVE_UP";

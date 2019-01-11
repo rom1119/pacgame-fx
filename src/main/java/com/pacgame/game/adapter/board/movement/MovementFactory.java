@@ -1,12 +1,7 @@
 package com.pacgame.game.adapter.board.movement;
 
 import com.pacgame.game.IView;
-import com.pacgame.game.adapter.ViewAdapter;
-import com.pacgame.game.adapter.board.MapPointAdapter;
-import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
-import com.pacgame.movement.MovePoint2D;
-import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
 import com.pacgame.provider.animation.AnimationBuilder;
 
 import java.util.List;

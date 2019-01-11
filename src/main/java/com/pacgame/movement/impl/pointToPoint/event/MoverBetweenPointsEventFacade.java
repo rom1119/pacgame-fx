@@ -1,12 +1,11 @@
-package com.pacgame.movement.impl.betweenPoints.event;
+package com.pacgame.movement.impl.pointToPoint.event;
 
-import com.pacgame.movement.event.MoveEvent;
 import com.pacgame.movement.event.MoveEventHandler;
 import com.pacgame.movement.event.MovementEventFacade;
-import com.pacgame.movement.impl.betweenPoints.direction.MoveDown;
-import com.pacgame.movement.impl.betweenPoints.direction.MoveLeft;
-import com.pacgame.movement.impl.betweenPoints.direction.MoveRight;
-import com.pacgame.movement.impl.betweenPoints.direction.MoveUp;
+import com.pacgame.movement.impl.pointToPoint.direction.MoveDown;
+import com.pacgame.movement.impl.pointToPoint.direction.MoveLeft;
+import com.pacgame.movement.impl.pointToPoint.direction.MoveRight;
+import com.pacgame.movement.impl.pointToPoint.direction.MoveUp;
 
 public class MoverBetweenPointsEventFacade implements MovementEventFacade<BaseMoveEventBetweenPoints> {
 

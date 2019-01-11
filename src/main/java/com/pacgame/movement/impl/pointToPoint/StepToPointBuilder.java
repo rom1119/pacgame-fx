@@ -1,9 +1,8 @@
-package com.pacgame.movement.impl.betweenPoints;
+package com.pacgame.movement.impl.pointToPoint;
 
 import com.pacgame.movement.MovePoint2D;
-import com.pacgame.movement.event.MovementEventFacade;
-import com.pacgame.movement.impl.betweenPoints.direction.*;
-import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
+import com.pacgame.movement.impl.pointToPoint.direction.*;
+import com.pacgame.movement.impl.pointToPoint.event.MoverBetweenPointsEventFacade;
 import com.pacgame.movement.move.Direction;
 import com.pacgame.movement.move.IMoveBuilder;
 import com.pacgame.provider.animation.AnimationBuilder;

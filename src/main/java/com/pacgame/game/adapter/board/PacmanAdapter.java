@@ -1,6 +1,5 @@
 package com.pacgame.game.adapter.board;
 
-import com.pacgame.View;
 import com.pacgame.game.adapter.ViewAdapter;
 import com.pacgame.game.board.Eatable;
 import com.pacgame.game.board.application.IMovement;
@@ -8,7 +7,7 @@ import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.pacman.IPacman;
 import com.pacgame.game.exception.EatYourSelfException;
 import com.pacgame.gameElement.movingElement.Pacman;
-import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
+import com.pacgame.movement.impl.pointToPoint.event.MoverBetweenPointsEventFacade;
 
 public class PacmanAdapter extends ViewAdapter implements IPacman {
 

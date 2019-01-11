@@ -1,20 +1,20 @@
-package com.pacgame.movement.impl.betweenPoints.direction;
+package com.pacgame.movement.impl.pointToPoint.direction;
 
 import com.pacgame.movement.ObjectMoving2D;
 import com.pacgame.movement.MovePoint2D;
-import com.pacgame.movement.event.MovementEventFacade;
-import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
-import com.pacgame.movement.move.direction.IMoveRight;
+import com.pacgame.movement.impl.pointToPoint.event.MoverBetweenPointsEventFacade;
+import com.pacgame.movement.move.direction.IMoveUp;
 import com.pacgame.provider.animation.AnimationBuilder;
 import com.pacgame.provider.property.PropertyProvider;
 
-public class MoveRight extends Move implements IMoveRight {
+public class MoveUp extends Move implements IMoveUp {
     private MoverBetweenPointsEventFacade movementEventFacade;
 
-    public MoveRight(MovePoint2D point, AnimationBuilder animationBuilder, MoverBetweenPointsEventFacade movementEventFacade) {
+    public MoveUp(MovePoint2D point, AnimationBuilder animationBuilder, MoverBetweenPointsEventFacade movementEventFacade) {
         super(point, animationBuilder);
         this.movementEventFacade = movementEventFacade;
     }
+
 
     @Override
     public void move(ObjectMoving2D objectMoving) {
@@ -22,14 +22,14 @@ public class MoveRight extends Move implements IMoveRight {
                 .addAnimateProperty(new PropertyProvider<Integer>() {
                     @Override
                     public Integer get() {
-                        return objectMoving.XAxisProperty().get();
+                        return objectMoving.YAxisProperty().get();
                     }
 
                     @Override
                     public void set(Integer val) {
-                        objectMoving.XAxisProperty().set(val);
+                        objectMoving.YAxisProperty().set(val);
                     }
-                }, point.getX())
+                }, point.getY())
                 .setCycleCount(1)
                 .notAutoReverse()
                 .durationMilis(DURATION)
@@ -37,7 +37,7 @@ public class MoveRight extends Move implements IMoveRight {
 
         animation.play();
 
-        movementEventFacade.emitEvent(movementEventFacade.createMoveRightEvent(this, objectMoving.XAxisProperty().get(), objectMoving.YAxisProperty().get()));
+        movementEventFacade.emitEvent(movementEventFacade.createMoveUpEvent(this, objectMoving.XAxisProperty().get(), objectMoving.YAxisProperty().get()));
 
     }
 }

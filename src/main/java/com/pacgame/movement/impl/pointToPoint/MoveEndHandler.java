@@ -1,4 +1,4 @@
-package com.pacgame.movement.impl.betweenPoints;
+package com.pacgame.movement.impl.pointToPoint;
 
 public interface MoveEndHandler
 {

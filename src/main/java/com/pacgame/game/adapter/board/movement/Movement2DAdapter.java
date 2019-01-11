@@ -1,18 +1,16 @@
 package com.pacgame.game.adapter.board.movement;
 
 import com.pacgame.game.IView;
-import com.pacgame.game.adapter.ViewAdapter;
-import com.pacgame.game.adapter.board.movement.rules.DoorCloseRule;
 import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.movement.*;
-import com.pacgame.movement.impl.betweenPoints.MoverBetweenPoints;
-import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
+import com.pacgame.movement.impl.pointToPoint.MoverPointToPoint;
+import com.pacgame.movement.impl.pointToPoint.event.MoverBetweenPointsEventFacade;
 import com.pacgame.provider.animation.AnimationBuilder;
 
 public class Movement2DAdapter implements IMovement {
 
-    private MoverBetweenPoints providedObject;
+    private MoverPointToPoint providedObject;
     private AnimationBuilder animationBuilder;
     private MovePointsCreator2D movePointsCreator2D;
 
@@ -36,7 +34,7 @@ public class Movement2DAdapter implements IMovement {
     {
         MovePoint2D movePoint = findMovePointFromCoordinates(initPoint.getX(), initPoint.getY());
 
-        this.providedObject = new MoverBetweenPoints(animationBuilder, movePoint, new ObjectMoving2D() {
+        this.providedObject = new MoverPointToPoint(animationBuilder, movePoint, new ObjectMoving2D() {
             @Override
             public MovementProperty XAxisProperty() {
                 return new MovementProperty() {

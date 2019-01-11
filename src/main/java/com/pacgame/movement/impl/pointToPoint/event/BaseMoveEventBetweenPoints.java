@@ -1,4 +1,4 @@
-package com.pacgame.movement.impl.betweenPoints.event;
+package com.pacgame.movement.impl.pointToPoint.event;
 
 import com.pacgame.movement.event.MoveEvent;
 

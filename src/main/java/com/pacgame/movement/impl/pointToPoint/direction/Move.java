@@ -1,9 +1,9 @@
-package com.pacgame.movement.impl.betweenPoints.direction;
+package com.pacgame.movement.impl.pointToPoint.direction;
 
 import com.pacgame.movement.MovePoint2D;
 import com.pacgame.movement.MoveRule;
 import com.pacgame.movement.ObjectMoving2D;
-import com.pacgame.movement.impl.betweenPoints.MoveEndHandler;
+import com.pacgame.movement.impl.pointToPoint.MoveEndHandler;
 import com.pacgame.movement.move.type.IStepMove;
 import com.pacgame.provider.animation.Animation;
 import com.pacgame.provider.animation.AnimationBuilder;

@@ -1,17 +1,17 @@
-package com.pacgame.movement.impl.betweenPoints;
+package com.pacgame.movement.impl.pointToPoint;
 
 import com.pacgame.movement.MoveRule;
 import com.pacgame.movement.Movement2D;
 import com.pacgame.movement.ObjectMoving2D;
 import com.pacgame.movement.MovePoint2D;
-import com.pacgame.movement.impl.betweenPoints.direction.*;
-import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
+import com.pacgame.movement.impl.pointToPoint.direction.*;
+import com.pacgame.movement.impl.pointToPoint.event.MoverBetweenPointsEventFacade;
 import com.pacgame.provider.animation.AnimationBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoverBetweenPoints implements Movement2D {
+public class MoverPointToPoint implements Movement2D {
 
     public static final Direction2D INITIAL_DIRECTION = Direction2D.LEFT;
 
@@ -28,7 +28,7 @@ public class MoverBetweenPoints implements Movement2D {
     private boolean started;
     private List<MoveRule> rules;
 
-    public MoverBetweenPoints(AnimationBuilder animationBuilder, MovePoint2D initPoint, ObjectMoving2D objectMoving) {
+    public MoverPointToPoint(AnimationBuilder animationBuilder, MovePoint2D initPoint, ObjectMoving2D objectMoving) {
         if (animationBuilder == null) {
             throw new NullPointerException("Animation Builder can not be null.");
         }
@@ -53,7 +53,7 @@ public class MoverBetweenPoints implements Movement2D {
 
     }
 
-    public MoverBetweenPoints(AnimationBuilder animationBuilder, MovePoint2D initPoint, ObjectMoving2D objectMoving, Direction2D currentDirection) {
+    public MoverPointToPoint(AnimationBuilder animationBuilder, MovePoint2D initPoint, ObjectMoving2D objectMoving, Direction2D currentDirection) {
         this(animationBuilder, initPoint, objectMoving);
         initDirections(currentDirection);
     }
@@ -200,7 +200,7 @@ public class MoverBetweenPoints implements Movement2D {
             if (currentMove.canMove()) {
                 currentMove.move(objectMoving);
                 currentMove.setOnMoveEnd(() -> {
-                    onEndMove();
+                    continueMoveIfIsPossible();
                 });
             }
         } else {
@@ -219,12 +219,12 @@ public class MoverBetweenPoints implements Movement2D {
             currentMove.setAsSkippedDuration();
             currentMove.move(objectMoving);
             currentMove.setOnMoveEnd(() -> {
-                onEndMove();
+                continueMoveIfIsPossible();
             });
         }
     }
 
-    private void onEndMove()
+    private void continueMoveIfIsPossible()
     {
         if (!isStarted()) {
             return;

@@ -1,21 +1,19 @@
-package com.pacgame.movement.impl.betweenPoints.direction;
+package com.pacgame.movement.impl.pointToPoint.direction;
 
 import com.pacgame.movement.ObjectMoving2D;
 import com.pacgame.movement.MovePoint2D;
-import com.pacgame.movement.event.MovementEventFacade;
-import com.pacgame.movement.impl.betweenPoints.event.MoverBetweenPointsEventFacade;
-import com.pacgame.movement.move.direction.IMoveUp;
+import com.pacgame.movement.impl.pointToPoint.event.MoverBetweenPointsEventFacade;
+import com.pacgame.movement.move.direction.IMoveDown;
 import com.pacgame.provider.animation.AnimationBuilder;
 import com.pacgame.provider.property.PropertyProvider;
 
-public class MoveUp extends Move implements IMoveUp {
+public class MoveDown extends Move implements IMoveDown {
     private MoverBetweenPointsEventFacade movementEventFacade;
 
-    public MoveUp(MovePoint2D point, AnimationBuilder animationBuilder, MoverBetweenPointsEventFacade movementEventFacade) {
+    public MoveDown(MovePoint2D point, AnimationBuilder animationBuilder, MoverBetweenPointsEventFacade movementEventFacade) {
         super(point, animationBuilder);
         this.movementEventFacade = movementEventFacade;
     }
-
 
     @Override
     public void move(ObjectMoving2D objectMoving) {
@@ -37,8 +35,6 @@ public class MoveUp extends Move implements IMoveUp {
                 .build();
 
         animation.play();
-
-        movementEventFacade.emitEvent(movementEventFacade.createMoveUpEvent(this, objectMoving.XAxisProperty().get(), objectMoving.YAxisProperty().get()));
-
+        movementEventFacade.emitEvent(movementEventFacade.createMoveDownEvent(this, objectMoving.XAxisProperty().get(), objectMoving.YAxisProperty().get()));
     }
 }

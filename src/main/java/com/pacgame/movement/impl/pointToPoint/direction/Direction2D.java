@@ -1,4 +1,4 @@
-package com.pacgame.movement.impl.betweenPoints.direction;
+package com.pacgame.movement.impl.pointToPoint.direction;
 
 import com.pacgame.movement.move.Direction;
 
