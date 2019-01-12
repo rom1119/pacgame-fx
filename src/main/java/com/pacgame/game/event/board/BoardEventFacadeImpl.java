@@ -35,6 +35,11 @@ public class BoardEventFacadeImpl implements BoardEventFacade {
     }
 
     @Override
+    public BoardElementMove createPacmanMove(Source source, Target target, int x, int y) {
+        return new BoardElementMove(source, target, BoardElementMove.PACMAN_MOVE_EVENT, x, y);
+    }
+
+    @Override
     public EventType<BoardElementMove> onPacmanMove() {
         return BoardElementMove.PACMAN_MOVE_EVENT;
     }

@@ -167,7 +167,7 @@ public class App extends Application {
         ColorFactoryAdapter colorFactoryAdapter = new ColorFactoryAdapter(colorFactory);
         UIComponentFactoryAdapter uiComponentFactoryAdapter = new UIComponentFactoryAdapter(uiFacade, eventFacade);
         PlatformTools platformToolsAdapter = new PlatformToolsAdapter(platformToolsProvider.platformTools());
-        GameObjectFactoryAdapter gameObjectFactoryAdapter = new GameObjectFactoryAdapter(gameElementFacade.movingElementFactory());
+        GameObjectFactoryAdapter gameObjectFactoryAdapter = new GameObjectFactoryAdapter(gameElementFacade.movingElementFactory(), eventFacade);
         BoardMapCreatorAdapter boardMapCreatorAdapter = new BoardMapCreatorAdapter(levelsFacade, gameElementFacade, layerFactory, eventFacade);
         MovePointsCreatorAdapter movePointsCreator = new MovePointsCreatorAdapter();
         MovementFactory movementFactory = new MovementFactory(animationProvider.animationBuilder(), movePointsCreator);
@@ -182,6 +182,7 @@ public class App extends Application {
 
         // GamePlayLayout
         GamePlayLayout gamePlayLayout = new GamePlayLayout(layoutFactoryAdapter.createGroupLayer(Game.WIDTH, Game.HEIGHT), sceneFactoryAdapter);
+        gamePlayLayout.setEventFacade(game.getEventFacade());
         gamePlayLayout.createMap(boardMapCreatorAdapter);
         gamePlayLayout.initGameObjects(gameObjectFactoryAdapter);
 

@@ -20,9 +20,11 @@ public abstract class GameElement extends Component {
         return providedObject;
     }
 
-    public boolean touch(GameElement el)
+    public boolean touching(GameElement el)
     {
-        return getProvidedObject().intersectHeight(el.getProvidedObject()) > 4 && getProvidedObject().intersectWidth(el.getProvidedObject()) > 4;
+        System.out.println("X: " + getProvidedObject().intersectWidth(el.getProvidedObject()));
+        System.out.println("Y: " + getProvidedObject().intersectHeight(el.getProvidedObject()));
+        return getProvidedObject().intersectHeight(el.getProvidedObject()) > 4 || getProvidedObject().intersectWidth(el.getProvidedObject()) > 4;
     }
 
 

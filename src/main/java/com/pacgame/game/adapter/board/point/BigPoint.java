@@ -1,10 +1,11 @@
 package com.pacgame.game.adapter.board.point;
 
+import com.pacgame.game.adapter.board.GameElement;
 import com.pacgame.game.board.BoardObject;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.point.IPoint;
 
-public class BigPoint implements IPoint {
+public class BigPoint extends GameElement implements IPoint {
 
     private static int INITIAL_VALUE = 20;
     private int value;
@@ -19,8 +20,8 @@ public class BigPoint implements IPoint {
     }
 
     @Override
-    public boolean touch(BoardObject el) {
-        return false;
+    public boolean touching(BoardObject el) {
+        return providedObject.touching(((GameElement) el).getProvidedObject());
     }
 
     @Override
@@ -36,5 +37,10 @@ public class BigPoint implements IPoint {
     @Override
     public void setPosition(IMapPoint initPosition) {
 
+    }
+
+    @Override
+    public com.pacgame.gameElement.GameElement getProvidedObject() {
+        return providedObject;
     }
 }

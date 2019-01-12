@@ -10,6 +10,7 @@ public interface BoardEventFacade {
     EventType<PacmanTouchPoint> onPacmanTouchPoint();
 
     PacmanTouchPoint createPacmanTouchPoint(Source source, Target target, IPoint point);
+    BoardElementMove createPacmanMove(Source source, Target target, int x, int y);
 
     EventType<BoardElementMove> onPacmanMove();
     EventType<BoardElementMove> onMazeMove();

@@ -14,7 +14,5 @@ public interface Moveable {
     void moveLeft();
     void moveRight();
 
-    void setOnMove(GameBoardEventHandler<BoardElementMove> eventHandler);
-
     void initMovementSystem(IMovement movement);
 }

@@ -3,6 +3,7 @@ package com.pacgame.game;
 import com.pacgame.game.event.AppEventFacade;
 import com.pacgame.game.event.AppEventFacadeImpl;
 import com.pacgame.game.event.board.BoardEventFacade;
+import com.pacgame.game.event.board.BoardEventFacadeImpl;
 import com.pacgame.game.event.ui.UIEventFacade;
 
 public class EventFacadeImpl implements IEventFacade {
@@ -13,6 +14,7 @@ public class EventFacadeImpl implements IEventFacade {
 
     public EventFacadeImpl() {
         appEventFacade = new AppEventFacadeImpl();
+        boardEventFacade = new BoardEventFacadeImpl();
     }
 
     @Override
@@ -22,7 +24,7 @@ public class EventFacadeImpl implements IEventFacade {
 
     @Override
     public BoardEventFacade boardEventFacade() {
-        return null;
+        return boardEventFacade;
     }
 
     @Override

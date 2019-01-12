@@ -1,21 +1,27 @@
 package com.pacgame.game.adapter.board;
 
-import com.pacgame.game.adapter.ViewAdapter;
+import com.pacgame.event.EventFacade;
+import com.pacgame.event.listener.ChangeListener;
+import com.pacgame.game.board.BoardObject;
 import com.pacgame.game.board.Eatable;
 import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.pacman.IPacman;
+import com.pacgame.game.event.board.BoardEventFacade;
 import com.pacgame.game.exception.EatYourSelfException;
 import com.pacgame.gameElement.movingElement.Pacman;
 import com.pacgame.movement.impl.pointToPoint.event.MoverBetweenPointsEventFacade;
 
-public class PacmanAdapter extends ViewAdapter implements IPacman {
+public class PacmanAdapter extends GameElement implements IPacman {
 
     private Pacman providedObject;
+    private EventFacade eventFacade;
     private IMovement movement;
+    private BoardEventFacade boardEventFacade;
 
-    public PacmanAdapter(Pacman providedObject) {
+    public PacmanAdapter(Pacman providedObject, EventFacade eventFacade) {
         this.providedObject = providedObject;
+        this.eventFacade = eventFacade;
     }
 
     @Override
@@ -26,6 +32,12 @@ public class PacmanAdapter extends ViewAdapter implements IPacman {
     @Override
     public void eat(Eatable eatableEl) throws EatYourSelfException {
 
+    }
+
+    @Override
+    public void setBoardEventFacade(BoardEventFacade boardEventFacade) {
+        this.boardEventFacade = boardEventFacade;
+        onMove();
     }
 
     @Override
@@ -90,6 +102,24 @@ public class PacmanAdapter extends ViewAdapter implements IPacman {
 
     }
 
+    public void onMove() {
+
+        PacmanAdapter pacmanAdapter = this;
+        getProvidedObject().XProperty().setOnChangeProperty(new ChangeListener() {
+            @Override
+            public void onChange(Object oldVal, Object newVal) {
+                boardEventFacade.emitEvent(boardEventFacade.createPacmanMove(pacmanAdapter, pacmanAdapter, getX(), getY()));
+            }
+        });
+
+        getProvidedObject().YProperty().setOnChangeProperty(new ChangeListener() {
+            @Override
+            public void onChange(Object oldVal, Object newVal) {
+                boardEventFacade.emitEvent(boardEventFacade.createPacmanMove(pacmanAdapter, pacmanAdapter, getX(), getY()));
+            }
+        });
+    }
+
     @Override
     public void initMovementSystem(IMovement movement) {
         this.movement = movement;
@@ -116,5 +146,10 @@ public class PacmanAdapter extends ViewAdapter implements IPacman {
             providedObject.turnRight();
 
         });
+    }
+
+    @Override
+    public boolean touching(BoardObject el) {
+        return getProvidedObject().touching(((GameElement) el).getProvidedObject());
     }
 }

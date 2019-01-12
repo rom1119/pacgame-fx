@@ -16,8 +16,10 @@ public class BoardElementMove extends GameBoardEvent {
     private int y;
 
 
-    public BoardElementMove(Source source, Target target, EventType<? extends Event> eventType) {
+    public BoardElementMove(Source source, Target target, EventType<? extends Event> eventType, int x, int y) {
         super(source, target, eventType);
+        this.x = x;
+        this.y = y;
     }
 
     public BoardElementMove(Source source, Target target, int x, int y) {

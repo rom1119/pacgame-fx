@@ -1,11 +1,12 @@
 package com.pacgame.game.adapter.board.point;
 
+import com.pacgame.game.adapter.board.GameElement;
 import com.pacgame.game.board.BoardObject;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.point.IPoint;
 import com.pacgame.gameElement.standElement.SmallPoint;
 
-public class NormalPoint implements IPoint {
+public class NormalPoint extends GameElement implements IPoint {
 
     private static int INITIAL_VALUE = 10;
     private int value;
@@ -34,7 +35,12 @@ public class NormalPoint implements IPoint {
     }
 
     @Override
-    public boolean touch(BoardObject el) {
-        return false;
+    public boolean touching(BoardObject el) {
+        return providedObject.touching(((GameElement) el).getProvidedObject());
+    }
+
+    @Override
+    public com.pacgame.gameElement.GameElement getProvidedObject() {
+        return providedObject;
     }
 }

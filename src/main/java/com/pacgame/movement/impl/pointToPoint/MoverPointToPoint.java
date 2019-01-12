@@ -209,7 +209,7 @@ public class MoverPointToPoint implements Movement2D {
     }
 
     private int getSpeed() {
-        System.out.println(calculateMoveDuration());
+//        System.out.println(calculateMoveDuration());
         return calculateMoveDuration();
     }
 

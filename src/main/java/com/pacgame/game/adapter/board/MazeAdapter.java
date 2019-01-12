@@ -1,19 +1,23 @@
 package com.pacgame.game.adapter.board;
 
 import com.pacgame.View;
+import com.pacgame.event.EventFacade;
 import com.pacgame.game.adapter.ViewAdapter;
+import com.pacgame.game.board.BoardObject;
 import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.maze.IMaze;
+import com.pacgame.game.event.board.BoardElementMove;
+import com.pacgame.game.event.board.GameBoardEventHandler;
 import com.pacgame.gameElement.movingElement.Maze;
 
-public class MazeAdapter extends ViewAdapter implements IMaze {
+public class MazeAdapter extends GameElement implements IMaze {
 
     private Maze providedObject;
     private IMovement movement;
 
 
-    public MazeAdapter(Maze providedObject) {
+    public MazeAdapter(Maze providedObject, EventFacade eventFacade) {
         this.providedObject = providedObject;
     }
 
@@ -42,7 +46,7 @@ public class MazeAdapter extends ViewAdapter implements IMaze {
     }
 
     @Override
-    public View getProvidedObject() {
+    public Maze getProvidedObject() {
         return providedObject;
     }
 
@@ -87,13 +91,15 @@ public class MazeAdapter extends ViewAdapter implements IMaze {
 
     }
 
-    @Override
-    public void setOnMove() {
 
-    }
 
     @Override
     public void initMovementSystem(IMovement movement) {
         this.movement = movement;
+    }
+
+    @Override
+    public boolean touching(BoardObject el) {
+        return getProvidedObject().touching(((GameElement) el).getProvidedObject());
     }
 }

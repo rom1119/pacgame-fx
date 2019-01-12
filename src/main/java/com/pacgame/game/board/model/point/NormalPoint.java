@@ -1,5 +1,6 @@
 package com.pacgame.game.board.model.point;
 
+import com.pacgame.game.board.BoardObject;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.property.BaseProperty;
 import com.pacgame.game.property.ValueProperty;
@@ -28,5 +29,10 @@ public class NormalPoint implements IPoint {
     @Override
     public void setPosition(IMapPoint position) {
 
+    }
+
+    @Override
+    public boolean touching(BoardObject el) {
+        return false;
     }
 }

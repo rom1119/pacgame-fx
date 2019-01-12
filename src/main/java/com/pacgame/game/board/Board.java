@@ -1,13 +1,13 @@
 package com.pacgame.game.board;
 
 import com.pacgame.game.ILayer;
-import com.pacgame.game.IView;
-import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.board.model.pacman.IPacman;
 import com.pacgame.game.board.model.point.IPoint;
 import com.pacgame.game.event.board.BoardEventFacade;
 import com.pacgame.game.property.ObservableList;
+
+import java.util.Optional;
 
 public class Board {
 
@@ -42,6 +42,7 @@ public class Board {
     {
         map.addPacman(pacman);
         pacman.setPosition(map.getPacmanInitPosition());
+        pacman.setBoardEventFacade(boardEventFacade);
 
         pacmanList.add(pacman);
         onPacmanMove(pacman);
@@ -51,17 +52,19 @@ public class Board {
     IPoint boardElementTouchAnyPoint(BoardObject el)
     {
         return pointList.stream().filter(point ->
-             el.touch(point)
+             el.touching(point)
         ).findAny()
-        .get();
+        .orElse(null)
+        ;
     }
 
     void onPacmanMove(IPacman pacman)
     {
-        pacman.setOnMove(ev -> {
+        boardEventFacade.addEventHandler(boardEventFacade.onPacmanMove(), ev -> {
             IPoint point = boardElementTouchAnyPoint(pacman);
             if (point != null) {
                 boardEventFacade.emitEvent(boardEventFacade.createPacmanTouchPoint(pacman, pacman, point));
+                point.changeToEaten();
             }
         });
     }
