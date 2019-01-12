@@ -9,6 +9,9 @@ import com.pacgame.game.event.Target;
 
 public class MazeTouchPacman extends GameBoardEvent {
 
+    public static final EventType<MazeTouchPacman> MAZE_TOUCH_PACMAN_ANY_EVENT = new EventType<>(GameBoardEvent.GAME_BOARD_ANY_EVENT, "MAZE_TOUCH_PACMAN_ANY_EVENT");
+
+
     public MazeTouchPacman(Source source, Target target, EventType<? extends Event> eventType) {
         super(source, target, eventType);
     }

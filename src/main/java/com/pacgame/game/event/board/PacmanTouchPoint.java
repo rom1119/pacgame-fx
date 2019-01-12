@@ -9,22 +9,24 @@ import com.pacgame.game.event.Target;
 
 public class PacmanTouchPoint extends GameBoardEvent {
 
-    public PacmanTouchPoint(Source source, Target target, EventType<? extends Event> eventType) {
+    public static final EventType<PacmanTouchPoint> PACMAN_TOUCH_POINT_ANY_EVENT = new EventType<>(GameBoardEvent.GAME_BOARD_ANY_EVENT, "PACMAN_TOUCH_POINT_ANY_EVENT");
+
+    private IPoint point;
+
+    public PacmanTouchPoint(Source source, Target target, EventType<? extends Event> eventType, IPoint point) {
         super(source, target, eventType);
+        this.point = point;
     }
 
-    public PacmanTouchPoint(Source source, Target target) {
+    public PacmanTouchPoint(Source source, Target target, IPoint point) {
         super(source, target);
-    }
+        this.point = point;
 
-    public IPacman getPacman()
-    {
-        return null;
     }
 
     public IPoint getPoint()
     {
-        return null;
+        return point;
     }
 
 }

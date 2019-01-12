@@ -67,6 +67,7 @@ public class Game {
 
     public void setGamePlayLayout(GamePlayLayout gamePlayLayout) {
         this.gamePlayLayout = gamePlayLayout;
+        this.gamePlayLayout.setEventFacade(eventFacade);
 
         gamePlayLayout.createScene( WIDTH, HEIGHT);
 

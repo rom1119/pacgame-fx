@@ -7,23 +7,25 @@ import com.pacgame.game.adapter.LayerAdapter;
 import com.pacgame.game.adapter.board.movement.Movement2DAdapter;
 import com.pacgame.game.adapter.board.movement.MovementFactory;
 import com.pacgame.game.adapter.board.movement.rules.DoorCloseRule;
+import com.pacgame.game.adapter.board.point.GamePointsFactory;
 import com.pacgame.game.board.BoardMap;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.board.model.pacman.IPacman;
+import com.pacgame.game.board.model.point.IPoint;
 import com.pacgame.gameElement.MovingElementFactory;
 import com.pacgame.gameElement.standElement.GamePoint;
 import com.pacgame.map.Level;
 import com.pacgame.map.point.MapPoint;
 
 import java.util.List;
-import java.util.Map;
 
 public class BoardMapAdapter extends LayerAdapter implements BoardMap {
 
     private Level levelProvidedObject;
     private MovingElementFactory movingElementFactory;
     private MapPointsCreator mapPointsCreator;
+    private GamePointsFactory gamePointsCreator;
     private EventFacade eventFacade;
 
     private MovementFactory movementFactory;
@@ -36,8 +38,8 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
         this.movingElementFactory = movingElementFactory;
         this.eventFacade = eventFacade;
         this.mapPointsCreator = new MapPointsCreator();
-        this.mapPointsCreator.createListMovePoints((Map<String, MapPoint>) levelProvidedObject.getAllMapPoints());
-
+        this.mapPointsCreator.createListMovePoints(levelProvidedObject.getAllMapPoints());
+        this.gamePointsCreator = new GamePointsFactory();
 
         onControllPacmanByUser();
 
@@ -65,10 +67,10 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
     }
 
     @Override
-    public List<IMapPoint> createPoints() {
+    public List<IPoint> createPoints() {
         List<GamePoint> gamePoints = levelProvidedObject.populatePoints();
 
-        return mapPointsCreator.getAllPoints();
+        return gamePointsCreator.getAllPoints(gamePoints);
 
     }
 

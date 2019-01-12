@@ -88,6 +88,11 @@ public class MazeAdapter extends ViewAdapter implements IMaze {
     }
 
     @Override
+    public void setOnMove() {
+
+    }
+
+    @Override
     public void initMovementSystem(IMovement movement) {
         this.movement = movement;
     }

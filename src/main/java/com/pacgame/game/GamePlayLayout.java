@@ -12,6 +12,7 @@ public class GamePlayLayout {
     private ILayer root;
     private ISceneFactory sceneFactory;
     private Board board;
+    private IEventFacade eventFacade;
 
 
     public GamePlayLayout(ILayer root, ISceneFactory sceneFactory) {
@@ -32,10 +33,15 @@ public class GamePlayLayout {
     public void createMap(BoardMapCreator mapCreator)
     {
         board = new Board(mapCreator.createMap(root, LEFT_SIDE_WIDTH, LEFT_SIDE_HEIGHT));
+        board.setEventFacade(eventFacade.boardEventFacade());
 //        root.addElement(board.getView());
     }
 
     public void initGameObjects(GameObjectFactoryAdapter gameObjectFactoryAdapter) {
         board.initBoard(gameObjectFactoryAdapter);
+    }
+
+    public void setEventFacade(IEventFacade eventFacade) {
+        this.eventFacade = eventFacade;
     }
 }

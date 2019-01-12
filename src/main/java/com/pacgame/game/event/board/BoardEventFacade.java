@@ -1,13 +1,22 @@
 package com.pacgame.game.event.board;
 
-import com.pacgame.game.event.EventHandler;
-import com.pacgame.game.event.EventType;
+import com.pacgame.game.board.model.point.IPoint;
+import com.pacgame.game.event.*;
 
 public interface BoardEventFacade {
 
-    EventType<MazeTouchPacman> mazeTouchPacman();
-    EventType<PacmanTouchPoint> pacmanTouchPoint();
+    EventType<MazeTouchPacman> onMazeTouchPacman();
 
-    <T extends GameBoardEvent> void addEventHandler(T event, EventHandler<? super T> eventHandler);
-    <T extends GameBoardEvent> void removeEventHandler(T eventHandler);
+    EventType<PacmanTouchPoint> onPacmanTouchPoint();
+
+    PacmanTouchPoint createPacmanTouchPoint(Source source, Target target, IPoint point);
+
+    EventType<BoardElementMove> onPacmanMove();
+    EventType<BoardElementMove> onMazeMove();
+
+    <T extends GameBoardEvent> void addEventHandler(EventType<T> event, EventHandler<? super T> eventHandler);
+    <T extends GameBoardEvent> void removeEventHandler(EventType<T> event, EventHandler<? super T> eventHandler);
+
+    <T extends GameBoardEvent> void emitEvent(T event);
+
 }

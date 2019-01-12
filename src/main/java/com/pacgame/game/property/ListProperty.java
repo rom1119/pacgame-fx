@@ -4,6 +4,7 @@ import com.pacgame.game.ChangePropertyListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public abstract class ListProperty<T> {
 
@@ -31,6 +32,10 @@ public abstract class ListProperty<T> {
         property.add(val);
     }
 
+    public void addAll(List<T> val) {
+        property.addAll(val);
+    }
+
     public void remove(T val) {
         property.remove(val);
     }
@@ -47,6 +52,11 @@ public abstract class ListProperty<T> {
     public boolean isEmpty()
     {
         return property.isEmpty();
+    }
+
+    public Stream<T> stream()
+    {
+        return property.stream();
     }
 
     public void setOnChangeProperty(ChangePropertyListener val) {

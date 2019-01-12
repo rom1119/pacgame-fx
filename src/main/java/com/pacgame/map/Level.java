@@ -21,6 +21,10 @@ public abstract class Level {
         return levelMapPath.getAllPoints();
     }
 
+    public List<GamePoint> getAllGamePoints() {
+        return populator.getAllPoints();
+    }
+
     public List<GamePoint> populatePoints()
     {
         return populator.populate(this.getAllMapPoints());

@@ -86,6 +86,11 @@ class FirstLevelPopulator extends PointPopulator {
 
     }
 
+    @Override
+    public List<GamePoint> getAllPoints() {
+        return gamePoints;
+    }
+
     private GamePoint createNormalPoint(int x, int y)
     {
         GamePoint point = pointFactory.createNormalPoint();

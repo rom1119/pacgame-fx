@@ -11,5 +11,6 @@ public abstract class PointPopulator {
 
     public abstract void setLevel(Level level);
     public abstract List<GamePoint> populate(Map<String, MapPoint> allPoints);
+    public abstract List<GamePoint> getAllPoints();
     public abstract void depopulate();
 }

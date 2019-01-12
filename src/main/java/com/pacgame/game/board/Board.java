@@ -6,6 +6,7 @@ import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.board.model.pacman.IPacman;
 import com.pacgame.game.board.model.point.IPoint;
+import com.pacgame.game.event.board.BoardEventFacade;
 import com.pacgame.game.property.ObservableList;
 
 public class Board {
@@ -14,6 +15,7 @@ public class Board {
     private ObservableList<IPacman> pacmanList;
     private ObservableList<IMaze> mazeList;
     private ObservableList<IPoint> pointList;
+    private BoardEventFacade boardEventFacade;
 
     public Board(BoardMap map) {
         this.map = map;
@@ -33,15 +35,35 @@ public class Board {
 
     void initMapPoints()
     {
-        map.createPoints();
+        pointList.addAll(map.createPoints());
     }
 
     void initPacman(IPacman pacman)
     {
         map.addPacman(pacman);
         pacman.setPosition(map.getPacmanInitPosition());
+
         pacmanList.add(pacman);
+        onPacmanMove(pacman);
         pacman.startMove();
+    }
+
+    IPoint boardElementTouchAnyPoint(BoardObject el)
+    {
+        return pointList.stream().filter(point ->
+             el.touch(point)
+        ).findAny()
+        .get();
+    }
+
+    void onPacmanMove(IPacman pacman)
+    {
+        pacman.setOnMove(ev -> {
+            IPoint point = boardElementTouchAnyPoint(pacman);
+            if (point != null) {
+                boardEventFacade.emitEvent(boardEventFacade.createPacmanTouchPoint(pacman, pacman, point));
+            }
+        });
     }
 
     void initMaze(IMaze maze)
@@ -55,5 +77,9 @@ public class Board {
 
     public ILayer getView() {
         return map.getView();
+    }
+
+    public void setEventFacade(BoardEventFacade boardEventFacade) {
+        this.boardEventFacade = boardEventFacade;
     }
 }
