@@ -18,4 +18,27 @@ public abstract class ShapeProvidedObject extends ComponentProvidedObject {
     {
         return getProxy().getRotate();
     }
+
+    public boolean intersects(ShapeProvidedObject el)
+    {
+        return getProxy().intersects(el.getProxy());
+    }
+
+    public int intersectWidth(ShapeProvidedObject el)
+    {
+        return getProxy().intersectWidth(el.getProxy());
+    }
+
+    public int intersectHeight(ShapeProvidedObject el)
+    {
+        return getProxy().intersectHeight(el.getProxy());
+    }
+
+    public abstract void setWidth(int val);
+
+    public abstract int getWidth();
+
+    public abstract void setHeight(int val);
+
+    public abstract int getHeight();
 }

@@ -26,4 +26,26 @@ public abstract class ShapeProxy extends ComponentProxy {
     {
         return (int) getProxyObject().getRotate();
     }
+
+    public boolean intersects(ShapeProxy el)
+    {
+        return getProxyObject().intersects(el.getX(), el.getY(), el.getWidth(), el.getHeight());
+    }
+
+    public int intersectWidth(ShapeProxy el)
+    {
+        Shape intersect = Shape.intersect(getProxyObject(), el.getProxyObject());
+        return (int) intersect.getBoundsInLocal().getWidth();
+    }
+
+    public int intersectHeight(ShapeProxy el)
+    {
+        Shape intersect = Shape.intersect(getProxyObject(), el.getProxyObject());
+        return (int) intersect.getBoundsInLocal().getHeight();
+    }
+
+
+    protected abstract int getHeight();
+
+    protected abstract int getWidth();
 }

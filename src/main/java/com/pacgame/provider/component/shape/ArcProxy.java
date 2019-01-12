@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
+import javafx.scene.shape.Shape;
 
 public class ArcProxy extends ShapeProxy {
 
@@ -27,8 +28,6 @@ public class ArcProxy extends ShapeProxy {
         proxyObject.setFill(Color.BLACK);
 
 //        proxyObject.setStartAngle(45.0f);
-//        proxyObject.setLength(270.0f);
-
     }
 
     public void setStartAngle(int val)
@@ -56,6 +55,16 @@ public class ArcProxy extends ShapeProxy {
     @Override
     public Arc getProxyObject() {
         return proxyObject;
+    }
+
+    @Override
+    protected int getHeight() {
+        return (int) getProxyObject().getRadiusY();
+    }
+
+    @Override
+    protected int getWidth() {
+        return (int) getProxyObject().getRadiusX();
     }
 
     public void setRadius(int radius)

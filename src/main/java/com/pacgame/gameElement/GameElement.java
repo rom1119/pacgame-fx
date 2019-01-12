@@ -20,6 +20,11 @@ public abstract class GameElement extends Component {
         return providedObject;
     }
 
+    public boolean touch(GameElement el)
+    {
+        return getProvidedObject().intersectHeight(el.getProvidedObject()) > 4 && getProvidedObject().intersectWidth(el.getProvidedObject()) > 4;
+    }
+
 
 //    @Override
 //    public IEvent dispatchEvent(IEvent event) {

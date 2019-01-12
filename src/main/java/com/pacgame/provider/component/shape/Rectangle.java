@@ -23,9 +23,19 @@ public class Rectangle extends ShapeProvidedObject {
         getProxy().setWidth(width);
     }
 
+    @Override
+    public int getWidth() {
+        return width.get();
+    }
+
     public void setHeight(int height) {
         this.height.set(height);
         getProxy().setHeight(height);
+    }
+
+    @Override
+    public int getHeight() {
+        return height.get();
     }
 
     @Override
@@ -47,6 +57,8 @@ public class Rectangle extends ShapeProvidedObject {
     protected RectangleProxy getProxy() {
         return proxy;
     }
+
+
 
     @Override
     public void setBackground(Paint paint) {

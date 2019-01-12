@@ -10,7 +10,8 @@ import com.pacgame.provider.property.StartAngleProperty;
 public class Arc extends ShapeProvidedObject {
 
     protected ArcProxy proxy;
-    protected PropertyProvider<Integer> radius;
+    protected PropertyProvider<Integer> radiusX;
+    protected PropertyProvider<Integer> radiusY;
     protected PropertyProvider<Integer> length;
     protected PropertyProvider<Integer> startAngle;
 
@@ -18,7 +19,8 @@ public class Arc extends ShapeProvidedObject {
 
     public Arc(int radius) {
         proxy = new ArcProxy(radius);
-        this.radius = new RadiusProperty(radius);
+        this.radiusX = new RadiusProperty(radius);
+        this.radiusY = new RadiusProperty(radius);
         this.length = new ArcLengthProperty(0);
         this.startAngle = new StartAngleProperty(0);
         this.length.setOnChangeProperty((old , newVal) -> {
@@ -31,13 +33,19 @@ public class Arc extends ShapeProvidedObject {
     }
 
     public void setRadius(int radius) {
-        this.radius.set(radius);
+        this.radiusX.set(radius);
+        this.radiusY.set(radius);
         getProxy().setRadius(radius);
     }
 
-    public int getRadius()
+    public int getRadiusX()
     {
-        return radius.get();
+        return radiusX.get();
+    }
+
+    public int getRadiusY()
+    {
+        return radiusY.get();
     }
 
     @Override
@@ -58,6 +66,26 @@ public class Arc extends ShapeProvidedObject {
     @Override
     protected ArcProxy getProxy() {
         return proxy;
+    }
+
+    @Override
+    public void setWidth(int val) {
+        radiusX.set(val);
+    }
+
+    @Override
+    public int getWidth() {
+        return radiusX.get();
+    }
+
+    @Override
+    public void setHeight(int val) {
+        radiusY.set(val);
+    }
+
+    @Override
+    public int getHeight() {
+        return radiusY.get();
     }
 
     @Override

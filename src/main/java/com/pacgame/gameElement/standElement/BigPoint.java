@@ -57,7 +57,7 @@ public class BigPoint extends GamePoint {
 
     @Override
     public void setX(int x) {
-        super.setX(x + (getProvidedObject().getRadius() / 3));
+        super.setX(x + (getProvidedObject().getRadiusX() / 3));
     }
 
     @Override
