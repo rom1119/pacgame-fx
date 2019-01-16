@@ -18,7 +18,15 @@ class EventDispatcher<T extends BaseMoveEventBetweenPoints> implements MoveEvent
         eventHandlers.forEach((key, val) -> {
             if (event.getName().equals(key.getName())) {
                 val.forEach(eventHandler -> {
+//                    if (event == null) {
+//                        throw new RuntimeException("event null");
+//                    }
+//                    if (eventHandler == null) {
+//                        throw new RuntimeException("eventHandler null");
+//
+//                    }
                     eventHandler.handle(event);
+
 
                 });
             }

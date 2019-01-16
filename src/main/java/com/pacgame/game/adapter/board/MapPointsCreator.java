@@ -34,6 +34,7 @@ public class MapPointsCreator {
                 newEl = (MapPointAdapter) getMovePointByCoordinates(val.getX(), val.getY());
             }
 
+
             if (val.isDoor()) {
                 newEl.setDoor(true);
             }
@@ -92,7 +93,7 @@ public class MapPointsCreator {
 
     private IMapPoint getMovePointByCoordinates(int x, int y) {
 
-        return mapPoints.stream().filter(el -> el.getX() == x && el.getY() == y).findAny().get();
+        return mapPoints.stream().filter(el -> el.getX() == x && el.getY() == y).findAny().orElseGet(() -> null);
     }
 
     private boolean existPointWithCoordinates(int x, int y) {
@@ -103,6 +104,7 @@ public class MapPointsCreator {
     {
 
         MapPointAdapter movePoint2D = new MapPointAdapter(mapPointAdapter.getX(), mapPointAdapter.getY());
+        movePoint2D.setName(mapPointAdapter.getName());
 
         mapPoints.add(movePoint2D);
 

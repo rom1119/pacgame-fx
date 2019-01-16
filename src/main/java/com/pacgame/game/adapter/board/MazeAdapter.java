@@ -2,7 +2,13 @@ package com.pacgame.game.adapter.board;
 
 import com.pacgame.View;
 import com.pacgame.event.EventFacade;
+import com.pacgame.finder.FindPoint2D;
+import com.pacgame.finder.Finder;
+import com.pacgame.finder.ObjectToFind2D;
+import com.pacgame.game.adapter.ValueObject;
 import com.pacgame.game.adapter.ViewAdapter;
+import com.pacgame.game.adapter.board.finder.shema.FinderScheme;
+import com.pacgame.game.adapter.board.finder.shema.MazeFinderSchema;
 import com.pacgame.game.board.BoardObject;
 import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
@@ -10,15 +16,23 @@ import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.event.board.BoardElementMove;
 import com.pacgame.game.event.board.GameBoardEventHandler;
 import com.pacgame.gameElement.movingElement.Maze;
+import com.pacgame.movement.impl.pointToPoint.event.MoverBetweenPointsEventFacade;
 
 public class MazeAdapter extends GameElement implements IMaze {
 
     private Maze providedObject;
     private IMovement movement;
+    private IMapPoint currentPositionPoint;
+    private ValueObject<IMapPoint> currentPositionPointValueObject;
 
+    private MapPointsCreator mapPointsCreator;
+    private Finder finder;
+    private ObjectToFind2D objectToFind;
+    private FinderScheme finderScheme;
 
     public MazeAdapter(Maze providedObject, EventFacade eventFacade) {
         this.providedObject = providedObject;
+        this.currentPositionPointValueObject = new ValueObject<>();
     }
 
     @Override
@@ -35,6 +49,7 @@ public class MazeAdapter extends GameElement implements IMaze {
     public void setPosition(IMapPoint position) {
         providedObject.setX(position.getX());
         providedObject.setY(position.getY());
+        setCurrentPoint(position);
         if (movement !=  null) {
             movement.skipTo(position);
         }
@@ -43,6 +58,11 @@ public class MazeAdapter extends GameElement implements IMaze {
     @Override
     public void changeToNormalCharacter() {
 
+    }
+
+    @Override
+    public void initFinder(Finder finder) {
+        this.finder = finder;
     }
 
     @Override
@@ -66,32 +86,84 @@ public class MazeAdapter extends GameElement implements IMaze {
         }
     }
 
+    public void setMapPointsCreator(MapPointsCreator mapPointsCreator) {
+        this.mapPointsCreator = mapPointsCreator;
+    }
+
+    public void setObjectToFind(ObjectToFind2D objectToFind) {
+        this.objectToFind = objectToFind;
+    }
+
     @Override
     public void moveUp() {
-        providedObject.turnUp();
         movement.moveUp();
     }
 
     @Override
     public void moveDown() {
-        providedObject.turnDown();
         movement.moveDown();
     }
 
     @Override
     public void moveLeft() {
-        providedObject.turnLeft();
         movement.moveLeft();
     }
 
     @Override
     public void moveRight() {
-        providedObject.turnRight();
         movement.moveRight();
-
     }
 
+    @Override
+    public IMapPoint getCurrentPoint() {
+        return currentPositionPoint;
+    }
 
+    @Override
+    public void setCurrentPoint(IMapPoint point) {
+        currentPositionPoint = point;
+        currentPositionPointValueObject.setValue(point);
+    }
+
+    public void onMoveDirectionChange(MoverBetweenPointsEventFacade movementEventFacade) {
+        MazeAdapter mazeAdapter = this;
+
+        movementEventFacade.addEventHandler(movementEventFacade.onMoveUpEvent(), event -> {
+            providedObject.turnUp();
+
+        });
+
+        movementEventFacade.addEventHandler(movementEventFacade.onMoveLeftEvent(), event -> {
+            providedObject.turnLeft();
+
+        });
+
+        movementEventFacade.addEventHandler(movementEventFacade.onMoveDownEvent(), event -> {
+            providedObject.turnDown();
+
+        });
+
+        movementEventFacade.addEventHandler(movementEventFacade.onMoveRightEvent(), event -> {
+            providedObject.turnRight();
+
+        });
+
+        movementEventFacade.addEventHandler(movementEventFacade.onAnyMoveEndEvent(), event -> {
+            setCurrentPoint(mapPointsCreator.getFromPosition(event.getX(), event.getY()));
+//            System.out.println("q123");
+            System.out.println(((MapPointAdapter) getCurrentPoint()).getName());
+//            System.out.println(((MapPointAdapter) getCurrentPoint()).getUp());
+//            System.out.println(((MapPointAdapter) getCurrentPoint()).getDown());
+//            System.out.println(((MapPointAdapter) getCurrentPoint()).getLeft());
+//            System.out.println(((MapPointAdapter) getCurrentPoint()).getRight());
+//            System.out.println("q123");
+            objectToFind = finderScheme.find();
+            System.out.println(objectToFind.getPoint().getX());
+            System.out.println(objectToFind.getPoint().getY());
+            this.finder.find(objectToFind);
+
+        });
+    }
 
     @Override
     public void initMovementSystem(IMovement movement) {
@@ -101,5 +173,13 @@ public class MazeAdapter extends GameElement implements IMaze {
     @Override
     public boolean touching(BoardObject el) {
         return getProvidedObject().touching(((GameElement) el).getProvidedObject());
+    }
+
+    public void setFinderScheme(FinderScheme finderScheme) {
+        this.finderScheme = finderScheme;
+    }
+
+    public ValueObject<IMapPoint> getCurrentPointValueObject() {
+        return currentPositionPointValueObject;
     }
 }

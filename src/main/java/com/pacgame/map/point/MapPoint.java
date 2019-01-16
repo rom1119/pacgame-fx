@@ -23,6 +23,10 @@ public class MapPoint extends Point2D {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setUpPoint(MapPoint upPoint) {
         this.upPoint = upPoint;
     }
@@ -62,4 +66,6 @@ public class MapPoint extends Point2D {
     public boolean isDoor() {
         return door;
     }
+
+
 }

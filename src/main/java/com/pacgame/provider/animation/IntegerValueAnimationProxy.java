@@ -2,6 +2,7 @@ package com.pacgame.provider.animation;
 
 import com.pacgame.provider.property.PropertyProvider;
 import com.pacgame.provider.property.WritableValueProvider;
+import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -97,6 +98,16 @@ class IntegerValueAnimationProxy extends AnimationProxy {
     @Override
     public void stop() {
         proxyObject.stop();
+    }
+
+    @Override
+    public boolean isEnded() {
+        return proxyObject.getStatus().equals(Timeline.Status.STOPPED);
+    }
+
+    @Override
+    public boolean isPaused() {
+        return proxyObject.getStatus().equals(Timeline.Status.PAUSED);
     }
 
     @Override

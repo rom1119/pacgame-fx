@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MoverPointToPoint implements Movement2D {
 
-    public static final Direction2D INITIAL_DIRECTION = Direction2D.LEFT;
+    public static final Direction2D INITIAL_DIRECTION = Direction2D.RIGHT;
 
     private StepToPointBuilder moveBuilder;
     private AnimationBuilder animationBuilder;
@@ -124,7 +124,6 @@ public class MoverPointToPoint implements Movement2D {
 
         checkDirection(Direction2D.LEFT);
         goIfIsSameStopped();
-
         if (currentMove instanceof MoveRight) {
             turnAround();
             return;
@@ -153,7 +152,8 @@ public class MoverPointToPoint implements Movement2D {
     }
 
     private void goIfIsSameStopped() {
-        if (!isStarted()) {
+        if (currentMove.isEnded()) {
+//            System.out.println("go");
             started = true;
             go();
         }
@@ -187,7 +187,7 @@ public class MoverPointToPoint implements Movement2D {
     }
 
     private int getSpeedMove() {
-        return 8;
+        return 20;
     }
 
     private void go() {
@@ -200,7 +200,8 @@ public class MoverPointToPoint implements Movement2D {
             if (currentMove.canMove()) {
                 currentMove.move(objectMoving);
                 currentMove.setOnMoveEnd(() -> {
-                    continueMoveIfIsPossible();
+                    emitEndMoveEvent();
+//                    continueMoveIfIsPossible();
                 });
             }
         } else {
@@ -219,9 +220,17 @@ public class MoverPointToPoint implements Movement2D {
             currentMove.setAsSkippedDuration();
             currentMove.move(objectMoving);
             currentMove.setOnMoveEnd(() -> {
+                emitEndMoveEvent();
                 continueMoveIfIsPossible();
             });
+        } else {
+            started = false;
         }
+    }
+
+    private void emitEndMoveEvent() {
+        movementEventFacade.emitEvent(movementEventFacade.createAnyMoveEndEvent(currentMove));
+
     }
 
     private void continueMoveIfIsPossible()

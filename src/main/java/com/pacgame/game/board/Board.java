@@ -46,7 +46,7 @@ public class Board {
 
         pacmanList.add(pacman);
         onPacmanMove(pacman);
-        pacman.startMove();
+//        pacman.startMove();
     }
 
     IPoint boardElementTouchAnyPoint(BoardObject el)
@@ -74,6 +74,8 @@ public class Board {
         map.addMaze(maze);
         mazeList.add(maze);
         maze.setPosition(map.getMazeInitPosition());
+        maze.startMove();
+//        maze.moveRight();
 
     }
 

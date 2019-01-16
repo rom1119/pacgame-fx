@@ -15,7 +15,6 @@ class StepToPointBuilder implements IMoveBuilder<Move> {
     private Move buildedInstance;
     private MoverBetweenPointsEventFacade movementEventFacade;
 
-
     public StepToPointBuilder(MovePoint2D point, AnimationBuilder animationBuilder, MoverBetweenPointsEventFacade movementEventFacade) {
         this.point = point;
         this.animationBuilder = animationBuilder;

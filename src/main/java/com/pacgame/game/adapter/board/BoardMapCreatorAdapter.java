@@ -3,6 +3,9 @@ package com.pacgame.game.adapter.board;
 import com.pacgame.event.EventFacade;
 import com.pacgame.game.ILayer;
 import com.pacgame.game.adapter.LayerAdapter;
+import com.pacgame.game.adapter.board.finder.FinderFactory;
+import com.pacgame.game.adapter.board.finder.ObjectToFindFactory;
+import com.pacgame.game.adapter.board.finder.shema.FinderSchemeFactory;
 import com.pacgame.game.adapter.board.movement.MovementFactory;
 import com.pacgame.game.board.BoardMap;
 import com.pacgame.game.board.BoardMapCreator;
@@ -21,6 +24,7 @@ public class BoardMapCreatorAdapter implements BoardMapCreator {
     private LayerFactory layerFactory;
     private MovementFactory movementFactory;
     private EventFacade eventFacade;
+    private FinderFactory finderFactory;
 
 
     public BoardMapCreatorAdapter(LevelsFacade levelsFacade, GameElementFacade gameElementFacade, LayerFactory layerFactory, EventFacade eventFacade) {
@@ -32,6 +36,10 @@ public class BoardMapCreatorAdapter implements BoardMapCreator {
 
     public void setMovementFactory(MovementFactory movementFactory) {
         this.movementFactory = movementFactory;
+    }
+
+    public void setFinderFactory(FinderFactory finderFactory) {
+        this.finderFactory = finderFactory;
     }
 
     @Override
@@ -46,6 +54,12 @@ public class BoardMapCreatorAdapter implements BoardMapCreator {
         if (movementFactory != null) {
             boardMapAdapter.setMovementFactory(movementFactory);
         }
+
+        if (finderFactory != null) {
+            boardMapAdapter.setFinderFactory(finderFactory);
+        }
+        boardMapAdapter.setFinderSchemeFactory(new FinderSchemeFactory());
+        boardMapAdapter.setObjectToFindFactory(new ObjectToFindFactory());
         return boardMapAdapter;
     }
 }

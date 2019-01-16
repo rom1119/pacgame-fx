@@ -46,4 +46,14 @@ class IntegerValueAnimation extends Animation {
     public void stop() {
         proxy.stop();
     }
+
+    @Override
+    public boolean isEnded() {
+        return proxy.isEnded();
+    }
+
+    @Override
+    public boolean isPaused() {
+        return proxy.isPaused();
+    }
 }

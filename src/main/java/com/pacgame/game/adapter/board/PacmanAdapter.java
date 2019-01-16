@@ -18,6 +18,8 @@ public class PacmanAdapter extends GameElement implements IPacman {
     private EventFacade eventFacade;
     private IMovement movement;
     private BoardEventFacade boardEventFacade;
+    private IMapPoint currentPositionPoint;
+    private MapPointsCreator mapPointsCreator;
 
     public PacmanAdapter(Pacman providedObject, EventFacade eventFacade) {
         this.providedObject = providedObject;
@@ -54,6 +56,7 @@ public class PacmanAdapter extends GameElement implements IPacman {
     public void setPosition(IMapPoint position) {
         providedObject.setX(position.getX());
         providedObject.setY(position.getY());
+        setCurrentPoint(position);
         if (movement !=  null) {
             movement.skipTo(position);
         }
@@ -102,6 +105,16 @@ public class PacmanAdapter extends GameElement implements IPacman {
 
     }
 
+    @Override
+    public IMapPoint getCurrentPoint() {
+        return currentPositionPoint;
+    }
+
+    @Override
+    public void setCurrentPoint(IMapPoint point) {
+        currentPositionPoint = point;
+    }
+
     public void onMove() {
 
         PacmanAdapter pacmanAdapter = this;
@@ -146,7 +159,27 @@ public class PacmanAdapter extends GameElement implements IPacman {
             providedObject.turnRight();
 
         });
+
+        movementEventFacade.addEventHandler(movementEventFacade.onAnyMoveEndEvent(), event -> {
+            if (mapPointsCreator != null) {
+
+                setCurrentPoint(mapPointsCreator.getFromPosition(event.getX(), event.getY()));
+            }
+            System.out.println(((MapPointAdapter) getCurrentPoint()).getName());
+//            System.out.println("Xyz");
+//            System.out.println(((MapPointAdapter) ((MapPointAdapter) getCurrentPoint()).getUp()));
+//            System.out.println(((MapPointAdapter) ((MapPointAdapter) getCurrentPoint()).getDown()));
+//            System.out.println(((MapPointAdapter) ((MapPointAdapter) getCurrentPoint()).getLeft()));
+//            System.out.println(((MapPointAdapter) ((MapPointAdapter) getCurrentPoint()).getRight()));
+
+
+        });
     }
+
+    public void setMapPointsCreator(MapPointsCreator mapPointsCreator) {
+        this.mapPointsCreator = mapPointsCreator;
+    }
+
 
     @Override
     public boolean touching(BoardObject el) {

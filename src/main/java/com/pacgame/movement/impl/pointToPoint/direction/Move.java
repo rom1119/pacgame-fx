@@ -96,4 +96,8 @@ public abstract class Move implements IStepMove {
     public void setDurationMoveInMilliseconds(int speed) {
         DURATION = speed;
     }
+
+    public boolean isEnded() {
+        return animation.isEnded();
+    }
 }

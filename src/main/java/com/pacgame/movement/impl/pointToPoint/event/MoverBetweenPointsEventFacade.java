@@ -2,10 +2,7 @@ package com.pacgame.movement.impl.pointToPoint.event;
 
 import com.pacgame.movement.event.MoveEventHandler;
 import com.pacgame.movement.event.MovementEventFacade;
-import com.pacgame.movement.impl.pointToPoint.direction.MoveDown;
-import com.pacgame.movement.impl.pointToPoint.direction.MoveLeft;
-import com.pacgame.movement.impl.pointToPoint.direction.MoveRight;
-import com.pacgame.movement.impl.pointToPoint.direction.MoveUp;
+import com.pacgame.movement.impl.pointToPoint.direction.*;
 
 public class MoverBetweenPointsEventFacade implements MovementEventFacade<BaseMoveEventBetweenPoints> {
 
@@ -46,6 +43,10 @@ public class MoverBetweenPointsEventFacade implements MovementEventFacade<BaseMo
         return new MoveRightEvent(moveDown, fromX, fromY);
     }
 
+    public AnyMoveEndEvent createAnyMoveEndEvent(Move moveDown) {
+        return new AnyMoveEndEvent(moveDown);
+    }
+
     public MoveUpEvent onMoveUpEvent() {
         return new MoveUpEvent();
     }
@@ -60,5 +61,9 @@ public class MoverBetweenPointsEventFacade implements MovementEventFacade<BaseMo
 
     public MoveRightEvent onMoveRightEvent() {
         return new MoveRightEvent();
+    }
+
+    public AnyMoveEndEvent onAnyMoveEndEvent() {
+        return new AnyMoveEndEvent();
     }
 }

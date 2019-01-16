@@ -2,13 +2,22 @@ package com.pacgame.game.adapter.board;
 
 import com.pacgame.Layer;
 import com.pacgame.event.EventFacade;
+import com.pacgame.finder.ObjectToFind2D;
 import com.pacgame.game.ILayer;
 import com.pacgame.game.adapter.LayerAdapter;
+import com.pacgame.game.adapter.board.finder.FinderAdapter;
+import com.pacgame.game.adapter.board.finder.FinderFactory;
+import com.pacgame.game.adapter.board.finder.ObjectToFindFactory;
+import com.pacgame.game.adapter.board.finder.rules.NotTurnAroundRule;
+import com.pacgame.game.adapter.board.finder.shema.FinderSchemeFactory;
+import com.pacgame.game.adapter.board.finder.shema.MazeFinderSchema;
+import com.pacgame.game.adapter.board.finder.shema.SchemeStep;
 import com.pacgame.game.adapter.board.movement.Movement2DAdapter;
 import com.pacgame.game.adapter.board.movement.MovementFactory;
 import com.pacgame.game.adapter.board.movement.rules.DoorCloseRule;
 import com.pacgame.game.adapter.board.point.GamePointsFactory;
 import com.pacgame.game.board.BoardMap;
+import com.pacgame.game.board.model.Moveable;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.game.board.model.pacman.IPacman;
@@ -24,13 +33,18 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
 
     private Level levelProvidedObject;
     private MovingElementFactory movingElementFactory;
+    private ObjectToFindFactory objectToFindFactory;
+    private FinderSchemeFactory finderSchemeFactory;
     private MapPointsCreator mapPointsCreator;
     private GamePointsFactory gamePointsCreator;
     private EventFacade eventFacade;
 
     private MovementFactory movementFactory;
+    private FinderFactory finderFactory;
 
     private PacmanAdapter controlledPacman;
+    private MazeAdapter mazeAdapter;
+
 
 
     public BoardMapAdapter(Level levelProvidedObject, MovingElementFactory movingElementFactory, EventFacade eventFacade) {
@@ -49,21 +63,38 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
     {
         this.levelProvidedObject.getRootLayer().addEventHandler(eventFacade.keyEventFacade().onKeyPressed(), e -> {
             if (e.isArrowUp()) {
-                controlledPacman.moveUp();
+                mazeAdapter.moveUp();
+//                controlledPacman.moveUp();
             } else if (e.isArrowBottom()) {
-                controlledPacman.moveDown();
+                mazeAdapter.moveDown();
+//                controlledPacman.moveDown();
             } else if (e.isArrowLeft()) {
-                controlledPacman.moveLeft();
+                mazeAdapter.moveLeft();
+//                controlledPacman.moveLeft();
             } else if (e.isArrowRight()) {
-                controlledPacman.moveRight();
+                mazeAdapter.moveRight();
+//                controlledPacman.moveRight();
             }
         });
 
     }
 
+    public void setObjectToFindFactory(ObjectToFindFactory objectToFindFactory) {
+        this.objectToFindFactory = objectToFindFactory;
+    }
+
+    public void setFinderSchemeFactory(FinderSchemeFactory finderSchemeFactory) {
+        this.finderSchemeFactory = finderSchemeFactory;
+    }
+
     public void setMovementFactory(MovementFactory movementFactory) {
         this.movementFactory = movementFactory;
         this.movementFactory.createMovePoints(mapPointsCreator.getAllPoints());
+    }
+
+    public void setFinderFactory(FinderFactory finderFactory) {
+        this.finderFactory = finderFactory;
+//        this.movementFactory.createMovePoints(mapPointsCreator.getAllPoints());
     }
 
     @Override
@@ -79,7 +110,9 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
         levelProvidedObject.getRootLayer().addChildren(((PacmanAdapter) pacman).getProvidedObject());
         Movement2DAdapter movementSystem = movementFactory.createMovementSystem(getPacmanInitPosition(), (PacmanAdapter) pacman);
         pacman.initMovementSystem(movementSystem);
-        movementSystem.addRule(new DoorCloseRule());
+        ((PacmanAdapter) pacman).setMapPointsCreator(mapPointsCreator);
+
+//        movementSystem.addRule(new DoorCloseRule());
         ((PacmanAdapter) pacman).onMoveDirectionChange(movementSystem.getEventFacade());
         controlledPacman = (PacmanAdapter) pacman;
     }
@@ -89,7 +122,47 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
     @Override
     public void addMaze(IMaze maze) {
         levelProvidedObject.getRootLayer().addChildren(((MazeAdapter) maze).getProvidedObject());
-        maze.initMovementSystem(movementFactory.createMovementSystem(getMazeInitPosition(), (MazeAdapter) maze));
+        Movement2DAdapter movementSystem = movementFactory.createMovementSystem(getMazeInitPosition(), (MazeAdapter) maze);
+        maze.initMovementSystem(movementSystem);
+//        movementSystem.addRule(new DoorCloseRule());
+        ((MazeAdapter) maze).setMapPointsCreator(mapPointsCreator);
+        FinderAdapter finder = finderFactory.createFinder();
+        maze.initFinder(finder);
+        finder.init(maze);
+
+        MazeFinderSchema mazeFinderSchema = finderSchemeFactory.createMazeFinderSchema(maze);
+
+//        first step
+        MapPoint point = levelProvidedObject.getAllMapPoints().get("d5A");
+        IMapPoint fromPosition = mapPointsCreator.getFromPosition(point.getX(), point.getY());
+        ObjectToFind2D secondObject = objectToFindFactory.createObjectToFind2D(fromPosition);
+
+        SchemeStep schemeStep = mazeFinderSchema.setObjectForFirstStep(secondObject);
+
+        schemeStep.setOnComplete(() -> {
+            finder.addRule(new com.pacgame.game.adapter.board.finder.rules.DoorCloseRule());
+            finder.addRule(new NotTurnAroundRule(((MazeAdapter) maze).getCurrentPointValueObject()));
+        });
+
+//        second step
+
+
+
+//        third step
+        ObjectToFind2D thirdObject = objectToFindFactory.createObjectToFind2D((Moveable) controlledPacman);
+        SchemeStep schemeStep1 = mazeFinderSchema.setObjectForSecondStep(thirdObject);
+        schemeStep1.setOnComplete((() -> {
+//            mazeFinderSchema.getFinderScheme().prevStep();
+        }));
+
+
+        ((MazeAdapter) maze).setFinderScheme(mazeFinderSchema.getFinderScheme());
+
+
+
+        mazeAdapter = (MazeAdapter) maze;
+        ((MazeAdapter) maze).onMoveDirectionChange(movementSystem.getEventFacade());
+
     }
 
     @Override

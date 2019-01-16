@@ -2,7 +2,7 @@ package com.pacgame.movement.impl.pointToPoint.event;
 
 import com.pacgame.movement.impl.pointToPoint.direction.Move;
 
-public class MoveRightEvent extends BaseMoveEventBetweenPoints {
+public class MoveRightEvent extends MoveStartEvent {
     private static final String name = "MOVE_RIGHT";
 
 

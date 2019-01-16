@@ -24,5 +24,7 @@ public abstract class Animation extends ProvidedObject {
     public abstract void play();
     public abstract void pause();
     public abstract void stop();
+    public abstract boolean isEnded();
+    public abstract boolean isPaused();
 
 }

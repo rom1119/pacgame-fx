@@ -1,10 +1,9 @@
 package com.pacgame.finder;
 
-public interface FinderObject2D extends FinderObject {
-    void moveUp();
-    void moveDown();
-    void moveLeft();
-    void moveRight();
+import java.util.List;
 
-    FindPoint2D getPoint();
+public interface FinderObject2D extends FinderObject {
+    void moveTo(FindPoint2D point);
+
+    List<FindPoint2D> getAvailablePoints();
 }

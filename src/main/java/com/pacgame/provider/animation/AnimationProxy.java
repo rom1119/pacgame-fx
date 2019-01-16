@@ -41,4 +41,6 @@ abstract class AnimationProxy extends Proxy {
     public abstract void pause();
     public abstract void stop();
 
+    public abstract boolean isEnded();
+    public abstract boolean isPaused();
 }

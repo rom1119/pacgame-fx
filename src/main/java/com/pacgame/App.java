@@ -11,6 +11,7 @@ import com.pacgame.game.UILayout;
 import com.pacgame.game.adapter.PlatformToolsAdapter;
 import com.pacgame.game.adapter.board.BoardMapCreatorAdapter;
 import com.pacgame.game.adapter.board.GameObjectFactoryAdapter;
+import com.pacgame.game.adapter.board.finder.FinderFactory;
 import com.pacgame.game.adapter.board.movement.MovePointsCreatorAdapter;
 import com.pacgame.game.adapter.board.movement.MovementFactory;
 import com.pacgame.game.adapter.factory.*;
@@ -170,8 +171,10 @@ public class App extends Application {
         GameObjectFactoryAdapter gameObjectFactoryAdapter = new GameObjectFactoryAdapter(gameElementFacade.movingElementFactory(), eventFacade);
         BoardMapCreatorAdapter boardMapCreatorAdapter = new BoardMapCreatorAdapter(levelsFacade, gameElementFacade, layerFactory, eventFacade);
         MovePointsCreatorAdapter movePointsCreator = new MovePointsCreatorAdapter();
+        FinderFactory finderFactory = new FinderFactory();
         MovementFactory movementFactory = new MovementFactory(animationProvider.animationBuilder(), movePointsCreator);
         boardMapCreatorAdapter.setMovementFactory(movementFactory);
+        boardMapCreatorAdapter.setFinderFactory(finderFactory);
 
         // Game
         Game game = new Game(platformToolsAdapter);
