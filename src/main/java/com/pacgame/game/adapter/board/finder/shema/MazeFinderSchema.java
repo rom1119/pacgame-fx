@@ -3,22 +3,26 @@ package com.pacgame.game.adapter.board.finder.shema;
 import com.pacgame.finder.ObjectToFind2D;
 import com.pacgame.game.adapter.board.finder.ObjectToFindFactory;
 import com.pacgame.game.board.model.Moveable;
+import com.pacgame.scheme.Scheme;
+import com.pacgame.scheme.SchemeStep;
+import com.pacgame.scheme.SchemeStepHandler;
+import com.pacgame.scheme.impl.FinderScheme;
 
-public class MazeFinderSchema {
+public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
 
-    private FinderScheme finderScheme;
+    private FinderScheme<ObjectToFind2D> finderScheme;
     private Moveable finderObject;
 
     public MazeFinderSchema(Moveable finderObject) {
-        createFinderSchema(finderObject);
+        createFinderSchema();
         this.finderObject = finderObject;
     }
 
-    private void createFinderSchema(Moveable finderObject) {
-        finderScheme = new FinderScheme(finderObject);
+    private void createFinderSchema() {
+        finderScheme = new FinderScheme<>();
     }
 
-    public FinderScheme getFinderScheme() {
+    public Scheme<ObjectToFind2D> getFinderScheme() {
         return finderScheme;
     }
 
@@ -63,7 +67,7 @@ public class MazeFinderSchema {
             }
         };
 
-        finderScheme.addStepTarget(0, schemeStep);
+        finderScheme.addStep(0, schemeStep);
 
         return schemeStep;
     }
@@ -99,7 +103,7 @@ public class MazeFinderSchema {
                 this.onCompleteHandler = handler;
             }
         };
-        finderScheme.addStepTarget(1, schemeStep);
+        finderScheme.addStep(1, schemeStep);
 
         return schemeStep;
 
@@ -140,9 +144,13 @@ public class MazeFinderSchema {
             }
         };
 
-        finderScheme.addStepTarget(2, schemeStep);
+        finderScheme.addStep(2, schemeStep);
 
         return schemeStep;
     }
 
+    @Override
+    public ObjectToFind2D check() {
+        return finderScheme.check();
+    }
 }

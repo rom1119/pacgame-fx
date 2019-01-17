@@ -1,24 +1,21 @@
-package com.pacgame.game.adapter.board.finder.shema;
+package com.pacgame.scheme.impl;
 
-import com.pacgame.finder.ObjectToFind2D;
-import com.pacgame.game.board.model.Moveable;
-import com.pacgame.game.board.model.maze.IMaze;
+import com.pacgame.scheme.Scheme;
+import com.pacgame.scheme.SchemeStep;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FinderScheme {
+public class FinderScheme<T> implements Scheme<T> {
 
-    private Moveable finderObject;
-    private List<SchemeStep> steps;
+    private List<SchemeStep<T>> steps;
     private int pointer = -1;
 
-    public FinderScheme(Moveable finderObject) {
-        this.finderObject = finderObject;
+    public FinderScheme() {
         steps = new ArrayList<>();
     }
 
-    public ObjectToFind2D find()
+    public T check()
     {
         updateStep();
         if (thisStep().isComplete()) {
@@ -43,12 +40,13 @@ public class FinderScheme {
         thisStep().update();
     }
 
-    private SchemeStep thisStep()
+    private SchemeStep<T> thisStep()
     {
         return steps.get(pointer);
     }
 
-    public void addStepTarget(int index, SchemeStep el){
+
+    public void addStep(int index, SchemeStep<T> el){
 
         steps.add(index, el);
 

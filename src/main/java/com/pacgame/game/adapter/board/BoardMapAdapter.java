@@ -11,10 +11,8 @@ import com.pacgame.game.adapter.board.finder.ObjectToFindFactory;
 import com.pacgame.game.adapter.board.finder.rules.NotTurnAroundRule;
 import com.pacgame.game.adapter.board.finder.shema.FinderSchemeFactory;
 import com.pacgame.game.adapter.board.finder.shema.MazeFinderSchema;
-import com.pacgame.game.adapter.board.finder.shema.SchemeStep;
 import com.pacgame.game.adapter.board.movement.Movement2DAdapter;
 import com.pacgame.game.adapter.board.movement.MovementFactory;
-import com.pacgame.game.adapter.board.movement.rules.DoorCloseRule;
 import com.pacgame.game.adapter.board.point.GamePointsFactory;
 import com.pacgame.game.board.BoardMap;
 import com.pacgame.game.board.model.Moveable;
@@ -26,6 +24,7 @@ import com.pacgame.gameElement.MovingElementFactory;
 import com.pacgame.gameElement.standElement.GamePoint;
 import com.pacgame.map.Level;
 import com.pacgame.map.point.MapPoint;
+import com.pacgame.scheme.SchemeStep;
 
 import java.util.List;
 
@@ -63,17 +62,17 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
     {
         this.levelProvidedObject.getRootLayer().addEventHandler(eventFacade.keyEventFacade().onKeyPressed(), e -> {
             if (e.isArrowUp()) {
-                mazeAdapter.moveUp();
-//                controlledPacman.moveUp();
+//                mazeAdapter.moveUp();
+                controlledPacman.moveUp();
             } else if (e.isArrowBottom()) {
-                mazeAdapter.moveDown();
-//                controlledPacman.moveDown();
+//                mazeAdapter.moveDown();
+                controlledPacman.moveDown();
             } else if (e.isArrowLeft()) {
-                mazeAdapter.moveLeft();
-//                controlledPacman.moveLeft();
+//                mazeAdapter.moveLeft();
+                controlledPacman.moveLeft();
             } else if (e.isArrowRight()) {
-                mazeAdapter.moveRight();
-//                controlledPacman.moveRight();
+//                mazeAdapter.moveRight();
+                controlledPacman.moveRight();
             }
         });
 

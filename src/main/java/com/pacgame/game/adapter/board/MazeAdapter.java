@@ -1,22 +1,16 @@
 package com.pacgame.game.adapter.board;
 
-import com.pacgame.View;
 import com.pacgame.event.EventFacade;
-import com.pacgame.finder.FindPoint2D;
 import com.pacgame.finder.Finder;
 import com.pacgame.finder.ObjectToFind2D;
 import com.pacgame.game.adapter.ValueObject;
-import com.pacgame.game.adapter.ViewAdapter;
-import com.pacgame.game.adapter.board.finder.shema.FinderScheme;
-import com.pacgame.game.adapter.board.finder.shema.MazeFinderSchema;
 import com.pacgame.game.board.BoardObject;
 import com.pacgame.game.board.application.IMovement;
 import com.pacgame.game.board.model.level.IMapPoint;
 import com.pacgame.game.board.model.maze.IMaze;
-import com.pacgame.game.event.board.BoardElementMove;
-import com.pacgame.game.event.board.GameBoardEventHandler;
 import com.pacgame.gameElement.movingElement.Maze;
 import com.pacgame.movement.impl.pointToPoint.event.MoverBetweenPointsEventFacade;
+import com.pacgame.scheme.Scheme;
 
 public class MazeAdapter extends GameElement implements IMaze {
 
@@ -28,7 +22,7 @@ public class MazeAdapter extends GameElement implements IMaze {
     private MapPointsCreator mapPointsCreator;
     private Finder finder;
     private ObjectToFind2D objectToFind;
-    private FinderScheme finderScheme;
+    private Scheme<ObjectToFind2D> finderScheme;
 
     public MazeAdapter(Maze providedObject, EventFacade eventFacade) {
         this.providedObject = providedObject;
@@ -157,7 +151,7 @@ public class MazeAdapter extends GameElement implements IMaze {
 //            System.out.println(((MapPointAdapter) getCurrentPoint()).getLeft());
 //            System.out.println(((MapPointAdapter) getCurrentPoint()).getRight());
 //            System.out.println("q123");
-            objectToFind = finderScheme.find();
+            objectToFind = finderScheme.check();
             System.out.println(objectToFind.getPoint().getX());
             System.out.println(objectToFind.getPoint().getY());
             this.finder.find(objectToFind);
@@ -175,7 +169,7 @@ public class MazeAdapter extends GameElement implements IMaze {
         return getProvidedObject().touching(((GameElement) el).getProvidedObject());
     }
 
-    public void setFinderScheme(FinderScheme finderScheme) {
+    public void setFinderScheme(Scheme finderScheme) {
         this.finderScheme = finderScheme;
     }
 

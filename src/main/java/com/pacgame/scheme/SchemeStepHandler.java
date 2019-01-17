@@ -1,4 +1,4 @@
-package com.pacgame.game.adapter.board.finder.shema;
+package com.pacgame.scheme;
 
 public interface SchemeStepHandler {
 

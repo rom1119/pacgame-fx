@@ -54,7 +54,7 @@ public class LayerRepository implements DbRepository<LayerEntity> {
             e.printStackTrace();
         } catch (UnsupportedEntityException e) {
             e.printStackTrace();
-            System.out.println("Entity " + clazz.toString() + " class can not be find because this operation is not supported");
+            System.out.println("Entity " + clazz.toString() + " class can not be check because this operation is not supported");
         }
 
         return layerEntity;
