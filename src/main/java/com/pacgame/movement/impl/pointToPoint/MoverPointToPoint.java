@@ -201,7 +201,7 @@ public class MoverPointToPoint implements Movement2D {
                 currentMove.move(objectMoving);
                 currentMove.setOnMoveEnd(() -> {
                     emitEndMoveEvent();
-//                    continueMoveIfIsPossible();
+                    goIfIsSameStopped();
                 });
             }
         } else {
