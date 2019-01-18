@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77da18e3-268f-4571-9761-d457f08b7b19" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/FirstStep.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/SecondStep.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/ThirdStep.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/finder/impl/pointToPoint/FinderPointToPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/finder/impl/pointToPoint/FinderPointToPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/BoardMapAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/BoardMapAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/MazeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/MazeAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/PacmanAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/PacmanAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/FinderAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/FinderAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/FinderSchemeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/FinderSchemeFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/MazeFinderSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/MazeFinderSchema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/game/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/game/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/scheme/Scheme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/scheme/Scheme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacgame/scheme/impl/FinderScheme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacgame/scheme/impl/FinderScheme.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -64,8 +58,48 @@
       <file leaf-file-name="MazeFinderSchema.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/MazeFinderSchema.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="243">
+              <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4612#4613#0" expanded="true" />
+                <element signature="e#4655#4656#0" expanded="true" />
+                <element signature="e#4688#4689#0" expanded="true" />
+                <element signature="e#4730#4731#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThirdStep.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/ThirdStep.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FirstStep.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/FirstStep.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SecondStep.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/SecondStep.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -118,8 +152,8 @@
       <list>
         <option value="JUnit3 Test Class" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -170,9 +204,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/pointToPoint/event/MoveRightEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/pointToPoint/event/MoveUpEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/pointToPoint/event/BaseMoveEventBetweenPoints.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/pointToPoint/event/MoverBetweenPointsEventFacade.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/pointToPoint/event/AnyMoveEndEvent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/movement/impl/pointToPoint/event/MoveStartEvent.java" />
@@ -219,8 +250,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/FinderSchemeFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/BoardMapAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/MazeAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/MazeFinderSchema.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacgame/scheme/impl/FinderScheme.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/ThirdStep.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/FirstStep.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/SecondStep.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/MazeFinderSchema.java" />
       </list>
     </option>
   </component>
@@ -357,6 +391,20 @@
               <item name="board" type="462c0819:PsiDirectoryNode" />
               <item name="finder" type="462c0819:PsiDirectoryNode" />
               <item name="shema" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pacman" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pacgame" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="adapter" type="462c0819:PsiDirectoryNode" />
+              <item name="board" type="462c0819:PsiDirectoryNode" />
+              <item name="finder" type="462c0819:PsiDirectoryNode" />
+              <item name="shema" type="462c0819:PsiDirectoryNode" />
+              <item name="maze" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pacman" type="b2602c69:ProjectViewProjectNode" />
@@ -733,6 +781,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32917705" />
@@ -808,27 +857,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/board/model/Moveable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/BoardMapCreatorAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="61" column="74" selection-start-line="61" selection-start-column="74" selection-end-line="61" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/map/point/Point2D.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/map/point/Position2D.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
@@ -1168,12 +1196,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/MazeFinderSchema.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/ThirdStep.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="280">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/FirstStep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/steps/maze/SecondStep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacgame/game/adapter/board/finder/shema/MazeFinderSchema.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4612#4613#0" expanded="true" />
+            <element signature="e#4655#4656#0" expanded="true" />
+            <element signature="e#4688#4689#0" expanded="true" />
+            <element signature="e#4730#4731#0" expanded="true" />
           </folding>
         </state>
       </provider>

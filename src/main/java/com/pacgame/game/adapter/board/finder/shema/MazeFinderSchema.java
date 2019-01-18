@@ -9,6 +9,9 @@ import com.pacgame.game.adapter.board.MazeAdapter;
 import com.pacgame.game.adapter.board.finder.FindPoint2DAdapter;
 import com.pacgame.game.adapter.board.finder.ObjectToFindFactory;
 import com.pacgame.game.adapter.board.finder.rules.NotTurnAroundRule;
+import com.pacgame.game.adapter.board.finder.shema.steps.maze.FirstStep;
+import com.pacgame.game.adapter.board.finder.shema.steps.maze.SecondStep;
+import com.pacgame.game.adapter.board.finder.shema.steps.maze.ThirdStep;
 import com.pacgame.game.board.model.Moveable;
 import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.scheme.Scheme;
@@ -42,85 +45,7 @@ public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
 
     public SchemeStep setObjectForFirstStep(ObjectToFind2D el)
     {
-        SchemeStep schemeStep = new SchemeStep() {
-
-            private int countSteps = 10;
-            private SchemeStepHandler onCompleteHandler;
-
-            private ObjectToFind2D target = el;
-
-            @Override
-            public ObjectToFind2D getTargetElement() {
-                if (countSteps > 0) {
-                    return createRandomPoint();
-                }
-
-                return target;
-            }
-
-            private ObjectToFind2D createRandomPoint()
-            {
-                Random generator = new Random();
-                ObjectToFind2D returnObj = null;
-
-                while (returnObj == null) {
-                    int i = generator.nextInt(1);
-
-                    switch (i) {
-                        case 0:
-                            if (((MapPointAdapter) finderObject.getCurrentPoint()).getLeft() != null) {
-                                returnObj = new ObjectToFind2D() {
-                                    @Override
-                                    public FindPoint2D getPoint() {
-                                        return new FindPoint2DAdapter((MapPointAdapter) ((MapPointAdapter) finderObject.getCurrentPoint()).getLeft());
-                                    }
-                                };
-                            }
-                        case 1:
-                            if (((MapPointAdapter) finderObject.getCurrentPoint()).getRight() != null) {
-                                returnObj = new ObjectToFind2D() {
-                                    @Override
-                                    public FindPoint2D getPoint() {
-                                        return new FindPoint2DAdapter((MapPointAdapter) ((MapPointAdapter) finderObject.getCurrentPoint()).getRight());
-                                    }
-                                };
-                            }
-                    }
-                }
-
-                return returnObj;
-
-            }
-
-            @Override
-            public boolean isComplete() {
-                if (countSteps > 0) {
-                    return false;
-                }
-//                System.out.println(finderObject.getCurrentPoint().getX());
-//                System.out.println(el.getPoint().getX());
-//                System.out.println(finderObject.getCurrentPoint().getY());
-//                System.out.println(el.getPoint().getY());
-                return finderObject.getCurrentPoint().getX() == target.getPoint().getX() && finderObject.getCurrentPoint().getY() == target.getPoint().getY();
-            }
-
-            @Override
-            public void update() {
-                countSteps--;
-            }
-
-            @Override
-            public void onComplete() {
-                if (onCompleteHandler != null) {
-                    onCompleteHandler.handle();
-                }
-            }
-
-            @Override
-            public void setOnComplete(SchemeStepHandler handler) {
-                this.onCompleteHandler = handler;
-            }
-        };
+        SchemeStep schemeStep = new FirstStep(el, finderObject);
 
         finderScheme.addStep(0, schemeStep);
 
@@ -128,36 +53,8 @@ public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
     }
     public SchemeStep setObjectForSecondStep(ObjectToFind2D el)
     {
-        SchemeStep schemeStep = new SchemeStep() {
-            private SchemeStepHandler onCompleteHandler;
-            private ObjectToFind2D target = el;
+        SchemeStep schemeStep = new SecondStep(el, finderObject);
 
-            @Override
-            public ObjectToFind2D getTargetElement() {
-                return target;
-            }
-
-            @Override
-            public boolean isComplete() {
-                return finderObject.getCurrentPoint().getX() == target.getPoint().getX() && finderObject.getCurrentPoint().getY() == target.getPoint().getY();
-            }
-
-            @Override
-            public void update() {
-            }
-
-            @Override
-            public void onComplete() {
-                if (onCompleteHandler != null) {
-                    onCompleteHandler.handle();
-                }
-            }
-
-            @Override
-            public void setOnComplete(SchemeStepHandler handler) {
-                this.onCompleteHandler = handler;
-            }
-        };
         schemeStep.setOnComplete(() -> {
             addRule(new com.pacgame.game.adapter.board.finder.rules.DoorCloseRule());
             addRule(new NotTurnAroundRule(((MazeAdapter) finderObject).getCurrentPointValueObject()));
@@ -184,38 +81,7 @@ public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
 
     public SchemeStep setObjectForThirdStep(ObjectToFind2D el)
     {
-        SchemeStep schemeStep = new SchemeStep() {
-
-            private ObjectToFind2D target = el;
-            private SchemeStepHandler onCompleteHandler;
-
-
-            @Override
-            public ObjectToFind2D getTargetElement() {
-                return target;
-            }
-
-            @Override
-            public boolean isComplete() {
-                return finderObject.getCurrentPoint().getX() == target.getPoint().getX() && finderObject.getCurrentPoint().getY() == target.getPoint().getY();
-            }
-
-            @Override
-            public void update() {
-            }
-
-            @Override
-            public void onComplete() {
-                if (onCompleteHandler != null) {
-                    onCompleteHandler.handle();
-                }
-            }
-
-            @Override
-            public void setOnComplete(SchemeStepHandler handler) {
-                this.onCompleteHandler = handler;
-            }
-        };
+        SchemeStep schemeStep = new ThirdStep(el, finderObject);
 
         finderScheme.addStep(2, schemeStep);
 
