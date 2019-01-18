@@ -4,4 +4,5 @@ public interface Scheme<T> {
 
     T check();
 
+    void toFirstStep();
 }

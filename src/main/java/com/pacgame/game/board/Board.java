@@ -46,7 +46,7 @@ public class Board {
 
         pacmanList.add(pacman);
         onPacmanMove(pacman);
-//        pacman.startMove();
+        pacman.startMove();
     }
 
     IPoint boardElementTouchAnyPoint(BoardObject el)

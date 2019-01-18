@@ -145,18 +145,22 @@ public class MazeAdapter extends GameElement implements IMaze {
         movementEventFacade.addEventHandler(movementEventFacade.onAnyMoveEndEvent(), event -> {
             setCurrentPoint(mapPointsCreator.getFromPosition(event.getX(), event.getY()));
 //            System.out.println("q123");
-            System.out.println(((MapPointAdapter) getCurrentPoint()).getName());
+//            System.out.println(((MapPointAdapter) getCurrentPoint()).getName());
 //            System.out.println(((MapPointAdapter) getCurrentPoint()).getUp());
 //            System.out.println(((MapPointAdapter) getCurrentPoint()).getDown());
 //            System.out.println(((MapPointAdapter) getCurrentPoint()).getLeft());
 //            System.out.println(((MapPointAdapter) getCurrentPoint()).getRight());
 //            System.out.println("q123");
             objectToFind = finderScheme.check();
-            System.out.println(objectToFind.getPoint().getX());
-            System.out.println(objectToFind.getPoint().getY());
+//            System.out.println(objectToFind.getPoint().getX());
+//            System.out.println(objectToFind.getPoint().getY());
             this.finder.find(objectToFind);
 
         });
+    }
+
+    public Finder getFinder() {
+        return finder;
     }
 
     @Override

@@ -165,7 +165,7 @@ public class PacmanAdapter extends GameElement implements IPacman {
 
                 setCurrentPoint(mapPointsCreator.getFromPosition(event.getX(), event.getY()));
             }
-            System.out.println(((MapPointAdapter) getCurrentPoint()).getName());
+//            System.out.println(((MapPointAdapter) getCurrentPoint()).getName());
 //            System.out.println("Xyz");
 //            System.out.println(((MapPointAdapter) ((MapPointAdapter) getCurrentPoint()).getUp()));
 //            System.out.println(((MapPointAdapter) ((MapPointAdapter) getCurrentPoint()).getDown()));

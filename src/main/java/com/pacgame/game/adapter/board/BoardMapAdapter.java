@@ -135,7 +135,7 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
         IMapPoint mazeInitPosition = getMazeInitPosition();
         ObjectToFind2D firstObject = objectToFindFactory.createObjectToFind2D(mazeInitPosition);
 
-//        SchemeStep schemeStep1 = mazeFinderSchema.setObjectForFirstStep(firstObject);
+        SchemeStep schemeStep1 = mazeFinderSchema.setObjectForFirstStep(firstObject);
 
 
 //        second step
@@ -144,19 +144,16 @@ public class BoardMapAdapter extends LayerAdapter implements BoardMap {
         IMapPoint fromPosition = mapPointsCreator.getFromPosition(point.getX(), point.getY());
         ObjectToFind2D secondObject = objectToFindFactory.createObjectToFind2D(fromPosition);
 
-        SchemeStep schemeStep2 = mazeFinderSchema.setObjectForFirstStep(secondObject);
+        SchemeStep schemeStep2 = mazeFinderSchema.setObjectForSecondStep(secondObject);
 
-        schemeStep2.setOnComplete(() -> {
-            finder.addRule(new com.pacgame.game.adapter.board.finder.rules.DoorCloseRule());
-            finder.addRule(new NotTurnAroundRule(((MazeAdapter) maze).getCurrentPointValueObject()));
-        });
+
 
 
 //        third step
         ObjectToFind2D thirdObject = objectToFindFactory.createObjectToFind2D((Moveable) controlledPacman);
-        SchemeStep schemeStep3 = mazeFinderSchema.setObjectForSecondStep(thirdObject);
+        SchemeStep schemeStep3 = mazeFinderSchema.setObjectForThirdStep(thirdObject);
         schemeStep3.setOnComplete((() -> {
-//            mazeFinderSchema.getFinderScheme().prevStep();
+            mazeFinderSchema.toFirstStep();
         }));
 
 

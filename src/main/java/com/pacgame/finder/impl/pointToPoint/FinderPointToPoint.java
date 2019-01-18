@@ -43,7 +43,7 @@ public class FinderPointToPoint implements Finder {
             calculateWays.put(el, calculate);
 
         }
-        System.out.println(calculateWays.size());
+//        System.out.println(calculateWays.size());
 
         if (calculateWays.size() == 0) {
             System.out.println("brak dostepnych pkt");

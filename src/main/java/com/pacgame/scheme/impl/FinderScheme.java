@@ -10,6 +10,7 @@ public class FinderScheme<T> implements Scheme<T> {
 
     private List<SchemeStep<T>> steps;
     private int pointer = -1;
+    private boolean toFront = true;
 
     public FinderScheme() {
         steps = new ArrayList<>();
@@ -26,9 +27,14 @@ public class FinderScheme<T> implements Scheme<T> {
         return thisStep().getTargetElement();
     }
 
+    @Override
+    public void toFirstStep() {
+        toFront = false;
+    }
+
     private void changeStep()
     {
-        if (pointer < steps.size() - 1) {
+        if (pointer < steps.size() - 1 && toFront) {
             nextStep();
         } else {
             prevStep();

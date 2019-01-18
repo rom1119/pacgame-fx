@@ -22,16 +22,16 @@ public class FinderAdapter implements Finder {
             public void moveTo(FindPoint2D point) {
 
                 if (isUpPoint((FindPoint2DAdapter) point, (MapPointAdapter) el.getCurrentPoint())) {
-                    System.out.println("up");
+//                    System.out.println("up");
                     el.moveUp();
                 } else if (isDownPoint((FindPoint2DAdapter) point, (MapPointAdapter) el.getCurrentPoint())) {
-                    System.out.println("down");
+//                    System.out.println("down");
                     el.moveDown();
                 } else if (isLeftPoint((FindPoint2DAdapter) point, (MapPointAdapter) el.getCurrentPoint())) {
-                    System.out.println("left");
+//                    System.out.println("left");
                     el.moveLeft();
                 } else if (isRightPoint((FindPoint2DAdapter) point, (MapPointAdapter) el.getCurrentPoint())) {
-                    System.out.println("right");
+//                    System.out.println("right");
                     el.moveRight();
                 }
             }

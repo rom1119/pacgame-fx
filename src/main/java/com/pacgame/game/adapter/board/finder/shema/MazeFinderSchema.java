@@ -1,21 +1,35 @@
 package com.pacgame.game.adapter.board.finder.shema;
 
+import com.pacgame.finder.FindPoint2D;
+import com.pacgame.finder.Finder;
+import com.pacgame.finder.FinderRule;
 import com.pacgame.finder.ObjectToFind2D;
+import com.pacgame.game.adapter.board.MapPointAdapter;
+import com.pacgame.game.adapter.board.MazeAdapter;
+import com.pacgame.game.adapter.board.finder.FindPoint2DAdapter;
 import com.pacgame.game.adapter.board.finder.ObjectToFindFactory;
+import com.pacgame.game.adapter.board.finder.rules.NotTurnAroundRule;
 import com.pacgame.game.board.model.Moveable;
+import com.pacgame.game.board.model.maze.IMaze;
 import com.pacgame.scheme.Scheme;
 import com.pacgame.scheme.SchemeStep;
 import com.pacgame.scheme.SchemeStepHandler;
 import com.pacgame.scheme.impl.FinderScheme;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
 
     private FinderScheme<ObjectToFind2D> finderScheme;
-    private Moveable finderObject;
+    private IMaze finderObject;
+    private Map<String, FinderRule> rules;
 
-    public MazeFinderSchema(Moveable finderObject) {
+    public MazeFinderSchema(IMaze finderObject) {
         createFinderSchema();
         this.finderObject = finderObject;
+        this.rules = new HashMap<>();
     }
 
     private void createFinderSchema() {
@@ -37,11 +51,52 @@ public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
 
             @Override
             public ObjectToFind2D getTargetElement() {
+                if (countSteps > 0) {
+                    return createRandomPoint();
+                }
+
                 return target;
+            }
+
+            private ObjectToFind2D createRandomPoint()
+            {
+                Random generator = new Random();
+                ObjectToFind2D returnObj = null;
+
+                while (returnObj == null) {
+                    int i = generator.nextInt(1);
+
+                    switch (i) {
+                        case 0:
+                            if (((MapPointAdapter) finderObject.getCurrentPoint()).getLeft() != null) {
+                                returnObj = new ObjectToFind2D() {
+                                    @Override
+                                    public FindPoint2D getPoint() {
+                                        return new FindPoint2DAdapter((MapPointAdapter) ((MapPointAdapter) finderObject.getCurrentPoint()).getLeft());
+                                    }
+                                };
+                            }
+                        case 1:
+                            if (((MapPointAdapter) finderObject.getCurrentPoint()).getRight() != null) {
+                                returnObj = new ObjectToFind2D() {
+                                    @Override
+                                    public FindPoint2D getPoint() {
+                                        return new FindPoint2DAdapter((MapPointAdapter) ((MapPointAdapter) finderObject.getCurrentPoint()).getRight());
+                                    }
+                                };
+                            }
+                    }
+                }
+
+                return returnObj;
+
             }
 
             @Override
             public boolean isComplete() {
+                if (countSteps > 0) {
+                    return false;
+                }
 //                System.out.println(finderObject.getCurrentPoint().getX());
 //                System.out.println(el.getPoint().getX());
 //                System.out.println(finderObject.getCurrentPoint().getY());
@@ -84,7 +139,7 @@ public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
 
             @Override
             public boolean isComplete() {
-                return finderObject.getCurrentPoint().getX() == el.getPoint().getX() && finderObject.getCurrentPoint().getY() == el.getPoint().getY();
+                return finderObject.getCurrentPoint().getX() == target.getPoint().getX() && finderObject.getCurrentPoint().getY() == target.getPoint().getY();
             }
 
             @Override
@@ -103,10 +158,28 @@ public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
                 this.onCompleteHandler = handler;
             }
         };
+        schemeStep.setOnComplete(() -> {
+            addRule(new com.pacgame.game.adapter.board.finder.rules.DoorCloseRule());
+            addRule(new NotTurnAroundRule(((MazeAdapter) finderObject).getCurrentPointValueObject()));
+        });
+
+
         finderScheme.addStep(1, schemeStep);
 
         return schemeStep;
 
+    }
+
+    private void addRule(FinderRule rule) {
+        rules.put(rule.getClass().getSimpleName(), rule);
+        ((MazeAdapter) finderObject).getFinder().addRule(rule);
+    }
+
+    private void removeRule(Class<FinderRule> ruleClass) {
+        if (rules.containsKey(ruleClass.getSimpleName())) {
+            FinderRule finderRule = rules.remove(ruleClass.getSimpleName());
+            ((MazeAdapter) finderObject).getFinder().removeRule(finderRule);
+        }
     }
 
     public SchemeStep setObjectForThirdStep(ObjectToFind2D el)
@@ -124,7 +197,7 @@ public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
 
             @Override
             public boolean isComplete() {
-                return finderObject.getCurrentPoint().getX() == el.getPoint().getX() && finderObject.getCurrentPoint().getY() == el.getPoint().getY();
+                return finderObject.getCurrentPoint().getX() == target.getPoint().getX() && finderObject.getCurrentPoint().getY() == target.getPoint().getY();
             }
 
             @Override
@@ -152,5 +225,9 @@ public class MazeFinderSchema implements Scheme<ObjectToFind2D> {
     @Override
     public ObjectToFind2D check() {
         return finderScheme.check();
+    }
+
+    public void toFirstStep() {
+        finderScheme.toFirstStep();
     }
 }
